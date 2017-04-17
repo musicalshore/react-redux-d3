@@ -1,0 +1,313 @@
+/*******************
+/***** GLOBAL* *****
+/*******************
+
+$opensans: 'Arial', sans-serif
+$opensanssb: 'Arial', sans-serif
+
+body
+  font-size: 62.5%
+
+.container_12
+  font-size: 1.6em
+  font-family: $opensans
+  h2
+    font: 26px/1.2 $opensans
+    color: #1666af
+    margin-top: 50px
+    margin-bottom: 0
+  p
+    margin-top: 5px
+    &.regular
+      font-size: 16px
+      line-height: 28px
+  a
+    /*font-weight: bold
+
+a.orange
+  &:link, &:visited
+    color: #E57D21 !important
+    font-weight: 600
+  &:hover
+    color: #d0670c
+    text-decoration: underline
+
+#content
+  position: relative
+  margin: 130px auto 80px auto
+  width: 960px
+  border-top: 1px solid transparent
+  @media (max-width:980px)
+    width: 90%
+  hr
+    height: 1px
+    border: none
+    margin-top: 50px
+    color: #d9dbdd
+    background-color: #d9dbdd
+
+.btn-cta-sm
+  padding: 7px 10px
+  font: 14px/19px $opensanssb
+  color: #fff !important
+  text-decoration: none !important
+  background-color: #e67e22
+  &:hover
+    background-color: #d0670c
+  span
+    padding-right: 15px
+    background: transparent url(../img/home/cta-arrow-sm.png) 100% 55% no-repeat
+
+/**** Breadcrumb ***
+
+.topBreadcrumb
+  margin: 0px 20px 15px 10px
+  min-height: 30px
+  overflow: auto
+
+ul.breadcrumb
+  float: left
+  li
+    list-style-type: none
+    font-size: 12px
+    line-height: 30px
+    float: left
+    color: #666666
+    display: block
+    a
+      color: #e67e22
+      text-decoration: none
+      font-weight: normal
+      &:hover
+        text-decoration: underline
+    span
+      margin: 0 4px
+
+/**** Textsize ***
+
+.textSize
+  display: block
+  font-size: 14px
+  line-height: 18px
+  padding-top: 4px
+  float: right
+  vertical-align: bottom
+  width: 125px
+  span
+    float: left
+    vertical-align: bottom
+    margin-right: 8px
+  a
+    vertical-align: bottom
+    margin: 0 2px
+    color: #0095D5
+    font-weight: normal
+    &.pt14
+      font-size: 14px
+      padding-top: 4px
+    &.pt16
+      font-size: 16px
+      padding-top: 2px
+    &.pt18
+      font-size: 18px
+      padding-top: 0px
+    &.selFontSize
+      text-decoration: underline
+
+/*******************
+/***** General *****
+/*******************
+
+.hero-bestdriver
+  position: relative
+  padding: 45px auto
+  margin: 0 auto 15px auto
+  text-align: center
+  img
+    max-width: 446px
+    height: auto
+    text-align: center
+    margin: 0 auto
+  @media(max-width:767px)
+    img
+      max-width: 100%
+
+.bestdriver-app
+  width: 955px
+  margin-bottom: 50px
+  @media(max-width:980px)
+    width: 100%
+    margin: 0 auto 50px
+  .nav
+    height: 110px
+    border: 1px solid #ccc
+  .map
+    clear: both
+    height: 625px
+    border-top: none
+  .list
+    width: 226px
+    height: 630px
+    float: right
+    border: 1px solid #ccc
+    border-top: none
+    border-left: none
+  .timeline
+    clear: both
+    height: 85px
+    background: repeating-linear-gradient(45deg, #ccc, #ccc 10px, #ddd 10px, #ddd 15px)
+    border: 1px solid #ccc
+    border-top: none
+
+.bestdriver-wrap
+  width: 960px
+  @media(max-width:980px)
+    width: 90%
+    margin: 0 auto
+.bestdriver-left
+  clear: both
+  float: left
+  margin: 20px 0
+  width: 560px
+  @media(max-width:980px)
+    width: 90%
+    margin: 0 auto 20px
+    float: none
+
+.bestdriver-right
+  float: right
+  margin: 20px 0
+  @media(max-width:980px)
+    width: 90%
+    margin: 0 auto
+    float: none
+  .location
+    padding: 20px 0 10px 0
+    margin: 0
+    font: 14px/18px arial, helvetica, sans-serif
+    a
+      color: #0096d6
+      text-decoration: underline
+      span
+        padding: 2px 0 2px 15px
+        margin-left: 5px
+        font-weight: bold
+        background: transparent url(../img/home/icon-edit.png) left center no-repeat
+      &:hover
+        text-decoration: none
+  .stat-top
+    border: 1px solid #dcdcdc
+    background-color: #f3f3f3
+    width: 360px
+    height: 197px
+    position: relative
+    @media(max-width:980px)
+      margin: 0 auto
+      width: 100%
+    .carCrashImage
+      height: 100%
+      background: url('../img/home/fact-collision10Years-top.png') no-repeat center
+    .twitterContainer
+      height: 25px
+      width: 25px
+      background: url('../img/home/Twitter_INACTIVE.png') no-repeat center
+      position: absolute
+      bottom: 10px
+      right: 10px
+  .stat-bottom .twitterContainer
+    height: 25px
+    width: 25px
+    background: url('../img/home/Twitter_INACTIVE.png') no-repeat center
+    position: absolute
+    bottom: 10px
+    right: 10px
+  .stat-top .twitterContainer:hover
+    background: url('../img/home/Twitter_ROLLOVER.png') no-repeat center
+  .stat-bottom
+    @media(max-width:980px)
+      margin: 0 auto
+      width: 100%
+    .twitterContainer:hover
+      background: url('../img/home/Twitter_ROLLOVER.png') no-repeat center
+    border: 1px solid #dcdcdc
+    background-color: #f3f3f3
+    width: 360px
+    height: 115px
+    position: relative
+    .percentage
+      background: url('../img/home/fact-26-bottom.png') no-repeat center
+      height: 100%
+    .twitterContainer
+    border: 1px solid #dcdcdc
+    border-top: none
+
+.legal
+  margin-top: 20px
+  clear: both
+  padding: 0 10px 10px 30px
+  font-size: 0.75em
+  line-height: 1.5em
+  color: #666
+
+/**** Carousel ***
+
+.bestdriver-carousel
+  clear: both
+  position: relative
+  .slides-outer
+    overflow: hidden
+  .slides-inner
+    width: 960px
+    div
+      position: relative
+      float: left
+      padding: 48px 260px 31px 26px
+      margin-left: 4px
+      height: 225px
+      width: 190px
+      font: 13px/18px $opensans
+      color: #333
+      background: transparent url(../img/bestdriver/bg-carousel.png) no-repeat
+    img
+      position: absolute
+      top: 28px
+      right: 31px
+    h3
+      font: 22px/25px $opensans
+      color: #e67e22
+    a
+      color: #e67e22
+      &:hover
+        text-decoration: none
+  .slides-nav
+    text-align: center
+    a
+      display: inline-block
+      padding: 12px
+      height: 20px
+      width: 20px
+      text-indent: -9999px
+      background: transparent url(../img/bestdriver/slides-nav.png) no-repeat
+      &.activeSlide
+        background-position: 0 -44px
+  .slides_prev, .slides_next
+    display: block
+    height: 30px
+    width: 18px
+    cursor: pointer
+    background: transparent url(../img/bestdriver/slides-prev-next.png) no-repeat
+    position: absolute
+    z-index: 10
+    top: 127px
+    text-indent: -9999px
+    text-decoration: none
+  .slides_prev
+    left: -20px
+  .slides_next
+    right: -20px
+    background-position: -18px 0
+
+@media(max-width:767px)
+  .slides-outer
+    width: 80%
+    margin: 0 10%

@@ -1,0 +1,294 @@
+
+.FreeTextScroller div, .FreeTextScroller span, .FreeTextScroller h1, .FreeTextScroller h2, .FreeTextScroller h3, .FreeTextScroller h4, .FreeTextScroller h5, .FreeTextScroller h6, .FreeTextScroller p, .FreeTextScroller blockquote, .FreeTextScroller a, .FreeTextScroller img, .FreeTextScroller dl, .FreeTextScroller dt, .FreeTextScroller dd, .FreeTextScroller ol, .FreeTextScroller ul, .FreeTextScroller li, .FreeTextScroller fieldset, .FreeTextScroller form, .FreeTextScroller label, .FreeTextScroller legend, .FreeTextScroller table, .FreeTextScroller tr, .FreeTextScroller th, .FreeTextScroller td {
+	margin: 0;
+	padding: 0;
+	border: none
+}
+.FreeTextScroller .home-carousel {
+	clear: both;
+	display: block;
+	position: relative;
+	padding: 10px 20px 10px 20px;
+	font-family: arial, sans-serif
+}
+.FreeTextScroller .FreeTextScrollerHeader, .FreeTextScroller .FreeTextScrollerFooter {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	font-size: 9pt;
+	font-weight: bold;
+	padding: 0;
+	font-family: arial, sans-serif
+}
+.FreeTextScroller .FreeTextScrollerHeader *, .FreeTextScroller .FreeTextScrollerFooter * {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%
+}
+.FreeTextScroller .home-carousel .slides-outer {
+	overflow: hidden
+}
+.FreeTextScroller .home-carousel .slides-inner {
+	width: 100%;
+	margin: 0 auto;
+	padding-left: 3px
+}
+.FreeTextScroller .home-carousel .slides-inner .slide {
+	float: left;
+	margin: 0 auto 0 auto;
+	padding-bottom: 10px;
+	overflow: visible;
+	width: 100%
+}
+.FreeTextScroller .home-carousel .slides-inner .slide-bot {
+	float: left;
+	margin: 0 auto 0 auto;
+	overflow: visible
+}
+.FreeTextScroller .home-carousel .slides-inner .slide .slideContents {
+	margin: 8px 10px 0 4px;
+	text-align: left;
+	position: relative;
+	font: 13px/18px arial, sans-serif;
+	font-weight: 400;
+	color: #333;
+	padding: 20px 258px 0 18px;
+	background-color: #fff;
+	min-height: 260px;
+	border: 1px solid #e7eaec
+}
+.FreeTextScroller .home-carousel .slides-inner .slide .slideContents img {
+	display: inline;
+	max-width: 50%;
+	position: absolute;
+	right: 18px;
+	top: 16px
+}
+.FreeTextScroller .home-carousel .slides-inner h3 {
+	font: 22px/25px arial, sans-serif;
+	color: #e67e22;
+	font-weight: 400;
+	padding: 10px 0
+}
+.FreeTextScroller .home-carousel .slides-inner p {
+	padding-bottom: 15px
+}
+.FreeTextScroller .home-carousel .slides-inner a {
+	color: #e67e22
+}
+.FreeTextScroller .btn-cta-sm {
+	padding: 7px 10px;
+	font: 1.1em/1.3em arial, sans-serif;
+	color: #fff !important;
+	text-decoration: none !important;
+	background-color: #e67e22
+}
+.FreeTextScroller .btn-cta-sm:hover {
+	background-color: #d0670c
+}
+.FreeTextScroller .btn-cta-sm span {
+	padding-right: 15px;
+	background: transparent url(../img/home/cta-arrow-sm.png) 100% 55% no-repeat
+}
+.FreeTextScroller .home-carousel .slides-inner a:link, .home-carousel .slides-inner a:visited {
+	text-decoration: none
+}
+.FreeTextScroller .home-carousel .slides-inner a:hover {
+	color: #d0670c;
+	text-decoration: underline
+}
+.FreeTextScroller .home-carousel .slides-nav {
+	text-align: center;
+	padding-left: 27px
+}
+.FreeTextScroller .home-carousel .slides-nav a {
+	display: inline-block;
+	padding: 12px;
+	height: 20px;
+	width: 2.25%;
+	text-indent: -9999px;
+	background: transparent url(../img/home/slides-nav.png) no-repeat;
+	background-position: 0 -44px;
+	outline-style: none
+}
+.FreeTextScroller .home-carousel .slides-nav a.activeSlide {
+	background-position: 0 0
+}
+.FreeTextScroller .home-carousel .slides_prev, .FreeTextScroller .home-carousel .slides_next {
+	display: block;
+	height: 10%;
+	width: 18px;
+	cursor: pointer;
+	background: transparent url(../img/home/slides-prev-next.png) no-repeat;
+	position: absolute;
+	z-index: 10;
+	top: 125px;
+	text-indent: -9999px;
+	text-decoration: none
+}
+.FreeTextScroller .home-carousel .slides_prev {
+	left: 0
+}
+.FreeTextScroller .home-carousel .slides_next {
+	right: 0;
+	background-position: -18px 0
+}
+.respFreeTextScroller {
+	display: none
+}
+
+@media screen and (max-width:767px) {
+
+	.FreeTextScroller {
+		position: relative
+	}
+
+	.FreeTextScroller .home-carousel {
+		display: none
+	}
+
+	.respFreeTextScroller {
+		display: block;
+		width: 100%;
+		margin: 15px auto 0 !important;
+		clear: both;
+		height: auto
+	}
+
+	.respFreeTextScroller .respFreeTextContainer {
+		position: relative;
+		width: 100%!important;
+		margin: 0 auto;
+		height: auto
+	}
+
+	.respFreeTextScroller .respFreeTextContainer .respSlides {
+		position: relative;
+		list-style: none;
+		overflow: hidden;
+		width: 100% !important;
+		padding: 0;
+		margin: 0 auto;
+		height: auto
+	}
+	.respFreeTextScroller .respFreeTextContainer .respSlides .slides-inner {
+		width: 80% !important;
+		height: auto !important;
+		background-color: #fff !important;
+		margin: 0 auto;
+	}
+
+	.respFreeTextScroller .respFreeTextContainer .respSlides li {
+		-webkit-backface-visibility: hidden;
+		position: absolute;
+		display: none;
+		width: 100% !important;
+		left: 0;
+		top: 0
+	}
+
+	.respFreeTextScroller .respFreeTextContainer .respSlides li:first-child {
+		position: relative;
+		display: block;
+		float: left
+	}
+
+	.respFreeTextScroller .respFreeTextContainer .respSlides .slide {
+		margin: 0 0 10px;
+		text-align: left;
+		font: 13px/18px arial, sans-serif;
+		font-weight: 400;
+		color: #333;
+		padding: 12px 10px;
+		background-color: #fff;
+		border: 1px solid #e7eaec;
+	}
+
+	.respFreeTextScroller .respFreeTextContainer .respSlides .slideContents {
+		display: inline-block !important;
+		width: 100% !important;
+		background-color: #fff;
+	}
+
+	.respFreeTextScroller .respFreeTextContainer .respSlides .slideContents h3 {
+		display: inline-block !important;
+		width: 100% !important;
+		background-color: #fff;
+		font: 15px/18px arial, sans-serif;
+		font-weight: 600;
+		padding: 10px 0
+	}
+
+	.respFreeTextScroller .respFreeTextContainer .respSlides .slideContents h3 a {
+		color: #e67e22;
+	}
+
+	.respFreeTextScroller .respFreeTextContainer .respSlides .slideContents p {
+		margin: 0 0 10px 0;
+	}
+
+	.respFreeTextScroller .respFreeTextContainer .respSlides p, .respFreeTextScroller .respFreeTextContainer .respSlides .btn-cta-sm, .respFreeTextScroller .respFreeTextContainer .respSlides .btn-cta-sm span {
+		display: inline-block
+	}
+
+	.respFreeTextScroller .respFreeTextContainer .respSlides img {
+		margin: 0 auto;
+		width: 100%;
+		height: auto;
+	}
+
+	.respFreeTextScroller .resp-slides-nav {
+		text-align: center;
+		padding-left: 0;
+		display: inline-block;
+		width: 100%;
+		margin: 0 auto
+	}
+
+	.respFreeTextScroller .resp-slides-nav a {
+		display: inline-block;
+		padding: 18px 15px;
+		height: 20px;
+		width: 4%;
+		text-indent: -9999px;
+		background: transparent url(../img/home/slides-nav.png) no-repeat;
+		background-position: 0 -44px;
+		outline-style: none;
+		background-position: 0 -44px
+	}
+	.respFreeTextScroller .slides-inner {
+		background-color: #fff !important;
+		width: 100% !important;
+		margin: 0 auto;
+		height: auto !important
+	}
+
+
+
+	.respFreeTextScroller .resp-slides-nav a.activeSlide {
+		background-position: 0 0
+	}
+
+	.respFreeTextScroller .resp-slides_prev, .respFreeTextScroller .resp-slides_next {
+		display: block;
+		height: 10%;
+		width: 18px;
+		cursor: pointer;
+		background: transparent url(../img/home/slides-prev-next.png) no-repeat!important;
+		position: absolute!important;
+		top: 125px;
+		text-indent: -9999px;
+		text-decoration: none
+	}
+
+	.respFreeTextScroller .resp-slides_prev {
+		left: 10px!important
+	}
+
+	.respFreeTextScroller .resp-slides_next {
+		right: 10px!important;
+		background-position: -18px 0!important
+	}
+
+}
