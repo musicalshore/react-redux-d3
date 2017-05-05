@@ -1,0 +1,55 @@
+.container {
+  flex: 1;
+
+  .title {
+    color: #666;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    margin-top: 63px;
+    text-align: center;
+    text-decoration: none;
+  }
+}
+
+:global {
+  .tab {
+    background-size: 60px;
+    background-position: center 6px;
+
+    &.top-city {
+      background-image: url('./topCities_Gray.png');
+
+      &.selected {
+        background-image: url('./topCities_Active.png');
+      }
+
+      .bottom-color {
+        background-color: #0096d6;
+      }
+    }
+
+    &.density {
+      background-image: url('./density_Gray.png');
+
+      &.selected {
+        background-image: url('./density_Active.png');
+      }
+
+      .bottom-color {
+        background-color: #e6527a;
+      }
+    }
+
+    &.rain-snow {
+      background-image: url('./rainSnow_Gray.png');
+
+      &.selected {
+        background-image: url('./rainSnow_Active.png');
+      }
+
+      .bottom-color {
+        background-color: #6d5dc9;
+      }
+    }
+  }
+}

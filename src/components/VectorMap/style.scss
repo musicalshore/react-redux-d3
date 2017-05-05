@@ -1,0 +1,46 @@
+.container {
+  .vector-map {
+    height: 625px;
+    width: 715px;
+  }
+
+  :global {
+    .jvectormap-zoomin,
+    .jvectormap-zoomout {
+      background: #fff;
+      border: solid 1px #e3e3e3;
+      border-radius: 0px;
+      color: #0096d6;
+      font-size: 16px;
+      left: auto;
+      right: 20px;
+      top: auto;
+      z-index: 10;
+    }
+
+    .jvectormap-zoomin {
+      bottom: 155px;
+    }
+
+    .jvectormap-zoomout {
+      bottom: 20px;
+    }
+
+    .jvectormap-container {
+      height: 100%;
+
+      svg g {
+        text {
+          cursor: pointer;
+          font-family: 'Arial';
+          font-size: 1em;
+          pointer-events: none;
+        }
+
+        circle {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

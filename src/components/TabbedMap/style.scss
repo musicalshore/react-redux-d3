@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  display: flex;
+
+  .maps {
+    width: 75%;
+    // float: left;
+  }
+
+  .top-listings {
+    width: 25%;
+    // float: left;
+  }
+}

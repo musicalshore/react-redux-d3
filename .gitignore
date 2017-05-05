@@ -1,0 +1,7 @@
+node_modules
+dist
+install.sh
+*.sass
+*.bak
+npm-debug.log
+old_files

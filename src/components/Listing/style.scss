@@ -1,0 +1,33 @@
+
+.container {
+  height: 535px;
+  overflow-y: scroll;
+
+  .ranking {
+    fill: #fff;
+    font-size: 12px;
+  }
+
+  li {
+    list-style-type: none;
+    line-height: 30px;
+    padding: 5px 15px 5px 30px;
+    height: 40px;
+    font-weight: 400;
+    font-size: 15px;
+
+    &:hover {
+      cursor: pointer;
+      background: #F6F6F6;
+    }
+
+    p {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      line-height: 25px;
+      white-space: nowrap;
+      color: #333;
+    }
+  }
+}
+

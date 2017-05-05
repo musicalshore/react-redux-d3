@@ -1,0 +1,15 @@
+.container {
+  align-items: center;
+  border: 1px solid #0000ff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  width: 960px;
+
+  .breadcrumbs {
+    align-self: flex-start;
+  }
+}
+
+
