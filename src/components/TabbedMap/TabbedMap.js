@@ -77,7 +77,7 @@ const TabbedMap = class TabbedMap extends React.Component {
         <div styleName="style.top-listings">
           <TopListings onChange={this.props.onYearChange} selectedMap={this.props.selectedMap} selectedYear={this.props.selectedYear} selectedCity={this.props.selectedCity} />
         </div>
-        <Modal isOpen={this.state.modalIsOpen} style={modalStyle} />
+        {/*<Modal isOpen={this.state.modalIsOpen} style={modalStyle} />*/}
       </div>
     )
   }

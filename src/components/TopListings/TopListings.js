@@ -54,7 +54,7 @@ TopListings.propTypes = {
   onChange: PropTypes.func.isRequired,
   selectedMap: PropTypes.string.isRequired,
   selectedYear: PropTypes.string.isRequired,
-  selectedCity: PropTypes.string.isRequired
+  selectedCity: PropTypes.string
 }
 
 export default TopListings
