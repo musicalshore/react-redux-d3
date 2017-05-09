@@ -1,4 +1,7 @@
 .container {
+  display: flex;
+  justify-content: center;
   min-height: 134px;
-  min-width: 430px;
+  margin-bottom: 15px;
+  // min-width: 430px;
 }

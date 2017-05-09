@@ -19,15 +19,18 @@
     "jquery.selectBox": "https://github.com/marcj/jquery-selectBox",
     "jvectormap-next": "^3.0.0",
     "lodash": "^4.17.4",
+    "rc-slider": "^7.0.3",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-helmet": "^5.0.3",
     "react-hot-loader": "next",
+    "react-modal": "^1.7.7",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "sanitize.css": "^5.0.0"
   },
   "devDependencies": {
+    "autoprefixer": "^6.7.7",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-polyfill": "^6.23.0",
@@ -42,6 +45,7 @@
     "eslint-config-standard-react": "^5.0.0",
     "eslint-plugin-html": "^2.0.1",
     "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-lodash-fp": "^2.1.3",
     "eslint-plugin-node": "^4.2.2",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^6.10.3",
@@ -63,14 +67,18 @@
   "eslintConfig": {
     "extends": [
       "standard",
+      "plugin:lodash-fp/recommended",
       "plugin:react/recommended"
     ],
     "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module",
       "ecmaFeatures": {
         "jsx": true
       }
     },
     "plugins": [
+      "lodash-fp",
       "standard",
       "promise",
       "react",

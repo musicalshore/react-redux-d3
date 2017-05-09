@@ -2,95 +2,91 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
-import _ from 'lodash'
+import _ from 'lodash/fp'
 import locations from 'best-driver.json'
 import 'jvectormap-next'
 import './jquery-jvectormap-us-aea-en'
 import './jquery-jvectormap-world-mill-en'
 import './style.scss'
 
-const defaultFill = '#0096d6'
-const defaultStroke = '#fff'
-const defaultClass = 'jvectormap-marker jvectormap-element'
-const defaultYear = '2016'
-const defaultMap = 'top-city'
-const newLocationColor = '#6db33f'
-const mostImprovedColor = '#f3c303'
-
-const formatMarkers = (locations, selectedMap, selectedYear) => {
-  // const type = `${selectedYear} ${selectedMap.type}`
-  return locations.map((location) => {
-    let marker = {
-      id: true,
-      style: {
-        fill: defaultFill,
-        stroke: defaultStroke,
-        class: defaultClass
-      },
-      dataObj: location,
-      latLng: [ location.Lat, location.Lon ],
-      name: location.City + ', ' + location.State
-    }
-    if (selectedMap.id === defaultMap && selectedYear === defaultYear) {
-      if (location.New) {
-        marker.style.fill = marker.style.stroke = newLocationColor
-        marker.style.class += ' new-location'
-      } else if (location.Improved) {
-        marker.style.fill = marker.style.stroke = mostImprovedColor
-        marker.style.class += ' most-improved'
-      }
-    }
-    return marker
-  })
-}
-
-
-const getTopMarkers = (count, markers, selectedMap, selectedYear) => {
-  let type = `${selectedYear} ${selectedMap.type}`
-  let sortedMarkers = _.sortBy(markers, (marker) => _.get(marker, 'dataObj.' + type))
-  let topMarkers = sortedMarkers.slice(0, count)
-  return topMarkers
-
-  //         // model.viewModel.map.setSelectedMarkers(j);
-  //         // $('circle[data-index="'+i+'"]').css('fill', model.viewModel.color);
-}
-
-const createMap = (locations, selectedMap, selectedYear) => {
-  const markers = formatMarkers(locations, selectedMap, selectedYear)
-  // console.log('markers', markers)
-  const formattedMap = Object.assign({}, selectedMap, { markers: markers })
-  console.log('formattedMap', formattedMap)
-  return formattedMap
-}
-
 const VectorMap = class VectorMap extends React.Component {
+  constructor () {
+    super()
+    this.jvectormap = this.jvectormap.bind(this)
+    this.setMap = this.setMap.bind(this)
+    this.panMapToMarkers = this.panMapToMarkers.bind(this)
+  }
   componentDidMount () {
-    this.$node = $(this.refs.vectorMap)
-    const formattedMap = createMap(locations, this.props.selectedMap, this.props.selectedYear)
-    this.$node.vectorMap(formattedMap)
-    const topMarkers = getTopMarkers(10, formattedMap.markers, this.props.selectedMap, this.props.selectedYear)
-    this.jvm = this.$node.vectorMap('get', 'mapObject')
+    console.log('this.props.mapData', this.props)
+    this.$el = $(this.el)
+    this.setMap()
+  }
+  componentWillUnmount () {
+    // console.log("componentDidUnmount ")
   }
   componentDidUpdate () {
-    console.log('componentDidUpdate', this.jvm)
+    // console.log('componentDidUpdate', this.props.options)
+    $('.jvectormap-container').remove()
+    this.setMap()
+  }
 
-    // const formattedMap = createMap(locations, this.props.selectedMap, this.props.selectedYear, this.$node.vectorMap)
-    // const topMarkers = getTopMarkers(10, formattedMap.markers, this.props.selectedMap, this.props.selectedYear)
-    // this.$node.vectorMap(createMap(locations, this.props.selectedMap, this.props.selectedYear))
+  panMapToMarkers (index) {
+    const mapObj = this.$el.vectorMap('get', 'mapObject')
+    const marker = this.props.mapData.markers[index]
+    const lat = marker.latLng[0]
+    const lng = marker.latLng[1]
+    mapObj.setFocus({ lat, lng, scale: 8 })
+  }
+
+  setMap () {
+    let vectorMap = _.extend(this.props.mapData, {
+      onMarkerClick: function (e, selectedCity) {
+        this.props.onMarkerClick(selectedCity)
+        this.panMapToMarkers(selectedCity)
+      }.bind(this)
+    })
+
+    this.$el.vectorMap(vectorMap)
+  }
+  jvectormap (el) {
+    this.el = el
   }
 
   render () {
     return (
       <div styleName="container">
-        <div styleName="vector-map" ref="vectorMap" />
+        <div styleName="vector-map" ref={this.jvectormap}>
+        </div>
       </div>
     )
   }
 }
 
 VectorMap.propTypes = {
-  selectedMap: PropTypes.object,
-  selectedYear: PropTypes.string
+  mapData: PropTypes.shape({
+    markers: PropTypes.array.isRequired,
+    series: PropTypes.object.isRequired
+  }),
+  onMarkerClick: PropTypes.func.isRequired,
+  selectedCity: PropTypes.string
 }
+// VectorMap.propTypes = {
+//   mapData: PropTypes.shape({
+//     markers: (props, propName, componentName) => {
+//       if (_.isEmpty(props[propName])) {
+//         return new Error(
+//           `Marker values don't exist for prop "${propName}" supplied to "${componentName}" Validation failed.`
+//         )
+//       }
+//     },
+//     series: (props, propName, componentName) => {
+//       if (_.isEmpty(_.get(propName + '.markers[0].values', props))) {
+//         return new Error(
+//           `Series values don't exist for prop "${propName}" supplied to "${componentName}" Validation failed.`
+//         )
+//       }
+//     }
+//   })
+// }
 
 export default VectorMap

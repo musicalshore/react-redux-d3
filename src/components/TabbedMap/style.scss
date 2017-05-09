@@ -1,14 +1,26 @@
 .container {
-  width: 100%;
+  // max-width: 960px;
   display: flex;
+  border: solid 1px #ebebeb;
+  min-height: 740px;
+  // justify-content: flex-start;
 
   .maps {
     width: 75%;
-    // float: left;
+    // display: flex;
+    // flex-direction: column;
+
+    .slider {
+      position: relative;
+      z-index: 900;
+      width: 400px;
+      height: 50px;
+    }
   }
 
   .top-listings {
     width: 25%;
     // float: left;
   }
+
 }

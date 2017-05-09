@@ -8,15 +8,18 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   devtool: 'source-map',
   context: path.join(__dirname, '..', 'src'),
-  entry: [
-    'babel-polyfill',
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client?reload=true',
-    'index.js'
-  ],
+  entry: {
+    main: [
+      'babel-polyfill',
+      'react-hot-loader/patch',
+      'webpack-hot-middleware/client?reload=true',
+      'index.js'
+    ]
+  },
   output: {
     path: path.join(__dirname, '..', 'dist'),
-    filename: 'bundle.js',
+    // filename: 'bundle.js',
+    filename: '[name].[hash].js',
     publicPath: '/'
   },
   module: {
@@ -27,6 +30,15 @@ module.exports = {
     new webpack.DefinePlugin({
       'environment': '\'development\'',
       NODE_ENV: JSON.stringify('development')
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['vendor'],
+      minChunks: function (module) {
+        return module.context && module.context.indexOf('node_modules') !== -1
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['manifest']
     }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({template: path.join(__dirname, '..', 'src', 'templates', 'index.ejs')}),

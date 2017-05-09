@@ -11,7 +11,7 @@ import Report from 'containers/Report'
 import './style.scss'
 
 const App = () => (
-  <div styleName="container">
+  <div styleName="flex-container">
     <Helmet title="America's Best Drivers Report" titleTemplate="Allstate %s">
       <meta charSet="UTF-8" />
       {/* <meta http-equiv="Pragma" content="no-cache" /> */}
@@ -29,10 +29,15 @@ const App = () => (
       <meta property="og:image:height" content="315" />
       <script src="https://use.fontawesome.com/934103e5b8.js" />
     </Helmet>
-
-    <Breadcrumbs styleName="breadcrumbs" />
-    <Banner />
-    <Report />
+    <div styleName="content">
+        {/*<div styleName="flex-item">1</div>
+        <div styleName="flex-item">2</div>
+        <div styleName="flex-item">3</div>
+        <div styleName="flex-item">4</div>*/}
+          <Breadcrumbs />
+          <Banner />
+          <Report />
+    </div>
   </div>
 )
 

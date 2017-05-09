@@ -1,8 +1,12 @@
 .container {
   color: #666;
-  font-size: 14px;
-  line-height: 14px;
+  font-size: 12px;
+  line-height: 12px;
+  align-self: flex-start;
+  // flex: 1 1 100%;
+  // width: 100%;
   margin-bottom: 20px;
+  // align-self: flex-start;
 
   a {
     color: #666;

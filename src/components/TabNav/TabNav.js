@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Tab from 'components/Tab'
+import _ from 'lodash/fp'
 import './style.scss'
 
 const tabs = [{
@@ -32,17 +33,24 @@ const tabs = [{
   title: 'Rain & Snow'
 }]
 const TabNav = ({onTabClick, selectedMap, selectedYear}) => (
-  <ul styleName="container">
+  <div styleName="container">
     {tabs.map(tab =>
-      <Tab key={tab.id} {...tab} onClick={() => onTabClick(tab.id)} selectedMap={selectedMap} selectedYear={selectedYear} />
+      <Tab key={tab.id}
+          {...tab}
+          onClick={
+            () => onTabClick(_.toUpper(_.snakeCase(tab.id)))
+          }
+          selectedMap={selectedMap}
+          selectedYear={selectedYear}
+      />
     )}
-  </ul>
+  </div>
 )
 
 TabNav.propTypes = {
   onTabClick: PropTypes.func.isRequired,
-  selectedMap: PropTypes.object,
-  selectedYear: PropTypes.string
+  selectedMap: PropTypes.string.isRequired,
+  selectedYear: PropTypes.string.isRequired
 }
 
 export default TabNav

@@ -1,24 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import _ from 'lodash/fp'
 import './style.scss'
 
-const Tab = ({ id, title, selectedMap, selectedYear, onClick }) => (
-  <li styleName="container" className={'tab ' + id + (selectedMap === id ? ' selected' : '')}
-    onClick={e => {
-      console.log('--clicked tab: selectedMap', selectedMap, ' selectedYear ', selectedYear)
-      onClick()
-    }}
-  >
-    <div styleName="title">{title}</div>
-    <div styleName="bottom-color" />
-  </li>
-)
+const Tab = ({ id, title, selectedMap, selectedYear, onClick }) => {
+  let isSelected = _.kebabCase(selectedMap) === id
+  return (
+    <div styleName={`container ${id} ${isSelected ? 'selected' : ''}`}
+      onClick={e => {
+        onClick()
+      }}
+    >
+      <div styleName="title">{title}</div>
+    </div>
+  )
+}
 
 Tab.propTypes = {
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  selectedMap: PropTypes.object,
-  selectedYear: PropTypes.string,
+  selectedMap: PropTypes.string.isRequired,
+  selectedYear: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired
 }
 

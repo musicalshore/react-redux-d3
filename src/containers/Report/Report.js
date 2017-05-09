@@ -1,38 +1,28 @@
 import { connect } from 'react-redux'
-import { selectMap, VectorMaps } from 'actions'
+import { selectMap, selectYear, selectCity } from 'redux/actions'
 import TabbedMap from 'components/TabbedMap'
 
-const getSelectedMap = (selectedMap) => {
-  console.log('getSelectedMap', selectedMap)
-  switch (selectedMap.id) {
-    case 'density':
-      return VectorMaps.density
-    case 'rain-snow':
-      return VectorMaps.rainSnow
-    case 'top-city':
-    default:
-      return VectorMaps.topCity
-  }
-}
-const getSelectedYear = (selectedYear) => {
-  switch (selectedYear) {
-    default:
-      return '2016'
-  }
-}
+
 const mapStateToProps = (state) => {
   console.log('Report::mapStateToProps state', state, 'args', arguments)
   return {
-    selectedMap: getSelectedMap(state.selectedMap),
-    selectedYear: getSelectedYear(state.selectedYear)
+    selectedMap: state.selectedMap,
+    selectedYear: state.selectedYear,
+    selectedCity: state.selectedCity
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onTabClick: (selectedMap) => {
       // console.log('onTabClick dispatch', selectedMap)
       dispatch(selectMap(selectedMap))
+    },
+    onYearChange: (selectedYear) => {
+      dispatch(selectYear(selectedYear))
+    },
+    onCityChange: (selectedCity) => {
+      dispatch(selectCity(selectedCity))
     }
   }
 }

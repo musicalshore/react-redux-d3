@@ -1,10 +1,10 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
+const autoprefixer = require('autoprefixer')
 // pattern used to transform styles used by babel-plugin-react-css-modules
 // see https://github.com/gajus/babel-plugin-react-css-modules
 const localIdentName = '[path]___[name]__[local]___[hash:base64:5]'
-
+const context = path.join(__dirname, '..', 'src')
 module.exports = [
   {
     test: /\.js$/,
@@ -21,7 +21,7 @@ module.exports = [
             filetypes: {
               '.scss': 'postcss-scss'
             },
-            context: path.join(__dirname, '..', 'src'),
+            context,
             webpackHotModuleReloading: true
           }],
           'react-hot-loader/babel'
@@ -30,7 +30,27 @@ module.exports = [
     }]
   },
   {
+    include: /rc-slider.*\.css/,
+    use: ((env) => {
+      if (env === 'production') {
+        return ExtractTextPlugin.extract({
+          use: [{
+            loader: 'css-loader'
+          }],
+          fallback: 'style-loader'
+        })
+      } else {
+        return [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader'
+        }]
+      }
+    })(process.env.NODE_ENV)
+  },
+  {
     test: /\.css$/,
+    exclude: /rc-slider.*\.css/,
     use: ((env) => {
       if (env === 'production') {
         return ExtractTextPlugin.extract({
@@ -40,7 +60,8 @@ module.exports = [
               modules: true,
               localIdentName
             }
-          }]
+          }],
+          fallback: 'style-loader'
         })
       } else {
         return [{
@@ -64,32 +85,43 @@ module.exports = [
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[local]--[hash:base64:5]'
+              importLoaders: 1,
+              localIdentName
             }
-          }, {
-            loader: 'less-loader'
-          }]
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [autoprefixer]
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }],
+          fallback: 'style-loader'
         })
       } else {
-        return [{
-          loader: 'style-loader'
-        },
-        {
-          loader: 'css-loader',
-          options: {
-            modules: true,
-            localIdentName
+        return [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [autoprefixer]
+            }
+          },
+          {
+            loader: 'sass-loader'
           }
-        },
-          // {
-          //   loader: 'postcss-loader',
-          //   options: {
-          //     syntax: 'postcss-scss'
-          //   }
-          // },
-        {
-          loader: 'sass-loader'
-        }
         ]
       }
     })(process.env.NODE_ENV)

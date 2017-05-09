@@ -1,17 +1,19 @@
 import { combineReducers } from 'redux'
-import { VectorMaps } from 'actions'
-// const { TOP_CITY } = VectorMaps
-
+import { SELECT_MAP, SELECT_YEAR, SELECT_CITY } from './constants'
 
 const initialState = {
-  selectedMap: VectorMaps.topCity,
-  selectedYear: '2016'
+  selectedMap: 'TOP_CITY',
+  selectedYear: '2016',
+  selectedCity: null
 }
 
+// const vectorMap = (state = initialState.vectorMap, action) => {
+
+// }
 const selectedMap = (state = initialState.selectedMap, action) => {
-  // console.log('selectedMap::state', state, 'action', action)
+  console.log('selectedMap::state', state, 'action', action)
   switch (action.type) {
-    case 'SELECT_MAP':
+    case SELECT_MAP:
       // console.log('SELECT_MAP::ACTION', action)
       return action.selectedMap
     default:
@@ -23,7 +25,7 @@ const selectedMap = (state = initialState.selectedMap, action) => {
 const selectedYear = (state = initialState.selectedYear, action) => {
   // console.log('selectedYear::state', state, 'action', action)
   switch (action.type) {
-    case 'SELECT_YEAR':
+    case SELECT_YEAR:
       // console.log('SELECT_YEAR::ACTION', action)
       return action.selectedYear
     default:
@@ -32,9 +34,20 @@ const selectedYear = (state = initialState.selectedYear, action) => {
   }
 }
 
+const selectedCity = (state = initialState.selectedCity, action) => {
+  switch (action.type) {
+    case SELECT_CITY:
+      return action.selectedCity
+    default:
+      return state
+  }
+}
+
 const reducer = combineReducers({
+  // vectorMap,
   selectedMap,
-  selectedYear
+  selectedYear,
+  selectedCity
 })
 
 export default reducer

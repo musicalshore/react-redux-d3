@@ -1,6 +1,6 @@
 
 .container {
-  height: 535px;
+  height: 447px;
   overflow-y: scroll;
 
   .ranking {
@@ -9,24 +9,44 @@
   }
 
   li {
-    list-style-type: none;
-    line-height: 30px;
-    padding: 5px 15px 5px 30px;
-    height: 40px;
-    font-weight: 400;
+    display: flex;
+    // align-items: baseline;
     font-size: 15px;
+    font-weight: 400;
+    height: 40px;
+    // line-height: 30px;
+    list-style-type: none;
+    // padding: 5px 15px 5px 30px;
 
     &:hover {
-      cursor: pointer;
       background: #F6F6F6;
+      cursor: pointer;
     }
-
-    p {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      line-height: 25px;
-      white-space: nowrap;
+    .cityState {
       color: #333;
+      padding-top: 3px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    svg {
+
+      // background-color: transparent;
+      // background-image: url('./marker.png');
+      // background-repeat: no-repeat;
+      // background-size: contain;
+      color: #fff;
+      content: '';
+      // float: left;
+      font-size: 10px;
+      height: 33px;
+      // margin-right: 10px;
+      text-align: center;
+      width: 23px;
+      margin-right: 3px;
+      .text {
+        // display: block;
+        margin-top: 10px;
+      }
     }
   }
 }
