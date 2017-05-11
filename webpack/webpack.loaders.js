@@ -22,6 +22,7 @@ module.exports = [
               '.scss': 'postcss-scss'
             },
             context,
+            exclude: 'node_modules',
             webpackHotModuleReloading: true
           }],
           'react-hot-loader/babel'
@@ -30,27 +31,7 @@ module.exports = [
     }]
   },
   {
-    include: /rc-slider.*\.css/,
-    use: ((env) => {
-      if (env === 'production') {
-        return ExtractTextPlugin.extract({
-          use: [{
-            loader: 'css-loader'
-          }],
-          fallback: 'style-loader'
-        })
-      } else {
-        return [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader'
-        }]
-      }
-    })(process.env.NODE_ENV)
-  },
-  {
     test: /\.css$/,
-    exclude: /rc-slider.*\.css/,
     use: ((env) => {
       if (env === 'production') {
         return ExtractTextPlugin.extract({
@@ -78,6 +59,7 @@ module.exports = [
   },
   {
     test: /\.scss$/,
+    exclude: /global.scss/,
     use: ((env) => {
       if (env === 'production') {
         return ExtractTextPlugin.extract({
@@ -127,13 +109,38 @@ module.exports = [
     })(process.env.NODE_ENV)
   },
   {
+    test: /global.scss/,
+    use: [
+      {
+        loader: 'style-loader'
+      },
+      {
+        loader: 'css-loader',
+        options: {
+          modules: false,
+          importLoaders: 1,
+          localIdentName
+        }
+      },
+      {
+        loader: 'postcss-loader',
+        options: {
+          plugins: [autoprefixer]
+        }
+      },
+      {
+        loader: 'sass-loader'
+      }
+    ]
+  },
+  {
     test: /\.(ttf|woff|woff2|jpeg|jpg|png|gif|svg)$/,
     use: [
       {
         loader: 'file-loader',
         options: {
-          // outputPath: path.join('assets', '/'),
-          // publicPath: 'assets/',
+          outputPath: path.join('assets', 'images', '/'),
+          // publicPath: 'assets/images/',
           name: '[name]--[hash:base64:5].[ext]'
         }
       }

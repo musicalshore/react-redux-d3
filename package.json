@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@gitlab.t-3.com:allstate/americas-best-drivers.git",
-  "author": "Michael Russo <michaelrusso512@gmail.com>",
+  "author": "Michael Russo <michaelrusso11@gmail.com>",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node server.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.production.js --progress --hide-modules -p",
+    "prod": "cross-env NODE_ENV=production node server.js"
+  },
   "license": "MIT",
   "dependencies": {
     "babel-plugin-react-css-modules": "^2.6.1",
@@ -16,6 +21,7 @@
     "jquery-cycle": "^3.0.3",
     "jquery-mobile": "^1.5.0-alpha.1",
     "jquery-mousewheel": "^3.1.13",
+    "jquery-ui": "^1.12.1",
     "jquery.selectBox": "https://github.com/marcj/jquery-selectBox",
     "jvectormap-next": "^3.0.0",
     "lodash": "^4.17.4",
@@ -24,7 +30,7 @@
     "react-dom": "^15.5.4",
     "react-helmet": "^5.0.3",
     "react-hot-loader": "next",
-    "react-modal": "^1.7.7",
+    "react-modal": "1.7.7",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "sanitize.css": "^5.0.0"
@@ -94,8 +100,5 @@
         "prefer-double"
       ]
     }
-  },
-  "scripts": {
-    "start": "cross-env NODE_ENV=development node server.js"
   }
 }

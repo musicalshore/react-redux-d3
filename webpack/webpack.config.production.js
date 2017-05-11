@@ -1,38 +1,50 @@
-var path = require("path");
-var webpack = require("webpack");
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var rimraf = require('rimraf');
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const rimraf = require('rimraf')
 
 
 module.exports = {
-  entry: ["./src/index.js"],
+  context: path.join(__dirname, '..', 'src'),
+  entry: 'index.js',
   output: {
-    path: path.join(__dirname, "..", "dist"),
-    filename: "bundle.js",
-    publicPath: "/"
+    path: path.join(__dirname, '..', 'dist'),
+    filename: '[name].[hash].js',
+    publicPath: '/'
   },
   module: {
     rules: require('./webpack.loaders.js')
   },
   plugins: [
-    function() {
-      console.log("Clearing /dist directory");
-      rimraf.sync(path.join(__dirname, "..", "dist"), require('fs'), (er) => {
-        if(er) console.log("Clearing of /dist directory failed", er);
-      });
+    function () {
+      console.log('Clearing /dist directory')
+      rimraf.sync(path.join(__dirname, '..', 'dist'), require('fs'), (er) => {
+        if (er) console.log('Clearing of /dist directory failed', er)
+      })
     },
-    new ExtractTextPlugin("style.css"),
+    new ExtractTextPlugin('assets/styles/[name].[hash].css'),
     new webpack.DefinePlugin({
-      "environment": '"production"',
-      NODE_ENV: JSON.stringify("production")
+      'environment': '"production"',
+      NODE_ENV: JSON.stringify('production')
     }),
-    new (webpack.optimize.UglifyJsPlugin),
-    new HtmlWebpackPlugin({template: path.join("src", "public", "index.ejs")}),
+    new (webpack.optimize.UglifyJsPlugin)(),
+    new HtmlWebpackPlugin({template: path.join(__dirname, '..', 'src', 'templates', 'index.ejs')}),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['vendor'],
+      minChunks: 2
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['manifest']
+    })
   ],
   resolve: {
-    modules: ["node_modules", "src"],
+    modules: ['node_modules', 'src'],
     plugins: [
       new DirectoryNamedWebpackPlugin()
     ]

@@ -3047,6 +3047,10 @@ jquery-mousewheel@^3.1.13:
   version "3.1.13"
   resolved "https://registry.yarnpkg.com/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz#06f0335f16e353a695e7206bf50503cb523a6ee5"
 
+jquery-ui@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
+
 "jquery.selectBox@https://github.com/marcj/jquery-selectBox":
   version v1.2.0
   resolved "https://github.com/marcj/jquery-selectBox#316c77f157cb25c7a6ea36822143ac9d97845067"
@@ -4424,7 +4428,7 @@ react-hot-loader@next:
     redbox-react "^1.2.5"
     source-map "^0.4.4"
 
-react-modal@^1.7.7:
+react-modal@1.7.7:
   version "1.7.7"
   resolved "https://registry.yarnpkg.com/react-modal/-/react-modal-1.7.7.tgz#70205f51c58708c487aff681ba3fed7946e391d9"
   dependencies:
