@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import Listing from 'components/Listing'
 import './style.scss'
 
-const years = ['2007', '2008', '2009', '2010', '2011', '2012', '2014', '2015', '2016', '2017']
+// const years = ['2007', '2008', '2009', '2010', '2011', '2012', '2014', '2015', '2016', '2017']
 
 
-const TopListings = ({ onChange, selectedMap, selectedYear, selectedCity }) => (
+const TopListings = ({ onCitySelect, selectedMap, selectedYear, selectedCity }) => (
   <div styleName="container">
     <div styleName={`heading ${_.kebabCase(selectedMap)}`}>
       <h4 styleName="year">{ selectedYear }</h4>
@@ -22,15 +22,15 @@ const TopListings = ({ onChange, selectedMap, selectedYear, selectedCity }) => (
         {selectedMap === 'RAIN_SNOW' && 'See how precipitation (or lack thereof) impacts your city\'s ranking.'}
       </p>
     </div>
-    <Listing selectedMap={selectedMap} selectedYear={selectedYear} selectedCity={selectedCity}/>
+    <Listing selectedMap={selectedMap} selectedYear={selectedYear} selectedCity={selectedCity} onCitySelect={onCitySelect}/>
   </div>
 )
 
 TopListings.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  onCitySelect: PropTypes.func.isRequired,
   selectedMap: PropTypes.string.isRequired,
   selectedYear: PropTypes.string.isRequired,
-  selectedCity: PropTypes.string
+  selectedCity: PropTypes.object
 }
 
 export default TopListings

@@ -54,7 +54,7 @@ const TabbedMap = class TabbedMap extends React.Component {
   }
 
   closeModal () {
-    this.props.onCityChange(null)
+    this.props.onCitySelect(null)
     this.setState({modalIsOpen: false})
   }
 
@@ -63,8 +63,7 @@ const TabbedMap = class TabbedMap extends React.Component {
   }
 
   render () {
-    let {selectedMap, selectedYear, selectedCity, selectedState, mapData, onTabClick, onCityChange, onYearChange, onStateChange} = this.props
-    console.log('map GHGHG', mapData);
+    let {selectedMap, selectedYear, selectedCity, selectedState, mapData, onTabClick, onCitySelect, onYearChange, onStateChange} = this.props
 
     return (
       <div styleName="container">
@@ -72,7 +71,7 @@ const TabbedMap = class TabbedMap extends React.Component {
         <div styleName="map-container">
           <div styleName="maps">
             <TabNav onTabClick={onTabClick} selectedMap={selectedMap} selectedYear={selectedYear} />
-            <Map width="715" height="625" mapData={mapData} onCityChange={onCityChange} />
+            <Map width="715" height="625" mapData={mapData} onCitySelect={onCitySelect} />
             <div styleName="timeLine-SocialContainer">
               <div styleName="legendContainer">
                 <ul>
@@ -87,7 +86,7 @@ const TabbedMap = class TabbedMap extends React.Component {
             </div>
           </div>
           <div styleName="top-listings">
-            <TopListings onChange={onYearChange} selectedMap={selectedMap} selectedYear={selectedYear} selectedCity={selectedCity} />
+            <TopListings onCitySelect={onCitySelect} selectedMap={selectedMap} selectedYear={selectedYear} selectedCity={selectedCity} />
           </div>
         </div>
         <Modal isOpen={this.state.modalIsOpen}
@@ -112,11 +111,11 @@ const TabbedMap = class TabbedMap extends React.Component {
 TabbedMap.propTypes = {
   onTabClick: PropTypes.func.isRequired,
   onYearChange: PropTypes.func.isRequired,
-  onCityChange: PropTypes.func.isRequired,
+  onCitySelect: PropTypes.func.isRequired,
   onStateChange: PropTypes.func.isRequired,
   selectedMap: PropTypes.string.isRequired,
   selectedYear: PropTypes.string.isRequired,
-  selectedCity: PropTypes.string,
+  selectedCity: PropTypes.object,
   selectedState: PropTypes.string,
   mapData: PropTypes.object.isRequired
 }

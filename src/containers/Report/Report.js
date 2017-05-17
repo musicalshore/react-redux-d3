@@ -78,7 +78,7 @@ const mapDispatchToProps = (dispatch) => {
     onYearChange: (selectedYear) => {
       dispatch(selectYear(selectedYear))
     },
-    onCityChange: (selectedCity) => {
+    onCitySelect: (selectedCity) => {
       dispatch(selectCity(selectedCity))
     },
     onStateChange: (selectedState) => {
