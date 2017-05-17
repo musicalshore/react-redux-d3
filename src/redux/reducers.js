@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux'
-import { SELECT_MAP, SELECT_YEAR, SELECT_CITY } from './constants'
+import { SELECT_MAP, SELECT_YEAR, SELECT_CITY, SELECT_STATE } from './constants'
 
 const initialState = {
   selectedMap: 'TOP_CITY',
   selectedYear: '2016',
-  selectedCity: null
+  selectedCity: null,
+  selectedState: null
 }
 
 // const vectorMap = (state = initialState.vectorMap, action) => {
@@ -43,11 +44,20 @@ const selectedCity = (state = initialState.selectedCity, action) => {
   }
 }
 
+const selectedState = (state = null, action) => {
+  switch (action.type) {
+    case SELECT_STATE:
+      return action.selectedState
+    default:
+      return state
+  }
+}
 const reducer = combineReducers({
   // vectorMap,
   selectedMap,
   selectedYear,
-  selectedCity
+  selectedCity,
+  selectedState
 })
 
 export default reducer

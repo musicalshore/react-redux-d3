@@ -7,15 +7,24 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
+  // devtool: 'cheap-module-eval-source-map',
   context: path.join(__dirname, '..', 'src'),
-  entry: {
-    main: [
-      'babel-polyfill',
-      'react-hot-loader/patch',
-      'webpack-hot-middleware/client?reload=true',
-      'index.js'
-    ]
+  node: {
+    fs: 'empty',
+    child_process: 'empty'
   },
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client?reload=true',
+    'index.js'
+  ],
+  // entry: {
+  //   main: [
+  //     'react-hot-loader/patch',
+  //     'webpack-hot-middleware/client?reload=true',
+  //     'index.js'
+  //   ]
+  // },
   output: {
     path: path.join(__dirname, '..', 'dist'),
     // filename: 'bundle.js',
@@ -31,15 +40,15 @@ module.exports = {
       'environment': '\'development\'',
       NODE_ENV: JSON.stringify('development')
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor'],
-      minChunks: function (module) {
-        return module.context && module.context.indexOf('node_modules') !== -1
-      }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['manifest']
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: ['vendor'],
+    //   minChunks: function (module) {
+    //     return module.context && module.context.indexOf('node_modules') !== -1
+    //   }
+    // }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: ['manifest']
+    // }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({template: path.join(__dirname, '..', 'src', 'templates', 'index.ejs')}),
     new webpack.ProvidePlugin({

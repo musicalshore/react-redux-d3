@@ -5,15 +5,16 @@ const autoprefixer = require('autoprefixer')
 // see https://github.com/gajus/babel-plugin-react-css-modules
 const localIdentName = '[path]___[name]__[local]___[hash:base64:5]'
 const context = path.join(__dirname, '..', 'src')
+
 module.exports = [
   {
     test: /\.js$/,
     exclude: /node_modules/,
     use: [{
-      loader: 'babel-loader',
+      loader: 'babel-loader?cacheDirectory',
       options: {
         presets: [
-          ['es2015', { modules: false }],
+          ['env', { modules: false }],
           'react'
         ],
         plugins: [
@@ -33,7 +34,7 @@ module.exports = [
   {
     test: /\.css$/,
     use: ((env) => {
-      if (env === 'production') {
+      if (env === true) {
         return ExtractTextPlugin.extract({
           use: [{
             loader: 'css-loader',
@@ -59,7 +60,7 @@ module.exports = [
   },
   {
     test: /\.scss$/,
-    exclude: /global.scss/,
+    // exclude: /global.scss/,
     use: ((env) => {
       if (env === 'production') {
         return ExtractTextPlugin.extract({
@@ -108,31 +109,31 @@ module.exports = [
       }
     })(process.env.NODE_ENV)
   },
-  {
-    test: /global.scss/,
-    use: [
-      {
-        loader: 'style-loader'
-      },
-      {
-        loader: 'css-loader',
-        options: {
-          modules: false,
-          importLoaders: 1,
-          localIdentName
-        }
-      },
-      {
-        loader: 'postcss-loader',
-        options: {
-          plugins: [autoprefixer]
-        }
-      },
-      {
-        loader: 'sass-loader'
-      }
-    ]
-  },
+  // {
+  //   test: /global.scss/,
+  //   use: [
+  //     {
+  //       loader: 'style-loader'
+  //     },
+  //     {
+  //       loader: 'css-loader',
+  //       options: {
+  //         modules: false,
+  //         importLoaders: 1,
+  //         localIdentName
+  //       }
+  //     },
+  //     {
+  //       loader: 'postcss-loader',
+  //       options: {
+  //         plugins: [autoprefixer]
+  //       }
+  //     },
+  //     {
+  //       loader: 'sass-loader'
+  //     }
+  //   ]
+  // },
   {
     test: /\.(ttf|woff|woff2|jpeg|jpg|png|gif|svg)$/,
     use: [
@@ -145,5 +146,9 @@ module.exports = [
         }
       }
     ]
+  },
+  {
+    test: /\.json$/,
+    use: 'json-loader'
   }
 ]

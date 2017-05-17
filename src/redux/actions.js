@@ -15,6 +15,11 @@ export const selectCity = (selectedCity) => ({
   selectedCity
 })
 
+export const selectState = (selectedState) => ({
+  type: SELECT_CITY,
+  selectedState
+})
+
 // export const openModal = (isModalOpen) => ({
 //   type: 'OPEN_MODAL',
 //   isModalOpen

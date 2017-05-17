@@ -7,6 +7,8 @@ import 'jquery-ui/ui/core'
 import 'jquery-ui/ui/widgets/slider'
 import React from 'react'
 import PropTypes from 'prop-types'
+import Slider from 'react-rangeslider'
+import 'react-rangeslider/lib/index.css'
 import 'jvectormap-next'
 // import jvectormapCss from 'jvectormap-next/jquery-jvectormap.css'
 import './jquery-jvectormap-us-aea-en'
@@ -39,14 +41,19 @@ const VectorMap = class VectorMap extends React.Component {
     this.setMap = this.setMap.bind(this)
     this.addZoomBar = this.addZoomBar.bind(this)
     this.panMapToMarkers = this.panMapToMarkers.bind(this)
+    this.handleSliderOnChange = this.handleSliderOnChange.bind(this)
+    this.state = {
+      volume: 0
+    }
   }
+
   componentDidMount () {
     console.log('this.props.mapData', this.props)
     this.$el = $(this.el)
     console.log('this.jvm', this.jvm)
     this.$zoomBar = $(this.zoomBar)
     this.setMap()
-    this.addZoomBar()
+    // this.addZoomBar()
   }
   componentWillUnmount () {
     // console.log("componentDidUnmount ")
@@ -75,7 +82,7 @@ const VectorMap = class VectorMap extends React.Component {
 
     this.$el.vectorMap(vectorMap)
     const jvm = this.$el.vectorMap('get', 'mapObject')
-    const markersGroup = jvm.markersGroup
+    // const markersGroup = jvm.markersGroup
     console.log('jvm', jvm)
 
     // update the top 10
@@ -107,9 +114,14 @@ const VectorMap = class VectorMap extends React.Component {
       console.log(marker, jvm.markers[marker.index])
     }, topTen)
 */
-    bringMarkerToTop(topTen)
+    // bringMarkerToTop(topTen)
   }
 
+  handleSliderOnChange (value) {
+    this.setState({
+      volume: value
+    })
+  }
   jvectormap (el) {
     this.el = el
   }
@@ -149,11 +161,21 @@ const VectorMap = class VectorMap extends React.Component {
     })
   }
   render () {
+    let { volume } = this.state
     return (
       <div styleName="style.container">
         <div styleName="style.vector-map" ref={this.jvectormap}>
         </div>
+
         <div styleName="zoom-bar-wrapper">
+          <input type="range" 
+        </div>
+        {/*<Slider
+          value={volume}
+          orientation="vertical"
+          onChange={this.handleSliderOnChange}
+        />*/}
+        {/*<div styleName="zoom-bar-wrapper">
           <div ref={this.zoomBar}>
             <div styleName="style.zoom-tick"></div>
             <div styleName="style.zoom-tick"></div>
@@ -161,7 +183,7 @@ const VectorMap = class VectorMap extends React.Component {
             <div styleName="style.zoom-tick"></div>
             <div />
           </div>
-        </div>
+        </div>*/}
       </div>
     )
   }

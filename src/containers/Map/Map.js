@@ -1,11 +1,16 @@
 import { connect } from 'react-redux'
 import _ from 'lodash/fp'
-import VectorMap from 'components/VectorMap'
+import Choropleth from 'components/Choropleth'
 import { selectCity } from 'redux/actions'
 
-// const mapStateToProps = (state) => {
-//   return _.extend(state, {mapData: getMapData(state)})
-// }
+const mapStateToProps = (state) => {
+  console.log('MAP SDSADDSAD', state)
+  return {
+    selectedMap: state.selectedMap,
+    selectedYear: state.selectedYear,
+    selectedCity: state.selectedCity
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -16,9 +21,9 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const Map = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
-)(VectorMap)
+)(Choropleth)
 
 export default Map
 

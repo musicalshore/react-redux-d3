@@ -22,14 +22,6 @@ const TopListings = ({ onChange, selectedMap, selectedYear, selectedCity }) => (
         {selectedMap === 'RAIN_SNOW' && 'See how precipitation (or lack thereof) impacts your city\'s ranking.'}
       </p>
     </div>
-    {selectedMap === 'TOP_CITY' &&
-      <div styleName="year-selector">
-        <div>Select year:</div>
-        <select value={selectedYear} onChange={e => onChange(e.target.value)}>
-          {years.map(year => <option key={year} value={year}>{year}</option>)}
-        </select>
-      </div>
-    }
     <Listing selectedMap={selectedMap} selectedYear={selectedYear} selectedCity={selectedCity}/>
   </div>
 )

@@ -1,11 +1,16 @@
 .container {
   // border: solid 1px #ebebeb;
-  border: 1px solid #f0f0f0;
+
   // max-width: 960px;
   display: flex;
-  min-height: 740px;
+  flex-direction: column;
+  justify-content: center;
 
-
+  .map-container {
+    min-height: 740px;
+    border: 1px solid #f0f0f0;
+    display: flex;
+  }
   .top-listings {
     width: 25%;
   }

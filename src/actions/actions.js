@@ -1,5 +1,4 @@
-export const SELECT_MAP = 'SELECT_MAP'
-export const SELECT_YEAR = 'SELECT_YEAR'
+import { SELECT_MAP, SELECT_YEAR, SELECT_CITY, SELECT_STATE } from 'constants/actionTypes'
 
 const vectorMap = {
   map: 'us_aea_en',
@@ -47,3 +46,10 @@ export const selectYear = (selectedYear) => ({
   type: SELECT_YEAR,
   selectedYear
 })
+
+export const selectState = (selectedState) => ({
+  type: SELECT_STATE,
+  selectedState
+})
+
+

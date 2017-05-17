@@ -13,7 +13,10 @@ if (isDevelopment) {
   const compiler = webpack(config)
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
-    publicPath: config.output.publicPath
+    publicPath: config.output.publicPath,
+    stats: {
+      colors: true
+    }
   }))
 
   app.use(require('webpack-hot-middleware')(compiler))
@@ -26,7 +29,7 @@ if (isDevelopment) {
 
   app.get('*', (req, res) => res.sendFile(HTML_FILE))
 }
-const server = app.listen(3000, 'localhost', (err) => {
+const server = app.listen(4000, 'localhost', (err) => {
   if (err) {
     console.log(err)
     return
