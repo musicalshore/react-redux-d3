@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import _ from 'lodash/fp'
 import './style.scss'
 
-const Tab = ({ id, title, selectedMap, selectedYear, onClick }) => {
-  let isSelected = _.kebabCase(selectedMap) === id
+const Tab = ({ id, title, selectedMap, onClick }) => {
+  let isSelected = _.kebabCase(selectedMap.id) === id
   return (
     <div styleName={`container ${id} ${isSelected ? 'selected' : ''}`}
       onClick={e => {
@@ -19,8 +19,7 @@ const Tab = ({ id, title, selectedMap, selectedYear, onClick }) => {
 Tab.propTypes = {
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  selectedMap: PropTypes.string.isRequired,
-  selectedYear: PropTypes.string.isRequired,
+  selectedMap: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired
 }
 

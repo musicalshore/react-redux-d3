@@ -1,23 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import bestDriverLocations from 'best-driver.json'
+// import BEST_DRIVER_DATA from 'constants/bestDriver'
 import _ from 'lodash/fp'
 import { MAPS } from 'redux/constants'
 
 import './style.scss'
-const ranking = _.curry((type, location) => ({
-  name: location.City + ', ' + location.State,
-  latLng: [ location.Lat, location.Lon ],
-  rank: location[type],
-  type: type
-}))
+// const ranking = _.curry((year, rankingType, location) => ({
+//   name: location.City + ', ' + location.State,
+//   latLng: [ location.Lat, location.Lon ],
+//   rank: location[type],
+//   type: type
+// }))
+
+const ranking = _.curry((year, rankingType, location) => _.extend({
+  rank: location[`${year} ${rankingType}`],
+  rankingType: rankingType
+}, location))
 
 
-const Listing = ({onCitySelect, selectedYear, selectedMap}) => {
-  const type = selectedYear + ' ' + MAPS[selectedMap].type
-  const rankingsByType = _.sortBy('rank', _.map(ranking(type), bestDriverLocations))
-  const filteredRankings = _.filter(ranking => !!ranking.rank, rankingsByType)
-  const listItems = filteredRankings.map((ranking) => {
+const Listing = ({selectedMap, onCitySelect, selectedCity}) => {
+  // const yearName = `${selectedMap.year} ${selectedMap.name}`
+  // console.log('selectedMap++++', selectedMap, yearName);
+
+  const rankingsByYearAndType = _.filter(ranking => !!ranking.rank, _.sortBy('rank', selectedMap.mapData.markers))
+  console.log('rankingsByYearAndType ', rankingsByYearAndType)
+  // const rankingsByYearName = selectedMap.mapData.markers
+  // const filteredRankings = _.filter(ranking => !!ranking.rank, rankingsByYearAndType)
+  const listItems = rankingsByYearAndType.map((ranking) => {
     return (
       <li key={ranking.rank} onClick={e => {
         console.log('ranking', ranking);
@@ -27,7 +36,7 @@ const Listing = ({onCitySelect, selectedYear, selectedMap}) => {
           <path fill="#0276A7" d="M28.898,16.164c0,7.659-13.867,24.65-13.867,24.65S1.167,23.822,1.167,16.164c0-7.658,6.208-13.866,13.864-13.866C22.689,2.298,28.898,8.505,28.898,16.164z" />
           <text textAnchor="middle" alignmentBaseline="middle" x="14.4" y="16" styleName="ranking">{ranking.rank}</text>
         </svg>
-        <div styleName="cityState">{ranking.name}</div>
+        <div styleName="cityState">{ranking.cityState}</div>
       </li>
     )
   })
@@ -39,8 +48,8 @@ const Listing = ({onCitySelect, selectedYear, selectedMap}) => {
 }
 
 Listing.propTypes = {
-  selectedMap: PropTypes.string.isRequired,
-  selectedYear: PropTypes.string.isRequired,
+  selectedMap: PropTypes.object.isRequired,
+  onCitySelect: PropTypes.func.isRequired,
   selectedCity: PropTypes.object
 }
 

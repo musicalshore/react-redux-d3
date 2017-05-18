@@ -29,7 +29,7 @@ if (isDevelopment) {
 
   app.get('*', (req, res) => res.sendFile(HTML_FILE))
 }
-const server = app.listen(4000, 'localhost', (err) => {
+const server = app.listen(process.env.PORT || 3333, 'localhost', (err) => {
   if (err) {
     console.log(err)
     return

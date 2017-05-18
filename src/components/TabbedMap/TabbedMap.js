@@ -6,9 +6,9 @@ import MapSelector from 'components/MapSelector'
 import TabNav from 'components/TabNav'
 import Map from 'containers/Map'
 import TopListings from 'components/TopListings'
+import {CURRENT_YEAR} from 'constants/maps'
 // import globalStyle from '../../global.scss'
 import './style.scss'
-
 
 /*const Ordinal = (n) => {
   const s = ['th', 'st', 'nd', 'rd']
@@ -63,15 +63,19 @@ const TabbedMap = class TabbedMap extends React.Component {
   }
 
   render () {
-    let {selectedMap, selectedYear, selectedCity, selectedState, mapData, onTabClick, onCitySelect, onYearChange, onStateChange} = this.props
+    let {selectedMap, selectedCity, selectedState, onTabClick, onCitySelect} = this.props
+
+    let isCurrentYear = selectedMap.year === CURRENT_YEAR
+    let isBest = selectedCity !== null && selectedCity.rank === 1
+    let thisYearsBest = isCurrentYear && isBest
 
     return (
       <div styleName="container">
-        <MapSelector onStateChange={onStateChange} onYearChange={onYearChange}selectedYear={selectedYear} selectedState={selectedState} />
+        {/*<MapSelector onStateChange={onStateChange} onYearChange={onYearChange}selectedMap={selectedMap} selectedState={selectedState} />*/}
         <div styleName="map-container">
           <div styleName="maps">
-            <TabNav onTabClick={onTabClick} selectedMap={selectedMap} selectedYear={selectedYear} />
-            <Map width="715" height="625" mapData={mapData} onCitySelect={onCitySelect} />
+            <TabNav onTabClick={onTabClick} selectedMap={selectedMap} />
+            <Map width="715" height="625" selectedMap={selectedMap} onCitySelect={onCitySelect} />
             <div styleName="timeLine-SocialContainer">
               <div styleName="legendContainer">
                 <ul>
@@ -86,23 +90,28 @@ const TabbedMap = class TabbedMap extends React.Component {
             </div>
           </div>
           <div styleName="top-listings">
-            <TopListings onCitySelect={onCitySelect} selectedMap={selectedMap} selectedYear={selectedYear} selectedCity={selectedCity} />
+            <TopListings onCitySelect={onCitySelect} selectedMap={selectedMap} selectedCity={selectedCity} selectedState={selectedState} />
           </div>
         </div>
-        <Modal isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          contentLabel="City Modal"
-          className="modal-content"
-          overlayClassName="modal-overlay"
-        >
-          <div className={`modal-container ${_.kebabCase(selectedMap)}`}>
-            <div className="close" onClick={this.closeModal} />
-            <div className="city-container">
-              <h2 className="city-name">{!!this.state.selectedMarker && this.state.selectedMarker.name}</h2>
-              <h2 className="city-rank">{(this.props.selectedYear === '2016') ? 'is ' : 'was '} the {!!this.state.selectedMarker && this.state.selectedMarker.rank} {!!this.state.selectedMarker && this.state.selectedMarker.type} safest driving city <span className="density-line">by Population Density</span><span className="rain-snow-line">in Rain & Snow</span></h2>
+        { selectedCity !== null && selectedCity.rank &&
+          <Modal isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            contentLabel="City Modal"
+            className="modal-content"
+            overlayClassName="modal-overlay"
+          >
+            <div className={`modal-container ${_.kebabCase(selectedMap.id)}`}>
+              <div className="close" onClick={this.closeModal} />
+              <div className="city-container">
+                <h2 className="city-name">{selectedCity.name}</h2>
+                <h2 className="city-rank">
+                  {thisYearsBest && `This year's best!`}
+                  {!thisYearsBest && isCurrentYear ? `is` : `was`}
+                   the {selectedCity.rank} safest driving city <span className="density-line">by Population Density</span><span className="rain-snow-line">in Rain & Snow</span></h2>
+              </div>
             </div>
-          </div>
-        </Modal>
+          </Modal>
+        }
       </div>
     )
   }
@@ -110,14 +119,10 @@ const TabbedMap = class TabbedMap extends React.Component {
 
 TabbedMap.propTypes = {
   onTabClick: PropTypes.func.isRequired,
-  onYearChange: PropTypes.func.isRequired,
   onCitySelect: PropTypes.func.isRequired,
-  onStateChange: PropTypes.func.isRequired,
-  selectedMap: PropTypes.string.isRequired,
-  selectedYear: PropTypes.string.isRequired,
+  selectedMap: PropTypes.object.isRequired,
   selectedCity: PropTypes.object,
-  selectedState: PropTypes.string,
-  mapData: PropTypes.object.isRequired
+  selectedState: PropTypes.string
 }
 
 export default TabbedMap

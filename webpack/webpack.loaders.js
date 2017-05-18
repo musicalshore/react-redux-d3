@@ -25,8 +25,7 @@ module.exports = [
             context,
             exclude: 'node_modules',
             webpackHotModuleReloading: true
-          }],
-          'react-hot-loader/babel'
+          }]
         ]
       }
     }]

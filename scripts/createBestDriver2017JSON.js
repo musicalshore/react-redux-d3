@@ -78,24 +78,24 @@ const result = _.transform.convert({'immutable': false})((accumulator, value) =>
     'Lon': value.Lon || undefined
   }
   if (!mostImproved) {
-    result.mostImproved = true
+    result['Most Improved'] = true
     mostImproved = result
   } else if (result['2017 Change'] > mostImproved['2017 Change']) {
-    accumulator[mostImproved.index - 1].mostImproved = undefined
-    result.mostImproved = true
+    accumulator[mostImproved.index - 1]['Most Improved'] = undefined
+    result['Most Improved'] = true
     mostImproved = result
   }
 
   if (!leastImproved) {
-    result.biggestDecrease = true
+    result['Biggest Decrease'] = true
     leastImproved = result
   } else if (result['2017 Change'] < leastImproved['2017 Change']) {
-    accumulator[leastImproved.index - 1].biggestDecrease = undefined
-    result.biggestDecrease = true
+    accumulator[leastImproved.index - 1]['Biggest Decrease'] = undefined
+    result['Biggest Decrease'] = true
     leastImproved = result
   }
   if (!lastYearsData) {
-    result.New = true
+    result['New Location'] = true
     newCities.push(result)
   } else if (lastYearsData) {
     let lastYearsRankings = _.pickBy((value, key) => {

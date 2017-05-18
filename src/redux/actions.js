@@ -1,14 +1,14 @@
-import { SELECT_MAP, SELECT_YEAR, SELECT_CITY } from './constants'
+import { SELECT_MAP, SELECT_STATE, SELECT_CITY } from 'constants/actionTypes'
 
 export const selectMap = (selectedMap) => ({
   type: SELECT_MAP,
   selectedMap
 })
 
-export const selectYear = (selectedYear) => ({
-  type: SELECT_YEAR,
-  selectedYear
-})
+// export const selectYear = (selectedYear) => ({
+//   type: SELECT_YEAR,
+//   selectedYear
+// })
 
 export const selectCity = (selectedCity) => ({
   type: SELECT_CITY,
@@ -16,7 +16,7 @@ export const selectCity = (selectedCity) => ({
 })
 
 export const selectState = (selectedState) => ({
-  type: SELECT_CITY,
+  type: SELECT_STATE,
   selectedState
 })
 

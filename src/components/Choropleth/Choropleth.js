@@ -35,8 +35,9 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   updateMarkers (selection, props = this.props) {
-    const markers = _.cloneDeep(props.mapData.markers)
-    const className = _.kebabCase(props.selectedMap)
+    console.log("this.props ", this.props);
+    const markers = _.cloneDeep(props.selectedMap.mapData.markers)
+    const className = _.kebabCase(props.selectedMap.id)
     const circle = selection.selectAll('circle')
       .data(markers)
     circle.exit().remove()
@@ -68,7 +69,7 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   updateNumbers (selection, props = this.props) {
-    const markers = _.filter(marker => marker.seriesValue === 'topTen', props.mapData.markers)
+    const markers = _.filter(marker => marker.seriesValue === 'topTen', props.selectedMap.mapData.markers)
     const text = selection.selectAll('text')
       .data(markers)
     text.exit().remove()
@@ -130,11 +131,6 @@ const Choropleth = class Choropleth extends React.Component {
     // const bounds = path.bounds(point)
     const centroid = path.centroid(point)
     console.log('centroid', centroid, point, d)
-
-    // const dx = bounds[1][0] - bounds[0][0]
-    // const dy = bounds[1][1] - bounds[0][1]
-    // const x = (bounds[0][0] + bounds[1][0]) / 2
-    // const y = (bounds[0][1] + bounds[1][1]) / 2
     const x = centroid[0]
     const y = centroid[1]
     const scale = 4
@@ -164,12 +160,6 @@ const Choropleth = class Choropleth extends React.Component {
     if (d3.event.defaultPrevented) d3.event.stopPropagation()
   }
 
-  // updateMap (selection) {
-  //   selection.selectAll('.feature')
-  //     .call(this.updateFeatures)
-  //   selection.selectAll('.mesh')
-  //     .call(this.updateMesh)
-  // }
   componentDidMount () {
     console.log('componentDidMount', this.props.mapData, this.props.selectedMap)
     let { width, height } = this.props
@@ -189,7 +179,7 @@ const Choropleth = class Choropleth extends React.Component {
     //   .on('click', this.onStop, true)
   }
   shouldComponentUpdate (nextProps, nextState) {
-    console.log('shouldComponentUpdate', nextProps.mapData.markers, this.props.selectedMap)
+    console.log('shouldComponentUpdate', nextProps.selectedMap.mapData.markers, this.props.selectedMap)
     this.d3Map = d3.select(this.g)
     this.d3Map.call(this.updateMarkers, nextProps)
     this.d3Map.call(this.updateNumbers, nextProps)
@@ -241,12 +231,12 @@ const Choropleth = class Choropleth extends React.Component {
   }*/
 // })
 Choropleth.propTypes = {
-  mapData: PropTypes.shape({
-    markers: PropTypes.array.isRequired,
-    series: PropTypes.object.isRequired
-  }),
+  // mapData: PropTypes.shape({
+  //   markers: PropTypes.array.isRequired,
+  //   series: PropTypes.object.isRequired
+  // }),
   // data: PropTypes.object.isRequired,
-  selectedMap: PropTypes.string.isRequired,
+  selectedMap: PropTypes.object.isRequired,
   height: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired
 }

@@ -4,7 +4,7 @@ export const SELECT_CITY = 'SELECT_CITY'
 export const SELECT_STATE = 'SELECT_STATE'
 
 export const MAPS = {
-  TOP_CITY: {type: 'Top Cities'},
-  DENSITY: {type: 'Population Density'},
-  RAIN_SNOW: {type: 'Rain & Snow'}
+  TOP_CITY: {name: 'Top Cities'},
+  DENSITY: {name: 'Population Density'},
+  RAIN_SNOW: {name: 'Rain & Snow'}
 }

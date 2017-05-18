@@ -7,22 +7,22 @@ const mapStateToProps = (state) => {
   console.log('MAP SDSADDSAD', state)
   return {
     selectedMap: state.selectedMap,
-    selectedYear: state.selectedYear,
+    currentYear: state.currentYear,
     selectedCity: state.selectedCity
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onMarkerClick: (selectedCity) => {
-      dispatch(selectCity(selectedCity))
-    }
-  }
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onCitySelect: (selectedCity) => {
+//       dispatch(selectCity(selectedCity))
+//     }
+//   }
+// }
 
 const Map = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
+  // mapDispatchToProps
 )(Choropleth)
 
 export default Map

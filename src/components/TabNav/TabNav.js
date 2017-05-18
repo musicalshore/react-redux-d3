@@ -32,25 +32,27 @@ const tabs = [{
   'data-strokecolor': '#a292ff',
   title: 'Rain & Snow'
 }]
-const TabNav = ({onTabClick, selectedMap, selectedYear}) => (
-  <div styleName="container">
-    {tabs.map(tab =>
-      <Tab key={tab.id}
-          {...tab}
-          onClick={
-            () => onTabClick(_.toUpper(_.snakeCase(tab.id)))
-          }
-          selectedMap={selectedMap}
-          selectedYear={selectedYear}
-      />
-    )}
-  </div>
-)
+const TabNav = ({onTabClick, selectedMap}) => {
+
+  return (
+    <div styleName="container">
+      {tabs.map(tab =>
+        <Tab key={tab.id}
+            {...tab}
+            onClick={
+              () => onTabClick({
+                id: _.toUpper(_.snakeCase(tab.id))
+              })
+            }
+            selectedMap={selectedMap}
+        />
+      )}
+    </div>
+)}
 
 TabNav.propTypes = {
   onTabClick: PropTypes.func.isRequired,
-  selectedMap: PropTypes.string.isRequired,
-  selectedYear: PropTypes.string.isRequired
+  selectedMap: PropTypes.object.isRequired
 }
 
 export default TabNav

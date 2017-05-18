@@ -14,6 +14,10 @@ module.exports = {
     filename: '[name].[hash].js',
     publicPath: '/'
   },
+  node: {
+    fs: 'empty',
+    child_process: 'empty'
+  },
   module: {
     rules: require('./webpack.loaders.js')
   },

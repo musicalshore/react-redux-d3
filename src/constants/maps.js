@@ -1,8 +1,15 @@
-const MAPS = {
-  TOP_CITY: {type: 'Top Cities'},
-  DENSITY: {type: 'Population Density'},
-  RAIN_SNOW: {type: 'Rain & Snow'}
+export const TOP_CITY = 'TOP_CITY'
+export const DENSITY = 'DENSITY'
+export const RAIN_SNOW = 'RAIN_SNOW'
+
+export const MAPS = {
+  TOP_CITY: {rankingType: 'Top Cities'},
+  DENSITY: {rankingType: 'Population Density'},
+  RAIN_SNOW: {rankingType: 'Rain & Snow'}
 }
+
+export const DEFAULT_MAP = TOP_CITY
+export const CURRENT_YEAR = '2016'
 
 export const YEARS = [
   '2005',
@@ -82,4 +89,3 @@ export const US_STATES = {
   'WY': 'Wyoming'
 }
 
-export default MAPS
