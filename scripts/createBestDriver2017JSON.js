@@ -71,8 +71,8 @@ const result = _.transform.convert({'immutable': false})((accumulator, value) =>
     '2017 Hard Braking Rank': value['Hard Braking Rank'],
     '2017 Braking Events per 1000 Miles (city)': value['Braking Events per 1000 Miles (city)'],
     'Metropolitan Area': value['Metropolitan Area'],
-    'Years Between Accidents (Suburban Area only)': value['Years Between Accidents (Suburban Area only)'],
-    'Suburban Braking Events per 1000 Miles': value['Suburban Braking Events per 1000 Miles'],
+    '2017 Years Between Accidents (Suburban Area only)': value['Years Between Accidents (Suburban Area only)'],
+    '2017 Suburban Braking Events per 1000 Miles': value['Suburban Braking Events per 1000 Miles'],
     '2017 Change': _.isInteger(value['Change in Rank']) ? value['Change in Rank'] : undefined,
     'Lat': value.Lat || undefined,
     'Lon': value.Lon || undefined
