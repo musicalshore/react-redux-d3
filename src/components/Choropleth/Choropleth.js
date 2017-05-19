@@ -12,12 +12,32 @@ const projection = d3.geoAlbersUsa()
 const path = d3.geoPath().projection(projection)
 const zoom = d3.zoom()
       .scaleExtent([1, 8])
-      .on('zoom', zoomIn)
+      .on('zoom', zoomed)
 
-function zoomIn () {
+function zoomed () {
   d3.select('g').style('stroke-width', 1.5 / d3.event.scale + 'px')
   // this.g.attr('transform', 'translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')')
   d3.select('g').attr('transform', d3.event.transform)
+}
+function zoomIn (props) {
+  let { width, height, selectedCity } = props
+  let lat = selectedCity.latLng[0]
+  let lon = selectedCity.latLng[1]
+  let point = { 'type': 'Point', 'coordinates': [lon, lat] }
+  const centroid = path.centroid(point)
+  console.log('centroid', centroid, point, selectedCity)
+  const x = centroid[0]
+  const y = centroid[1]
+  const scale = 4
+  // const scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height)))
+  const translateX = width / 2 - scale * x
+  const translateY = height / 2 - scale * y
+
+  console.log('scale', scale, 'translate', translateX, translateY)
+
+  d3.select('svg').transition()
+    .duration(750)
+    .call(zoom.transform, d3.zoomIdentity.translate(translateX, translateY).scale(scale))
 }
 
 function zoomOut () {
@@ -139,25 +159,26 @@ const Choropleth = class Choropleth extends React.Component {
     if (d3.event.defaultPrevented) d3.event.stopPropagation()
   }
 
+
   onMarkerClick (d) {
-    let { width, height } = this.props
+    // let { width, height } = this.props
 
-    let lat = d.latLng[0]
-    let lon = d.latLng[1]
-    let point = { 'type': 'Point', 'coordinates': [lon, lat] }
-    const centroid = path.centroid(point)
-    console.log('centroid', centroid, point, d)
-    const x = centroid[0]
-    const y = centroid[1]
-    const scale = 4
-    // const scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height)))
-    const translate = [width / 2 - scale * x, height / 2 - scale * y]
+    // let lat = d.latLng[0]
+    // let lon = d.latLng[1]
+    // let point = { 'type': 'Point', 'coordinates': [lon, lat] }
+    // const centroid = path.centroid(point)
+    // console.log('centroid', centroid, point, d)
+    // const x = centroid[0]
+    // const y = centroid[1]
+    // const scale = 4
+    // // const scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height)))
+    // const translate = [width / 2 - scale * x, height / 2 - scale * y]
 
-    console.log('scale', scale, 'translate', translate)
+    // console.log('scale', scale, 'translate', translate)
 
-    d3.select(this.svg).transition()
-      .duration(750)
-      .call(zoom.transform, d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale))
+    // d3.select(this.svg).transition()
+    //   .duration(750)
+    //   .call(zoom.transform, d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale))
     console.log('onMarkerClick', d);
 
     this.props.onMarkerClick(d)
@@ -172,8 +193,7 @@ const Choropleth = class Choropleth extends React.Component {
     // this.zoom = d3.zoom()
     //   .scaleExtent([1, 8])
     //   .on('zoom', this.onZoom)
-    // d3.select(this.svg).call(zoom)
-    this.d3Map = d3.select(this.g)
+
     d3.select(this.g).call(this.addMap)
     d3.select(this.g).call(this.updateMarkers)
     d3.select(this.g).call(this.updateNumbers)
@@ -182,15 +202,26 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   shouldComponentUpdate (nextProps, nextState) {
-    let { selectedMap } = this.props
-    console.log('shouldComponentUpdate', nextProps.selectedMap.mapData.markers, this.props.selectedMap)
-    if (selectedMap.id !== nextProps.selectedMap.id || selectedMap.year !== nextProps.selectedMap.year || selectedMap.stateFilter !== nextProps.selectedMap.stateFilter) {
+    let { selectedMap, selectedCity } = this.props
+    console.log('shouldComponentUpdate', selectedCity, nextProps.selectedCity)
+    if ((selectedMap.id !== nextProps.selectedMap.id) ||
+        (selectedMap.year !== nextProps.selectedMap.year) ||
+        (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
+          console.log('YES shouldComponentUpdate');
+
       d3.select(this.g).call(this.updateMarkers, nextProps)
       d3.select(this.g).call(this.updateNumbers, nextProps)
     }
+    // d3.select(this.svg).call(zoomIn, nextProps)
     if (!nextProps.selectedCity) {
-      d3.select(this.svg).call(zoomOut)
+      // d3.select(this.svg).call(zoomOut)
+      zoomOut()
+    } else {
+      zoomIn(nextProps)
     }
+    //  else {
+    //   d3.select(this.svg).call(zoomIn, nextProps)
+    // }
     return false
   }
 
@@ -211,6 +242,7 @@ const Choropleth = class Choropleth extends React.Component {
 
 Choropleth.propTypes = {
   selectedMap: PropTypes.object.isRequired,
+  selectedCity: PropTypes.object,
   onMarkerClick: PropTypes.func.isRequired,
   height: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired

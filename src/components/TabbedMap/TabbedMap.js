@@ -41,7 +41,7 @@ const CityModalHeading = (props) => {
 
 const Rankings = (props) => {
   let {selectedCity, selectedMap} = props
-  console.log('______selectedCity',selectedCity, selectedMap);
+  // console.log('______selectedCity',selectedCity, selectedMap);
   const populationDensity = selectedCity[`${selectedMap.year} Population Density`]
   const rainSnow = selectedCity[`${selectedMap.year} Rain & Snow`]
   const lastYearsRanking = selectedCity[`${parseInt(selectedMap.year) - 1} Top Cities`]
@@ -129,7 +129,7 @@ const TabbedMap = class TabbedMap extends React.Component {
 
   componentDidUpdate (prevProps, prevState) {
     let {selectedCity, selectedMap} = this.props
- console.log("selectedCity, selectedMap ", selectedCity, selectedMap);
+//  console.log("selectedCity, selectedMap ", selectedCity, selectedMap);
     if (!prevProps.selectedCity && selectedCity && !this.state.modalIsOpen) {
       // const marker = _.find(['cityState', selectedCity.cityState], selectedMap.mapData.markers)
       // this.setState({selectedMarker: marker})
@@ -165,7 +165,7 @@ const TabbedMap = class TabbedMap extends React.Component {
 
     let isCurrentYear = selectedMap.year === CURRENT_YEAR
     let isBest = selectedCity !== null && selectedCity.rank === 1
-  console.log("selectedCity ", selectedCity);
+    // console.log("selectedCity ", selectedCity);
     let thisYearsBest = isCurrentYear && isBest
 
     return (

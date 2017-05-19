@@ -4,7 +4,6 @@ import Choropleth from 'components/Choropleth'
 import { selectCity } from 'redux/actions'
 
 const mapStateToProps = (state) => {
-  console.log('MAP SDSADDSAD', state)
   return {
     selectedMap: state.selectedMap,
     currentYear: state.currentYear,
