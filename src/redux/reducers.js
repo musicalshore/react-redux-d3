@@ -1,7 +1,7 @@
 import _ from 'lodash/fp'
 import {combineReducers} from 'redux'
 import {MAPS, DEFAULT_MAP, CURRENT_YEAR} from 'constants/maps'
-import {SELECT_MAP, SELECT_CITY, SELECT_STATE} from 'constants/actionTypes'
+import {SELECT_MAP, SELECT_CITY} from 'constants/actionTypes'
 import BEST_DRIVER_DATA from 'constants/bestDriver'
 
 const marker = _.curry((year, rankingType, location) => _.extend({
@@ -9,12 +9,21 @@ const marker = _.curry((year, rankingType, location) => _.extend({
   rankingType: rankingType
 }, location))
 
-const getMapData = ({year, rankingType}) => {
- console.log("getMapData ", year, rankingType);
+const getMapData = ({year, rankingType, stateFilter = null}) => {
+ console.log("getMapData ", year, rankingType, stateFilter);
 
   // we need to reverse the order by rank so the larger markers are drawn over the smaller markers
-  const rankingsByYearAndType = _.reverse(_.sortBy('rank', _.map(marker(year, rankingType), BEST_DRIVER_DATA)))
-  console.log('rankingsByYearAndType', BEST_DRIVER_DATA)
+
+  const bestDriverData = stateFilter.length ? _.filter(['State', stateFilter], BEST_DRIVER_DATA) : BEST_DRIVER_DATA
+  const rankingsByYearAndType = _.flow([
+    _.map(marker(year, rankingType)),
+    _.filter('rank'),
+    _.sortBy('rank'),
+    _.reverse
+  ])(bestDriverData)
+
+  // _.reverse(_.sortBy('rank', _.filter(_.map(marker(year, rankingType), BEST_DRIVER_DATA))))
+  console.log('rankingsByYearAndType', rankingsByYearAndType)
 
   const minTopTenRank = _.minBy('rank', rankingsByYearAndType).rank + 10
   // console.log('minTopTenRank', minTopTenRank)
@@ -52,19 +61,18 @@ const getMapData = ({year, rankingType}) => {
 
   return mapData
 }
-const initialMap = {
-  id: DEFAULT_MAP,
-  rankingType: MAPS[DEFAULT_MAP].rankingType,
-  year: CURRENT_YEAR
-}
+const initialMap = _.extend(_.find(['id', DEFAULT_MAP], MAPS), {
+  year: CURRENT_YEAR,
+  stateFilter: ''
+})
+
 console.log('initialMap:::', initialMap)
 const mapData = {mapData: getMapData(initialMap)}
-console.log('mapData-->', mapData)
+// console.log('mapData-->', mapData)
 
 const initialState = {
   selectedMap: _.extend(initialMap, mapData),
-  selectedCity: null,
-  selectedState: null
+  selectedCity: null
 }
 
 
@@ -78,16 +86,15 @@ const selectedMap = (state = initialState.selectedMap, action) => {
   switch (action.type) {
     case SELECT_MAP:
       console.log('SELECT_MAP::ACTION', action)
-      const selectedMap = _.extend(action.selectedMap, {
-        rankingType: MAPS[action.selectedMap.id].rankingType
-      })
-      const mapData = {mapData: getMapData(selectedMap)}
-      const result = _.extend(selectedMap, mapData)
-      console.log('result', result);
+      // const selectedMap = _.extend(action.selectedMap, {
+      //   rankingType: MAPS[action.selectedMap.id].rankingType
+      // })
+      const mapData = {mapData: getMapData(action.selectedMap)}
+      console.log("mapData ", mapData)
+      const result = _.extend(action.selectedMap, mapData)
+      console.log('result', result)
       return result
-      // return _.extend(selectedMap, mapData)
     default:
-      // console.log('SELECT_MAP::DEFAULT')
       return state
   }
 }
@@ -101,20 +108,9 @@ const selectedCity = (state = initialState.selectedCity, action) => {
   }
 }
 
-const selectedState = (state = null, action) => {
-  switch (action.type) {
-    case SELECT_STATE:
-      return action.selectedState
-    default:
-      return state
-  }
-}
 const reducer = combineReducers({
-  // vectorMap,
   selectedMap,
-  // selectedYear,
-  selectedCity,
-  selectedState
+  selectedCity
 })
 
 export default reducer

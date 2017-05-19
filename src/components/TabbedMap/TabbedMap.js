@@ -6,7 +6,7 @@ import MapSelector from 'components/MapSelector'
 import TabNav from 'components/TabNav'
 import Map from 'containers/Map'
 import TopListings from 'components/TopListings'
-import {CURRENT_YEAR} from 'constants/maps'
+import {CURRENT_YEAR, TOP_CITY} from 'constants/maps'
 // import globalStyle from '../../global.scss'
 import './style.scss'
 
@@ -19,7 +19,103 @@ import './style.scss'
     </div>
   )
 }*/
+const CityModalHeading = (props) => {
+  let {selectedCity, selectedMap, closeModal} = props
+  let message
+  const verb = selectedMap.year === CURRENT_YEAR ? 'is' : 'was'
+  const rankingType = selectedMap.id !== TOP_CITY ? ` by ${selectedMap.rankingType}` : ''
 
+  if (selectedCity.rank === 1 && selectedMap.year === CURRENT_YEAR) {
+    message = <span>This year's best!</span>
+  } else {
+    message = <span>{verb} the <b>{selectedCity.rank}</b> safest driving city in <b>{selectedMap.year}</b>{rankingType}.</span>
+  }
+  return (
+    <div>
+      <h2 className="city-name">{selectedCity.cityState}</h2>
+      <div className="close" onClick={closeModal} />
+      <div className="city-rank">{message}</div>
+    </div>
+  )
+}
+
+const Rankings = (props) => {
+  let {selectedCity, selectedMap} = props
+  console.log('______selectedCity',selectedCity, selectedMap);
+  const populationDensity = selectedCity[`${selectedMap.year} Population Density`]
+  const rainSnow = selectedCity[`${selectedMap.year} Rain & Snow`]
+  const lastYearsRanking = selectedCity[`${parseInt(selectedMap.year) - 1} Top Cities`]
+  return (
+    <div>
+      <h5>{selectedMap.year} data</h5>
+      <div>Overall Ranking <span>{selectedCity.rank}</span></div>
+      {populationDensity &&
+        <div>Population Density <span>{populationDensity}</span></div>
+      }
+      {rainSnow &&
+        <div>Rain & Snow <span>{rainSnow}</span></div>
+      }
+      {lastYearsRanking &&
+        <div>{parseInt(selectedMap.year) - 1} Ranking <span>{lastYearsRanking}</span></div>
+      }
+    </div>
+  )
+}
+const CityData = (props) => {
+  let {selectedCity, selectedMap} = props
+  const yearsBetweenClaims = selectedCity[`${selectedMap.year} Average Years Between Accidents`]
+  const breakingEvents = selectedCity[`${selectedMap.year} Braking Events per 1000 Miles (city)`]
+  if (!yearsBetweenClaims && !breakingEvents) {
+    return <div/>
+  }
+  return (
+    <div>
+      <h5>City data</h5>
+      <div>{selectedCity.cityState}</div>
+      {yearsBetweenClaims &&
+        <div>Years between claims<sup>1</sup>: <span>{yearsBetweenClaims}</span></div>
+      }
+      {breakingEvents &&
+        <div>Drivewise<sup>®</sup> breaking events per 1,000 miles<sup>2</sup>: <span>{breakingEvents}</span></div>
+      }
+    </div>
+  )
+}
+const SuburbanData = (props) => {
+  let {selectedCity, selectedMap} = props
+  const yearsBetweenClaims = selectedCity[`${selectedMap.year} Years Between Accidents (Suburban Area only)`]
+  const breakingEvents = selectedCity[`${selectedMap.year} Suburban Braking Events per 1000 Miles`]
+  if (!yearsBetweenClaims && !breakingEvents) {
+    return <div/>
+  }
+  return (
+    <div>
+      <h5>Suburban Metro Area data</h5>
+      <div>{selectedCity.metropolitanArea}</div>
+      {yearsBetweenClaims &&
+        <div>Years between claims<sup>1</sup>: <span>{yearsBetweenClaims}</span></div>
+      }
+      {breakingEvents &&
+        <div>Drivewise<sup>®</sup> breaking events per 1,000 miles<sup>2</sup>: <span>{breakingEvents}</span></div>
+      }
+    </div>
+  )
+}
+const CityModal = (props) => {
+  let {selectedCity, selectedMap} = props
+  return (
+    <div className={`modal-container ${_.kebabCase(selectedMap.id)}`}>
+      <div className="city-container">
+        <CityModalHeading {...props} />
+        <Rankings {...props} />
+        <div>
+          <CityData {...props} />
+          <SuburbanData {...props} />
+        </div>
+      </div>
+    </div>
+  )
+}
 const TabbedMap = class TabbedMap extends React.Component {
   constructor () {
     super()
@@ -32,9 +128,11 @@ const TabbedMap = class TabbedMap extends React.Component {
   }
 
   componentDidUpdate (prevProps, prevState) {
-    if (!prevProps.selectedCity && this.props.selectedCity && !this.state.modalIsOpen) {
-      const marker = _.find(['index', parseInt(this.props.selectedCity)], this.props.mapData.markers)
-      this.setState({selectedMarker: marker})
+    let {selectedCity, selectedMap} = this.props
+ console.log("selectedCity, selectedMap ", selectedCity, selectedMap);
+    if (!prevProps.selectedCity && selectedCity && !this.state.modalIsOpen) {
+      // const marker = _.find(['cityState', selectedCity.cityState], selectedMap.mapData.markers)
+      // this.setState({selectedMarker: marker})
       this.openModal()
     }
   }
@@ -63,19 +161,20 @@ const TabbedMap = class TabbedMap extends React.Component {
   }
 
   render () {
-    let {selectedMap, selectedCity, selectedState, onTabClick, onCitySelect} = this.props
+    let {selectedMap, selectedCity, selectedState, onMapSelect, onCitySelect} = this.props
 
     let isCurrentYear = selectedMap.year === CURRENT_YEAR
     let isBest = selectedCity !== null && selectedCity.rank === 1
+  console.log("selectedCity ", selectedCity);
     let thisYearsBest = isCurrentYear && isBest
 
     return (
       <div styleName="container">
-        {/*<MapSelector onStateChange={onStateChange} onYearChange={onYearChange}selectedMap={selectedMap} selectedState={selectedState} />*/}
+        <MapSelector selectedMap={selectedMap} onMapSelect={onMapSelect} />
         <div styleName="map-container">
           <div styleName="maps">
-            <TabNav onTabClick={onTabClick} selectedMap={selectedMap} />
-            <Map width="715" height="625" selectedMap={selectedMap} onCitySelect={onCitySelect} />
+            <TabNav selectedMap={selectedMap} onTabClick={onMapSelect} />
+            <Map width="715" height="625" />
             <div styleName="timeLine-SocialContainer">
               <div styleName="legendContainer">
                 <ul>
@@ -90,7 +189,7 @@ const TabbedMap = class TabbedMap extends React.Component {
             </div>
           </div>
           <div styleName="top-listings">
-            <TopListings onCitySelect={onCitySelect} selectedMap={selectedMap} selectedCity={selectedCity} selectedState={selectedState} />
+            <TopListings onCitySelect={onCitySelect} selectedMap={selectedMap} selectedCity={selectedCity} />
           </div>
         </div>
         { selectedCity !== null && selectedCity.rank &&
@@ -100,16 +199,7 @@ const TabbedMap = class TabbedMap extends React.Component {
             className="modal-content"
             overlayClassName="modal-overlay"
           >
-            <div className={`modal-container ${_.kebabCase(selectedMap.id)}`}>
-              <div className="close" onClick={this.closeModal} />
-              <div className="city-container">
-                <h2 className="city-name">{selectedCity.name}</h2>
-                <h2 className="city-rank">
-                  {thisYearsBest && `This year's best!`}
-                  {!thisYearsBest && isCurrentYear ? `is` : `was`}
-                   the {selectedCity.rank} safest driving city <span className="density-line">by Population Density</span><span className="rain-snow-line">in Rain & Snow</span></h2>
-              </div>
-            </div>
+            <CityModal {...this.props} closeModal={this.closeModal} />
           </Modal>
         }
       </div>
@@ -118,11 +208,36 @@ const TabbedMap = class TabbedMap extends React.Component {
 }
 
 TabbedMap.propTypes = {
-  onTabClick: PropTypes.func.isRequired,
+  onMapSelect: PropTypes.func.isRequired,
   onCitySelect: PropTypes.func.isRequired,
   selectedMap: PropTypes.object.isRequired,
-  selectedCity: PropTypes.object,
-  selectedState: PropTypes.string
+  selectedCity: PropTypes.object
+}
+
+CityModal.propTypes = {
+  selectedMap: PropTypes.object.isRequired,
+  selectedCity: PropTypes.object.isRequired,
+  closeModal: PropTypes.func.isRequired
+}
+
+CityModalHeading.propTypes = {
+  selectedMap: PropTypes.object.isRequired,
+  selectedCity: PropTypes.object.isRequired,
+  closeModal: PropTypes.func.isRequired
+}
+
+Rankings.propTypes = {
+  selectedMap: PropTypes.object.isRequired,
+  selectedCity: PropTypes.object.isRequired
+}
+CityData.propTypes = {
+  selectedMap: PropTypes.object.isRequired,
+  selectedCity: PropTypes.object.isRequired
+}
+
+SuburbanData.propTypes = {
+  selectedMap: PropTypes.object.isRequired,
+  selectedCity: PropTypes.object.isRequired
 }
 
 export default TabbedMap

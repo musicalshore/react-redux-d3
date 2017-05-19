@@ -2,14 +2,29 @@ export const TOP_CITY = 'TOP_CITY'
 export const DENSITY = 'DENSITY'
 export const RAIN_SNOW = 'RAIN_SNOW'
 
-export const MAPS = {
-  TOP_CITY: {rankingType: 'Top Cities'},
-  DENSITY: {rankingType: 'Population Density'},
-  RAIN_SNOW: {rankingType: 'Rain & Snow'}
-}
+export const MAPS = [
+  {
+    id: TOP_CITY,
+    rankingType: 'Top Cities',
+    title: 'Top Cities',
+    byline: `Explore which cities are least likely to experience collisions.`
+  },
+  {
+    id: DENSITY,
+    rankingType: 'Population Density',
+    title: 'Population Density',
+    byline: `See how population density impacts driving in your city.`
+  },
+  {
+    id: RAIN_SNOW,
+    rankingType: 'Rain & Snow',
+    title: 'Rain & Snow',
+    byline: `See how precipitation (or lack thereof) impacts your city's ranking.`
+  }
+]
 
 export const DEFAULT_MAP = TOP_CITY
-export const CURRENT_YEAR = '2016'
+export const CURRENT_YEAR = '2017'
 
 export const YEARS = [
   '2005',

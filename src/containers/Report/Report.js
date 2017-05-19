@@ -70,22 +70,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onTabClick: (selectedMap) => {
+    onMapSelect: (selectedMap) => {
       // console.log('onTabClick dispatch', selectedMap)
       dispatch(selectMap(selectedMap))
     },
-    // onYearChange: (selectedYear) => {
-    //   dispatch(selectMap(selectedYear))
-    // },
     onCitySelect: (selectedCity) => {
       dispatch(selectCity(selectedCity))
-    },
-    onStateChange: (selectedState) => {
-      dispatch(selectState(selectedState))
     }
-    // onCityChange: (selectedCity) => {
-    //   dispatch(selectCity(selectedCity))
-    // }
   }
 }
 

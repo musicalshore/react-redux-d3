@@ -4,9 +4,9 @@ import _ from 'lodash/fp'
 import './style.scss'
 
 const Tab = ({ id, title, selectedMap, onClick }) => {
-  let isSelected = _.kebabCase(selectedMap.id) === id
+  // console.log('TAB:', id, title, selectedMap )
   return (
-    <div styleName={`container ${id} ${isSelected ? 'selected' : ''}`}
+    <div styleName={`container ${_.kebabCase(id)} ${selectedMap.id === id ? 'selected' : ''}`}
       onClick={e => {
         onClick()
       }}
