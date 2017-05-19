@@ -28,9 +28,9 @@ console.log('getState', store.getState())
 
 
 
-const mountingPoint = document.createElement('div')
-mountingPoint.className = 'app-container'
-document.body.appendChild(mountingPoint)
+// const mountingPoint = document.createElement('div')
+// mountingPoint.className = 'app-container'
+// document.body.appendChild(mountingPoint)
 
 const render = Component => {
   ReactDOM.render(
@@ -39,7 +39,7 @@ const render = Component => {
         <Component />
       </AppContainer>
     </Provider>,
-    mountingPoint
+    document.getElementById('app')
   )
 }
 

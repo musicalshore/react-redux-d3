@@ -102,7 +102,7 @@ const SuburbanData = (props) => {
   )
 }
 const CityModal = (props) => {
-  let {selectedCity, selectedMap} = props
+  let {selectedMap} = props
   return (
     <div className={`modal-container ${_.kebabCase(selectedMap.id)}`}>
       <div className="city-container">
@@ -128,11 +128,8 @@ const TabbedMap = class TabbedMap extends React.Component {
   }
 
   componentDidUpdate (prevProps, prevState) {
-    let {selectedCity, selectedMap} = this.props
-//  console.log("selectedCity, selectedMap ", selectedCity, selectedMap);
+    let {selectedCity} = this.props
     if (!prevProps.selectedCity && selectedCity && !this.state.modalIsOpen) {
-      // const marker = _.find(['cityState', selectedCity.cityState], selectedMap.mapData.markers)
-      // this.setState({selectedMarker: marker})
       this.openModal()
     }
   }
