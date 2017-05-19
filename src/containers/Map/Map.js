@@ -12,17 +12,17 @@ const mapStateToProps = (state) => {
   }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     onCitySelect: (selectedCity) => {
-//       dispatch(selectCity(selectedCity))
-//     }
-//   }
-// }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onMarkerClick: (selectedCity) => {
+      dispatch(selectCity(selectedCity))
+    }
+  }
+}
 
 const Map = connect(
-  mapStateToProps
-  // mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Choropleth)
 
 export default Map
