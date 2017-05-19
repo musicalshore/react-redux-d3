@@ -31,10 +31,10 @@ const CityModalHeading = (props) => {
     message = <span>{verb} the <b>{selectedCity.rank}</b> safest driving city in <b>{selectedMap.year}</b>{rankingType}.</span>
   }
   return (
-    <div>
+    <div className="city-modal-heading-container">
       <h2 className="city-name">{selectedCity.cityState}</h2>
-      <div className="close" onClick={closeModal} />
       <div className="city-rank">{message}</div>
+      <div className="close" onClick={closeModal} />
     </div>
   )
 }
@@ -46,17 +46,17 @@ const Rankings = (props) => {
   const rainSnow = selectedCity[`${selectedMap.year} Rain & Snow`]
   const lastYearsRanking = selectedCity[`${parseInt(selectedMap.year) - 1} Top Cities`]
   return (
-    <div>
+    <div className="rankings-container">
       <h5>{selectedMap.year} data</h5>
-      <div>Overall Ranking <span>{selectedCity.rank}</span></div>
+      <div className="overall-ranking"><span>Overall Ranking</span><span>{selectedCity.rank}</span></div>
       {populationDensity &&
-        <div>Population Density <span>{populationDensity}</span></div>
+        <div className="population-ranking"><span>Population Density</span><span>{populationDensity}</span></div>
       }
       {rainSnow &&
-        <div>Rain & Snow <span>{rainSnow}</span></div>
+        <div className="rain-snow-ranking"><span>Rain & Snow</span><span>{rainSnow}</span></div>
       }
       {lastYearsRanking &&
-        <div>{parseInt(selectedMap.year) - 1} Ranking <span>{lastYearsRanking}</span></div>
+        <div className="last-years-ranking"><span>{parseInt(selectedMap.year) - 1} Ranking</span><span>{lastYearsRanking}</span></div>
       }
     </div>
   )
@@ -69,7 +69,7 @@ const CityData = (props) => {
     return <div/>
   }
   return (
-    <div>
+    <div className="city-data-container">
       <h5>City data</h5>
       <div>{selectedCity.cityState}</div>
       {yearsBetweenClaims &&
@@ -89,7 +89,7 @@ const SuburbanData = (props) => {
     return <div/>
   }
   return (
-    <div>
+    <div className="suburban-data-container">
       <h5>Suburban Metro Area data</h5>
       <div>{selectedCity.metropolitanArea}</div>
       {yearsBetweenClaims &&
@@ -101,18 +101,25 @@ const SuburbanData = (props) => {
     </div>
   )
 }
+const Footnotes = () => {
+  return (
+    <div className="footnotes-container">
+      <div><sup>1</sup>National average: 10</div>
+      <div><sup>2</sup>National average: 19</div>
+    </div>
+  )
+}
 const CityModal = (props) => {
   let {selectedMap} = props
   return (
-    <div className={`modal-container ${_.kebabCase(selectedMap.id)}`}>
-      <div className="city-container">
-        <CityModalHeading {...props} />
-        <Rankings {...props} />
-        <div>
-          <CityData {...props} />
-          <SuburbanData {...props} />
-        </div>
+    <div className={`city-modal-container ${_.kebabCase(selectedMap.id)}`}>
+      <CityModalHeading {...props} />
+      <Rankings {...props} />
+      <div className="additional-data">
+        <CityData {...props} />
+        <SuburbanData {...props} />
       </div>
+        <Footnotes />
     </div>
   )
 }
@@ -158,12 +165,7 @@ const TabbedMap = class TabbedMap extends React.Component {
   }
 
   render () {
-    let {selectedMap, selectedCity, selectedState, onMapSelect, onCitySelect} = this.props
-
-    let isCurrentYear = selectedMap.year === CURRENT_YEAR
-    let isBest = selectedCity !== null && selectedCity.rank === 1
-    // console.log("selectedCity ", selectedCity);
-    let thisYearsBest = isCurrentYear && isBest
+    let {selectedMap, selectedCity, onMapSelect, onCitySelect} = this.props
 
     return (
       <div styleName="container">
@@ -172,7 +174,7 @@ const TabbedMap = class TabbedMap extends React.Component {
           <div styleName="maps">
             <TabNav selectedMap={selectedMap} onTabClick={onMapSelect} />
             <Map width="715" height="625" />
-            <div styleName="timeLine-SocialContainer">
+            {/*<div styleName="timeLine-SocialContainer">
               <div styleName="legendContainer">
                 <ul>
                   <li><span styleName="blue">&bull;</span> Top Cities</li>
@@ -183,7 +185,7 @@ const TabbedMap = class TabbedMap extends React.Component {
               <div styleName="socialContainer">
                 <div id="pageShare"></div>
               </div>
-            </div>
+            </div>*/}
           </div>
           <div styleName="top-listings">
             <TopListings onCitySelect={onCitySelect} selectedMap={selectedMap} selectedCity={selectedCity} />

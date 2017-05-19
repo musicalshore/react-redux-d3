@@ -1,6 +1,8 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
+const postcssInputRange = require('postcss-input-range') // lets you style input ranges with unprefixed selectors.
+
 // pattern used to transform styles used by babel-plugin-react-css-modules
 // see https://github.com/gajus/babel-plugin-react-css-modules
 const localIdentName = '[path]___[name]__[local]___[hash:base64:5]'
@@ -74,7 +76,7 @@ module.exports = [
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [autoprefixer]
+              plugins: [autoprefixer, postcssInputRange]
             }
           },
           {
@@ -98,7 +100,7 @@ module.exports = [
           {
             loader: 'postcss-loader',
             options: {
-              plugins: [autoprefixer]
+              plugins: [autoprefixer, postcssInputRange]
             }
           },
           {

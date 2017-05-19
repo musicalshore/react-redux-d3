@@ -49,9 +49,7 @@ function zoomOut () {
 const Choropleth = class Choropleth extends React.Component {
   constructor (props) {
     super(props)
-    // console.log('props', props)
 
-    // this.state = {active: d3.select(null)}
     // this.onZoom = this.onZoom.bind(this)
     this.onMarkerClick = this.onMarkerClick.bind(this)
     // this.onStop = this.onStop.bind(this)
@@ -62,6 +60,11 @@ const Choropleth = class Choropleth extends React.Component {
     this.addMesh = this.addMesh.bind(this)
     this.updateMarkers = this.updateMarkers.bind(this)
     this.updateNumbers = this.updateNumbers.bind(this)
+    this.handleRange = this.handleRange.bind(this)
+    this.state = {rangeValue: zoom.scaleExtent()[0]}
+  }
+  handleRange (event) {
+    this.setState({rangeValue: event.target.value})
   }
   addMap (selection) {
     selection.selectAll('path')
@@ -161,44 +164,17 @@ const Choropleth = class Choropleth extends React.Component {
 
 
   onMarkerClick (d) {
-    // let { width, height } = this.props
-
-    // let lat = d.latLng[0]
-    // let lon = d.latLng[1]
-    // let point = { 'type': 'Point', 'coordinates': [lon, lat] }
-    // const centroid = path.centroid(point)
-    // console.log('centroid', centroid, point, d)
-    // const x = centroid[0]
-    // const y = centroid[1]
-    // const scale = 4
-    // // const scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height)))
-    // const translate = [width / 2 - scale * x, height / 2 - scale * y]
-
-    // console.log('scale', scale, 'translate', translate)
-
-    // d3.select(this.svg).transition()
-    //   .duration(750)
-    //   .call(zoom.transform, d3.zoomIdentity.translate(translate[0], translate[1]).scale(scale))
-    console.log('onMarkerClick', d);
-
     this.props.onMarkerClick(d)
   }
   componentDidMount () {
-    // console.log('componentDidMount', this.props.mapData, this.props.selectedMap)
     let { width, height } = this.props
     projection
       .scale(1000)
       .translate([width / 2, height / 2])
 
-    // this.zoom = d3.zoom()
-    //   .scaleExtent([1, 8])
-    //   .on('zoom', this.onZoom)
-
     d3.select(this.g).call(this.addMap)
     d3.select(this.g).call(this.updateMarkers)
     d3.select(this.g).call(this.updateNumbers)
-
-    //   .on('click', this.onStop, true)
   }
 
   shouldComponentUpdate (nextProps, nextState) {
@@ -226,15 +202,32 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   render () {
+    const handleStyle = {
+      'background-color': '#0096d6',
+      'width': '15px',
+      'height': '15px',
+      'border-radius': '300px'
+    }
+    // const Handle = Slider.Handle
+
+    // const handle = (props) => {
+    //   // const { value, dragging, index, ...restProps } = props;
+    //   return (
+    //       <Handle className="slider-handle" {...props} />
+    //   )
+    // }
     return (
       <div styleName="container">
         <svg width={this.props.width} height={this.props.height} ref={(node) => this.svg = node}>
           <rect styleName="background" width={this.props.width} height={this.props.height} />
           <g ref={(node) => this.g = node} />
         </svg>
-        <div styleName="zoom-bar-wrapper">
-          <Slider vertical min={0} max={6} defaultValue={1} step={2} />
-        </div>
+        {/*<div styleName="zoom-bar-wrapper">*/}
+          {/*<div styleName="zoom-in">+</div>*/}
+          {/*<input type="range" min={zoom.scaleExtent()[0]} max={zoom.scaleExtent()[1]} onChange={this.handleRange} step={2} />*/}
+          {/*<Slider vertical={true} min={zoom.scaleExtent()[0]} max={zoom.scaleExtent()[1]} defaultValue={zoom.scaleExtent()[0]} onChange={this.handleRange} step={2} handleStyle={handleStyle} />*/}
+          {/*<div styleName="zoom-out">-</div>*/}
+        {/*</div>*/}
       </div>
     )
   }
