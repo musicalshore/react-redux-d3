@@ -12,7 +12,7 @@ const MapSelector = class MapSelector extends React.Component {
     this.handleStateChange = this.handleStateChange.bind(this)
     this.state = {
       selectedYear: this.props.selectedMap.year,
-      selectedState: this.props.selectedMap.stateFilter
+      selectedState: this.props.selectedMap.stateFilter ? this.props.selectedMap.stateFilter : 'All'
     }
   }
   handleYearChange (event) {
@@ -45,11 +45,11 @@ const MapSelector = class MapSelector extends React.Component {
         <label>
           State
           <select value={this.state.selectedState} onChange={this.handleStateChange}>
-            <option value=""></option>
+            <option value="All"></option>
             {usStates}
           </select>
         </label>
-        <button type="button" styleName="button" onClick={this.handleClick}>Go</button>
+        <button type="button" onClick={this.handleClick}>Go</button>
       </div>
     )
   }

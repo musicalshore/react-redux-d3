@@ -3,7 +3,7 @@
   height: 447px;
   overflow-y: scroll;
   border-left: 1px solid #f0f0f0;
-
+  padding: 0;
   .ranking {
     fill: #fff;
     font-size: 12px;
@@ -23,32 +23,50 @@
       background: #F6F6F6;
       cursor: pointer;
     }
+
+    circle {
+      fill: rgb(0, 150, 214);
+      &.top-city {
+        fill: rgb(0, 150, 214);
+        // stroke: rgb(67, 199, 255);
+      }
+
+      &.density {
+        fill: rgb(230, 82, 122);
+        // stroke: rgb(255, 157, 184);
+      }
+
+      &.rain-snow {
+        fill: rgb(109, 93, 201);
+        // stroke: rgb(162, 146, 255);
+      }
+    }
     .cityState {
       color: #333;
       padding-top: 3px;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-    svg {
+    // svg {
 
-      // background-color: transparent;
-      // background-image: url('./marker.png');
-      // background-repeat: no-repeat;
-      // background-size: contain;
-      color: #fff;
-      content: '';
-      // float: left;
-      font-size: 10px;
-      height: 33px;
-      // margin-right: 10px;
-      text-align: center;
-      width: 23px;
-      margin-right: 3px;
-      .text {
-        // display: block;
-        margin-top: 10px;
-      }
-    }
+    //   // background-color: transparent;
+    //   // background-image: url('./marker.png');
+    //   // background-repeat: no-repeat;
+    //   // background-size: contain;
+    //   color: #fff;
+    //   content: '';
+    //   // float: left;
+    //   font-size: 10px;
+    //   height: 33px;
+    //   // margin-right: 10px;
+    //   text-align: center;
+    //   width: 23px;
+    //   margin-right: 3px;
+    //   .text {
+    //     // display: block;
+    //     margin-top: 10px;
+    //   }
+    // }
   }
 }
 

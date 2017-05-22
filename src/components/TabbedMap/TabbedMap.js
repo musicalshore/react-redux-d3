@@ -10,31 +10,35 @@ import {CURRENT_YEAR, TOP_CITY} from 'constants/maps'
 // import globalStyle from '../../global.scss'
 import './style.scss'
 
-/*const Ordinal = (n) => {
+function ordinal (n, sup = false) {
   const s = ['th', 'st', 'nd', 'rd']
   const v = n % 100
-  return (
-    <div>
-      {n}<sup>{(s[(v - 20) % 10] || s[v] || s[0])}</sup>
-    </div>
-  )
-}*/
+  const suffix = (s[(v - 20) % 10] || s[v] || s[0])
+  if (sup) {
+    return <span>{n}<sup>{suffix}</sup></span>
+  } else {
+    return <span>{n}{suffix}</span>
+  }
+}
+
 const CityModalHeading = (props) => {
   let {selectedCity, selectedMap, closeModal} = props
   let message
+  let thisYearsBest
   const verb = selectedMap.year === CURRENT_YEAR ? 'is' : 'was'
   const rankingType = selectedMap.id !== TOP_CITY ? ` by ${selectedMap.rankingType}` : ''
 
   if (selectedCity.rank === 1 && selectedMap.year === CURRENT_YEAR) {
+    thisYearsBest = true
     message = <span>This year's best!</span>
   } else {
-    message = <span>{verb} the <b>{selectedCity.rank}</b> safest driving city in <b>{selectedMap.year}</b>{rankingType}.</span>
+    message = <span>{verb} the <b>{ordinal(selectedCity.rank)}</b> safest driving city in <b>{selectedMap.year}</b>{rankingType}.</span>
   }
   return (
-    <div className="city-modal-heading-container">
+    <div className={`city-modal-heading-container ${thisYearsBest ? 'this-years-best' : ''}`}>
       <h2 className="city-name">{selectedCity.cityState}</h2>
       <div className="city-rank">{message}</div>
-      <div className="close" onClick={closeModal} />
+      <div className="close" onClick={closeModal}>Close</div>
     </div>
   )
 }
@@ -48,15 +52,15 @@ const Rankings = (props) => {
   return (
     <div className="rankings-container">
       <h5>{selectedMap.year} data</h5>
-      <div className="overall-ranking"><span>Overall Ranking</span><span>{selectedCity.rank}</span></div>
+      <div className="overall-ranking"><span>Overall Ranking</span><span>{ordinal(selectedCity.rank, true)}</span></div>
       {populationDensity &&
-        <div className="population-ranking"><span>Population Density</span><span>{populationDensity}</span></div>
+        <div className="population-ranking"><span>Population Density</span><span>{ordinal(populationDensity, true)}</span></div>
       }
       {rainSnow &&
-        <div className="rain-snow-ranking"><span>Rain & Snow</span><span>{rainSnow}</span></div>
+        <div className="rain-snow-ranking"><span>Rain & Snow</span><span>{ordinal(rainSnow, true)}</span></div>
       }
       {lastYearsRanking &&
-        <div className="last-years-ranking"><span>{parseInt(selectedMap.year) - 1} Ranking</span><span>{lastYearsRanking}</span></div>
+        <div className="last-years-ranking"><span>{parseInt(selectedMap.year) - 1} Ranking</span><span>{ordinal(lastYearsRanking, true)}</span></div>
       }
     </div>
   )

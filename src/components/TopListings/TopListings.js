@@ -22,6 +22,7 @@ const TopListings = ({ onCitySelect, selectedMap, selectedCity }) => (
         {selectedMap.id === 'RAIN_SNOW' && 'See how precipitation (or lack thereof) impacts your city\'s ranking.'}
       </p>
     </div>
+    <div styleName="instructions">Select city for more data.</div>
     <Listing selectedMap={selectedMap} selectedCity={selectedCity} onCitySelect={onCitySelect} />
   </div>
 )

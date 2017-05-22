@@ -1,20 +1,24 @@
-.container {
-  // border: solid 1px #ebebeb;
+@import '../../variables.scss';
 
-  // max-width: 960px;
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   .map-container {
-    min-height: 740px;
     border: 1px solid #f0f0f0;
     display: flex;
+    min-height: 740px;
   }
   .top-listings {
     width: 25%;
   }
-
+  .this-years-best {
+    background-image: url('./this-years-best.png');
+    background-position: 26px 18px;
+    background-repeat: no-repeat;
+    // background-size: contain;
+  }
   .maps {
     width: 75%;
 
@@ -94,6 +98,9 @@
   }
   .modal-content {
     background-color: #fff;
+    border: 1px #e8e8e8;
+    border-radius: 5px;
+    height: 467px;
     left: 50%;
     // left: 448px;
     position: absolute;
@@ -101,10 +108,7 @@
     // top: 563px;
     transform: translate(-50%, -50%);
     width: 452px;
-    height: 467px;
     z-index: 999;
-    border: 1px #e8e8e8;
-    border-radius: 5px;
     // padding-left: 26px;
   }
   .city-modal-container {
@@ -135,24 +139,24 @@
       color: #4d4d4d;
       font-family: 'Arial', sans-serif;
       font-size: 24px;
+      font-weight: normal;
       line-height: 24px;
       margin-bottom: 0;
       margin-top: 26px;
-      font-weight: normal;
     }
 
    .city-rank {
       color: #4d4d4d;
       font-size: 14px;
-      line-height: 14px;
       font-weight: bold;
+      line-height: 14px;
       margin-top: 10px;
       padding-top: 0;
 
       span {
         color: #333333;
-        font-weight: 700;
-        font-variant-numeric: ordinal;
+        // font-variant-numeric: ordinal;
+        font-weight: bold;
         &.density-line,
         &.rain-snow-line {
           font-weight: 100;
@@ -162,13 +166,15 @@
     .close {
       background-image: url('./modal_close.png');
       background-repeat: no-repeat;
-      background-size: contain;
+      // background-size: contain;
+      background-position: 15px 15px;
       cursor: pointer;
-      height: 12px;
+      // height: 12px;
       position: absolute;
-      right: 15px;
+      right: 50px;
       top: 15px;
       width: 12px;
+      font-size: $font-size-base;
     }
   }
 
@@ -186,8 +192,8 @@
     }
 
     & > div {
-      line-height: 32px;
       font-size: 18px;
+      line-height: 32px;
     }
     & > div > span:first-child {
       display: inline-block;
@@ -214,8 +220,8 @@
   }
   .additional-data {
     border-top: 1px solid #e8e8e8;
-    display: flex;
     color: #4d4d4d;
+    display: flex;
     font-size: 14px;
 
     h5 {
@@ -224,9 +230,9 @@
     }
     .city-data-container,
     .suburban-data-container {
-      padding-top: 19px;
       height: 100%;
       line-height: 18px;
+      padding-top: 19px;
 
       & > div:nth-of-type(2) {
         margin-top: 16px;
@@ -236,19 +242,19 @@
       }
     }
     .city-data-container {
-      width: 221px;
       border-right: 1px solid #e8e8e8;
       margin-left: 26px;
+      width: 221px;
 
       & > h5,
       & > div {
-        width: 163px;
         margin-right: 34px;
+        width: 163px;
       }
     }
     .suburban-data-container {
-      width: 227px;
       margin-left: 23px;
+      width: 227px;
       & > h5,
       & > div {
         margin-right: 29px;
@@ -257,15 +263,15 @@
   }
 
   .footnotes-container {
-    height: 54px;
+    align-items: flex-start;
     background-color: #f8f8f8;
-    font-size: 14px;
     color: #4d4d4d;
-    line-height: 14px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    font-size: 14px;
+    height: 54px;
     justify-content: center;
+    line-height: 14px;
     & > div {
       margin-left: 26px;
     }

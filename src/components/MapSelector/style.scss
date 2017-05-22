@@ -1,24 +1,37 @@
+@import '../../variables.scss';
 .container {
    align-self: center;
-  .button {
+   margin-bottom: 54px;
+
+  button {
+    @include button(16px);
     height: 40px;
     width: 48px;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
     padding: 14px;
-    background-color: #0096d6;
+    background-color: $top-city-fill;
+    text-align: center;
   }
 
+  select {
+    border: $border;
+    background: transparent;
+  }
+  select:first-child {
+    margin-right: 40px;
+  }
+  select:nth-child(2) {
+    width: 96px;
+  }
   label {
-    font-size: 15px;
+    @extend .font-normal;
     line-height: 36px;
-    padding: 0 10px 0 30px;
-
+    // padding: 0 10px 0 30px;
+    display: inline-block;
+    background: url(./select-arrow.png) no-repeat right center;
     select {
+      @extend .font-bold;
       border-radius: 4px;
-      color: #333;
-      font-weight: 100;
+      margin-left: 10px;
       height: 36px;
       width: 100px;
     }

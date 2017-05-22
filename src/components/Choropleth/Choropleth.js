@@ -76,7 +76,6 @@ const Choropleth = class Choropleth extends React.Component {
   updateMarkers (selection, props = this.props) {
     // console.log("this.props ", this.props);
     const markers = _.cloneDeep(props.selectedMap.mapData.markers)
-    const className = _.kebabCase(props.selectedMap.id)
     const circle = selection.selectAll('circle')
       .data(markers)
     circle.exit().remove()
@@ -102,7 +101,17 @@ const Choropleth = class Choropleth extends React.Component {
         return points[1]
       })
       .attr('r', d => d.seriesValue === 'topTen' ? '16px' : '5px')
-      .attr('class', `marker ${className}`)
+      .attr('class', (d) => {
+        let className
+        if (d.newLocation) {
+          className = 'new-location'
+        } else if (d.mostImproved) {
+          className = 'most-improved'
+        } else {
+          className = _.kebabCase(props.selectedMap.id)
+        }
+        return `marker ${className}`
+      })
       .on('click', this.onMarkerClick)
     // return selection
   }

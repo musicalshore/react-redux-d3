@@ -1,7 +1,5 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const autoprefixer = require('autoprefixer')
-const postcssInputRange = require('postcss-input-range') // lets you style input ranges with unprefixed selectors.
 
 // pattern used to transform styles used by babel-plugin-react-css-modules
 // see https://github.com/gajus/babel-plugin-react-css-modules
@@ -74,10 +72,7 @@ module.exports = [
             }
           },
           {
-            loader: 'postcss-loader',
-            options: {
-              plugins: [autoprefixer, postcssInputRange]
-            }
+            loader: 'postcss-loader'
           },
           {
             loader: 'sass-loader'
@@ -98,11 +93,7 @@ module.exports = [
             }
           },
           {
-            loader: 'postcss-loader',
-            options: {
-              plugins: [autoprefixer, postcssInputRange]
-            }
-          },
+            loader: 'postcss-loader'          },
           {
             loader: 'sass-loader'
           }
@@ -110,31 +101,6 @@ module.exports = [
       }
     })(process.env.NODE_ENV)
   },
-  // {
-  //   test: /global.scss/,
-  //   use: [
-  //     {
-  //       loader: 'style-loader'
-  //     },
-  //     {
-  //       loader: 'css-loader',
-  //       options: {
-  //         modules: false,
-  //         importLoaders: 1,
-  //         localIdentName
-  //       }
-  //     },
-  //     {
-  //       loader: 'postcss-loader',
-  //       options: {
-  //         plugins: [autoprefixer]
-  //       }
-  //     },
-  //     {
-  //       loader: 'sass-loader'
-  //     }
-  //   ]
-  // },
   {
     test: /\.(ttf|woff|woff2|jpeg|jpg|png|gif|svg)$/,
     use: [

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 // import BEST_DRIVER_DATA from 'constants/bestDriver'
 import _ from 'lodash/fp'
-import { MAPS } from 'redux/constants'
+import { MAPS } from 'constants/maps'
 
 import './style.scss'
 // const ranking = _.curry((year, rankingType, location) => ({
@@ -18,33 +18,36 @@ const ranking = _.curry((year, rankingType, location) => _.extend({
 }, location))
 
 
+const ListItem = ({rank, cityState}) => {
+  return (
+    <li>
+      <svg width="30" height="30">
+        <g>
+          <circle cx="15" cy="15" r="15" />
+          {/*<text x="50%" y="50%" textAnchor="middle">{rank}</text>*/}
+        </g>
+      </svg>
+      <div styleName="cityState">{cityState}</div>
+    </li>
+  )
+}
 const Listing = ({selectedMap, onCitySelect, selectedCity}) => {
-  // const yearName = `${selectedMap.year} ${selectedMap.name}`
-  // console.log('selectedMap++++', selectedMap, yearName);
-
-  const rankingsByYearAndType = _.filter(ranking => !!ranking.rank, _.sortBy('rank', selectedMap.mapData.markers))
-  console.log('rankingsByYearAndType ', rankingsByYearAndType)
+  // const rankingsByYearAndType = _.filter(ranking => !!ranking.rank, _.sortBy('rank', selectedMap.mapData.markers))
+  // console.log('rankingsByYearAndType ', rankingsByYearAndType)
   // const rankingsByYearName = selectedMap.mapData.markers
   // const filteredRankings = _.filter(ranking => !!ranking.rank, rankingsByYearAndType)
-  const listItems = rankingsByYearAndType.map((ranking) => {
-    return (
-      <li key={ranking.rank} onClick={e => {
-        console.log('ranking', ranking);
-        onCitySelect(ranking)
-      }}>
-        <svg x="0px" y="0px" width="30px" height="44px" viewBox="0 0 30 44" enableBackground="new 0 0 30 44" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-          <path fill="#0276A7" d="M28.898,16.164c0,7.659-13.867,24.65-13.867,24.65S1.167,23.822,1.167,16.164c0-7.658,6.208-13.866,13.864-13.866C22.689,2.298,28.898,8.505,28.898,16.164z" />
-          <text textAnchor="middle" alignmentBaseline="middle" x="14.4" y="16" styleName="ranking">{ranking.rank}</text>
-        </svg>
-        <div styleName="cityState">{ranking.cityState}</div>
-      </li>
-    )
-  })
+  const listItems = _.map(ranking => <ListItem key={ranking.rank} {...ranking} />, selectedMap.mapData.markers)
+
   return (
     <ul styleName="container">
       {listItems}
     </ul>
   )
+}
+
+ListItem.propTypes = {
+  rank: PropTypes.number.isRequired,
+  cityState: PropTypes.string.isRequired
 }
 
 Listing.propTypes = {
