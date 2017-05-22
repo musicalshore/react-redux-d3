@@ -24,7 +24,7 @@ function ordinal (n, sup = false) {
 const Social = () => {
   return (
     <div styleName="social-container">
-      
+
     </div>
   )
 }
@@ -58,7 +58,8 @@ const CityModalHeading = (props) => {
         <h2 className="city-name">{selectedCity.cityState}</h2>
         <div className="city-rank">{message}</div>
       </div>
-      <div className="close" onClick={closeModal}>Close <span>&times;</span></div>
+      <div className="close" onClick={closeModal}>
+        <span>Close </span><span className="times">&times;</span></div>
     </div>
   )
 }
@@ -69,18 +70,26 @@ const Rankings = (props) => {
   const populationDensity = selectedCity[`${selectedMap.year} Population Density`]
   const rainSnow = selectedCity[`${selectedMap.year} Rain & Snow`]
   const lastYearsRanking = selectedCity[`${parseInt(selectedMap.year) - 1} Top Cities`]
+  let arrow = 'arrow'
+  if (selectedCity.rank < lastYearsRanking) {
+    arrow += ' up'
+  } else if (selectedCity.rank > lastYearsRanking) {
+    arrow += ' down'
+  }
   return (
     <div className="rankings-container">
       <h5>{selectedMap.year} data</h5>
-      <div className="overall-ranking"><span>Overall Ranking</span><span>{ordinal(selectedCity.rank, true)}</span></div>
+      <div className="overall-ranking">
+        <span>Overall Ranking</span>
+        <span className={arrow} /><span className="rank">{ordinal(selectedCity.rank, true)}</span></div>
       {populationDensity &&
-        <div className="population-ranking"><span>Population Density</span><span>{ordinal(populationDensity, true)}</span></div>
+        <div className="population-ranking"><span>Population Density</span><span className="rank">{ordinal(populationDensity, true)}</span></div>
       }
       {rainSnow &&
-        <div className="rain-snow-ranking"><span>Rain & Snow</span><span>{ordinal(rainSnow, true)}</span></div>
+        <div className="rain-snow-ranking"><span>Rain & Snow</span><span className="rank">{ordinal(rainSnow, true)}</span></div>
       }
       {lastYearsRanking &&
-        <div className="last-years-ranking"><span>{parseInt(selectedMap.year) - 1} Ranking</span><span>{ordinal(lastYearsRanking, true)}</span></div>
+        <div className="last-years-ranking"><span>{parseInt(selectedMap.year) - 1} Ranking</span><span className="rank">{ordinal(lastYearsRanking, true)}</span></div>
       }
     </div>
   )

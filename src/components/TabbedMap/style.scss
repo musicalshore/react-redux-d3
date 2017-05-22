@@ -19,12 +19,7 @@
       width: 100%;
     }
   }
-  .this-years-best {
-    background-image: url('./this-years-best.png');
-    background-position: 26px 18px;
-    background-repeat: no-repeat;
-    // background-size: contain;
-  }
+
   .maps {
     width: 75%;
     @media(max-width: 767px) {
@@ -149,6 +144,13 @@
     .city-rank {
       margin-left: 73px;
     }
+
+    &.this-years-best {
+      background-image: url('./this-years-best.png');
+      background-position: 26px 18px;
+      background-repeat: no-repeat;
+      background-size: 34px 45px;
+    }
     .city-name {
       color: #4d4d4d;
       font-family: 'Arial', sans-serif;
@@ -180,12 +182,12 @@
     .close {
       cursor: pointer;
       // border: 1px solid black;
-      width: 150px;
       align-self: center;
+      margin-left: 130px;
       font-size: $font-size-base;
       color: rgb(0, 117, 201);
 
-      span {
+      span.times {
         font-size: 24px;
       }
     }
@@ -198,6 +200,18 @@
       font-size: 14px;
       margin: 0;
       margin-top: 23px;
+    }
+    .arrow {
+      background-size: 16px 16px;
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+    }
+    .up {
+      background-image: url('./icon-up.png');
+    }
+    .down {
+      background-image: url('./icon-down.png');
     }
     & > h5,
     & > div {
@@ -214,12 +228,15 @@
       // margin-left: 82px;
     }
 
-    & > div > span:nth-child(2) {
+    & > div > .rank {
       display: inline-block;
       margin-left: 16px;
     }
     .overall-ranking {
       color: #0096d6;
+      span.rank {
+        margin-left: 0;
+      }
     }
     .population-ranking {
       color: #dd2153;
@@ -252,6 +269,9 @@
       }
       & > div:nth-of-type(3) {
         margin-top: 15px;
+      }
+      & > div > span {
+        font-weight: bold;
       }
     }
     .city-data-container {

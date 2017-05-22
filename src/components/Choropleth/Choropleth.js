@@ -46,6 +46,7 @@ function zoomOut () {
     .call(zoom.transform, d3.zoomIdentity)
 }
 
+
 const Choropleth = class Choropleth extends React.Component {
   constructor (props) {
     super(props)
@@ -184,6 +185,7 @@ const Choropleth = class Choropleth extends React.Component {
     d3.select(this.g).call(this.addMap)
     d3.select(this.g).call(this.updateMarkers)
     d3.select(this.g).call(this.updateNumbers)
+    // d3.select(window).on('resize', resize)
   }
 
   shouldComponentUpdate (nextProps, nextState) {
@@ -209,6 +211,26 @@ const Choropleth = class Choropleth extends React.Component {
     // }
     return false
   }
+
+  resize () {
+    // adjust things when the window size changes
+    // let width = parseInt(d3.select(this.svg).style('width'))
+    // height = width * mapRatio;
+
+    // // update projection
+    // projection
+    //     .translate([width / 2, height / 2])
+    //     .scale(width);
+
+    // // resize the map container
+    // map
+    //     .style('width', width + 'px')
+    //     .style('height', height + 'px');
+
+    // // resize the map
+    // map.select('.land').attr('d', path);
+    // map.selectAll('.state').attr('d', path);
+}
 
   render () {
     const handleStyle = {

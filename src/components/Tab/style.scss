@@ -24,6 +24,10 @@
   }
 
   &.top-city,
+  &.density {
+    border-right: $border;
+  }
+  &.top-city,
   &.density,
   &.rain-snow {
     background-color: #f4f4f4;
@@ -35,7 +39,9 @@
 
     &.selected,
     &.selected:hover {
-      background-color: #ffffff;
+      @media (min-width: 768px) {
+        background-color: #ffffff;
+      }
       @media (max-width: 767px) {
         .title {
           color: rgb(255, 255, 255);
