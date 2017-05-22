@@ -1,8 +1,13 @@
+@import '../../variables.scss';
+
 .container {
   // height: 115px;
   // width: calc(100% / 3);
   // background-size: 60px;
   background-position: center 6px;
+  @media (max-width: 767px) {
+    background-position: 0px -3px;
+  }
   flex: 1 1 100%;
 
   .title {
@@ -12,6 +17,10 @@
     margin-top: 63px;
     text-align: center;
     text-decoration: none;
+    @media (max-width: 767px) {
+      font-size: 10px;
+      margin: 8px 0 0 46px;
+    }
   }
 
   &.top-city,
@@ -27,15 +36,23 @@
     &.selected,
     &.selected:hover {
       background-color: #ffffff;
+      @media (max-width: 767px) {
+        .title {
+          color: rgb(255, 255, 255);
+        }
+      }
     }
   }
   &.top-city {
     background-image: url('./topCities_Gray.png');
-    border-bottom: 7px solid #0096d6;
+    border-bottom: 7px solid $top-city-fill;
 
     &.selected {
       background-image: url('./topCities_Active.png');
-      // background-color: #ffffff;
+      @media(max-width:767px) {
+        background-image: url('./topCities_Active_white.png');
+        background-color: $top-city-fill;
+      }
     }
 
     .bottom-color {
@@ -55,7 +72,10 @@
 
     &.selected {
       background-image: url('./density_Active.png');
-      // background-color: #ffffff;
+      @media(max-width:767px) {
+        background-image: url('./density_Active_white.png');
+        background-color: $density-fill;
+      }
     }
 
     .bottom-color {
@@ -75,7 +95,10 @@
 
     &.selected {
       background-image: url('./rainSnow_Active.png');
-      // background-color: #ffffff;
+      @media(max-width: 767px) {
+        background-image: url('./rainSnow_Active_white.png');
+        background-color: $rain-snow-fill;
+      }
     }
 
 

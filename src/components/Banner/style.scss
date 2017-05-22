@@ -4,4 +4,18 @@
   min-height: 134px;
   margin-bottom: 15px;
   // min-width: 430px;
+  .desktop-header {
+    display: block;
+  }
+  .mobile-header {
+    display: none;
+  }
+  @media (max-width: 767px) {
+    .desktop-header {
+      display: none;
+    }
+    .mobile-header {
+      display: block;
+    }
+  }
 }

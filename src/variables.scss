@@ -17,21 +17,30 @@ $rain-snow-stroke: rgb(162, 146, 255);
 
 $border: 1px solid rgb(240, 240, 240);
 
-@mixin button($font-size) {
+.font-family {
   font-family: Arial, Helvetica, sans-serif;
+}
+@mixin button($font-size) {
+  @extend .font-family;
   font-size: $font-size;
   color: rgb(240, 240, 240);
 }
 
 .font-normal {
-  font-family: Arial, Helvetica, sans-serif;
+  @extend .font-family;
   font-size: $font-size-base;
   color: rgb(51, 51, 51);
 }
 
 .font-bold {
-  font-family: Arial, Helvetica, sans-serif;
+  @extend .font-family;
   font-size: $font-size-base;
   color: rgb(51, 51, 51);
   font-weight: bold;
+}
+
+.mobile-font-tab {
+  @extend .font-family;
+  font-size: 10px;
+  color: rgb(255, 255, 255);
 }

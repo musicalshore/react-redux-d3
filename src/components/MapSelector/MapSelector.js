@@ -36,19 +36,19 @@ const MapSelector = class MapSelector extends React.Component {
     const usStates = _.map(pair => <option key={pair[0]} value={pair[0]}>{pair[1]}</option>, _.toPairs(US_STATES))
     return (
       <div styleName="container">
-        <label>
-          Year
+        <label htmlFor="year">Year</label>
+        <div styleName="select-box year">
           <select value={this.state.selectedYear} onChange={this.handleYearChange}>
             {years}
           </select>
-        </label>
-        <label>
-          State
-          <select value={this.state.selectedState} onChange={this.handleStateChange}>
+        </div>
+        <label htmlFor="usState">State</label>
+        <div styleName="select-box state">
+          <select id="usState" value={this.state.selectedState} onChange={this.handleStateChange}>
             <option value="All"></option>
             {usStates}
           </select>
-        </label>
+        </div>
         <button type="button" onClick={this.handleClick}>Go</button>
       </div>
     )

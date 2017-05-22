@@ -9,9 +9,15 @@
     border: 1px solid #f0f0f0;
     display: flex;
     min-height: 740px;
+    @media(max-width: 767px) {
+      flex-direction: column;
+    }
   }
   .top-listings {
     width: 25%;
+    @media(max-width: 767px) {
+      width: 100%;
+    }
   }
   .this-years-best {
     background-image: url('./this-years-best.png');
@@ -21,67 +27,75 @@
   }
   .maps {
     width: 75%;
-
+    @media(max-width: 767px) {
+      width: 100%;
+    }
     .timeLine-SocialContainer {
       display: flex;
       margin: 0 auto;
       padding-top: 10px;
       width: 100%;
 
-      .legendContainer {
-        border: 1px solid #ebebeb;
-        display: inline-block;
-        // float: left;
-        height: 34px;
-        padding: 0 20px;
 
-        ul {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          text-align: center;
-
-          li {
-            display: inline;
-            font-family: 'Arial', sans-serif;
-            font-size: 15px;
-            line-height: 34px;
-            margin: 0;
-            padding: 0 40px 0 0;
-
-            &:last-child {
-              padding: 0;
-            }
-
-            span {
-              display: inline-block;
-              font-size: 26px;
-              height: 34px;
-              margin: 0;
-              padding: 0 2px 0 0;
-              vertical-align: middle;
-            }
-
-            .blue {
-              color: #0096d6;
-            }
-
-            .yellow {
-              color: #f3c303;
-            }
-
-            .green {
-              color: #6db33f;
-            }
-          }
-        }
-      }
 
       .socialContainer {
         float: right;
         padding-top: 14px;
       }
     }
+  }
+  .legend-container {
+    border: 1px solid #ebebeb;
+    display: inline-block;
+    margin-top: 10px;
+    width: 440px;
+    height: 34px;
+    padding: 0 20px;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+
+      li {
+        display: inline;
+        font-family: 'Arial', sans-serif;
+        font-size: 15px;
+        line-height: 34px;
+        margin: 0;
+        padding: 0 40px 0 0;
+
+        &:last-child {
+          padding: 0;
+        }
+
+        span {
+          display: inline-block;
+          font-size: 26px;
+          height: 34px;
+          margin: 0;
+          padding: 0 2px 0 0;
+          vertical-align: middle;
+        }
+
+        .blue {
+          color: #0096d6;
+        }
+
+        .yellow {
+          color: #f3c303;
+        }
+
+        .green {
+          color: #6db33f;
+        }
+      }
+    }
+  }
+
+  .social-container {
+
   }
 }
 
@@ -128,7 +142,7 @@
     }
   }
   .city-modal-heading-container {
-    // display: flex;
+    display: flex;
     // flex-direction: column;
     padding-bottom: 19px;
     .city-name,
@@ -164,17 +178,16 @@
       }
     }
     .close {
-      background-image: url('./modal_close.png');
-      background-repeat: no-repeat;
-      // background-size: contain;
-      background-position: 15px 15px;
       cursor: pointer;
-      // height: 12px;
-      position: absolute;
-      right: 50px;
-      top: 15px;
-      width: 12px;
+      // border: 1px solid black;
+      width: 150px;
+      align-self: center;
       font-size: $font-size-base;
+      color: rgb(0, 117, 201);
+
+      span {
+        font-size: 24px;
+      }
     }
   }
 
@@ -277,13 +290,6 @@
     }
   }
 
-  // .city-container {
-  //   padding: 18px 15px;
-
-
-
-
-  //     }
 
   //     .badge {
   //       padding: 0 5px 18px 15px;

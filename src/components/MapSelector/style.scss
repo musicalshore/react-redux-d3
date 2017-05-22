@@ -2,38 +2,97 @@
 .container {
    align-self: center;
    margin-bottom: 54px;
-
+   display: flex;
   button {
     @include button(16px);
     height: 40px;
     width: 48px;
-    padding: 14px;
+    padding-top: 14px;
+    padding-bottom: 16px;
+    padding-right: 14px;
+    padding-left: 14px;
     background-color: $top-city-fill;
     text-align: center;
+    margin-left: 22px;
+    border: none;
+    border-radius: 3px;
   }
 
-  select {
-    border: $border;
-    background: transparent;
+  .select-box {
+    border: 1px solid #e6e6e6;
+    background: #fafafa url("./select-arrow.png") no-repeat 90% 50%;
+    border-radius: 3px;
+    overflow: hidden;
+    height: 40px;
+
+    &.year {
+      width: 92px;
+    }
+
+    &.state {
+      width: 165px;
+    }
+    select {
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-bottom: 13px;
+      width: 130%;
+      height: 110%;
+      border: none;
+      box-shadow: none;
+      background: transparent;
+      background-image: none;
+      -webkit-appearance: none;
+    }
   }
+  // select {
+  //   .year & {
+  //     width: 130%;
+  //   }
+
+  //   .state & {
+  //     width: 130%;
+  //   }
+    // position:relative;
+    // display:inline-block;
+    // padding:6px 0;
+    // margin-bottom:15px;
+    // min-width:187px;
+    // font:bold 14px/20px 'Open Sans',sans-serif;
+    // color:#0096d6;
+    // background-color:#fff;
+    // border:1px solid #c8c9cb;
+    // text-decoration:none;
+    // text-transform:uppercase;
+    // cursor:pointer;
+
+    // border: $border;
+    // background: transparent;
+    // appearance: none;
+  // }
+
   select:first-child {
-    margin-right: 40px;
+    // margin-right: 40px;
   }
   select:nth-child(2) {
-    width: 96px;
+    // width: 96px;
   }
   label {
     @extend .font-normal;
     line-height: 36px;
     // padding: 0 10px 0 30px;
     display: inline-block;
-    background: url(./select-arrow.png) no-repeat right center;
-    select {
-      @extend .font-bold;
-      border-radius: 4px;
-      margin-left: 10px;
-      height: 36px;
-      width: 100px;
-    }
+    margin-right: 10px;
+    // background: url(./select-arrow.png) no-repeat right center;
+    // select {
+    //   @extend .font-bold;
+    //   border-radius: 4px;
+    //   margin-left: 10px;
+    //   height: 36px;
+    //   width: 100px;
+    // }
+  }
+  label:nth-of-type(2) {
+    margin-left: 40px;
   }
 }

@@ -21,6 +21,24 @@ function ordinal (n, sup = false) {
   }
 }
 
+const Social = () => {
+  return (
+    <div styleName="social-container">
+      
+    </div>
+  )
+}
+const Legend = () => {
+  return (
+    <div styleName="legend-container">
+      <ul>
+        <li><span styleName="blue">&bull;</span> Top Cities</li>
+        <li><span styleName="yellow">&bull;</span> Most Improved</li>
+        <li><span styleName="green">&bull;</span> New Additions</li>
+      </ul>
+    </div>
+  )
+}
 const CityModalHeading = (props) => {
   let {selectedCity, selectedMap, closeModal} = props
   let message
@@ -36,9 +54,11 @@ const CityModalHeading = (props) => {
   }
   return (
     <div className={`city-modal-heading-container ${thisYearsBest ? 'this-years-best' : ''}`}>
-      <h2 className="city-name">{selectedCity.cityState}</h2>
-      <div className="city-rank">{message}</div>
-      <div className="close" onClick={closeModal}>Close</div>
+      <div>
+        <h2 className="city-name">{selectedCity.cityState}</h2>
+        <div className="city-rank">{message}</div>
+      </div>
+      <div className="close" onClick={closeModal}>Close <span>&times;</span></div>
     </div>
   )
 }
@@ -179,13 +199,7 @@ const TabbedMap = class TabbedMap extends React.Component {
             <TabNav selectedMap={selectedMap} onTabClick={onMapSelect} />
             <Map width="715" height="625" />
             {/*<div styleName="timeLine-SocialContainer">
-              <div styleName="legendContainer">
-                <ul>
-                  <li><span styleName="blue">&bull;</span> Top Cities</li>
-                  <li><span styleName="yellow">&bull;</span> Most Improved</li>
-                  <li><span styleName="green">&bull;</span> New Additions</li>
-                </ul>
-              </div>
+
               <div styleName="socialContainer">
                 <div id="pageShare"></div>
               </div>
@@ -195,6 +209,7 @@ const TabbedMap = class TabbedMap extends React.Component {
             <TopListings onCitySelect={onCitySelect} selectedMap={selectedMap} selectedCity={selectedCity} />
           </div>
         </div>
+        <Legend />
         { selectedCity !== null && selectedCity.rank &&
           <Modal isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}

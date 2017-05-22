@@ -9,6 +9,11 @@
       padding: 18px 18px 0 0;
     }
 
+    @media(max-width: 767px) {
+      display: none;
+    }
+
+
     &.top-city {
       background-color: #0096d6;
       background-image: url('./topCities_Active_white.png');
@@ -49,12 +54,6 @@
       padding-right: 22px;
       padding-top: 10px;
     }
-  }
-
-  .instructions {
-    font-style: italic;
-    margin-top: 32px;
-    margin-bottom: 20px;
   }
 
   .year-selector {

@@ -1,20 +1,35 @@
 
 .container {
-  height: 447px;
+  height: 535px;
   overflow-y: scroll;
   border-left: 1px solid #f0f0f0;
   padding: 0;
+  @media(max-width: 767px) {
+    display: flex;
+    justify-content: center;
+  }
   .ranking {
     fill: #fff;
     font-size: 12px;
   }
 
+  .instructions {
+    font-style: italic;
+    margin-top: 32px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    @media(max-width: 767px) {
+      display: none;
+    }
+  }
+
   li {
     display: flex;
     // align-items: baseline;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 400;
     height: 40px;
+    color: rgb(255, 255, 255);
     // line-height: 30px;
     list-style-type: none;
     // padding: 5px 15px 5px 30px;
@@ -46,6 +61,11 @@
       padding-top: 3px;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+    svg {
+      @media(max-width: 767px) {
+        margin-right: 10px;
+      }
     }
     // svg {
 

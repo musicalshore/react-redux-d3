@@ -4,9 +4,6 @@ import PropTypes from 'prop-types'
 import Listing from 'components/Listing'
 import './style.scss'
 
-// const years = ['2007', '2008', '2009', '2010', '2011', '2012', '2014', '2015', '2016', '2017']
-
-
 const TopListings = ({ onCitySelect, selectedMap, selectedCity }) => (
   <div styleName="container">
     <div styleName={`heading ${_.kebabCase(selectedMap.id)}`}>
@@ -22,7 +19,6 @@ const TopListings = ({ onCitySelect, selectedMap, selectedCity }) => (
         {selectedMap.id === 'RAIN_SNOW' && 'See how precipitation (or lack thereof) impacts your city\'s ranking.'}
       </p>
     </div>
-    <div styleName="instructions">Select city for more data.</div>
     <Listing selectedMap={selectedMap} selectedCity={selectedCity} onCitySelect={onCitySelect} />
   </div>
 )

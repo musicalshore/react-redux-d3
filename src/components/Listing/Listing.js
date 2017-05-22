@@ -24,7 +24,7 @@ const ListItem = ({rank, cityState}) => {
       <svg width="30" height="30">
         <g>
           <circle cx="15" cy="15" r="15" />
-          {/*<text x="50%" y="50%" textAnchor="middle">{rank}</text>*/}
+          <text x="50%" y="50%" alignmentBaseline="middle" textAnchor="middle">{rank}</text>
         </g>
       </svg>
       <div styleName="cityState">{cityState}</div>
@@ -36,12 +36,17 @@ const Listing = ({selectedMap, onCitySelect, selectedCity}) => {
   // console.log('rankingsByYearAndType ', rankingsByYearAndType)
   // const rankingsByYearName = selectedMap.mapData.markers
   // const filteredRankings = _.filter(ranking => !!ranking.rank, rankingsByYearAndType)
-  const listItems = _.map(ranking => <ListItem key={ranking.rank} {...ranking} />, selectedMap.mapData.markers)
+  const listItems = _.map(ranking => <ListItem key={ranking.rank} {...ranking} />, _.sortBy('rank', selectedMap.mapData.markers))
 
   return (
-    <ul styleName="container">
-      {listItems}
-    </ul>
+    <div styleName="container">
+      <div styleName="instructions">
+        Select city for more data.
+      </div>
+      <ul>
+        {listItems}
+      </ul>
+    </div>
   )
 }
 

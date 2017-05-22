@@ -1,5 +1,11 @@
+@import '../../variables.scss';
+
 .container {
   display: flex;
   height: 113px;
   width: 100%;
+  // bor
+  @media(max-width: 767px) {
+    height: 48px;
+  }
 }
