@@ -50,7 +50,7 @@ const CityModalHeading = (props) => {
     thisYearsBest = true
     message = <span>This year's best!</span>
   } else {
-    message = <span>{verb} the <b>{ordinal(selectedCity.rank)}</b> safest driving city in <b>{selectedMap.year}</b>{rankingType}.</span>
+    message = <span>{verb} the <b>{ordinal(selectedCity.rank, true)}</b> safest driving city in <b>{selectedMap.year}</b>{rankingType}.</span>
   }
   return (
     <div className={`city-modal-heading-container ${thisYearsBest ? 'this-years-best' : ''}`}>

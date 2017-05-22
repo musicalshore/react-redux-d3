@@ -18,9 +18,9 @@ const ranking = _.curry((year, rankingType, location) => _.extend({
 }, location))
 
 
-const ListItem = ({rank, cityState}) => {
+const ListItem = ({rank, cityState, onClick}) => {
   return (
-    <li>
+    <li onClick={onClick}>
       <svg width="30" height="30">
         <g>
           <circle cx="15" cy="15" r="15" />
@@ -31,12 +31,13 @@ const ListItem = ({rank, cityState}) => {
     </li>
   )
 }
+
 const Listing = ({selectedMap, onCitySelect, selectedCity}) => {
   // const rankingsByYearAndType = _.filter(ranking => !!ranking.rank, _.sortBy('rank', selectedMap.mapData.markers))
   // console.log('rankingsByYearAndType ', rankingsByYearAndType)
   // const rankingsByYearName = selectedMap.mapData.markers
   // const filteredRankings = _.filter(ranking => !!ranking.rank, rankingsByYearAndType)
-  const listItems = _.map(ranking => <ListItem key={ranking.rank} {...ranking} />, _.sortBy('rank', selectedMap.mapData.markers))
+  const listItems = _.map(ranking => <ListItem key={ranking.rank} {...ranking} onClick={() => onCitySelect(ranking)} />, _.sortBy('rank', selectedMap.mapData.markers))
 
   return (
     <div styleName="container">
@@ -52,7 +53,8 @@ const Listing = ({selectedMap, onCitySelect, selectedCity}) => {
 
 ListItem.propTypes = {
   rank: PropTypes.number.isRequired,
-  cityState: PropTypes.string.isRequired
+  cityState: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
 }
 
 Listing.propTypes = {
