@@ -14,7 +14,7 @@ export const getMapData = ({year, rankingType, stateFilter = null}) => {
 
   // we need to reverse the order by rank so the larger markers are drawn over the smaller markers
 
-  const bestDriverData = stateFilter.length ? _.filter(['State', stateFilter], BEST_DRIVER_DATA) : BEST_DRIVER_DATA
+  const bestDriverData = stateFilter.length && stateFilter !== 'All' ? _.filter(['State', stateFilter], BEST_DRIVER_DATA) : BEST_DRIVER_DATA
   const rankingsByYearAndType = _.flow([
     _.map(marker(year, rankingType)),
     _.filter('rank'),
