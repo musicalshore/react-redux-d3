@@ -16,9 +16,9 @@ const scroller = Scroll.scroller
 
 // }
 
-const ListItem = ({rank, cityState, onClick, name}) => {
+const ListItem = ({rank, cityState, onClick, name, selectedMap}) => {
   return (
-    <li name={name} onClick={onClick}>
+    <li name={name} onClick={onClick} styleName={_.kebabCase(selectedMap.id)}>
       <svg width="30" height="30">
         <g>
           <circle cx="15" cy="15" r="15" />
@@ -104,7 +104,7 @@ const Listing = class Listing extends React.Component {
         <ListItem
           ref={item => { this.listElements.push(item) } }
           name={`position-${maxPosition++}`}
-          key={ranking.rank} {...ranking} onClick={() => onCitySelect(ranking)}
+          key={ranking.rank} {...ranking} selectedMap={selectedMap} onClick={() => onCitySelect(ranking)}
         />
       )
     }, _.sortBy('rank', selectedMap.mapData.markers))
@@ -130,7 +130,8 @@ ListItem.propTypes = {
   rank: PropTypes.number.isRequired,
   cityState: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  selectedMap: PropTypes.object.isRequired
 }
 
 Listing.propTypes = {

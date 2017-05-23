@@ -53,24 +53,18 @@
       background: #F6F6F6;
       cursor: pointer;
     }
-
-    circle {
-      fill: rgb(0, 150, 214);
-      &.top-city {
-        fill: rgb(0, 150, 214);
+    &.top-city circle {
+      fill: $top-city-fill;
         // stroke: rgb(67, 199, 255);
-      }
-
-      &.density {
-        fill: rgb(230, 82, 122);
-        // stroke: rgb(255, 157, 184);
-      }
-
-      &.rain-snow {
-        fill: rgb(109, 93, 201);
-        // stroke: rgb(162, 146, 255);
-      }
     }
+    &.density circle {
+      fill: $density-fill;
+    }
+    &.rain-snow circle {
+      fill: $rain-snow-fill;
+        // stroke: rgb(162, 146, 255);
+    }
+
     .cityState {
       color: #333;
       padding-top: 5px;

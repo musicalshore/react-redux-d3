@@ -24,6 +24,7 @@
     min-width: 720px;
     @media(max-width: 767px) {
       width: 100%;
+      min-width: 100%;
     }
     .timeLine-SocialContainer {
       display: flex;
@@ -143,8 +144,14 @@
     .city-name,
     .city-rank {
       margin-left: 73px;
-    }
 
+    }
+    &.no-badge {
+      .city-name,
+      .city-rank {
+        margin-left: 26px;
+      }
+    }
     &.this-years-best {
       background-image: url('./icon-best.png');
       background-position: 26px 18px;
@@ -163,6 +170,7 @@
       }
       &.new-location {
         background-image: url('./icon-new.png');
+        background-size: 45px 45px;
       }
     }
 
@@ -201,11 +209,17 @@
       margin-left: 130px;
       font-size: $font-size-base;
       color: rgb(0, 117, 201);
-
-      span.times {
+      line-height: 18px;
+      display: flex;
+      .times {
+        display: inline-block;
+        margin-left: 6px;
+        margin-right: 25px;
+        margin-top: 1px;
         font-size: 24px;
       }
     }
+
   }
 
   .rankings-container {

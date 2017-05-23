@@ -57,6 +57,7 @@ const CityModalHeading = (props) => {
     additionalClasses += 'badge new-location'
     message = <span>This year&apos;s best!</span>
   } else {
+    additionalClasses += 'no-badge'
     message = <span>{verb} the <b>{ordinal(selectedCity.rank, true)}</b> safest driving city in <b>{selectedMap.year}</b>{rankingType}.</span>
   }
 
@@ -67,7 +68,8 @@ const CityModalHeading = (props) => {
         <div className="city-rank">{message}</div>
       </div>
       <div className="close" onClick={closeModal}>
-        <span>Close </span><span className="times">&times;</span></div>
+        <div>Close</div><div className="times">&times;</div>
+      </div>
     </div>
   )
 }
