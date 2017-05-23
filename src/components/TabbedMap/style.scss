@@ -1,5 +1,4 @@
-@import '../../variables.scss';
-
+@import 'themes/variables.scss';
 .container {
   display: flex;
   flex-direction: column;
@@ -22,6 +21,7 @@
 
   .maps {
     width: 75%;
+    min-width: 720px;
     @media(max-width: 767px) {
       width: 100%;
     }
@@ -146,11 +146,26 @@
     }
 
     &.this-years-best {
-      background-image: url('./this-years-best.png');
+      background-image: url('./icon-best.png');
       background-position: 26px 18px;
       background-repeat: no-repeat;
       background-size: 34px 45px;
     }
+    &.badge {
+      background-position: 26px 18px;
+      background-repeat: no-repeat;
+      background-size: 34px 45px;
+      &.this-years-best {
+        background-image: url('./icon-best.png');
+      }
+      &.most-improved {
+        background-image: url('./icon-improved.png');
+      }
+      &.new-location {
+        background-image: url('./icon-new.png');
+      }
+    }
+
     .city-name {
       color: #4d4d4d;
       font-family: 'Arial', sans-serif;

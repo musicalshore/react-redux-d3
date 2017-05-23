@@ -1,5 +1,4 @@
-@import '../../variables.scss';
-
+@import 'themes/variables.scss';
 .container {
   // height: 115px;
   // width: calc(100% / 3);
@@ -18,8 +17,9 @@
     text-align: center;
     text-decoration: none;
     @media (max-width: 767px) {
-      font-size: 10px;
+      font-size: 12px;
       margin: 8px 0 0 46px;
+      text-align: left;
     }
   }
 
@@ -52,7 +52,10 @@
   &.top-city {
     background-image: url('./topCities_Gray.png');
     border-bottom: 7px solid $top-city-fill;
-
+    @media (max-width: 767px) {
+      background-size: 50px;
+      width: 50px;
+    }
     &.selected {
       background-image: url('./topCities_Active.png');
       @media(max-width:767px) {

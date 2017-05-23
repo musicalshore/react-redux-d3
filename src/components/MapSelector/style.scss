@@ -1,21 +1,54 @@
-@import '../../variables.scss';
+@import 'themes/variables.scss';
 .container {
-   align-self: center;
-   margin-bottom: 54px;
-   display: flex;
+  align-self: center;
+  align-items: center;
+  margin-bottom: 54px;
+  @media(max-width: 767px) {
+    margin-bottom: 21px;
+  }
+  // display: table-cell;
+  // vertical-align: middle;
+  .selector-container {
+    display: flex;
+    height: 40px;
+    align-self: center;
+    align-items: center;
+  }
+  button,
+  label,
+  .select-box {
+    height: 40px;
+    line-height: 1;
+  }
+
   button {
     @include button(16px);
-    height: 40px;
     width: 48px;
     padding-top: 14px;
-    padding-bottom: 16px;
+    padding-bottom: 14px;
     padding-right: 14px;
     padding-left: 14px;
     background-color: $top-city-fill;
-    text-align: center;
+    display: inline-block;
+    // vertical-align: middle;
     margin-left: 22px;
     border: none;
     border-radius: 4px;
+    line-height: 14px;
+  }
+
+  label {
+    @extend .font-normal;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+    }
   }
 
   .select-box {
@@ -26,14 +59,21 @@
     height: 40px;
 
     &.year {
-      width: 92px;
+      width: 90px;
     }
 
     &.state {
       width: 165px;
+      @media(max-width: 767px) {
+        width: 130px;
+      }
     }
     select {
-      padding-top: 10px;
+      font-size: 14px;
+      color: #4d4d4d;
+      font-weight: bold;
+      line-height: 1;
+      padding-top: 9px;
       padding-left: 10px;
       padding-bottom: 13px;
       width: 130%;
@@ -78,11 +118,12 @@
     // width: 96px;
   }
   label {
-    @extend .font-normal;
-    line-height: 36px;
+    // @extend .font-normal;
+    // line-height: 36px;
     // padding: 0 10px 0 30px;
-    display: inline-block;
-    margin-right: 10px;
+    // @extend .font-normal;
+    // display: inline-block;
+    // margin-right: 10px;
     // background: url(./select-arrow.png) no-repeat right center;
     // select {
     //   @extend .font-bold;
@@ -92,7 +133,22 @@
     //   width: 100px;
     // }
   }
-  label:nth-of-type(2) {
+  label.state-label {
     margin-left: 40px;
+    @media(max-width: 767px) {
+      margin-left: 12px;
+    }
   }
+
+  .clear-search-container {
+    height: 30px;
+    .state-name,
+    .safe-city-count {
+      font-weight: bold;
+    }
+
+    .factoid {}
+    .clear-search {}
+  }
+
 }

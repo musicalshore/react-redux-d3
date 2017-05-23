@@ -27,9 +27,6 @@ export const DEFAULT_MAP = TOP_CITY
 export const CURRENT_YEAR = '2017'
 
 export const YEARS = [
-  '2005',
-  '2006',
-  '2007',
   '2008',
   '2009',
   '2010',
@@ -52,8 +49,7 @@ export const US_STATES = {
   'CO': 'Colorado',
   'CT': 'Connecticut',
   'DE': 'Delaware',
-  'DC': 'District Of Columbia',
-  'FM': 'Federated States Of Micronesia',
+  'DC': 'Washington, DC',
   'FL': 'Florida',
   'GA': 'Georgia',
   'GU': 'Guam',

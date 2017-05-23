@@ -1,0 +1,60 @@
+@import 'colors.scss';
+
+$font-size-base: 14px;
+$font-size-extra-large: ceil(($font-size-base * 1.25)); // ~18px
+$font-size-large: ceil(($font-size-base * 1.14)); // ~16px
+$font-size-small: ceil(($font-size-base * .85)); // ~12px
+$font-size-extra-small: ceil(($font-size-base * .71)); // ~10px
+
+
+$top-city-fill: $dark-cyan-blue;
+$top-city-stroke: $light-cyan-blue;
+
+$density-fill: $magenta-red;
+$density-stroke: $light-magenta-red;
+
+$rain-snow-fill: $light-blue;
+$rain-snow-stroke: $dark-blue;
+
+$new-location-fill: $light-yellow;
+$most-improved-fill: $light-yellow-green;
+
+$border: 1px solid $lighter-gray;
+
+.font-family {
+  font-family: Arial, Helvetica, sans-serif;
+}
+@mixin button($font-size) {
+  @extend .font-family;
+  font-size: $font-size;
+  color: $lighter-gray;
+}
+
+.font-normal {
+  @extend .font-family;
+  font-size: $font-size-base;
+  color: $darker-gray; // rgb(51, 51, 51);
+}
+
+.font-bold {
+  @extend .font-family;
+  font-size: $font-size-base;
+  color: $darker-gray; // rgb(51, 51, 51);
+  font-weight: bold;
+}
+
+.mobile-font-tab {
+  @extend .font-family;
+  font-size: 10px;
+  color: $white;
+}
+
+
+// $top-city-fill: rgb(0, 150, 214);
+// $top-city-stroke: rgb(67, 199, 255);
+// $density-fill: rgb(230, 82, 122);
+// $density-stroke: rgb(255, 157, 184);
+// $rain-snow-fill: rgb(109, 93, 201);
+// $rain-snow-stroke: rgb(162, 146, 255);
+// $new-location-fill: rgb(109, 179, 63);
+// $most-improved-fill: rgb(243, 195, 3);

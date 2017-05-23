@@ -1,3 +1,4 @@
+@import 'themes/variables.scss';
 .container {
 
   .heading {
@@ -6,7 +7,9 @@
     height: 205px;
     padding-top: 48px;
     @media(max-width: 980px) {
-      padding: 18px 18px 0 0;
+      padding: 25px 18px 0 0;
+      background-position: 0 18px;
+
     }
 
     @media(max-width: 767px) {
@@ -29,11 +32,7 @@
       background-image: url('./rainSnow_Active_white.png');
     }
 
-    .year,
-    .title {
-      margin: 0 0 0 70px;
-      width: 150px;
-    }
+
 
     .year {
       font-size: 15px;
@@ -43,8 +42,19 @@
     .title {
       font-size: 24px;
       font-weight: 600;
+      @media(max-width: 980px) {
+        font-size: 18px;
+      }
     }
 
+    .year,
+    .title {
+      margin: 0 0 0 70px;
+      width: 150px;
+      @media(max-width: 980px) {
+        margin-left: 52px;
+      }
+    }
     .byline {
       color: #ffffff;
       font-size: 12px;
@@ -53,6 +63,9 @@
       padding-left: 37px;
       padding-right: 22px;
       padding-top: 10px;
+      @media(max-width: 980px) {
+        padding-left: 22px;
+      }
     }
   }
 

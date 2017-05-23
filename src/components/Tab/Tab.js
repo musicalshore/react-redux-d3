@@ -1,6 +1,6 @@
+import _ from 'lodash/fp'
 import React from 'react'
 import PropTypes from 'prop-types'
-import _ from 'lodash/fp'
 import './style.scss'
 
 const Tab = ({ id, title, selectedMap, onClick }) => {

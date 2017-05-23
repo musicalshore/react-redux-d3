@@ -1,9 +1,17 @@
-@import '../../variables.scss';
+@import 'themes/variables.scss';
 
 .container {
-  position: relative;
+  // position: relative;
+  // max-width: 715px;
+  // max-height: 625px;
   @media(max-width: 767px) {
     display: none;
+  }
+  .map-container {
+    // width: 100%;
+    min-height: 625px;
+    // max-width: 715px;
+    // max-height: 625px;
   }
   .background {
     fill: none;

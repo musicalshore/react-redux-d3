@@ -9,8 +9,8 @@ const marker = _.curry((year, rankingType, location) => _.extend({
   rankingType: rankingType
 }, location))
 
-const getMapData = ({year, rankingType, stateFilter = null}) => {
- console.log("getMapData ", year, rankingType, stateFilter);
+export const getMapData = ({year, rankingType, stateFilter = null}) => {
+  // console.log("getMapData ", year, rankingType, stateFilter);
 
   // we need to reverse the order by rank so the larger markers are drawn over the smaller markers
 
@@ -23,7 +23,7 @@ const getMapData = ({year, rankingType, stateFilter = null}) => {
   ])(bestDriverData)
 
   // _.reverse(_.sortBy('rank', _.filter(_.map(marker(year, rankingType), BEST_DRIVER_DATA))))
-  console.log('rankingsByYearAndType', rankingsByYearAndType)
+  // console.log('rankingsByYearAndType', rankingsByYearAndType)
 
   const minTopTenRank = _.minBy('rank', rankingsByYearAndType).rank + 10
   // console.log('minTopTenRank', minTopTenRank)
@@ -42,7 +42,7 @@ const getMapData = ({year, rankingType, stateFilter = null}) => {
       seriesValue: seriesValues[i]
     }))
   }
-  console.log("markers ", markers);
+  // console.log("markers ", markers);
   const mapData = {
     markers: markers,
     series: {
@@ -66,7 +66,7 @@ const initialMap = _.extend(_.find(['id', DEFAULT_MAP], MAPS), {
   stateFilter: ''
 })
 
-console.log('initialMap:::', initialMap)
+// console.log('initialMap:::', initialMap)
 const mapData = {mapData: getMapData(initialMap)}
 // console.log('mapData-->', mapData)
 
@@ -76,23 +76,23 @@ const initialState = {
 }
 
 
-console.log('initialState:::', initialState);
+// console.log('initialState:::', initialState);
 
 // const vectorMap = (state = initialState.vectorMap, action) => {
 
 // }
 const selectedMap = (state = initialState.selectedMap, action) => {
-  console.log('selectedMap::state', state, 'action', action)
+  // console.log('selectedMap::state', state, 'action', action)
   switch (action.type) {
     case SELECT_MAP:
-      console.log('SELECT_MAP::ACTION', action)
+      // console.log('SELECT_MAP::ACTION', action)
       // const selectedMap = _.extend(action.selectedMap, {
       //   rankingType: MAPS[action.selectedMap.id].rankingType
       // })
       const mapData = {mapData: getMapData(action.selectedMap)}
-      console.log("mapData ", mapData)
+      // console.log("mapData ", mapData)
       const result = _.extend(action.selectedMap, mapData)
-      console.log('result', result)
+      // console.log('result', result)
       return result
     default:
       return state

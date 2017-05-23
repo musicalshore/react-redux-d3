@@ -267,8 +267,6 @@ const Choropleth = class Choropleth extends React.Component {
 Choropleth.propTypes = {
   selectedMap: PropTypes.object.isRequired,
   selectedCity: PropTypes.object,
-  onMarkerClick: PropTypes.func.isRequired,
-  height: PropTypes.string.isRequired,
-  width: PropTypes.string.isRequired
+  onMarkerClick: PropTypes.func.isRequired
 }
 export default Choropleth

@@ -41,19 +41,27 @@ const Legend = () => {
 }
 const CityModalHeading = (props) => {
   let {selectedCity, selectedMap, closeModal} = props
-  let message
-  let thisYearsBest
+  let message = ''
+  let additionalClasses = ''
+
   const verb = selectedMap.year === CURRENT_YEAR ? 'is' : 'was'
   const rankingType = selectedMap.id !== TOP_CITY ? ` by ${selectedMap.rankingType}` : ''
 
   if (selectedCity.rank === 1 && selectedMap.year === CURRENT_YEAR) {
-    thisYearsBest = true
-    message = <span>This year's best!</span>
+    additionalClasses += 'badge this-years-best'
+    message = <span>This year&apos;s best!</span>
+  } else if (selectedCity.mostImproved) {
+    additionalClasses += 'badge most-improved'
+    message = <span>Most improved!</span>
+  } else if (selectedCity.newLocation) {
+    additionalClasses += 'badge new-location'
+    message = <span>This year&apos;s best!</span>
   } else {
     message = <span>{verb} the <b>{ordinal(selectedCity.rank, true)}</b> safest driving city in <b>{selectedMap.year}</b>{rankingType}.</span>
   }
+
   return (
-    <div className={`city-modal-heading-container ${thisYearsBest ? 'this-years-best' : ''}`}>
+    <div className={`city-modal-heading-container ${additionalClasses}`}>
       <div>
         <h2 className="city-name">{selectedCity.cityState}</h2>
         <div className="city-rank">{message}</div>
