@@ -10,6 +10,7 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
+    background-color: $white-smoke;
   }
   .ranking {
     fill: #fff;
@@ -27,7 +28,12 @@
   }
 
   ul {
+
     padding: 0;
+    @media(max-width: 767px) {
+      height: 300px;
+      margin: 30px 0 15px;
+    }
   }
   .sections {
 
@@ -39,16 +45,18 @@
   }
   li {
     display: flex;
-    // align-items: baseline;
     font-size: 12px;
     font-weight: 400;
     height: 40px;
     color: rgb(255, 255, 255);
-    // line-height: 30px;
     list-style-type: none;
     padding: 0;
-    // padding: 5px 15px 5px 30px;
-
+    height: 30px;
+    margin-bottom: 10px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
     &:hover {
       background: #F6F6F6;
       cursor: pointer;
