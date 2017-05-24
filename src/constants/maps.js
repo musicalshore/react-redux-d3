@@ -27,6 +27,7 @@ export const DEFAULT_MAP = TOP_CITY
 export const CURRENT_YEAR = '2017'
 
 export const YEARS = [
+  '2007',
   '2008',
   '2009',
   '2010',
