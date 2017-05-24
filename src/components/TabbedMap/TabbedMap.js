@@ -107,8 +107,8 @@ const Rankings = (props) => {
 const CityData = (props) => {
   let {selectedCity, selectedMap} = props
   const yearsBetweenClaims = selectedCity[`${selectedMap.year} Average Years Between Accidents`]
-  const breakingEvents = selectedCity[`${selectedMap.year} Braking Events per 1000 Miles (city)`]
-  if (!yearsBetweenClaims && !breakingEvents) {
+  const brakingEvents = selectedCity[`${selectedMap.year} Braking Events per 1000 Miles (city)`]
+  if (!yearsBetweenClaims && !brakingEvents) {
     return <div/>
   }
   return (
@@ -118,8 +118,8 @@ const CityData = (props) => {
       {yearsBetweenClaims &&
         <div>Years between claims<sup>1</sup>: <span>{yearsBetweenClaims}</span></div>
       }
-      {breakingEvents &&
-        <div>Drivewise<sup>®</sup> breaking events per 1,000 miles<sup>2</sup>: <span>{breakingEvents}</span></div>
+      {brakingEvents &&
+        <div>Drivewise<sup>®</sup> braking events per 1,000 miles<sup>2</sup>: <span>{brakingEvents}</span></div>
       }
     </div>
   )
@@ -127,8 +127,8 @@ const CityData = (props) => {
 const SuburbanData = (props) => {
   let {selectedCity, selectedMap} = props
   const yearsBetweenClaims = selectedCity[`${selectedMap.year} Years Between Accidents (Suburban Area only)`]
-  const breakingEvents = selectedCity[`${selectedMap.year} Suburban Braking Events per 1000 Miles`]
-  if (!yearsBetweenClaims && !breakingEvents) {
+  const brakingEvents = selectedCity[`${selectedMap.year} Suburban Braking Events per 1000 Miles`]
+  if (!yearsBetweenClaims && !brakingEvents) {
     return <div/>
   }
   return (
@@ -138,8 +138,8 @@ const SuburbanData = (props) => {
       {yearsBetweenClaims &&
         <div>Years between claims<sup>1</sup>: <span>{yearsBetweenClaims}</span></div>
       }
-      {breakingEvents &&
-        <div>Drivewise<sup>®</sup> breaking events per 1,000 miles<sup>2</sup>: <span>{breakingEvents}</span></div>
+      {brakingEvents &&
+        <div>Drivewise<sup>®</sup> braking events per 1,000 miles<sup>2</sup>: <span>{brakingEvents}</span></div>
       }
     </div>
   )
@@ -147,8 +147,8 @@ const SuburbanData = (props) => {
 const Footnotes = () => {
   return (
     <div className="footnotes-container">
-      <div><sup>1</sup>National average: 10</div>
-      <div><sup>2</sup>National average: 19</div>
+      <div><sup>1</sup> National average: 10</div>
+      <div><sup>2</sup> National average: 19</div>
     </div>
   )
 }
