@@ -232,9 +232,11 @@ const TabbedMap = class TabbedMap extends React.Component {
         { selectedCity !== null && selectedCity.rank &&
           <Modal isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
             contentLabel="City Modal"
             className="modal-content"
             overlayClassName="modal-overlay"
+            shouldCloseOnOverlayClick={true}
           >
             <CityModal {...this.props} closeModal={this.closeModal} />
           </Modal>
