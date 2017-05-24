@@ -2,7 +2,7 @@ import _ from 'lodash/fp'
 import React from 'react'
 import PropTypes from 'prop-types'
 import './style.scss'
-import {YEARS, US_STATES} from 'constants/maps'
+import {YEARS, US_STATES, CURRENT_YEAR} from 'constants/maps'
 // const debug = require('debug')('MapSelector')
 
 
@@ -23,10 +23,16 @@ const MapSelector = class MapSelector extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.handleYearChange = this.handleYearChange.bind(this)
     this.handleStateChange = this.handleStateChange.bind(this)
+    this.clearSearch = this.clearSearch.bind(this)
+    this.updateState = this.updateState.bind(this)
     this.state = {
       selectedYear: this.props.selectedMap.year,
-      selectedState: this.props.selectedMap.stateFilter ? this.props.selectedMap.stateFilter : 'All'
+      stateFilter: this.props.selectedMap.stateFilter
     }
+  }
+
+  handleYearChange (event) {
+    this.setState({selectedYear: event.target.value})
   }
 
   getStates (markers) {
@@ -46,35 +52,57 @@ const MapSelector = class MapSelector extends React.Component {
     ])(markers)
     return states
   }
-  handleYearChange (event) {
-    this.setState({selectedYear: event.target.value})
-  }
-  componentWillReceiveProps (nextProps) {
-  console.log("componentWillReceiveProps ", nextProps);
+
+  updateState (selectedMap) {
+    const stateFilter = selectedMap.stateFilter
+    let safeCityCount
+    let selectedStateName
+
+    if (stateFilter !== '') {
+      selectedStateName = _.get('name', _.find(['id', stateFilter], US_STATES))
+
+      safeCityCount = _.size(_.filter(['State', stateFilter], selectedMap.mapData.markers))
+    }
+    this.setState({
+      stateFilter,
+      safeCityCount,
+      selectedStateName,
+      selectedYear: selectedMap.year
+    })
+    console.log('new STATE', this.state);
 
   }
   handleStateChange (event) {
-    let newState = _.extend({}, {selectedState: event.target.value})
-
-    let {selectedMap} = this.props
-    if (event.target.value !== 'All') {
-      let pair = _.find(['id', event.target.value], this.getStates(selectedMap.mapData.markers))
-      let safeCityCount = _.size(_.filter(['State', pair.id], selectedMap.mapData.markers))
-      newState = _.extend(newState, {
-        safeCityCount: safeCityCount,
-        selectedStateName: pair.name
-      })
-    }
-    console.log('handleStateChange', newState)
-    this.setState(newState)
+    let stateFilter = event.target.value
+    this.setState({
+      stateFilter
+    })
+    // this.props.onFilterState(stateFilter)
   }
-  componentDidUpdate () {
+  componentWillReceiveProps (nextProps) {
+    console.log('componentWillReceiveProps ', nextProps)
+    let {selectedMap} = this.props
 
+    if ((nextProps.selectedMap.stateFilter !== selectedMap.stateFilter) ||
+    (nextProps.selectedMap.year !== selectedMap.year) ||
+    (nextProps.selectedMap.id !== nextProps.selectedMap.id)) {
+      this.updateState(nextProps.selectedMap)
+    }
+  }
+  clearSearch (e) {
+    e.preventDefault()
+    const newMap = _.extend(this.props.selectedMap, {
+      year: CURRENT_YEAR,
+      stateFilter: ''
+    })
+    console.log('newMap', newMap);
+
+    this.props.onMapSelect(newMap)
   }
   handleClick () {
     const newMap = _.extend(this.props.selectedMap, {
       year: this.state.selectedYear,
-      stateFilter: this.state.selectedState
+      stateFilter: this.state.stateFilter
     })
     console.log('newMap', newMap);
 
@@ -83,9 +111,8 @@ const MapSelector = class MapSelector extends React.Component {
   render () {
     let {selectedMap} = this.props
     const years = _.map(year => <option key={year} value={year}>{year}</option>, YEARS)
-    const usStates = _.map(pair => <option key={pair.id} value={pair.id}>{pair.name}</option>, this.getStates(selectedMap.mapData.markers))
-
-
+    const usStates = _.map(pair => <option key={pair.id} value={pair.id}>{pair.name}</option>, US_STATES)
+    console.log('this.state.safeCityCount', this.state.safeCityCount)
     return (
       <div styleName="container">
         <div styleName="selector-container">
@@ -97,17 +124,20 @@ const MapSelector = class MapSelector extends React.Component {
           </div>
           <label styleName="state-label" htmlFor="usState">State</label>
           <div styleName="select-box state">
-            <select id="usState" value={this.state.selectedState} onChange={this.handleStateChange}>
-              <option value="All">All</option>
+            <select id="usState" value={this.state.stateFilter} onChange={this.handleStateChange}>
+              <option key="ALL" value="">All</option>
               {usStates}
             </select>
           </div>
           <button type="button" onClick={this.handleClick}>Go</button>
         </div>
-        {/*<div styleName="clear-search-container">
-          {this.state.safeCityCount && this.state.selectedStateName && <div styleName="factoid"><span styleName="state-name">{this.state.selectedStateName}</span> has <span styleName="safe-city-count">{this.state.safeCityCount}</span> of the top 200 safest driving cities.</div>}
-          <div styleName="clear-search">Clear search</div>
-        </div>*/}
+        <div styleName="clear-search-container">
+          {this.state.safeCityCount > 0 && <div styleName="factoid"><span styleName="state-name">{this.state.selectedStateName}</span> has <span styleName="safe-city-count">{this.state.safeCityCount}</span> of the top 200 safest driving cities.</div>}
+          {(this.state.safeCityCount > 0 || selectedMap.year !== CURRENT_YEAR) &&
+            <div styleName="clear-search">
+              <a href="#" onClick={this.clearSearch}>Clear search</a>
+            </div>}
+        </div>
       </div>
     )
   }
@@ -119,6 +149,7 @@ const MapSelector = class MapSelector extends React.Component {
 // }
 MapSelector.propTypes = {
   onMapSelect: PropTypes.func.isRequired,
+  onFilterState: PropTypes.func.isRequired,
   selectedMap: PropTypes.object.isRequired
 }
 export default MapSelector

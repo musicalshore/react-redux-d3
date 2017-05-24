@@ -208,11 +208,11 @@ const TabbedMap = class TabbedMap extends React.Component {
   }
 
   render () {
-    let {selectedMap, selectedCity, onMapSelect, onCitySelect} = this.props
+    let {selectedMap, selectedCity, onMapSelect, onCitySelect, onFilterState} = this.props
 
     return (
       <div styleName="container">
-        <MapSelector selectedMap={selectedMap} onMapSelect={onMapSelect} />
+        <MapSelector selectedMap={selectedMap} onMapSelect={onMapSelect} onFilterState={onFilterState}/>
         <div styleName="map-container">
           <div styleName="maps">
             <TabNav selectedMap={selectedMap} onTabClick={onMapSelect} />
@@ -247,6 +247,7 @@ const TabbedMap = class TabbedMap extends React.Component {
 TabbedMap.propTypes = {
   onMapSelect: PropTypes.func.isRequired,
   onCitySelect: PropTypes.func.isRequired,
+  onFilterState: PropTypes.func.isRequired,
   selectedMap: PropTypes.object.isRequired,
   selectedCity: PropTypes.object
 }

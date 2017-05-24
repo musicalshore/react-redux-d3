@@ -1,6 +1,6 @@
 // import _ from 'lodash/fp'
 import { connect } from 'react-redux'
-import { selectMap, selectCity, selectState } from 'redux/actions'
+import { selectMap, selectCity, filterState } from 'redux/actions'
 import TabbedMap from 'components/TabbedMap'
 // import bestDriverLocations from 'best-driver.json'
 // import { MAPS } from 'redux/constants'
@@ -76,6 +76,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onCitySelect: (selectedCity) => {
       dispatch(selectCity(selectedCity))
+    },
+    onFilterState: (stateFilter) => {
+      dispatch(filterState(stateFilter))
     }
   }
 }

@@ -11,7 +11,7 @@ import Report from 'containers/Report'
 import './style.scss'
 
 const App = () => (
-  <div styleName="flex-container">
+  <div styleName="container">
     <Helmet title="America's Best Drivers Report" titleTemplate="Allstate %s">
       <meta charSet="UTF-8" />
       {/* <meta http-equiv="Pragma" content="no-cache" /> */}

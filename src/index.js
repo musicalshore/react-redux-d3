@@ -3,12 +3,10 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { AppContainer } from 'react-hot-loader'
-// import FontFaceObserver from 'fontfaceobserver'
 import App from 'components/App'
 
 import reducers from './redux/reducers'
-import 'sanitize.css/sanitize.css'
-import './global.scss'
+import './themes/global.scss'
 
 // const openSansObserver = new FontFaceObserver('Open Sans', {})
 let store = createStore(

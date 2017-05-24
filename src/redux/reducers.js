@@ -1,7 +1,7 @@
 import _ from 'lodash/fp'
 import {combineReducers} from 'redux'
-import {MAPS, DEFAULT_MAP, CURRENT_YEAR} from 'constants/maps'
-import {SELECT_MAP, SELECT_CITY} from 'constants/actionTypes'
+import {MAPS, DEFAULT_MAP, CURRENT_YEAR, US_STATES} from 'constants/maps'
+import {SELECT_MAP, SELECT_CITY, FILTER_STATE} from 'constants/actionTypes'
 import BEST_DRIVER_DATA from 'constants/bestDriver'
 
 const marker = _.curry((year, rankingType, location) => _.extend({
@@ -22,11 +22,7 @@ export const getMapData = ({year, rankingType, stateFilter = null}) => {
     _.reverse
   ])(bestDriverData)
 
-  // _.reverse(_.sortBy('rank', _.filter(_.map(marker(year, rankingType), BEST_DRIVER_DATA))))
-  // console.log('rankingsByYearAndType', rankingsByYearAndType)
-
   const minTopTenRank = _.minBy('rank', rankingsByYearAndType).rank + 10
-  // console.log('minTopTenRank', minTopTenRank)
 
   const seriesValues = _.map((value) => {
     if (value.rank && value.rank < minTopTenRank) {
@@ -42,7 +38,7 @@ export const getMapData = ({year, rankingType, stateFilter = null}) => {
       seriesValue: seriesValues[i]
     }))
   }
-  // console.log("markers ", markers);
+
   const mapData = {
     markers: markers,
     series: {
@@ -66,34 +62,22 @@ const initialMap = _.extend(_.find(['id', DEFAULT_MAP], MAPS), {
   stateFilter: ''
 })
 
-// console.log('initialMap:::', initialMap)
 const mapData = {mapData: getMapData(initialMap)}
-// console.log('mapData-->', mapData)
 
 const initialState = {
   selectedMap: _.extend(initialMap, mapData),
   selectedCity: null
 }
 
-
-// console.log('initialState:::', initialState);
-
-// const vectorMap = (state = initialState.vectorMap, action) => {
-
-// }
 const selectedMap = (state = initialState.selectedMap, action) => {
   // console.log('selectedMap::state', state, 'action', action)
   switch (action.type) {
     case SELECT_MAP:
-      // console.log('SELECT_MAP::ACTION', action)
-      // const selectedMap = _.extend(action.selectedMap, {
-      //   rankingType: MAPS[action.selectedMap.id].rankingType
-      // })
       const mapData = {mapData: getMapData(action.selectedMap)}
-      // console.log("mapData ", mapData)
       const result = _.extend(action.selectedMap, mapData)
-      // console.log('result', result)
       return result
+    case FILTER_STATE:
+      return _.extend(state, {stateFilter: action.stateFilter})
     default:
       return state
   }
