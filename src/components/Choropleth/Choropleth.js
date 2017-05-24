@@ -13,13 +13,13 @@ import 'rc-slider/assets/index.css'
 const projection = d3.geoAlbersUsa()
 const path = d3.geoPath().projection(projection)
 const zoom = d3.zoom()
-      .scaleExtent([0, 6])
+      .scaleExtent([1, 7])
       .on('zoom', zoomed)
 
 function zoomed () {
-  d3.select('g').style('stroke-width', 1.5 / d3.event.scale + 'px')
+  d3.select('svg > g').style('stroke-width', 1.5 / d3.event.scale + 'px')
   // this.g.attr('transform', 'translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')')
-  d3.select('g').attr('transform', d3.event.transform)
+  d3.select('svg > g').attr('transform', d3.event.transform)
 }
 
 function zoomIn (props, state) {
@@ -94,44 +94,67 @@ const Choropleth = class Choropleth extends React.Component {
     // console.log('this.props ', this.props);
     const markers = _.cloneDeep(props.selectedMap.mapData.markers)
     const g = selection.selectAll('g')
-    const circle = selection.selectAll('circle')
       .data(markers)
-    circle.exit().remove()
-    circle
-      .enter().append('circle')
-      .merge(circle)
-      .attr('cx', marker => {
-        let lat = marker.latLng[0]
-        let lon = marker.latLng[1]
-        let points = projection([lon, lat])
-        if (!points || !points[1]) {
-          throw new Error('Missing coordinates', marker)
-        }
-        return points[0]
-      })
-      .attr('cy', marker => {
-        let lat = marker.latLng[0]
-        let lon = marker.latLng[1]
-        let points = projection([lon, lat])
-        if (!points || !points[1]) {
-          throw new Error('Missing coordinates', marker)
-        }
-        return points[1]
-      })
-      .attr('r', d => d.seriesValue === 'topTen' ? '16px' : '5px')
-      .attr('class', (d) => {
-        let className
-        if (d.newLocation && props.selectedMap.id === TOP_CITY) {
-          className = 'new-location'
-        } else if (d.mostImproved && props.selectedMap.id === TOP_CITY) {
-          className = 'most-improved'
-        } else {
-          className = _.kebabCase(props.selectedMap.id)
-        }
-        return `marker ${className}`
-      })
+    g.exit().remove()
+    g.enter().append('g')
+      .merge(g)
       .on('click', this.onMarkerClick)
-    // return selection
+      .append('circle')
+        .attr('cx', marker => {
+          let lat = marker.latLng[0]
+          let lon = marker.latLng[1]
+          let points = projection([lon, lat])
+          if (!points || !points[1]) {
+            throw new Error('Missing coordinates', marker)
+          }
+          return points[0]
+        })
+        .attr('cy', marker => {
+          let lat = marker.latLng[0]
+          let lon = marker.latLng[1]
+          let points = projection([lon, lat])
+          if (!points || !points[1]) {
+            throw new Error('Missing coordinates', marker)
+          }
+          return points[1]
+        })
+        .attr('r', d => d.seriesValue === 'topTen' ? '16px' : '5px')
+        .attr('class', (d) => {
+          let className
+          if (d.newLocation && props.selectedMap.id === TOP_CITY) {
+            className = 'new-location'
+          } else if (d.mostImproved && props.selectedMap.id === TOP_CITY) {
+            className = 'most-improved'
+          } else {
+            className = _.kebabCase(props.selectedMap.id)
+          }
+          return `marker ${className}`
+        })
+      .select(function () { return this.parentNode })
+        .append('text')
+        .text(d => d.rank <= 10 ? d.rank : '')
+        .attr('x', marker => {
+          let lat = marker.latLng[0]
+          let lon = marker.latLng[1]
+          let points = projection([lon, lat])
+          if (!points || !points[1]) {
+            throw new Error('Missing coordinates', marker)
+          }
+          return points[0]
+        })
+        .attr('y', marker => {
+          let lat = marker.latLng[0]
+          let lon = marker.latLng[1]
+          let points = projection([lon, lat])
+          if (!points || !points[1]) {
+            throw new Error('Missing coordinates', marker)
+          }
+          return points[1] + 3
+        })
+        .attr('text-anchor', 'middle')
+        .style('font-family', 'sans-serif')
+        .attr('font-size', '11px')
+        .attr('fill', '#ffffff')
   }
 
   updateNumbers (selection, props = this.props) {
@@ -184,10 +207,13 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   onStop () {
+    console.log('onStop', arguments);
+
     if (d3.event.defaultPrevented) d3.event.stopPropagation()
   }
 
   onMarkerClick (d) {
+ console.log("onMarkerClick ", d);
     this.props.onMarkerClick(d)
   }
   componentDidMount () {
@@ -195,11 +221,11 @@ const Choropleth = class Choropleth extends React.Component {
     projection
       .scale(1000)
       .translate([width / 2, height / 2])
-    d3.select(this.svg).on('click', this.onStop, true)
+    // d3.select(this.svg).on('click', this.onStop, true)
     d3.select(this.rect).on('click', zoomOut)
     d3.select(this.g).call(this.addMap)
     d3.select(this.g).call(this.updateMarkers)
-    d3.select(this.g).call(this.updateNumbers)
+    // d3.select(this.g).call(this.updateNumbers)
     // d3.select(window).on('resize', resize)
   }
 
@@ -212,7 +238,7 @@ const Choropleth = class Choropleth extends React.Component {
       console.log('YES shouldComponentUpdate')
 
       d3.select(this.g).call(this.updateMarkers, nextProps)
-      d3.select(this.g).call(this.updateNumbers, nextProps)
+      // d3.select(this.g).call(this.updateNumbers, nextProps)
     }
     // d3.select(this.svg).call(zoomIn, nextProps)
     if (!nextProps.selectedCity) {
