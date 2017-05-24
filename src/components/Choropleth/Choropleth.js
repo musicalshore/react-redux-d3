@@ -8,11 +8,12 @@ import * as topojson from 'topojson-client'
 import topodata from './us.json'
 import {TOP_CITY} from 'constants/maps'
 import './style.scss'
+import 'rc-slider/assets/index.css'
 
 const projection = d3.geoAlbersUsa()
 const path = d3.geoPath().projection(projection)
 const zoom = d3.zoom()
-      .scaleExtent([1, 8])
+      .scaleExtent([0, 6])
       .on('zoom', zoomed)
 
 function zoomed () {
@@ -20,7 +21,12 @@ function zoomed () {
   // this.g.attr('transform', 'translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')')
   d3.select('g').attr('transform', d3.event.transform)
 }
-function zoomIn (props) {
+
+function zoomIn (props, state) {
+  let { width, height } = props
+
+}
+function zoomToCity (props) {
   let { width, height, selectedCity } = props
   let lat = selectedCity.latLng[0]
   let lon = selectedCity.latLng[1]
@@ -47,7 +53,6 @@ function zoomOut () {
     .call(zoom.transform, d3.zoomIdentity)
 }
 
-
 const Choropleth = class Choropleth extends React.Component {
   constructor (props) {
     super(props)
@@ -63,10 +68,20 @@ const Choropleth = class Choropleth extends React.Component {
     this.updateMarkers = this.updateMarkers.bind(this)
     this.updateNumbers = this.updateNumbers.bind(this)
     this.handleRange = this.handleRange.bind(this)
-    this.state = {rangeValue: zoom.scaleExtent()[0]}
+    this.state = {scale: zoom.scaleExtent()[0]}
   }
-  handleRange (event) {
-    this.setState({rangeValue: event.target.value})
+  handleRange (scale) {
+    console.log("handleRange  scale", scale)
+    let {width, height} = this.props
+    // // this.setState({scale: event})
+    const translateX = (width * 1000) / 2
+    const translateY = (height * 1000) / 2
+    d3.select('svg')
+      .transition()
+      .duration(750)
+      .call(zoom.scaleTo, scale)
+      // .duration(750)
+      // .call(zoom.transform, d3.zoomIdentity.translate(translateX, translateY).scale(scale))
   }
   addMap (selection) {
     selection.selectAll('path')
@@ -76,8 +91,9 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   updateMarkers (selection, props = this.props) {
-    // console.log("this.props ", this.props);
+    // console.log('this.props ', this.props);
     const markers = _.cloneDeep(props.selectedMap.mapData.markers)
+    const g = selection.selectAll('g')
     const circle = selection.selectAll('circle')
       .data(markers)
     circle.exit().remove()
@@ -105,7 +121,7 @@ const Choropleth = class Choropleth extends React.Component {
       .attr('r', d => d.seriesValue === 'topTen' ? '16px' : '5px')
       .attr('class', (d) => {
         let className
-        if (d.newLocation && props.selectedMap.id === TOP_CITY ) {
+        if (d.newLocation && props.selectedMap.id === TOP_CITY) {
           className = 'new-location'
         } else if (d.mostImproved && props.selectedMap.id === TOP_CITY) {
           className = 'most-improved'
@@ -167,12 +183,9 @@ const Choropleth = class Choropleth extends React.Component {
       .attr('d', path)
   }
 
-
-
   onStop () {
     if (d3.event.defaultPrevented) d3.event.stopPropagation()
   }
-
 
   onMarkerClick (d) {
     this.props.onMarkerClick(d)
@@ -182,7 +195,8 @@ const Choropleth = class Choropleth extends React.Component {
     projection
       .scale(1000)
       .translate([width / 2, height / 2])
-
+    d3.select(this.svg).on('click', this.onStop, true)
+    d3.select(this.rect).on('click', zoomOut)
     d3.select(this.g).call(this.addMap)
     d3.select(this.g).call(this.updateMarkers)
     d3.select(this.g).call(this.updateNumbers)
@@ -195,7 +209,7 @@ const Choropleth = class Choropleth extends React.Component {
     if ((selectedMap.id !== nextProps.selectedMap.id) ||
         (selectedMap.year !== nextProps.selectedMap.year) ||
         (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
-          console.log('YES shouldComponentUpdate');
+      console.log('YES shouldComponentUpdate')
 
       d3.select(this.g).call(this.updateMarkers, nextProps)
       d3.select(this.g).call(this.updateNumbers, nextProps)
@@ -203,10 +217,11 @@ const Choropleth = class Choropleth extends React.Component {
     // d3.select(this.svg).call(zoomIn, nextProps)
     if (!nextProps.selectedCity) {
       // d3.select(this.svg).call(zoomOut)
-      zoomOut()
+      // zoomOut()
     } else {
-      zoomIn(nextProps)
+      zoomToCity(nextProps)
     }
+
     //  else {
     //   d3.select(this.svg).call(zoomIn, nextProps)
     // }
@@ -231,35 +246,65 @@ const Choropleth = class Choropleth extends React.Component {
     // // resize the map
     // map.select('.land').attr('d', path);
     // map.selectAll('.state').attr('d', path);
-}
+  }
 
   render () {
     const handleStyle = {
-      'background-color': '#0096d6',
-      'width': '15px',
-      'height': '15px',
-      'border-radius': '300px'
+      backgroundColor: '#0096d6',
+      width: '15px',
+      height: '15px',
+      borderRadius: '300px',
+      overflow: 'visible'
     }
+    const trackStyle = {
+      width: '10px',
+      height: '10px',
+      cursor: 'pointer',
+      lineHeight: '10px',
+      textAlign: 'center',
+      padding: '3px',
+      background: '#666',
+      border: 'solid 1px #e3e3e3',
+      borderRadius: '0',
+      color: '#0096d6',
+      fontSize: '16px'
+      // overflow: 'visible'
+    }
+    const minimumTrackStyle = _.extend(trackStyle, {
+      // position: 'absolute'
+    })
+    const maximumTrackStyle = _.extend(trackStyle, {
+      // position: 'absolute'
+    })
+
+    // const minTrackStyle = _.extend()
     // const Handle = Slider.Handle
 
     // const handle = (props) => {
     //   // const { value, dragging, index, ...restProps } = props;
     //   return (
-    //       <Handle className="slider-handle" {...props} />
+    //       <Handle className='slider-handle' {...props} />
     //   )
     // }
     return (
       <div styleName="container">
         <svg width={this.props.width} height={this.props.height} ref={(node) => this.svg = node}>
-          <rect styleName="background" width={this.props.width} height={this.props.height} />
+          <rect styleName="background" width={this.props.width} height={this.props.height} ref={(node) => this.rect = node} />
           <g ref={(node) => this.g = node} />
         </svg>
-        {/*<div styleName="zoom-bar-wrapper">*/}
+        <div styleName="zoom-bar-wrapper">
           {/*<div styleName="zoom-in">+</div>*/}
-          {/*<input type="range" min={zoom.scaleExtent()[0]} max={zoom.scaleExtent()[1]} onChange={this.handleRange} step={2} />*/}
-          {/*<Slider vertical={true} min={zoom.scaleExtent()[0]} max={zoom.scaleExtent()[1]} defaultValue={zoom.scaleExtent()[0]} onChange={this.handleRange} step={2} handleStyle={handleStyle} />*/}
-          {/*<div styleName="zoom-out">-</div>*/}
-        {/*</div>*/}
+          <Slider className="zoom-bar"
+            vertical={true}
+            min={zoom.scaleExtent()[0]}
+            max={zoom.scaleExtent()[1]}
+            defaultValue={zoom.scaleExtent()[0]}
+            onChange={this.handleRange}
+            handleStyle={handleStyle}
+            step={2}
+            />
+          {/*{<div styleName="zoom-out">-</div>}*/}
+        </div>
       </div>
     )
   }

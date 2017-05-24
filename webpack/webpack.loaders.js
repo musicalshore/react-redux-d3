@@ -32,13 +32,14 @@ module.exports = [
   },
   {
     test: /\.css$/,
+    // exclude: /rc-slider/,
     use: ((env) => {
-      if (env === true) {
+      if (env === 'production') {
         return ExtractTextPlugin.extract({
           use: [{
             loader: 'css-loader',
             options: {
-              modules: true,
+              modules: false,
               localIdentName
             }
           }],
@@ -50,7 +51,7 @@ module.exports = [
         }, {
           loader: 'css-loader',
           options: {
-            modules: true,
+            modules: false,
             localIdentName
           }
         }]
