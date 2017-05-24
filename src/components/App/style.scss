@@ -10,15 +10,14 @@
   @media (max-width: 980px) {
     width: 90%;
   }
+  @media(max-width:767px) {
+    width: 100%;
+  }
   // min-width: 100%;
 
   .content {
-    // align-items: center;
-    // border: 1px solid #0000ff;
     display: flex;
     height: 100%;
-    // justify-content: center;
-    // flex-basis: 960px;
     width: auto;
     flex-direction: column;
     max-width: 960px;
@@ -26,6 +25,9 @@
     @media (max-width: 980px) {
       width: 100%;
       margin: 0 auto;
+    }
+    @media(max-width:767px) {
+      width: 100%;
     }
   }
 
