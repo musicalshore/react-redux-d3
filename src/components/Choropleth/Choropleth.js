@@ -6,6 +6,7 @@ import Slider from 'rc-slider'
 import * as d3 from 'd3'
 import * as topojson from 'topojson-client'
 import topodata from './us.json'
+import {TOP_CITY} from 'constants/maps'
 import './style.scss'
 
 const projection = d3.geoAlbersUsa()
@@ -104,9 +105,9 @@ const Choropleth = class Choropleth extends React.Component {
       .attr('r', d => d.seriesValue === 'topTen' ? '16px' : '5px')
       .attr('class', (d) => {
         let className
-        if (d.newLocation) {
+        if (d.newLocation && props.selectedMap.id === TOP_CITY ) {
           className = 'new-location'
-        } else if (d.mostImproved) {
+        } else if (d.mostImproved && props.selectedMap.id === TOP_CITY) {
           className = 'most-improved'
         } else {
           className = _.kebabCase(props.selectedMap.id)
