@@ -27,6 +27,10 @@
       flex: 1 1 100%;
       background-position: center 6px;
 
+      @media (max-width: 767px) {
+        background-position: 0px -3px;
+        background-size: 50px;
+      }
       &.top-city,
       &.density {
         border-right: $border;
@@ -60,13 +64,13 @@
         background-image: url('./topCities_Gray.png');
         border-bottom: 7px solid $top-city-fill;
 
-        @media (max-width: 767px) {
-          width: 50px;
+        // @media (max-width: 767px) {
+        //   width: 50px;
 
-          .title {
-            width: 40px;
-          }
-        }
+        //   .title {
+        //     width: 40px;
+        //   }
+        // }
 
         &.selected {
           background-image: url('./topCities_Active.png');
@@ -129,13 +133,23 @@
         padding-top: 63px;
         display: block;
         height: 100%;
+        width: 100%;
         text-align: center;
         text-decoration: none;
 
         @media (max-width: 767px) {
-          font-size: 10px;
-          margin: 8px 0 0 46px;
+          font-size: 12px;
+          padding: 8px 0 0 46px;
           text-align: left;
+          span {
+            display: inline-block;
+            width: 40px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          font-size: 10px;
+          // padding-right: 30%;
         }
       }
     }

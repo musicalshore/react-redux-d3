@@ -10,8 +10,12 @@
   @media (max-width: 767px) {
     background-color: $white-smoke;
     display: flex;
-    justify-content: center;
-    overflow: hidden;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 430px;
+    // overflow: hidden;
+    padding-left: 0;
   }
 
   .ranking {
@@ -30,102 +34,131 @@
     }
   }
 
-  ul {
+  ol.list-container {
     padding: 0;
 
     @media (max-width: 767px) {
-      height: 300px;
-      margin: 30px 0 15px;
-    }
-  }
-
-  .sections {
-  }
-
-  .paging {
-    // overflow-y: scroll;
-    .previous {
+      height: 322px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      transition: transform 0.6s ease-in-out;
     }
 
-    .next {
-    }
-  }
-
-  li {
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 2px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 2px;
-    color: rgb(255, 255, 255);
-    display: flex;
-    font-size: 12px;
-    font-weight: 400;
-    height: 30px;
-    height: 40px;
-    list-style-type: none;
-    margin-bottom: 10px;
-    padding: 0;
-
-    &:hover {
-      background: #f6f6f6;
-      cursor: pointer;
-    }
-
-    &.top-city circle {
-      fill: $top-city-fill;
-      // stroke: rgb(67, 199, 255);
-    }
-
-    &.density circle {
-      fill: $density-fill;
-    }
-
-    &.rain-snow circle {
-      fill: $rain-snow-fill;
-      // stroke: rgb(162, 146, 255);
-    }
-
-    .cityState {
-      color: $darker-gray;
-      font-size: 15px;
-      padding-left: 5px;
-      padding-top: 5px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-
-      a {
-        text-decoration: none;
-        color: $darker-gray;
-      }
-    }
-
-    svg {
-      margin-right: 5px;
+    li {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 2px;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 2px;
+      color: $white;
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 400;
+      // height: 30px;
+      height: 40px;
+      list-style-type: none;
+      margin-bottom: 10px;
+      padding: 0;
 
       @media (max-width: 767px) {
-        margin-right: 10px;
+        height: 46px;
+        margin-bottom: 0;
+      }
+      &:hover {
+        background: $white-smoke;
+        cursor: pointer;
+      }
+
+      &.top-city circle {
+        fill: $top-city-fill;
+      }
+
+      &.density circle {
+        fill: $density-fill;
+      }
+
+      &.rain-snow circle {
+        fill: $rain-snow-fill;
+      }
+
+      .cityState {
+        color: $darker-gray;
+        font-size: 15px;
+        // padding-left: 5px;
+        // padding-top: 5px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        a {
+          text-decoration: none;
+          color: $darker-gray;
+        }
+
+        @media (max-width: 767px) {
+          line-height: 23px;
+          background-repeat: no-repeat;
+          background-image: url(./list-arrow.png);
+          background-position: right center;
+          font-size: 14px;
+
+          a {
+            margin-right: 15px;
+          }
+        }
+      }
+
+      svg {
+        margin-right: 5px;
+        width: 30px;
+        height: 30px;
+
+        @media (max-width: 767px) {
+          margin-right: 10px;
+          width: 21px;
+          height: 21px;
+
+          text {
+            font-size: 14px;
+            // vertical-align: middle;
+            baseline-shift: -1px;
+          }
+        }
       }
     }
-    // svg {
+  }
 
-    //   // background-color: transparent;
-    //   // background-image: url('./marker.png');
-    //   // background-repeat: no-repeat;
-    //   // background-size: contain;
-    //   color: #fff;
-    //   content: '';
-    //   // float: left;
-    //   font-size: 10px;
-    //   height: 33px;
-    //   // margin-right: 10px;
-    //   text-align: center;
-    //   width: 23px;
-    //   margin-right: 3px;
-    //   .text {
-    //     // display: block;
-    //     margin-top: 10px;
-    //   }
-    // }
+  @media (max-width: 767px) {
+    ol.scroller-container {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
+      list-style-type: none;
+
+      li {
+        display: inline-block;
+        cursor: pointer;
+
+        a {
+          text-transform: lowercase;
+          font-size: 15px;
+          font-weight: 100;
+          color: #bcbcbc;
+          display: inline-block;
+
+        }
+
+
+        &.previous {
+          padding-right: 10px;
+          border-right: 1px solid #bcbcbc;
+        }
+
+        &.next {
+          padding-left: 10px;
+          border-left: 1px solid #bcbcbc;
+        }
+      }
+    }
   }
 }
 

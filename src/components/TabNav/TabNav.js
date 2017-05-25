@@ -15,7 +15,7 @@ const Tab = ({ id, title, selectedMap, onClick }) => {
     <li role="tab" styleName={`${_.kebabCase(id)} ${selectedMap.id === id ? 'selected' : ''}`}
       onClick={handleClick}
     >
-      <a href="#" onClick={handleClick} styleName="title">{title}</a>
+      <a href="#" onClick={handleClick} styleName="title"><span>{title}</span></a>
     </li>
   )
 }

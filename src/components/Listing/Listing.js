@@ -1,13 +1,14 @@
+import $ from 'jquery'
 import _ from 'lodash/fp'
 import React from 'react'
 import PropTypes from 'prop-types'
-import Scroll from 'react-scroll'
+// import Scroll from 'react-scroll'
 import './style.scss'
 
-const Events = Scroll.Events
-const scroll = Scroll.animateScroll
-const scrollSpy = Scroll.scrollSpy
-const scroller = Scroll.scroller
+// const Events = Scroll.Events
+// const scroll = Scroll.animateScroll
+// const scrollSpy = Scroll.scrollSpy
+// const scroller = Scroll.scroller
 // const PagedListing = class PagedListing extends React.Component {
 
 //   constructor () {
@@ -19,7 +20,7 @@ const scroller = Scroll.scroller
 const ListItem = ({rank, cityState, onClick, name, selectedMap}) => {
   return (
     <li name={name} onClick={onClick} styleName={_.kebabCase(selectedMap.id)}>
-      <svg width="30" height="30">
+      <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <g>
           <circle cx="15" cy="15" r="15" />
           <text x="50%" y="50%" alignmentBaseline="middle" textAnchor="middle">{rank}</text>
@@ -39,59 +40,58 @@ const Listing = class Listing extends React.Component {
     super()
     this.scrollAhead = this.scrollAhead.bind(this)
     this.scrollBack = this.scrollBack.bind(this)
-    // this.scrollToBottom = this.scrollToBottom.bind(this)
-    this.state = {currentPosition: 0, maxPosition: maxPosition}
     this.listElements = []
-  }
-  // const rankingsByYearAndType = _.filter(ranking => !!ranking.rank, _.sortBy('rank', selectedMap.mapData.markers))
-  // console.log('rankingsByYearAndType ', rankingsByYearAndType)
-  // const rankingsByYearName = selectedMap.mapData.markers
-  // const filteredRankings = _.filter(ranking => !!ranking.rank, rankingsByYearAndType)
-
-  scrollAhead () {
-    // const next = `position-${this.state.currentPosition + 1}`
-    let candidate = this.state.currentPosition + 7
-    let next = candidate < this.state.maxPosition ? candidate : this.state.maxPosition
-    let name = `position-${next}`
-    console.log('listElements', this.listElements)
-    console.log('next ', name)
-    scroller.scrollTo(name, {
-      containerId: 'scrollableListContainer'
-    })
-
-    this.setState = {currentPosition: next}
-    // if (this.state.currentPosition < this.state.maxPosition) {
-
-    //   // listElements[next].scrollIntoView(true)
-    //   // var elmnt = document.getElementById("content");
-
-    // }
-  }
-  scrollBack () {
-    const previous = `position-${this.state.currentPosition - 1}`
-    console.log('previous ', previous)
-    if (this.state.currentPosition > 1) {
-      scroller.scrollTo(`position-${this.state.currentPosition - 1}`, {
-        containerId: 'scrollableListContainer'
-      })
-      this.setState = {currentPosition: this.state.currentPosition - 1}
+    this.state = {
+      scrollTop: 0,
+      currentPage: 1,
+      numberOfPages: 0
     }
   }
-  // scrollToBottom () {
-  //   scroller.scrollToBottom()
-  // }
-  componentDidMount () {
-    Events.scrollEvent.register('begin', function (to, element) {
-      console.log('begin', arguments)
-    })
 
-    Events.scrollEvent.register('end', function (to, element) {
-      console.log('end', arguments)
-    })
-
-    scrollSpy.update()
-    this.setState({maxPosition})
+  scrollAhead (e) {
+    let {currentPage, numberOfPages} = this.state
+    if (currentPage < numberOfPages) {
+      const scrollTop = this.listing.scrollTop + this.listing.clientHeight
+      $(this.listing).animate({scrollTop: scrollTop}, 400)
+      if (++currentPage === numberOfPages) {
+        $(this.next).css({'color': '#bcbcbc', 'font-weight': 100})
+      }
+      $(this.previous).css({'color': '#666', 'font-weight': 600})
+      this.setState({scrollTop, currentPage})
+    }
+    e.preventDefault()
   }
+  scrollBack (e) {
+    let {currentPage} = this.state
+    if (currentPage > 1) {
+      const scrollTop = this.listing.scrollTop - this.listing.clientHeight
+      $(this.listing).animate({scrollTop: scrollTop}, 400)
+      if (--currentPage === 1) {
+        $(this.previous).css({'color': '#bcbcbc', 'font-weight': 100})
+        $(this.next).css({'color': '#666', 'font-weight': 600})
+      }
+      this.setState({scrollTop, currentPage})
+    }
+    e.preventDefault()
+  }
+
+  componentDidMount () {
+    const count = this.props.selectedMap.mapData.markers.length
+    const numberOfPages = Math.floor(count / 7) + 1
+    if (numberOfPages > 1) {
+      $(this.next).css({'color': '#666', 'font-weight': 600})
+    }
+    this.setState({numberOfPages})
+  }
+
+  // componentDidUpdate () {
+  //   if ((this.listing.clientHeight - this.listing.scrollTop) > 0) {
+  //     $(this.next).css({'color': '#666', 'font-weight': 600})
+  //   } else {
+  //     $(this.next).css({'color': '#bcbcbc', 'font-weight': 100})
+  //   }
+  // }
+
   render () {
     let {selectedMap, onCitySelect, selectedCity} = this.props
     console.log("selectedMap ", selectedMap);
@@ -113,17 +113,21 @@ const Listing = class Listing extends React.Component {
     }, _.sortBy('rank', selectedMap.mapData.markers))
 
     return (
-      <div id="scrollableListContainer" styleName="container">
+      <div styleName="container" ref={el => { this.container = el } }>
         <div styleName="instructions">
           Select city for more data.
         </div>
-        <div styleName="paging">
-          <ul >
-            {listItems}
-          </ul>
-        </div>
-          {/*<a styleName="previous" onClick={this.scrollBack}>Previous</a>
-          <a styleName="next" onClick={this.scrollAhead}>Next</a>*/}
+        <ol styleName="list-container" ref={el => { this.listing = el } }>
+          {listItems}
+        </ol>
+        <ol styleName="scroller-container">
+          <li styleName="previous">
+            <a href="#" onClick={this.scrollBack} ref={el => { this.previous = el } }>previous</a>
+          </li>
+          <li styleName="next">
+            <a href="#" onClick={this.scrollAhead} ref={el => { this.next = el } }>next</a>
+          </li>
+        </ol>
       </div>
     )
   }
