@@ -308,8 +308,8 @@ const Choropleth = class Choropleth extends React.Component {
     // }
     return (
       <div styleName="container">
-        <svg width={this.props.width} height={this.props.height} ref={(node) => this.svg = node}>
-          <rect styleName="background" width={this.props.width} height={this.props.height} ref={(node) => this.rect = node} />
+        <svg width="715" height="625" ref={(node) => this.svg = node}>
+          <rect styleName="background" width="715" height="625" ref={(node) => this.rect = node} />
           <g ref={(node) => this.g = node} />
         </svg>
         <div styleName="zoom-bar-wrapper">
