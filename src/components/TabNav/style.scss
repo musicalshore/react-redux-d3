@@ -1,10 +1,143 @@
 @import 'themes/variables.scss';
+
 .container {
   display: flex;
   height: 113px;
   width: 100%;
-  // bor
-  @media(max-width: 767px) {
+
+  @media (max-width: 767px) {
     height: 48px;
+  }
+
+  ol {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    width: 100%;
+
+    @media (max-width: 767px) {
+      background-position: 0 -3px;
+      background-size: 50px;
+    }
+
+    li {
+      display: inline-block;
+      cursor: pointer;
+      flex: 1 1 100%;
+      background-position: center 6px;
+
+      &.top-city,
+      &.density {
+        border-right: $border;
+      }
+
+      &.top-city,
+      &.density,
+      &.rain-snow {
+        background-color: #f4f4f4;
+        transition: background-color 0.35s ease-out;
+
+        &:hover {
+          background-color: #e1e1e1;
+        }
+
+        &.selected,
+        &.selected:hover {
+          @media (min-width: 768px) {
+            background-color: #fff;
+          }
+
+          @media (max-width: 767px) {
+            .title {
+              color: rgb(255, 255, 255);
+            }
+          }
+        }
+      }
+
+      &.top-city {
+        background-image: url('./topCities_Gray.png');
+        border-bottom: 7px solid $top-city-fill;
+
+        @media (max-width: 767px) {
+          width: 50px;
+
+          .title {
+            width: 40px;
+          }
+        }
+
+        &.selected {
+          background-image: url('./topCities_Active.png');
+
+          @media (max-width: 767px) {
+            background-image: url('./topCities_Active_white.png');
+            background-color: $top-city-fill;
+          }
+        }
+
+        .bottom-color {
+          background-color: #0096d6;
+        }
+      }
+
+      &.density {
+        background-image: url('./density_Gray.png');
+        border-bottom: 7px solid #e6527a;
+
+        &.selected {
+          background-image: url('./density_Active.png');
+
+          @media (max-width: 767px) {
+            background-image: url('./density_Active_white.png');
+            background-color: $density-fill;
+          }
+        }
+
+        .bottom-color {
+          background-color: #e6527a;
+        }
+      }
+
+      &.rain-snow {
+        background-image: url('./rainSnow_Gray.png');
+        border-bottom: 7px solid #6d5dc9;
+
+        @media (max-width: 767px) {
+          background-position: 0 -7px;
+        }
+
+        &.selected {
+          background-image: url('./rainSnow_Active.png');
+
+          @media (max-width: 767px) {
+            background-image: url('./rainSnow_Active_white.png');
+            background-color: $rain-snow-fill;
+          }
+        }
+
+        .bottom-color {
+          background-color: #6d5dc9;
+        }
+      }
+
+      .title {
+        color: $dark-gray;
+        font-family: 'Arial', sans-serif;
+        font-size: 14px;
+        padding-top: 63px;
+        display: block;
+        height: 100%;
+        text-align: center;
+        text-decoration: none;
+
+        @media (max-width: 767px) {
+          font-size: 10px;
+          margin: 8px 0 0 46px;
+          text-align: left;
+        }
+      }
+    }
   }
 }

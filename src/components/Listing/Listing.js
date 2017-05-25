@@ -25,7 +25,10 @@ const ListItem = ({rank, cityState, onClick, name, selectedMap}) => {
           <text x="50%" y="50%" alignmentBaseline="middle" textAnchor="middle">{rank}</text>
         </g>
       </svg>
-      <div styleName="cityState">{cityState}</div>
+      <div styleName="cityState"><a href="#" onClick={e => {
+        e.preventDefault()
+        onClick()
+      }}>{cityState}</a></div>
     </li>
   )
 }

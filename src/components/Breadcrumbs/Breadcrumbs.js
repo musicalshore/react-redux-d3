@@ -2,9 +2,19 @@ import React from 'react'
 import './style.scss'
 
 const Breadcrumbs = () => (
-  <div styleName="container">
-    <a href="https://www.allstate.com/">Allstate</a> > <a href="https://www.allstate.com/tools-and-resources.aspx">Tools &amp; Resources</a> > <a href="https://www.allstate.com/tools-and-resources/car-insurance.aspx">Car Insurance</a> > America's Best Drivers
-  </div>
+  <nav aria-label="Breadcrumb" styleName="container">
+    <ol>
+      <li styleName="breadcrumb">
+        <a href="https://www.allstate.com/">Allstate</a>
+      </li>
+      <li styleName="breadcrumb">
+        <a href="https://www.allstate.com/tools-and-resources.aspx">Tools &amp; Resources</a>
+      </li>
+      <li styleName="breadcrumb">
+        <a aria-current="page" href="https://www.allstate.com/tools-and-resources/car-insurance.aspx">Car Insurance</a> &gt; America&apos;s Best Drivers
+      </li>
+    </ol>
+  </nav>
 )
 
 export default Breadcrumbs

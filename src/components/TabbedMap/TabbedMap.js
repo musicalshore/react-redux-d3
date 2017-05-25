@@ -68,7 +68,10 @@ const CityModalHeading = (props) => {
         <div className="city-rank">{message}</div>
       </div>
       <div className="close" onClick={closeModal}>
-        <div>Close</div><div className="times">&times;</div>
+        <div>Close</div><div className="times"><a href="#" onClick={e => {
+          e.preventDefault()
+          closeModal()
+        }}>&times;</a></div>
       </div>
     </div>
   )

@@ -13,11 +13,14 @@ import './style.scss'
 const App = () => (
   <div styleName="container">
     <Helmet title="America's Best Drivers Report" titleTemplate="Allstate %s">
-      <meta charSet="UTF-8" />
+      <html lang="en" amp />
+      <meta charSet="utf-8" />
+      <script async src="https://cdn.ampproject.org/v0.js"></script>
+      <link rel="canonical" href="https://www.allstate.com/tools-and-resources/americas-best-drivers.aspx" />
+      <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no"/>
       {/* <meta http-equiv="Pragma" content="no-cache" /> */}
       <meta name="keywords" content="best drivers, America's best drivers, best drivers in America, best U.S. drivers, 2016 America's best drivers report" />
       <meta name="description" content="Is your city home to the best drivers in America? Explore Allstate's annual best drivers report and interactive map." />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no"/>
 
       { /* OpenGraph */ }
       <meta property="fb:app_id" content="51244333578" />
@@ -27,6 +30,7 @@ const App = () => (
       <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="600" />
       <meta property="og:image:height" content="315" />
+      <style amp-boilerplate>{`body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}`}</style><noscript>{`<style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style>`}</noscript>
       <script src="https://use.fontawesome.com/934103e5b8.js" />
     </Helmet>
     <div styleName="content">

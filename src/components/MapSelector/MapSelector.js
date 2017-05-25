@@ -70,7 +70,6 @@ const MapSelector = class MapSelector extends React.Component {
       selectedYear: selectedMap.year
     })
     console.log('new STATE', this.state);
-
   }
   handleStateChange (event) {
     let stateFilter = event.target.value
