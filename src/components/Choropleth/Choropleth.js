@@ -91,13 +91,11 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   updateMarkers (selection, props = this.props) {
-    // console.log('this.props ', this.props);
     const markers = _.cloneDeep(props.selectedMap.mapData.markers)
+    selection.selectAll('g').remove()
     const g = selection.selectAll('g')
       .data(markers)
-    g.exit().remove()
     g.enter().append('g')
-      .merge(g)
       .on('click', this.onMarkerClick)
       .append('circle')
         .attr('cx', marker => {
