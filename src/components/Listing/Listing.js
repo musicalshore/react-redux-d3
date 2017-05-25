@@ -2,20 +2,7 @@ import $ from 'jquery'
 import _ from 'lodash/fp'
 import React from 'react'
 import PropTypes from 'prop-types'
-// import Scroll from 'react-scroll'
 import './style.scss'
-
-// const Events = Scroll.Events
-// const scroll = Scroll.animateScroll
-// const scrollSpy = Scroll.scrollSpy
-// const scroller = Scroll.scroller
-// const PagedListing = class PagedListing extends React.Component {
-
-//   constructor () {
-//     super()
-//   }
-
-// }
 
 const ListItem = ({rank, cityState, onClick, name, selectedMap}) => {
   return (
@@ -84,24 +71,8 @@ const Listing = class Listing extends React.Component {
     this.setState({numberOfPages})
   }
 
-  // componentDidUpdate () {
-  //   if ((this.listing.clientHeight - this.listing.scrollTop) > 0) {
-  //     $(this.next).css({'color': '#666', 'font-weight': 600})
-  //   } else {
-  //     $(this.next).css({'color': '#bcbcbc', 'font-weight': 100})
-  //   }
-  // }
-
   render () {
     let {selectedMap, onCitySelect, selectedCity} = this.props
-    console.log("selectedMap ", selectedMap);
-    // const sortedMarkers = _.sortBy('rank', selectedMap.mapData.markers)
-    // let sections = []
-    // for (let i = 0; i < selectedMap.mapData.markers.length; i = i + 7) {
-    //   let section = _.slice(i, i + 7, sortedMarkers)
-    //   const listItems = _.map(ranking => <ListItem key={ranking.rank} {...ranking} onClick={() => onCitySelect(ranking)} />, section)
-    //   sections.push(<ul>{listItems}</ul>)
-    // }
     const listItems = _.map(ranking => {
       return (
         <ListItem

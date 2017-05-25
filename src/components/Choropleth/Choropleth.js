@@ -32,7 +32,6 @@ function zoomToCity (props) {
   let lon = selectedCity.latLng[1]
   let point = { 'type': 'Point', 'coordinates': [lon, lat] }
   const centroid = path.centroid(point)
-  console.log('centroid', centroid, point, selectedCity)
   const x = centroid[0]
   const y = centroid[1]
   const scale = 4
@@ -40,7 +39,6 @@ function zoomToCity (props) {
   const translateX = width / 2 - scale * x
   const translateY = height / 2 - scale * y
 
-  console.log('scale', scale, 'translate', translateX, translateY)
 
   d3.select('svg').transition()
     .duration(750)
@@ -71,7 +69,6 @@ const Choropleth = class Choropleth extends React.Component {
     this.state = {scale: zoom.scaleExtent()[0]}
   }
   handleRange (scale) {
-    console.log("handleRange  scale", scale)
     let {width, height} = this.props
     // // this.setState({scale: event})
     const translateX = (width * 1000) / 2
@@ -211,7 +208,6 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   onMarkerClick (d) {
- console.log("onMarkerClick ", d);
     this.props.onMarkerClick(d)
   }
   componentDidMount () {
@@ -239,16 +235,14 @@ const Choropleth = class Choropleth extends React.Component {
       // d3.select(this.g).call(this.updateNumbers, nextProps)
     }
     // d3.select(this.svg).call(zoomIn, nextProps)
-    if (!nextProps.selectedCity) {
-      // d3.select(this.svg).call(zoomOut)
-      // zoomOut()
-    } else {
+    if (nextProps.selectedCity) {
       zoomToCity(nextProps)
     }
+    if (nextProps.selectedMap.stateFilter && (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
+      let firstCity = _.head(nextProps.selectedMap.mapData.markers)
+      zoomToCity({width: nextProps.width, height: nextProps.height, selectedCity: firstCity})
+    }
 
-    //  else {
-    //   d3.select(this.svg).call(zoomIn, nextProps)
-    // }
     return false
   }
 
