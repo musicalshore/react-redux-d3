@@ -225,7 +225,7 @@ const Choropleth = class Choropleth extends React.Component {
 
   shouldComponentUpdate (nextProps, nextState) {
     let { selectedMap, selectedCity } = this.props
-    console.log('shouldComponentUpdate', selectedCity, nextProps.selectedCity)
+    console.log('shouldComponentUpdate', selectedCity, nextProps)
     if ((selectedMap.id !== nextProps.selectedMap.id) ||
         (selectedMap.year !== nextProps.selectedMap.year) ||
         (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
@@ -241,6 +241,8 @@ const Choropleth = class Choropleth extends React.Component {
     if (nextProps.selectedMap.stateFilter && (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
       let firstCity = _.head(nextProps.selectedMap.mapData.markers)
       zoomToCity({width: nextProps.width, height: nextProps.height, selectedCity: firstCity})
+    } else if (nextProps.selectedMap.stateFilter === '') {
+      zoomOut()
     }
 
     return false
