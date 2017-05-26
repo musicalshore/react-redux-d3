@@ -152,6 +152,13 @@
           // padding-right: 30%;
         }
       }
+
+      &.disabled {
+        opacity: 0.5;
+        text-align: center;
+        padding-top: 63px;
+        border-bottom: 7px solid #bdbdbd;
+      }
     }
   }
 }

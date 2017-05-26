@@ -1,6 +1,6 @@
 import _ from 'lodash/fp'
 import {combineReducers} from 'redux'
-import {MAPS, DEFAULT_MAP, CURRENT_YEAR, US_STATES} from 'constants/maps'
+import {MAPS, DEFAULT_MAP, CURRENT_YEAR, TOP_CITY} from 'constants/maps'
 import {SELECT_MAP, SELECT_CITY, FILTER_STATE} from 'constants/actionTypes'
 import BEST_DRIVER_DATA from 'constants/bestDriver'
 
@@ -66,15 +66,26 @@ const mapData = {mapData: getMapData(initialMap)}
 
 const initialState = {
   selectedMap: _.extend(initialMap, mapData),
-  selectedCity: null
+  selectedCity: null,
+  disableOthers: false
 }
 
 const selectedMap = (state = initialState.selectedMap, action) => {
   // console.log('selectedMap::state', state, 'action', action)
   switch (action.type) {
     case SELECT_MAP:
-      const mapData = {mapData: getMapData(action.selectedMap)}
-      const result = _.extend(action.selectedMap, mapData)
+      let mapData
+      let result
+      mapData = {mapData: getMapData(action.selectedMap)}
+      // if (parseInt(action.selectedMap.year) > 2013) {
+      //   mapData = {mapData: getMapData(action.selectedMap)}
+      // } else {
+      //   let map = _.extend(action.selectedMap, _.find(['id', TOP_CITY], MAPS))
+      //   console.log('mapmapmapmap',map);
+
+      //   mapData = {mapData: getMapData(map), disableOthers: true}
+      // }
+      result = _.extend(action.selectedMap, mapData)
       return result
     case FILTER_STATE:
       return _.extend(state, {stateFilter: action.stateFilter})

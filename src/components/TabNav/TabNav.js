@@ -2,7 +2,7 @@ import _ from 'lodash/fp'
 import React from 'react'
 import PropTypes from 'prop-types'
 // import Tab from 'components/Tab'
-import {MAPS} from 'constants/maps'
+import {MAPS, TOP_CITY} from 'constants/maps'
 import './style.scss'
 
 const Tab = ({ id, title, selectedMap, onClick }) => {
@@ -11,13 +11,21 @@ const Tab = ({ id, title, selectedMap, onClick }) => {
     e.preventDefault()
     onClick()
   }
-  return (
-    <li role="tab" styleName={`${_.kebabCase(id)} ${selectedMap.id === id ? 'selected' : ''}`}
+  let result
+  console.log('TOP_CITY', TOP_CITY, selectedMap)
+  if (id === TOP_CITY || (id !== TOP_CITY && parseInt(selectedMap.year) > 2013)) {
+    result = <li role="tab" styleName={`${_.kebabCase(id)} ${selectedMap.id === id ? 'selected' : ''}`}
       onClick={handleClick}
-    >
-      <a href="#" onClick={handleClick} styleName="title"><span>{title}</span></a>
+      >
+        <a href="#" onClick={handleClick} styleName="title"><span>{title}</span></a>
+      </li>
+  } else {
+    result = <li styleName={`${_.kebabCase(id)} disabled`}>
+      <div>{title}</div>
+      <div>No data available</div>
     </li>
-  )
+  }
+  return result
 }
 
 Tab.propTypes = {
