@@ -115,7 +115,7 @@
   .modal-content {
     background-color: #fff;
     border: 1px #e8e8e8;
-    border-radius: 5px;
+    border-radius: 15px;
     height: 467px;
     left: 50%;
     // left: 448px;
@@ -126,12 +126,20 @@
     width: 452px;
     z-index: 999;
     // padding-left: 26px;
+    @media (max-width: 767px) {
+      width: 90%;
+      height: 90%;
+      top: 48%;
+
+      // left: 17px;
+    }
   }
 
   .city-modal-container {
     background-color: #fff;
     font-family: 'Arial', sans-serif;
     position: relative;
+    border-radius: 5px;
     // border: 1px #e8e8e8;
     // border-radius: 5px;
     &.top-city {
@@ -152,15 +160,24 @@
     // flex-direction: column;
     padding-bottom: 19px;
 
+    .city-modal-city-container {
+      width: 85%;
+    }
+
     .city-name,
     .city-rank {
       margin-left: 73px;
+      white-space: nowrap;
     }
 
     &.no-badge {
       .city-name,
       .city-rank {
         margin-left: 26px;
+
+        @media (max-width: 767px) {
+          margin-left: 15px;
+        }
       }
     }
 
@@ -224,19 +241,26 @@
       cursor: pointer;
       // border: 1px solid black;
       align-self: center;
-      margin-left: 130px;
       font-size: $font-size-base;
       color: rgb(0, 117, 201);
       line-height: 18px;
       display: flex;
+      justify-content: flex-end;
+      text-align: right;
+      @media (max-width: 767px) {
+        div:first-child {
+          display: none;
+        }
+      }
 
       .times {
         display: inline-block;
         margin-left: 6px;
-        margin-right: 25px;
         margin-top: 1px;
         font-size: 24px;
-
+        @media (max-width: 767px) {
+          margin-left: 24px;
+        }
         a {
           text-decoration: none;
           color: rgb(0, 117, 201);
@@ -273,6 +297,10 @@
     & > h5,
     & > div {
       margin-left: 96px;
+
+      @media (max-width: 767px) {
+        margin-left: 15px;
+      }
     }
 
     & > div {
@@ -283,6 +311,9 @@
     & > div > span:first-child {
       display: inline-block;
       width: 213px;
+      @media (max-width: 767px) {
+        width: 80%;
+      }
       // margin-left: 82px;
     }
 
@@ -325,7 +356,7 @@
 
     .city-data-container,
     .suburban-data-container {
-      height: 100%;
+      height: 90%;
       line-height: 18px;
       padding-top: 19px;
 
@@ -345,23 +376,50 @@
     .city-data-container {
       border-right: 1px solid #e8e8e8;
       margin-left: 26px;
-      width: 221px;
+      width: 50%;
+
+      @media (max-width: 767px) {
+        margin-left: 15px;
+        width: 100%;
+        border-right: 0;
+        padding-bottom: 16px;
+      }
 
       & > h5,
       & > div {
         margin-right: 34px;
         width: 163px;
+        @media (max-width: 767px) {
+          margin-right: 0;
+          width: 60%;
+        }
       }
     }
 
     .suburban-data-container {
       margin-left: 23px;
-      width: 227px;
+      width: 50%;
 
       & > h5,
       & > div {
         margin-right: 29px;
+
+        @media (max-width: 767px) {
+          margin-right: 0;
+          width: 60%;
+        }
       }
+
+      @media (max-width: 767px) {
+        margin-left: 15px;
+        width: 100%;
+        border-top: 1px solid #e8e8e8;
+        padding-top: 17px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      flex-direction: column;
     }
   }
 
@@ -370,6 +428,7 @@
     background-color: #f8f8f8;
     color: #4d4d4d;
     display: flex;
+    border-radius: 5px;
     flex-direction: column;
     font-size: 14px;
     height: 54px;
@@ -378,6 +437,10 @@
 
     & > div {
       margin-left: 26px;
+
+      @media (max-width: 767px) {
+        margin-left: 15px;
+      }
     }
   }
 }

@@ -63,15 +63,18 @@ const CityModalHeading = (props) => {
 
   return (
     <div className={`city-modal-heading-container ${additionalClasses}`}>
-      <div>
+      <div className="city-modal-city-container">
         <h2 className="city-name">{selectedCity.cityState}</h2>
         <div className="city-rank">{message}</div>
       </div>
       <div className="close" onClick={closeModal}>
-        <div>Close</div><div className="times"><a href="#" onClick={e => {
-          e.preventDefault()
-          closeModal()
-        }}>&times;</a></div>
+        <div>Close</div>
+        <div className="times">
+          <a href="#" onClick={e => {
+            e.preventDefault()
+            closeModal()
+          }}>&times;</a>
+        </div>
       </div>
     </div>
   )
