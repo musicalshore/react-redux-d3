@@ -8,7 +8,7 @@ const rimraf = require('rimraf')
 
 module.exports = {
   context: path.join(__dirname, '..', 'src'),
-  entry: 'index.js',
+  entry: ['babel-polyfill', 'index.js'],
   output: {
     path: path.join(__dirname, '..', 'dist'),
     filename: '[name].[hash].js',
