@@ -38,14 +38,14 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor'],
-      minChunks: 2
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['manifest']
     })
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: ['vendor'],
+    //   minChunks: 2
+    // }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: ['manifest']
+    // })
   ],
   resolve: {
     modules: ['node_modules', 'src'],
