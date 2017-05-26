@@ -23,8 +23,8 @@ const result = _.transform.convert({'immutable': false})((accumulator, value) =>
     switch (value.City) {
       case 'NEW YORK':
         lastYearsData = _.find({City: 'New York City', State: value.State}, bestDriver2016)
-        oldCity = lastYearsData.City
-        newCity = 'New York'
+        oldCity = value.City
+        newCity = lastYearsData.City
         value.City = newCity
         break
       case 'BOISE CITY':
