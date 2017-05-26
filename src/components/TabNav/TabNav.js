@@ -13,7 +13,7 @@ const Tab = ({ id, title, selectedMap, onClick }) => {
   }
   let result
   console.log('TOP_CITY', TOP_CITY, selectedMap)
-  if (id === TOP_CITY || (id !== TOP_CITY && parseInt(selectedMap.year) > 2013)) {
+  if (id === TOP_CITY || (id !== TOP_CITY && parseInt(selectedMap.year) > 2015)) {
     result = <li role="tab" styleName={`${_.kebabCase(id)} ${selectedMap.id === id ? 'selected' : ''}`}
       onClick={handleClick}
       >
