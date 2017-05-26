@@ -237,13 +237,13 @@ const Choropleth = class Choropleth extends React.Component {
     // d3.select(this.svg).call(zoomIn, nextProps)
     if (nextProps.selectedCity) {
       zoomToCity(nextProps)
-    }
-    if (nextProps.selectedMap.stateFilter && (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
+    } else if (nextProps.selectedMap.stateFilter && (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
       let firstCity = _.head(nextProps.selectedMap.mapData.markers)
       zoomToCity({width: nextProps.width, height: nextProps.height, selectedCity: firstCity})
-    } else if (nextProps.selectedMap.stateFilter === '') {
-      zoomOut()
     }
+    // else if (nextProps.selectedCity && nextProps.selectedMap.stateFilter === '') {
+    //   zoomOut()
+    // }
 
     return false
   }
