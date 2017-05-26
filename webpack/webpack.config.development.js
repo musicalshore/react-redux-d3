@@ -41,15 +41,15 @@ module.exports = {
       'environment': '\'development\'',
       NODE_ENV: JSON.stringify('development')
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor'],
-      minChunks: function (module) {
-        return module.context && module.context.indexOf('node_modules') !== -1
-      }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['manifest']
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: ['vendor'],
+    //   minChunks: function (module) {
+    //     return module.context && module.context.indexOf('node_modules') !== -1
+    //   }
+    // }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: ['manifest']
+    // }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({template: path.join(__dirname, '..', 'src', 'templates', 'index.ejs')}),
     new webpack.ProvidePlugin({
