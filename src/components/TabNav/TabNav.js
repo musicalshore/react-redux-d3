@@ -21,8 +21,10 @@ const Tab = ({ id, title, selectedMap, onClick }) => {
       </li>
   } else {
     result = <li styleName={`${_.kebabCase(id)} disabled`}>
-      <div>{title}</div>
-      <div>No data available</div>
+      <div>
+        <span>{title}</span>
+        <span>No data available</span>
+      </div>
     </li>
   }
   return result
