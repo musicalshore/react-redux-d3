@@ -159,14 +159,14 @@
         padding-top: 63px;
         border-bottom: 7px solid #bdbdbd;
         cursor: not-allowed;
-
+        span {
+          display: block;
+        }
         @media (max-width: 767px) {
           font-size: 12px;
           padding: 8px 0 0 46px;
           text-align: left;
           span {
-            display: block;
-
             margin-right: 0;
           }
         }
