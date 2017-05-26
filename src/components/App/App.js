@@ -13,7 +13,7 @@ import './style.scss'
 const App = () => (
   <div styleName="container">
     <Helmet title="America's Best Drivers Report" titleTemplate="Allstate %s">
-      <html lang="en" amp />
+      <html lang="en" />
       <meta charSet="utf-8" />
       <link rel="canonical" href="https://www.allstate.com/tools-and-resources/americas-best-drivers.aspx" />
       <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no"/>
