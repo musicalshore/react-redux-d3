@@ -1,3 +1,5 @@
+@import "style/index.scss";
+
 .container {
   display: flex;
   justify-content: center;
@@ -11,10 +13,12 @@
   .mobile-header {
     display: none;
   }
+  
   @media (max-width: 767px) {
     .desktop-header {
       display: none;
     }
+
     .mobile-header {
       display: block;
     }

@@ -19,7 +19,11 @@ if (isDevelopment) {
     }
   }))
 
-  app.use(require('webpack-hot-middleware')(compiler))
+  app.use(require('webpack-hot-middleware')(compiler, {
+    path: config.output.publicPath + '__what',
+    heartbeat: 3 * 1000
+  }))
+
 
   app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'src', 'templates', 'index.ejs'))

@@ -1,0 +1,32 @@
+@import "~sanitize.css";
+@import "./index.scss";
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: $white;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+
+  a {
+    text-decoration: none;
+
+    &:link,
+    &:visited {
+      color: #5e8b2d;
+    }
+
+    &:active,
+    &:hover {
+      color: #5e8b2d;
+    }
+  }
+
+  .app-container {
+    height: 100%;
+  }
+}

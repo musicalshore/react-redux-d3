@@ -1,0 +1,4 @@
+@mixin button($font-size) {
+  font-size: $font-size;
+  color: $lighter-gray;
+}

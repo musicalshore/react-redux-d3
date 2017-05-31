@@ -1,4 +1,4 @@
-@import 'themes/variables.scss';
+@import "style/index.scss";
 
 .container {
   display: flex;
@@ -92,6 +92,10 @@
           color: #6db33f;
         }
       }
+    }
+
+    @include mq($until: tablet) {
+      display: none;
     }
   }
 

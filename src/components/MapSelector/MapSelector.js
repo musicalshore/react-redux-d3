@@ -69,7 +69,6 @@ const MapSelector = class MapSelector extends React.Component {
       selectedStateName,
       selectedYear: selectedMap.year
     })
-    console.log('new STATE', this.state);
   }
   handleStateChange (event) {
     let stateFilter = event.target.value
@@ -79,7 +78,6 @@ const MapSelector = class MapSelector extends React.Component {
     // this.props.onFilterState(stateFilter)
   }
   componentWillReceiveProps (nextProps) {
-    console.log('componentWillReceiveProps ', nextProps)
     let {selectedMap} = this.props
 
     if ((nextProps.selectedMap.stateFilter !== selectedMap.stateFilter) ||
@@ -94,7 +92,6 @@ const MapSelector = class MapSelector extends React.Component {
       year: CURRENT_YEAR,
       stateFilter: ''
     })
-    console.log('newMap', newMap);
 
     this.props.onMapSelect(newMap)
   }
@@ -103,8 +100,6 @@ const MapSelector = class MapSelector extends React.Component {
       year: this.state.selectedYear,
       stateFilter: this.state.stateFilter
     })
-    console.log('newMap', newMap);
-
     this.props.onMapSelect(newMap)
   }
   render () {
@@ -115,19 +110,23 @@ const MapSelector = class MapSelector extends React.Component {
     return (
       <div styleName="container">
         <div styleName="selector-container">
-          <label htmlFor="year">Year</label>
-          <div styleName="select-box year">
-            <select value={this.state.selectedYear} onChange={this.handleYearChange}>
-              {years}
-            </select>
-          </div>
-          <label styleName="state-label" htmlFor="usState">State</label>
-          <div styleName="select-box state">
-            <select id="usState" value={this.state.stateFilter} onChange={this.handleStateChange}>
-              <option key="ALL" value="">All</option>
-              {usStates}
-            </select>
-          </div>
+          {/*<div styleName="year-select">*/}
+            <label styleName="year-label" htmlFor="year">Year</label>
+            <div styleName="select-box year">
+              <select id="year" value={this.state.selectedYear} onChange={this.handleYearChange}>
+                {years}
+              </select>
+            </div>
+          {/*</div>*/}
+          {/*<div styleName="state-select">*/}
+            <label styleName="state-label" htmlFor="usState">State</label>
+            <div styleName="select-box state">
+              <select id="usState" value={this.state.stateFilter} onChange={this.handleStateChange}>
+                <option key="ALL" value="">All</option>
+                {usStates}
+              </select>
+            </div>
+          {/*</div>*/}
           <button type="button" onClick={this.handleClick}>Go</button>
         </div>
         <div styleName="clear-search-container">

@@ -1,0 +1,35 @@
+$font-size-base: 100%; // ~16px
+$font-size-small: 0.875em; // ~14px
+$font-size-smaller: 0.75em; // ~12px
+$font-size-smallest: 0.625em; // ~10px
+$font-size-normal: 0.938em; // ~15px
+$font-size-large: 1.125em; // ~18px
+$font-size-larger: 1.5em; // ~24px
+$font-size-largest: 1.625em; // ~26px
+$font-family-base: 'Arial', Helvetica, sans-serif;
+
+.font-family {
+  font-family: $font-family-base;
+}
+
+.font-normal {
+  @extend .font-family;
+
+  font-size: $font-size-small;
+  color: $darker-gray; // rgb(51, 51, 51);
+}
+
+.font-bold {
+  @extend .font-family;
+
+  font-size: $font-size-small;
+  color: $darker-gray; // rgb(51, 51, 51);
+  font-weight: bold;
+}
+
+.mobile-font-tab {
+  @extend .font-family;
+
+  font-size: $font-size-smallest;
+  color: $white;
+}

@@ -22,7 +22,7 @@ module.exports = {
     main: [
       'babel-polyfill',
       'react-hot-loader/patch',
-      'webpack-hot-middleware/client?http://0.0.0.0:3333&reload=true',
+      'webpack-hot-middleware/client?http://0.0.0.0:3333&path=/__what&timeout=6000&reload=true',
       'index.js'
     ]
   },
@@ -36,7 +36,7 @@ module.exports = {
     rules: require('./webpack.loaders.js')
   },
   plugins: [
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin({filename: 'style.css', disable: true}),
     new webpack.DefinePlugin({
       'environment': '\'development\'',
       NODE_ENV: JSON.stringify('development')
@@ -50,6 +50,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: ['manifest']
     }),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({template: path.join(__dirname, '..', 'src', 'templates', 'index.ejs')}),
     new webpack.ProvidePlugin({

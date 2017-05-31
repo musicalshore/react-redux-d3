@@ -1,10 +1,13 @@
-@import 'themes/variables.scss';
+@import "style/index.scss";
 
 .container {
   align-self: center;
   align-items: center;
   margin-bottom: 9px;
 
+  // @include mq($until: mobile) {
+
+  // }
   @media (max-width: 767px) {
     margin-bottom: 21px;
     width: 95%;
@@ -15,9 +18,14 @@
     display: flex;
     height: 40px;
     align-self: center;
+    justify-content: center;
     align-items: center;
     margin-bottom: 15px;
   }
+
+  .year-select {}
+  .state-select {}
+  .year-label {}
 
   button,
   label,
@@ -91,56 +99,7 @@
       -webkit-appearance: none;
     }
   }
-  // select {
-  //   .year & {
-  //     width: 130%;
-  //   }
 
-  //   .state & {
-  //     width: 130%;
-  //   }
-  // position:relative;
-  // display:inline-block;
-  // padding:6px 0;
-  // margin-bottom:15px;
-  // min-width:187px;
-  // font:bold 14px/20px 'Open Sans',sans-serif;
-  // color:#0096d6;
-  // background-color:#fff;
-  // border:1px solid #c8c9cb;
-  // text-decoration:none;
-  // text-transform:uppercase;
-  // cursor:pointer;
-
-  // border: $border;
-  // background: transparent;
-  // appearance: none;
-  // }
-
-  select:first-child {
-    // margin-right: 40px;
-  }
-
-  select:nth-child(2) {
-    // width: 96px;
-  }
-
-  label {
-    // @extend .font-normal;
-    // line-height: 36px;
-    // padding: 0 10px 0 30px;
-    // @extend .font-normal;
-    // display: inline-block;
-    // margin-right: 10px;
-    // background: url(./select-arrow.png) no-repeat right center;
-    // select {
-    //   @extend .font-bold;
-    //   border-radius: 4px;
-    //   margin-left: 10px;
-    //   height: 36px;
-    //   width: 100px;
-    // }
-  }
 
   label.state-label {
     margin-left: 40px;

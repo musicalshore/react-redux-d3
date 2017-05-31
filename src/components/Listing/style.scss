@@ -1,4 +1,4 @@
-@import 'themes/variables.scss';
+@import "style/index.scss";
 
 .container {
   border-left: 1px solid #f0f0f0;
@@ -7,14 +7,14 @@
   overflow-y: scroll;
   padding-left: 20px;
 
-  @media (max-width: 767px) {
+  @include mq($until: tablet) {
     background-color: $white-smoke;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     height: 430px;
-    // overflow: hidden;
+    overflow: hidden;
     padding-left: 0;
   }
 

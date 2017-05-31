@@ -77,7 +77,6 @@ const Listing = class Listing extends React.Component {
       return (
         <ListItem
           ref={item => { this.listElements.push(item) } }
-          name={`position-${maxPosition++}`}
           key={ranking.rank} {...ranking} selectedMap={selectedMap} onClick={() => onCitySelect(ranking)}
         />
       )
