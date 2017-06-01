@@ -75,7 +75,7 @@ export const US_STATES = [
   },
   {
       name: 'Washington, D.C.',
-      id: 'DC'
+      id: 'D.C.'
   },
   {
       name: 'Florida',
