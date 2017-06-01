@@ -61,11 +61,11 @@
 }
 
 .container {
-  @include mq($until: desktop) {
+  @include mq($until: tablet) {
     display: none;
   }
 
-  @include mq($from: desktop) {
+  @include mq($from: tablet) {
     position: relative;
   }
   .background {

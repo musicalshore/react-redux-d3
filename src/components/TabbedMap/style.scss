@@ -4,13 +4,13 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  
   .map-container {
     border: 1px solid #f0f0f0;
     display: flex;
     // min-height: 740px;
 
-    @media (max-width: 767px) {
+    @include mq($until: tablet) {
       flex-direction: column;
     }
   }
@@ -18,19 +18,21 @@
   .top-listings {
     width: 25%;
 
-    @media (max-width: 767px) {
+    @include mq($until: tablet) {
       width: 100%;
     }
   }
 
   .maps {
-    width: 75%;
-    min-width: 720px;
-
-    @media (max-width: 767px) {
-      width: 100%;
-      min-width: 100%;
+    @include mq($from: tablet) {
+      width: 75%;
+      // min-width: 720px;
     }
+
+    // @media (max-width: 767px) {
+    //   width: 100%;
+    //   min-width: 100%;
+    // }
 
     .timeLine-SocialContainer {
       display: flex;

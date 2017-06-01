@@ -38,7 +38,9 @@ const App = () => (
         <div styleName="flex-item">4</div>*/}
           <Breadcrumbs />
           <Banner />
-          <Report />
+          <div styleName="report-container">
+            <Report />
+          </div>
     </div>
   </div>
 )
