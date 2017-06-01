@@ -1,0 +1,364 @@
+@import "style/index.scss";
+
+:global .ReactModal__Body--open {
+  overflow: hidden;
+}
+
+:global .ReactModalPortal {
+  height: 100%;
+
+  .modal-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    outline: none;
+    z-index: 10;
+
+    @include mq($from: desktop) {
+      background-color: rgba(128, 128, 128, 0.5);
+    }
+
+    @include mq($until: desktop) {
+      width: 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      overflow-x: hidden;
+      // height: 100%;
+      transition: 0.5s;
+    }
+
+    &.ReactModal__Overlay--after-open {
+      @include mq($until: desktop) {
+        // transition: 0.9s;
+        width: 100%;
+      }
+    }
+
+    &.ReactModal__Overlay--before-close {
+      @include mq($until: desktop) {
+        width: 0;
+      }
+    }
+  }
+
+  .modal-content {
+    background-color: #fff;
+    position: absolute;
+    height: 100%;
+
+    @include mq($until: tablet) {
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
+
+    @include mq($from: desktop) {
+      height: 467px;
+      width: 452px;
+      border: 1px #e8e8e8;
+      border-radius: 15px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &.ReactModal__Content--after-open {}
+    &.ReactModal__Content--before-close {}
+  }
+
+
+  .city-modal-container {
+    background-color: #fff;
+    position: relative;
+    border-radius: 5px;
+  }
+
+  .city-modal-heading-container {
+    display: flex;
+    // flex-direction: column;
+    padding-bottom: 19px;
+
+    .city-modal-city-container {
+      width: 85%;
+    }
+
+    .city-name,
+    .city-rank {
+      margin-left: 73px;
+      white-space: nowrap;
+    }
+
+    &.no-badge {
+      .city-name,
+      .city-rank {
+        margin-left: 26px;
+
+        @media (max-width: 767px) {
+          margin-left: 15px;
+        }
+      }
+    }
+
+    &.this-years-best {
+      background-image: url('./icon-best.png');
+      background-position: 26px 18px;
+      background-repeat: no-repeat;
+      background-size: 34px 45px;
+    }
+
+    &.badge {
+      background-position: 26px 18px;
+      background-repeat: no-repeat;
+      background-size: 34px 45px;
+
+      &.this-years-best {
+        background-image: url('./icon-best.png');
+      }
+
+      &.most-improved {
+        background-image: url('./icon-improved.png');
+      }
+
+      &.new-location {
+        background-image: url('./icon-new.png');
+        background-size: 45px 45px;
+      }
+    }
+
+    .city-name {
+      color: #4d4d4d;
+      font-family: 'Arial', sans-serif;
+      font-size: 24px;
+      font-weight: normal;
+      line-height: 24px;
+      margin-bottom: 0;
+      margin-top: 26px;
+    }
+
+    .city-rank {
+      color: #4d4d4d;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 14px;
+      margin-top: 10px;
+      padding-top: 0;
+
+      span {
+        color: #333;
+        // font-variant-numeric: ordinal;
+        font-weight: bold;
+
+        &.density-line,
+        &.rain-snow-line {
+          font-weight: 100;
+        }
+      }
+    }
+
+    .close {
+      cursor: pointer;
+      // border: 1px solid black;
+      align-self: center;
+      font-size: $font-size-base;
+      color: rgb(0, 117, 201);
+      line-height: 18px;
+      display: flex;
+      justify-content: flex-end;
+      text-align: right;
+      @media (max-width: 767px) {
+        div:first-child {
+          display: none;
+        }
+      }
+
+      .times {
+        display: inline-block;
+        margin-left: 6px;
+        margin-top: 1px;
+        font-size: 24px;
+        @media (max-width: 767px) {
+          margin-left: 24px;
+        }
+        a {
+          text-decoration: none;
+          color: rgb(0, 117, 201);
+        }
+      }
+    }
+  }
+
+  .rankings-container {
+    border-top: 1px solid #e8e8e8;
+    padding-bottom: 20px;
+
+    h5 {
+      font-size: 14px;
+      margin: 0;
+      margin-top: 23px;
+    }
+
+    .arrow {
+      background-size: 16px 16px;
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+    }
+
+    .up {
+      background-image: url('./icon-up.png');
+    }
+
+    .down {
+      background-image: url('./icon-down.png');
+    }
+
+    & > h5,
+    & > div {
+      margin-left: 96px;
+
+      @media (max-width: 767px) {
+        margin-left: 15px;
+      }
+    }
+
+    & > div {
+      font-size: 18px;
+      line-height: 32px;
+    }
+
+    & > div > span:first-child {
+      display: inline-block;
+      width: 213px;
+      @media (max-width: 767px) {
+        width: 80%;
+      }
+      // margin-left: 82px;
+    }
+
+    & > div > .rank {
+      display: inline-block;
+      margin-left: 22px;
+    }
+
+    .overall-ranking {
+      color: #0096d6;
+
+      span.rank {
+        margin-left: 6px;
+      }
+    }
+
+    .population-ranking {
+      color: #dd2153;
+    }
+
+    .rain-snow-ranking {
+      color: #6d5dc9;
+    }
+
+    .last-years-ranking {
+      color: #757575;
+    }
+  }
+
+  .additional-data {
+    border-top: 1px solid #e8e8e8;
+    color: #4d4d4d;
+    display: flex;
+    font-size: 14px;
+
+    h5 {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .city-data-container,
+    .suburban-data-container {
+      height: 90%;
+      line-height: 18px;
+      padding-top: 19px;
+
+      & > div:nth-of-type(2) {
+        margin-top: 16px;
+      }
+
+      & > div:nth-of-type(3) {
+        margin-top: 15px;
+      }
+
+      & > div > span {
+        font-weight: bold;
+      }
+    }
+
+    .city-data-container {
+      border-right: 1px solid #e8e8e8;
+      margin-left: 26px;
+      width: 50%;
+
+      @media (max-width: 767px) {
+        margin-left: 15px;
+        width: 100%;
+        border-right: 0;
+        padding-bottom: 16px;
+      }
+
+      & > h5,
+      & > div {
+        margin-right: 34px;
+        width: 163px;
+        @media (max-width: 767px) {
+          margin-right: 0;
+          width: 60%;
+        }
+      }
+    }
+
+    .suburban-data-container {
+      margin-left: 23px;
+      width: 50%;
+
+      & > h5,
+      & > div {
+        margin-right: 29px;
+
+        @media (max-width: 767px) {
+          margin-right: 0;
+          width: 60%;
+        }
+      }
+
+      @media (max-width: 767px) {
+        margin-left: 15px;
+        width: 100%;
+        border-top: 1px solid #e8e8e8;
+        padding-top: 17px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
+  }
+
+  .footnotes-container {
+    align-items: flex-start;
+    background-color: #f8f8f8;
+    color: #4d4d4d;
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+    font-size: 14px;
+    height: 54px;
+    justify-content: center;
+    line-height: 14px;
+
+    & > div {
+      margin-left: 26px;
+
+      @media (max-width: 767px) {
+        margin-left: 15px;
+      }
+    }
+  }
+}
