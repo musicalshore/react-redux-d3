@@ -41,7 +41,6 @@ const CityModal = class CityModal extends React.Component {
     const props = this.props
     let {selectedMap, modalIsOpen} = props
     if (!modalIsOpen) {
-      console.log('MOBILE IS NOT OPEN', props)
       return null
     } else {
       return (

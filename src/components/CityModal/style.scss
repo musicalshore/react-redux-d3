@@ -5,7 +5,6 @@
 }
 
 :global .ReactModalPortal {
-  height: 100%;
 
   .modal-overlay {
     position: fixed;
@@ -15,14 +14,14 @@
     right: 0;
     outline: none;
     z-index: 10;
-
+    height: 100%;
     @include mq($from: desktop) {
       background-color: rgba(128, 128, 128, 0.5);
     }
 
     @include mq($until: desktop) {
       width: 0;
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: #fff;
       overflow-x: hidden;
       // height: 100%;
       transition: 0.5s;
@@ -47,7 +46,7 @@
     position: absolute;
     height: 100%;
 
-    @include mq($until: tablet) {
+    @include mq($until: desktop) {
       left: 0;
       top: 0;
       width: 100%;

@@ -1,4 +1,5 @@
 /* eslint-disable no-return-assign */
+import $ from 'jquery'
 import _ from 'lodash/fp'
 import React from 'react'
 import PropTypes from 'prop-types'
@@ -24,8 +25,12 @@ function zoomed () {
 
 function zoomIn (props, state) {
   let { width, height } = props
-
 }
+
+// function sizeChange() {
+// 	    d3.select('g').attr('transform', 'scale(' + $('#container').width()/900 + ")");
+// 	    $('svg').height($('#container').width()*0.618);
+// 	}
 function zoomToCity (props) {
   let { width, height, selectedCity } = props
   let lat = selectedCity.latLng[0]
@@ -66,7 +71,14 @@ const Choropleth = class Choropleth extends React.Component {
     this.updateMarkers = this.updateMarkers.bind(this)
     this.updateNumbers = this.updateNumbers.bind(this)
     this.handleRange = this.handleRange.bind(this)
-    this.state = {scale: zoom.scaleExtent()[0]}
+    this.resize = this.resize.bind(this)
+    this.containerRef = this.containerRef.bind(this)
+
+    this.state = {
+      scale: zoom.scaleExtent()[0]
+      // width: 715,
+      // height: 625
+    }
   }
   handleRange (scale) {
     let {width, height} = this.props
@@ -214,17 +226,39 @@ const Choropleth = class Choropleth extends React.Component {
   onMarkerClick (d) {
     this.props.onMarkerClick(d)
   }
+
+  containerRef (el) {
+    this.container = el
+  }
   componentDidMount () {
-    let { width, height } = this.props
+    console.log('this.container.clientWidth', this.container.clientWidth);
+
+    // this.width = this.container.clientWidth
+    // this.height = this.container.clientHeight
+    // this.mapRatio = this.height / this.width
+    // this.setState({
+    //   width,
+    //   height
+    // })
+
     projection
       .scale(1000)
-      .translate([width / 2, height / 2])
+      .translate([715 / 2, 625 / 2])
     // d3.select(this.svg).on('click', this.onStop, true)
-    d3.select(this.rect).on('click', zoomOut)
-    d3.select(this.g).call(this.addMap)
-    d3.select(this.g).call(this.updateMarkers)
+    d3.select('.svg-container')
+      .append('svg')
+        .attr('viewBox', '0 0 715 625')
+        .attr('preserveAspectRatio', 'xMinYMin meet')
+        // .attr('width', '100%')
+        // .attr('height', '100%')
+        .attr('class', 'svg-content')
+      .append('g')
+
+    // d3.select(this.rect).on('click', zoomOut)
+    d3.select('.svg-container g').call(this.addMap)
+    d3.select('.svg-container g').call(this.updateMarkers)
     // d3.select(this.g).call(this.updateNumbers)
-    // d3.select(window).on('resize', resize)
+    // d3.select(window).on('resize', this.resize)
   }
 
   shouldComponentUpdate (nextProps, nextState) {
@@ -253,6 +287,19 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   resize () {
+    // let svg = d3.select(this.container)
+    this.svg.select('g').attr('transform', 'scale(' + $(this.container).width() / 900 + ')')
+	  $('.svg-container svg').height($(this.container).width() * 0.618)
+    // let {width, height} = this.state
+    // let width = parseInt(d3.select(this.svg).style('width'))
+    // let height = parseInt(d3.select(this.svg).style('height'))
+    // d3.select(this.g).attr('transform', 'scale(' + this.width / 900 + ')')
+    // d3.select(this.g)
+    // this.svg.style.height = this.width * this.mapRatio
+    // this.setState({
+    //   height: this.width * mapRatio
+    // })
+	    // $('svg').height(width * 0.618);
     // adjust things when the window size changes
     // let width = parseInt(d3.select(this.svg).style('width'))
     // height = width * mapRatio;
@@ -273,12 +320,17 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   render () {
+    // let {width, height} = this.state
+
     const handleStyle = {
       backgroundColor: '#0096d6',
       width: '15px',
       height: '15px',
       borderRadius: '300px',
-      overflow: 'visible'
+      overflow: 'visible',
+      marginLeft: '-5px',
+      zIndex: '999',
+      border: 'none'
     }
     const trackStyle = {
       width: '10px',
@@ -295,12 +347,24 @@ const Choropleth = class Choropleth extends React.Component {
       // overflow: 'visible'
     }
     const minimumTrackStyle = _.extend(trackStyle, {
-      // position: 'absolute'
+      position: 'absolute'
     })
     const maximumTrackStyle = _.extend(trackStyle, {
       // position: 'absolute'
     })
-
+    const markStyle = {
+      width: '15px',
+      height: '3px',
+      position: 'absolute',
+      marginBottom: '3px',
+      background: '#ccc'
+    }
+    const marks = {
+      '1': { style: markStyle },
+      '2': { style: markStyle },
+      '4': { style: markStyle },
+      '6': { style: markStyle }
+    }
     // const minTrackStyle = _.extend()
     // const Handle = Slider.Handle
 
@@ -312,12 +376,9 @@ const Choropleth = class Choropleth extends React.Component {
     // }
     return (
       <div styleName="container">
-        <svg width="715" height="625" ref={(node) => this.svg = node}>
-          <rect styleName="background" width="715" height="625" ref={(node) => this.rect = node} />
-          <g ref={(node) => this.g = node} />
-        </svg>
+        <div className="svg-container" width="715" height="625" ref={this.containerRef} />
         <div styleName="zoom-bar-wrapper">
-          {/*<div styleName="zoom-in">+</div>*/}
+          <div styleName="zoom-in">+</div>
           <Slider className="zoom-bar"
             vertical={true}
             min={zoom.scaleExtent()[0]}
@@ -325,9 +386,10 @@ const Choropleth = class Choropleth extends React.Component {
             defaultValue={zoom.scaleExtent()[0]}
             onChange={this.handleRange}
             handleStyle={handleStyle}
-            step={2}
+            marks={marks}
+            step={null}
             />
-          {/*{<div styleName="zoom-out">-</div>}*/}
+          {<div styleName="zoom-out">-</div>}
         </div>
       </div>
     )

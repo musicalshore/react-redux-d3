@@ -94,10 +94,12 @@ const Listing = class Listing extends React.Component {
         </ol>
         <ol styleName="scroller-container">
           <li styleName="previous">
-            <a href="#" onClick={this.scrollBack} ref={el => { this.previous = el } }>previous</a>
+            <i className="fa fa-angle-left fa-lg"></i>
+            <a href="#" onClick={this.scrollBack} ref={el => { this.previous = el } }>Prev</a>
           </li>
           <li styleName="next">
-            <a href="#" onClick={this.scrollAhead} ref={el => { this.next = el } }>next</a>
+            <a href="#" onClick={this.scrollAhead} ref={el => { this.next = el } }>Next</a>
+            <i className="fa fa-angle-right fa-lg"></i>
           </li>
         </ol>
       </div>

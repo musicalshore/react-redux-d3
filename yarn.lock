@@ -6043,9 +6043,9 @@ rc-animate@2.x:
     css-animation "^1.3.0"
     prop-types "^15.5.6"
 
-rc-slider@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/rc-slider/-/rc-slider-8.0.0.tgz#60411f416a1c5f9b7b1aecf8d8a61af759d154f8"
+rc-slider@^8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/rc-slider/-/rc-slider-8.0.2.tgz#b25108e676111ae2bdb3402b755dd330bce07249"
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.5"

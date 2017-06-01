@@ -76,9 +76,11 @@
 
     &.state {
       width: 165px;
-
-      @media (max-width: 767px) {
+      @include mq($from: mobileLandscape, $until: tablet) {
         width: 130px;
+      }
+      @include mq($from: mobile, $until: mobileLandscape) {
+        width: 90px;
       }
     }
 
