@@ -64,7 +64,7 @@ const TabbedMap = class TabbedMap extends React.Component {
   }
 
   render () {
-    let {onMapSelect} = this.props
+    let {onCitySelect} = this.props
 
     return (
       <div styleName="container">
@@ -72,7 +72,7 @@ const TabbedMap = class TabbedMap extends React.Component {
         <div styleName="map-container">
           <div styleName="maps">
             <TabNav {...this.props} />
-            <Choropleth {...this.props} onMarkerClick={onMapSelect} width="715" height="625" />
+            <Choropleth {...this.props} onMarkerClick={onCitySelect} width="715" height="625" />
             {/*<div styleName="timeLine-SocialContainer">
 
               <div styleName="socialContainer">
