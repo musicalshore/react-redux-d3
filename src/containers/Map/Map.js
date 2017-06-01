@@ -6,8 +6,9 @@ import { selectCity } from 'redux/actions'
 const mapStateToProps = (state) => {
   return {
     selectedMap: state.selectedMap,
-    currentYear: state.currentYear,
-    selectedCity: state.selectedCity
+    defaultYear: state.defaultYear,
+    selectedCity: state.selectedCity,
+    modalIsOpen: state.modalIsOpen
   }
 }
 

@@ -28,12 +28,12 @@
     "jquery-ui": "^1.12.1",
     "jvectormap-next": "^3.0.0",
     "lodash": "^4.17.4",
-    "rc-slider": "^7.0.8",
+    "rc-slider": "^8.0.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-helmet": "^5.1.3",
     "react-hot-loader": "next",
-    "react-modal": "1.7.7",
+    "react-modal": "^1.7.7",
     "react-rangeslider": "^2.0.1",
     "react-redux": "^5.0.5",
     "react-scroll": "^1.5.2",
@@ -50,8 +50,9 @@
     "babel-preset-env": "^1.5.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "browserslist": "^2.1.4",
     "cross-env": "^5.0.0",
-    "css-loader": "^0.28.2",
+    "css-loader": "^0.28.4",
     "directory-named-webpack-plugin": "^2.1.0",
     "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
@@ -97,7 +98,8 @@
   },
   "browserslist": [
     "last 2 versions",
-    "last 2 ie Versions"
+    "last 2 ie Versions",
+    "not OperaMini all"
   ],
   "jest": {
     "moduleFileExtensions": [
@@ -156,6 +158,7 @@
     ],
     "rules": {
       "declaration-block-no-redundant-longhand-properties": null,
+      "selector-pseudo-class-no-unknown": null,
       "plugin/no-unsupported-browser-features": [
         true,
         {

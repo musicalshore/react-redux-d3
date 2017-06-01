@@ -32,6 +32,9 @@
       background-color: #6d5dc9;
       background-image: url('./rainSnow_Active_white.png');
     }
+    &.disabled-map {
+      background-color: #ccc;
+    }
 
 
 
@@ -84,33 +87,4 @@
     }
   }
 }
-
-
-
-
-
-
-  // .year-selector {
-  //   display: block;
-  //   font-family: 'Arial', sans-serif;
-  //   font-size: 15px;
-  //   line-height: 36px;
-  //   padding: 0 10px 0 30px;
-  // }
-
-  // h4 {
-  //   font-size: 15px;
-  //   margin: 0;
-  // }
-
-  // h3 {
-  //   font-size: 24px;
-  //   margin: 0;
-  // }
-
-  // p {
-  //   font-size: 12px;
-  //   font-weight: normal;
-  // }
-
 

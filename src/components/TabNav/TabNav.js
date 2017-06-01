@@ -5,19 +5,14 @@ import PropTypes from 'prop-types'
 import {MAPS, TOP_CITY} from 'constants/maps'
 import './style.scss'
 
-const Tab = ({ id, title, selectedMap, onClick }) => {
-  // console.log('TAB:', id, title, selectedMap )
-  const handleClick = e => {
-    e.preventDefault()
-    onClick()
-  }
+const Tab = ({ id, title, selectedMap, onTabClick }) => {
   let result
-  console.log('TOP_CITY', TOP_CITY, selectedMap)
-  if (id === TOP_CITY || (id !== TOP_CITY && parseInt(selectedMap.year) > 2015)) {
+
+  if (id === TOP_CITY || (id !== TOP_CITY && parseInt(selectedMap.year) > 2013)) {
     result = <li role="tab" styleName={`${_.kebabCase(id)} ${selectedMap.id === id ? 'selected' : ''}`}
-      onClick={handleClick}
+      onClickCapture={onTabClick}
       >
-        <a href="#" onClick={handleClick} styleName="title"><span>{title}</span></a>
+        <a href="#" onClick={onTabClick} styleName="title"><span>{title}</span></a>
       </li>
   } else {
     result = <li styleName={`${_.kebabCase(id)} disabled`}>
@@ -32,34 +27,48 @@ const Tab = ({ id, title, selectedMap, onClick }) => {
 
 Tab.propTypes = {
   id: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
   selectedMap: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired
+  onTabClick: PropTypes.func.isRequired
 }
 
-const TabNav = ({onTabClick, selectedMap}) => {
-  return (
-    <nav styleName="container" role="navigation">
-      <ol role="tablist">
-        {_.map(data => (
-          <Tab key={data.id}
-              {...data}
-              onClick={
-                () => onTabClick(_.extend(data, {
-                  year: selectedMap.year,
-                  stateFilter: selectedMap.stateFilter
-                }))
-              }
-              selectedMap={selectedMap}
-          />
-        ), MAPS)}
-      </ol>
-    </nav>
-  )
+const TabNav = class TabNav extends React.Component {
+  constructor () {
+    super()
+    this.handleTabClick = this.handleTabClick.bind(this)
+  }
+
+  handleTabClick ({id, rankingType}, e) {
+    e.stopPropagation()
+    let {selectedMap, onMapSelect} = this.props
+    console.log('DATA', id, rankingType, selectedMap)
+    onMapSelect({
+      id,
+      rankingType,
+      year: selectedMap.year,
+      stateFilter: selectedMap.stateFilter
+    })
+  }
+  render () {
+    let {selectedMap} = this.props
+    return (
+      <nav styleName="container" role="navigation">
+        <ol role="tablist">
+          {_.map(data => (
+            <Tab key={data.id}
+                {...data}
+                selectedMap={selectedMap}
+                onTabClick={_.partial(this.handleTabClick, [data])}
+            />
+          ), MAPS)}
+        </ol>
+      </nav>
+    )
+  }
 }
 
 TabNav.propTypes = {
-  onTabClick: PropTypes.func.isRequired,
+  onMapSelect: PropTypes.func.isRequired,
   selectedMap: PropTypes.object.isRequired
 }
 

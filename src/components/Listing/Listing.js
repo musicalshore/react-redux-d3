@@ -4,9 +4,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './style.scss'
 
-const ListItem = ({rank, cityState, onClick, name, selectedMap}) => {
+const ListItem = ({rank, cityState, onClick, selectedMap}) => {
   return (
-    <li name={name} onClick={onClick} styleName={_.kebabCase(selectedMap.id)}>
+    <li onClick={onClick} styleName={_.kebabCase(selectedMap.id)}>
       <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <g>
           <circle cx="15" cy="15" r="15" />
@@ -21,13 +21,12 @@ const ListItem = ({rank, cityState, onClick, name, selectedMap}) => {
   )
 }
 
-let maxPosition = 0
 const Listing = class Listing extends React.Component {
   constructor () {
     super()
     this.scrollAhead = this.scrollAhead.bind(this)
     this.scrollBack = this.scrollBack.bind(this)
-    this.listElements = []
+    // this.listElements = []
     this.state = {
       scrollTop: 0,
       currentPage: 1,
@@ -72,15 +71,18 @@ const Listing = class Listing extends React.Component {
   }
 
   render () {
-    let {selectedMap, onCitySelect, selectedCity} = this.props
+    let {selectedMap, onCitySelect} = this.props
+    const markers = _.get('mapData.markers', selectedMap)
+    if (!markers) {
+      return null
+    }
     const listItems = _.map(ranking => {
       return (
         <ListItem
-          ref={item => { this.listElements.push(item) } }
           key={ranking.rank} {...ranking} selectedMap={selectedMap} onClick={() => onCitySelect(ranking)}
         />
       )
-    }, _.sortBy('rank', selectedMap.mapData.markers))
+    }, _.sortBy('rank', markers))
 
     return (
       <div styleName="container" ref={el => { this.container = el } }>
@@ -106,7 +108,7 @@ const Listing = class Listing extends React.Component {
 ListItem.propTypes = {
   rank: PropTypes.number.isRequired,
   cityState: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  // name: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   selectedMap: PropTypes.object.isRequired
 }

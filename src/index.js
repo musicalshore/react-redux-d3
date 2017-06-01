@@ -1,18 +1,18 @@
+import _ from 'lodash/fp'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import { AppContainer } from 'react-hot-loader'
 import App from 'components/App'
-
-import reducers from './redux/reducers'
+import reducer from './redux/reducers'
 import './style/global.scss'
 
 let store = createStore(
-  reducers,
+  reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
-
+console.log(store.getState())
 const render = Component => {
   ReactDOM.render(
     <Provider store={store}>

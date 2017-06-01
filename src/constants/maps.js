@@ -24,7 +24,7 @@ export const MAPS = [
 ]
 
 export const DEFAULT_MAP = TOP_CITY
-export const CURRENT_YEAR = '2017'
+export const DEFAULT_YEAR = '2017'
 
 export const YEARS = [
   '2007',
@@ -74,7 +74,7 @@ export const US_STATES = [
       id: 'DE'
   },
   {
-      name: 'Washington DC',
+      name: 'Washington, D.C.',
       id: 'DC'
   },
   {
