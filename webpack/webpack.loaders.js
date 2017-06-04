@@ -10,25 +10,26 @@ module.exports = [
   {
     test: /\.js$/,
     exclude: /node_modules/,
-    use: [{
-      loader: 'babel-loader?cacheDirectory',
-      options: {
-        presets: [
-          ['env', { modules: false }],
-          'react'
-        ],
-        plugins: [
-          ['react-css-modules', {
-            filetypes: {
-              '.scss': 'postcss-scss'
-            },
-            context,
-            exclude: 'node_modules',
-            webpackHotModuleReloading: true
-          }]
-        ]
+    use: [
+      {
+        loader: 'babel-loader?cacheDirectory',
+        options: {
+          plugins: [
+            ['react-css-modules', {
+              filetypes: {
+                '.scss': 'postcss-scss'
+              },
+              context,
+              exclude: 'node_modules',
+              webpackHotModuleReloading: true
+            }]
+          ]
+        }
       }
-    }]
+      // {
+      //   loader: 'eslint-loader'
+      // }
+    ]
   },
   {
     test: /\.css$/,

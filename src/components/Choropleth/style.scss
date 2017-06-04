@@ -68,14 +68,19 @@
   @include mq($from: tablet) {
     position: relative;
   }
-  .background {
-    fill: none;
-    pointer-events: all;
-  }
 }
 
 :global {
-  .feature {
+  .svg-map-content {
+
+  }
+
+  .svg-map-background {
+    fill: none;
+    pointer-events: all;
+  }
+
+  .svg-map-feature {
     // cursor: pointer;
     fill: #ccc;
 
@@ -84,7 +89,7 @@
     }
   }
 
-  .mesh {
+  .svg-map-mesh {
     fill: none;
     stroke: #fff;
     stroke-linecap: round;

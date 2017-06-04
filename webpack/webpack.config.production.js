@@ -3,8 +3,8 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const StyleLintPlugin = require('stylelint-webpack-plugin')
 const rimraf = require('rimraf')
-
 
 module.exports = {
   context: path.join(__dirname, '..', 'src'),
@@ -28,6 +28,7 @@ module.exports = {
         if (er) console.log('Clearing of /dist directory failed', er)
       })
     },
+    // new StyleLintPlugin({customSyntax: 'postcss-scss'}),
     new ExtractTextPlugin('assets/styles/[name].[hash].css'),
     new webpack.DefinePlugin({
       'environment': '"production"',

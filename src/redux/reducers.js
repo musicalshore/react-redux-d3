@@ -127,7 +127,6 @@ const selectedMap = (state = {}, action) => {
         const mapData = getMapData(defaultMap)
         result = _.extend(defaultMap, {mapData})
       }
-      console.log('DEFAUALT ', _.extend(state, result))
       return _.extend(state, result)
   }
 }
@@ -145,7 +144,7 @@ const modalIsOpen = (state = false, action) => {
   switch (action.type) {
     case SELECT_CITY:
       const modalIsOpen = !_.isEmpty(action.selectedCity)
-      console.log('modalIsOpen', modalIsOpen, 'action', action, 'state', _.extend(state, modalIsOpen))
+      // console.log('modalIsOpen', modalIsOpen, 'action', action, 'state', _.extend(state, modalIsOpen))
       return modalIsOpen
     default:
       return state
@@ -158,7 +157,7 @@ const selectedYearOption = (state = DEFAULT_YEAR, action) => {
       return action.selectedYearOption
     case SELECT_MAP:
       let year = _.getOr(DEFAULT_YEAR, 'selectedMap.year', action)
-      console.log('selectedYearOption!!', year);
+      console.log('selectedYearOption!!', year)
       return year
     default:
       return state
@@ -184,13 +183,13 @@ const errorMessage = (state = '', action) => {
       const id = _.get('selectedMap.id', action)
       const year = parseInt(_.getOr(0, 'selectedMap.year', action))
       let error
-      console.log('ERRORMESSAGE', id, year, action);
+      // console.log('ERRORMESSAGE', id, year, action);
       if ((id === 'DENSITY' || id === 'RAIN_SNOW') && year < 2014) {
         error = 'No data found. Please select a different year, state or filter.'
       } else {
         error = ''
       }
-      console.log('ERRORMESSAGE:', error);
+      // console.log('ERRORMESSAGE:', error);
       return error
     default:
       return state
@@ -226,7 +225,6 @@ const errorMessage = (state = '', action) => {
 //       return state
 //   }
 // }
-
 
 const defaultYear = (state = DEFAULT_YEAR) => state
 const defaultMap = (state = DEFAULT_MAP) => state

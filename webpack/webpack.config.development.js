@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-
+var StyleLintPlugin = require('stylelint-webpack-plugin')
 
 module.exports = {
   // devtool: 'source-map',
@@ -36,6 +36,7 @@ module.exports = {
     rules: require('./webpack.loaders.js')
   },
   plugins: [
+    // new StyleLintPlugin({customSyntax: 'postcss-scss'}),
     new ExtractTextPlugin({filename: 'style.css', disable: true}),
     new webpack.DefinePlugin({
       'environment': '\'development\'',
