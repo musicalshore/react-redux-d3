@@ -1,25 +1,32 @@
 @import "style/index.scss";
 
 .container {
-  display: flex;
-  justify-content: center;
-  min-height: 134px;
   margin-bottom: 30px;
   width: 100%;
-  // min-width: 430px;
-  .desktop-header {
+
+  img {
     display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
   }
-  .mobile-header {
-    display: none;
+
+  @include mq($until: tablet) {
+    .mobile-logo {
+      display: block;
+    }
+
+    .desktop-and-tablet-header {
+      display: none;
+    }
   }
-  
-  @media (max-width: 767px) {
-    .desktop-header {
+
+  @include mq($from: tablet) {
+    .mobile-logo {
       display: none;
     }
 
-    .mobile-header {
+    .desktop-and-tablet-header {
       display: block;
     }
   }

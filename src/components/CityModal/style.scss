@@ -5,7 +5,6 @@
 }
 
 :global .ReactModalPortal {
-
   .modal-overlay {
     position: fixed;
     left: 0;
@@ -64,7 +63,6 @@
     &.ReactModal__Content--after-open {}
     &.ReactModal__Content--before-close {}
   }
-
 
   .city-modal-container {
     background-color: #fff;

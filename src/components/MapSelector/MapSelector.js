@@ -1,8 +1,10 @@
-import _ from 'lodash/fp'
-import React from 'react'
-import PropTypes from 'prop-types'
 import './style.scss'
-import {YEARS, US_STATES} from 'constants/maps'
+import 'react-select/dist/react-select.css'
+import {US_STATES, YEARS} from 'constants/maps'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Select from 'react-select'
+import _ from 'lodash/fp'
 
 const MapSelector = class MapSelector extends React.Component {
   constructor (props) {
@@ -12,12 +14,10 @@ const MapSelector = class MapSelector extends React.Component {
     this.handleYearOptionChange = this.handleYearOptionChange.bind(this)
     this.handleStateOptionChange = this.handleStateOptionChange.bind(this)
     this.clearSearch = this.clearSearch.bind(this)
-    // this.updateStateInfo = this.updateStateInfo.bind(this)
   }
 
-  handleYearOptionChange (e) {
-    this.props.onYearOptionSelect(e.target.value)
-    e.stopPropagation()
+  handleYearOptionChange (option) {
+    this.props.onYearOptionSelect(option.value)
   }
 
   getStates (locations) {
@@ -38,47 +38,10 @@ const MapSelector = class MapSelector extends React.Component {
     return states
   }
 
-  // updateStateInfo ({year, usState}) {
-  //   const stateFilter = selectedMap.stateFilter
-  //   let safeCityCount
-  //   let selectedStateName
-
-  //   if (stateFilter !== '') {
-  //     selectedStateName = _.get('name', _.find(['id', stateFilter], US_STATES))
-
-  //     safeCityCount = _.size(_.filter(['State', stateFilter], selectedMap.mapData.markers))
-  //   }
-  //   this.setState({
-  //     stateFilter,
-  //     safeCityCount,
-  //     selectedStateName,
-  //     selectedYear: selectedMap.year
-  //   })
-  // }
-  handleStateOptionChange (e) {
-    this.props.onStateOptionSelect(e.target.value)
-    e.stopPropagation()
-    // let stateFilter = event.target.value
-    // this.setState({
-    //   stateFilter
-    // })
-    // this.props.onFilterState(stateFilter)
+  handleStateOptionChange (option) {
+    this.props.onStateOptionSelect(option.value)
   }
-  // shouldComponentUpdate (nextProps) {
-  //   return !_.isEqual(nextProps.mapSelector, this.props.mapSelector)
-  // }
-  // componentWillReceiveProps (nextProps) {
-  //   let {selectedMap} = this.props
-  //   if (!_.isEqual(nextProps.mapSelector, this.props.mapSelector)) {
-  //     if (!_)
-  //   }
-  //   if ((nextProps.selectedStateOption))
-  //   if ((nextProps.selectedMap.stateFilter !== selectedMap.stateFilter) ||
-  //   (nextProps.selectedMap.year !== selectedMap.year) ||
-  //   (nextProps.selectedMap.id !== nextProps.selectedMap.id)) {
-  //     this.updateStateInfo(nextProps.selectedMap)
-  //   }
-  // }
+
   clearSearch (e) {
     e.preventDefault()
     this.props.onMapSelect()
@@ -86,50 +49,68 @@ const MapSelector = class MapSelector extends React.Component {
   handleMapSelectorChange (e) {
     e.stopPropagation()
     let {selectedYearOption, selectedStateOption} = this.props
-    // if (selectedStateOption !== '') {
     const newMap = _.extend(this.props.selectedMap, {
       year: selectedYearOption,
       stateFilter: selectedStateOption
     })
-    console.log('newMap ', newMap)
-
     this.props.onMapSelect(newMap)
-    // this.props.onMapSelectorChange({
-    //   selectedYearOption,
-    //   selectedStateOption
-    // })
-    // const newMap = _.extend(this.props.selectedMap, {
-    //   year: this.state.selectedYear,
-    //   stateFilter: this.state.stateFilter
-    // })
-    // this.props.onMapSelect(newMap)
   }
+
   render () {
     let {selectedMap, defaultYear, selectedYearOption, selectedStateOption, errorMessage} = this.props
     const safeCityData = selectedMap.safeCityData
+    const years = _.map(year => ({
+      label: year,
+      value: year
+    }), YEARS)
+    const usStates = [
+      {label: 'All', value: ''}
+    ].concat(_.map(usState => ({
+      label: usState.name,
+      value: usState.id
+    }), US_STATES))
 
-    const years = _.map(year => <option key={year} value={year}>{year}</option>, YEARS)
-    const usStates = _.map(usState => <option key={usState.id} value={usState.id}>{usState.name}</option>, US_STATES)
     return (
       <div styleName="container">
         <div styleName="selector-container">
-          {/*<div styleName="year-select"> */}
+          {/* <div styleName="year-select"> */}
+            <label styleName="year-label" htmlFor="year">Year</label>
+            <Select
+              id="year"
+              className="select-box year"
+              value={selectedYearOption}
+              options={years}
+              onChange={this.handleYearOptionChange}
+              clearable={false}
+            />
+
+            <label styleName="state-label" htmlFor="usState">State</label>
+            <Select
+              className="select-box usState"
+              id="usState"
+              value={selectedStateOption}
+              options={usStates}
+              onChange={this.handleStateOptionChange}
+              clearable={false}
+            />
+
+{/*
             <label styleName="year-label" htmlFor="year">Year</label>
             <div styleName="select-box year">
               <select id="year" value={selectedYearOption} onChange={this.handleYearOptionChange}>
                 {years}
               </select>
-            </div>
-          {/*</div> */}
-          {/*<div styleName="state-select"> */}
-            <label styleName="state-label" htmlFor="usState">State</label>
+            </div> */}
+          {/* </div> */}
+          {/* <div styleName="state-select"> */}
+            {/* <label styleName="state-label" htmlFor="usState">State</label>
             <div styleName="select-box state">
               <select id="usState" value={selectedStateOption} onChange={this.handleStateOptionChange}>
                 <option key="ALL" value="">All</option>
                 {usStates}
               </select>
-            </div>
-          {/*</div> */}
+            </div> */}
+          {/* </div> */}
           <button type="button" onClick={this.handleMapSelectorChange}>Go</button>
         </div>
         <div styleName="clear-search-container">

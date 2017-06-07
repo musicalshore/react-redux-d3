@@ -2,9 +2,15 @@
 
 .container {
   height: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  width: 90%;
+  margin: 0 auto;
+
+  @include mq($until: tablet) {
+    width: 100%;
+  }
+
+  @include mq($from: tablet) {
+    width: 90%;
+  }
 
   .content {
     display: flex;
@@ -19,6 +25,7 @@
         width: 100%;
       }
     }
+
     @include mq($from: tablet, $until: desktop) {
       // max-width: 780px;
       // margin: auto;
@@ -34,5 +41,3 @@
     }
   }
 }
-
-

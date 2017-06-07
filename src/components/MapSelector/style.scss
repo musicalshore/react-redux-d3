@@ -1,16 +1,22 @@
 @import "style/index.scss";
 
 .container {
-  align-self: center;
-  align-items: center;
+  // align-self: center;
+  // align-items: center;
   margin-bottom: 9px;
-
+  margin: 0 auto;
+  // display: flex;
+  // justify-content: center;
   // @include mq($until: mobile) {
 
   // }
-  @media (max-width: 767px) {
+  @include mq($until: tablet) {
     margin-bottom: 21px;
     width: 95%;
+  }
+
+  @include mq($from: tablet) {
+    width: 100%;
   }
   // display: table-cell;
   // vertical-align: middle;
@@ -21,6 +27,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
+    width: 100%;
   }
 
   .year-select {}
@@ -43,6 +50,11 @@
     display: inline-block;
     // vertical-align: middle;
     margin-left: 22px;
+
+    @include mq($until: mobileMapSelector) {
+      margin-left: 10px;
+    }
+
     border: none;
     border-radius: 4px;
     line-height: 14px;
@@ -63,45 +75,59 @@
     }
   }
 
-  .select-box {
-    border: 1px solid #e6e6e6;
-    background: #fafafa url("./select-arrow.png") no-repeat 90% 50%;
-    border-radius: 4px;
-    overflow: hidden;
-    height: 40px;
-
-    &.year {
-      width: 90px;
-    }
-
-    &.state {
-      width: 165px;
-      @include mq($from: mobileLandscape, $until: tablet) {
-        width: 130px;
-      }
-      @include mq($from: mobile, $until: mobileLandscape) {
-        width: 90px;
-      }
-    }
-
-    select {
+  :global {
+    .select-box {
+      border: 1px solid #e6e6e6;
+      background: #fafafa url("./select-arrow.png") no-repeat 90% 50%;
+      border-radius: 4px;
+      // overflow: hidden;
+      height: 40px;
       font-size: 14px;
       color: #4d4d4d;
       font-weight: bold;
-      line-height: 1;
-      padding-top: 9px;
-      padding-left: 10px;
-      padding-bottom: 13px;
-      width: 130%;
-      height: 110%;
-      border: none;
-      box-shadow: none;
-      background: transparent;
-      background-image: none;
-      -webkit-appearance: none;
-    }
-  }
 
+      &.year {
+        width: 90px;
+
+        @include mq($until: mobileMapSelector) {
+          width: 75px;
+        }
+      }
+
+      &.usState {
+        width: 165px;
+        // flex-basis: 25%;
+
+        @include mq($until: mobileMapSelector) {
+          flex-basis: 32%;
+        }
+        // @include mq($from: mobileLandscape, $until: tablet) {
+        //   width: 130px;
+        // }
+
+        // @include mq($from: mobile, $until: mobileLandscape) {
+        //   width: 90px;
+        // }
+      }
+    }
+
+    // select {
+    //   font-size: 14px;
+    //   color: #4d4d4d;
+    //   font-weight: bold;
+    //   line-height: 1;
+    //   padding-top: 9px;
+    //   padding-left: 10px;
+    //   padding-bottom: 13px;
+    //   width: 130%;
+    //   height: 110%;
+    //   border: none;
+    //   box-shadow: none;
+    //   background: transparent;
+    //   background-image: none;
+    //   -webkit-appearance: none;
+    // }
+  }
 
   label.state-label {
     margin-left: 40px;

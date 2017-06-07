@@ -28,7 +28,7 @@
       background-position: center 6px;
 
       @include mq($until: tablet) {
-        background-position: 0px -3px;
+        background-position: 0 -3px;
         background-size: 50px;
       }
       &.top-city,
@@ -48,11 +48,11 @@
 
         &.selected,
         &.selected:hover {
-          @media (min-width: 768px) {
+          @include mq($from: tablet) {
             background-color: #fff;
           }
 
-          @media (max-width: 767px) {
+          @include mq($until: tablet) {
             .title {
               color: rgb(255, 255, 255);
             }
@@ -75,7 +75,7 @@
         &.selected {
           background-image: url('./topCities_Active.png');
 
-          @media (max-width: 767px) {
+          @include mq($until: tablet) {
             background-image: url('./topCities_Active_white.png');
             background-color: $top-city-fill;
           }
@@ -93,7 +93,7 @@
         &.selected {
           background-image: url('./density_Active.png');
 
-          @media (max-width: 767px) {
+          @include mq($until: tablet) {
             background-image: url('./density_Active_white.png');
             background-color: $density-fill;
           }
@@ -108,14 +108,14 @@
         background-image: url('./rainSnow_Gray.png');
         border-bottom: 7px solid #6d5dc9;
 
-        @media (max-width: 767px) {
+        @include mq($until: tablet) {
           background-position: 0 -7px;
         }
 
         &.selected {
           background-image: url('./rainSnow_Active.png');
 
-          @media (max-width: 767px) {
+          @include mq($until: tablet) {
             background-image: url('./rainSnow_Active_white.png');
             background-color: $rain-snow-fill;
           }
@@ -129,7 +129,7 @@
       .title {
         color: $dark-gray;
         font-family: 'Arial', sans-serif;
-        font-size: 14px;
+        font-size: $font-size-small;
         padding-top: 63px;
         display: block;
         height: 100%;
@@ -138,22 +138,22 @@
         text-decoration: none;
 
         @include mq($from: mobile, $until: mobileLandscape) {
-          font-size: 10px;
-        }
-        @include mq($from: mobileLandscape, $until: desktop) {
-          font-size: 12px;
+          font-size: $font-size-smallest;
         }
 
-        @include mq($until: desktop) {
+        @include mq($from: mobileLandscape, $until: tablet) {
+          font-size: $font-size-smaller;
+        }
+
+        @include mq($until: tablet) {
           padding: 8px 0 0 46px;
           text-align: left;
+
           span {
             display: inline-block;
             width: 40px;
           }
         }
-
-
       }
 
       &.disabled {
@@ -165,16 +165,18 @@
         span {
           display: block;
         }
-        @media (max-width: 767px) {
+
+        @include mq($until: tablet) {
           font-size: 12px;
           padding: 8px 0 0 46px;
           text-align: left;
+
           span {
             margin-right: 0;
           }
         }
 
-        @media (max-width: 640px) {
+        @include mq($until: mobileLandscape) {
           font-size: 10px;
           // padding-right: 30%;
         }
