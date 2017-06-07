@@ -20,7 +20,7 @@ const MapSelector = class MapSelector extends React.Component {
     e.stopPropagation()
   }
 
-  getStates (markers) {
+  getStates (locations) {
     const states = _.flow([
       _.map('State'),
       _.uniq,
@@ -34,10 +34,9 @@ const MapSelector = class MapSelector extends React.Component {
         return result
       }, []),
       _.sortBy(pair => pair.name)
-    ])(markers)
+    ])(locations)
     return states
   }
-
 
   // updateStateInfo ({year, usState}) {
   //   const stateFilter = selectedMap.stateFilter

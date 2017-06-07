@@ -20,7 +20,7 @@ module.exports = {
   // ],
   entry: {
     main: [
-      'babel-polyfill',
+      // 'babel-polyfill',
       'react-hot-loader/patch',
       'webpack-hot-middleware/client?http://0.0.0.0:3333&path=/__what&timeout=6000&reload=true',
       'index.js'

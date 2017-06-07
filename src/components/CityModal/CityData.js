@@ -16,12 +16,11 @@ const CityData = (props) => {
         <div>Years between claims<sup>1</sup>: <span>{yearsBetweenClaims}</span></div>
       }
       {brakingEvents &&
-        <div>Drivewise<sup>®</sup> braking events per 1,000 miles<sup>2</sup>: <span>{brakingEvents}</span></div>
+        <div>Drivewise<sup>®</sup> hard-braking events per 1,000 miles<sup>2</sup>: <span>{brakingEvents}</span></div>
       }
     </div>
   )
 }
-
 
 CityData.propTypes = {
   selectedMap: PropTypes.object.isRequired,

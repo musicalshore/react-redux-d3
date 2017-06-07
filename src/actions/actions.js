@@ -51,5 +51,3 @@ export const selectState = (selectedState) => ({
   type: SELECT_STATE,
   selectedState
 })
-
-

@@ -39,7 +39,7 @@ const TabNav = class TabNav extends React.Component {
   }
 
   handleTabClick ({id, rankingType}, e) {
-    e.stopPropagation()
+    e.preventDefault()
     let {selectedMap, onMapSelect} = this.props
     console.log('DATA', id, rankingType, selectedMap)
     onMapSelect({
