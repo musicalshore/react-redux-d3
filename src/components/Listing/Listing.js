@@ -62,7 +62,7 @@ const Listing = class Listing extends React.Component {
   }
 
   componentDidMount () {
-    const count = this.props.selectedMap.mapData.markers.length
+    const count = this.props.selectedMap.mapData.locations.length
     const numberOfPages = Math.floor(count / 7) + 1
     if (numberOfPages > 1) {
       $(this.next).css({'color': '#666', 'font-weight': 600})
@@ -72,9 +72,9 @@ const Listing = class Listing extends React.Component {
 
   render () {
     let {selectedMap, onCitySelect} = this.props
-    const markers = _.get('mapData.markers', selectedMap)
-    if (!markers) {
-      return null
+    const locations = _.get('mapData.locations', selectedMap)
+    if (!locations) {
+      throw new Error('No locations to render in Listing')
     }
     const listItems = _.map(ranking => {
       return (
@@ -82,7 +82,7 @@ const Listing = class Listing extends React.Component {
           key={ranking.rank} {...ranking} selectedMap={selectedMap} onClick={() => onCitySelect(ranking)}
         />
       )
-    }, _.sortBy('rank', markers))
+    }, _.sortBy('rank', locations))
 
     return (
       <div styleName="container" ref={el => { this.container = el } }>

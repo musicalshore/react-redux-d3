@@ -20,7 +20,7 @@ const MapSelector = class MapSelector extends React.Component {
     e.stopPropagation()
   }
 
-  getStates (markers) {
+  getStates (locations) {
     const states = _.flow([
       _.map('State'),
       _.uniq,
@@ -34,10 +34,9 @@ const MapSelector = class MapSelector extends React.Component {
         return result
       }, []),
       _.sortBy(pair => pair.name)
-    ])(markers)
+    ])(locations)
     return states
   }
-
 
   // updateStateInfo ({year, usState}) {
   //   const stateFilter = selectedMap.stateFilter
@@ -92,6 +91,8 @@ const MapSelector = class MapSelector extends React.Component {
       year: selectedYearOption,
       stateFilter: selectedStateOption
     })
+    console.log('newMap ', newMap)
+
     this.props.onMapSelect(newMap)
     // this.props.onMapSelectorChange({
     //   selectedYearOption,
@@ -112,15 +113,15 @@ const MapSelector = class MapSelector extends React.Component {
     return (
       <div styleName="container">
         <div styleName="selector-container">
-          {/*<div styleName="year-select">*/}
+          {/*<div styleName="year-select"> */}
             <label styleName="year-label" htmlFor="year">Year</label>
             <div styleName="select-box year">
               <select id="year" value={selectedYearOption} onChange={this.handleYearOptionChange}>
                 {years}
               </select>
             </div>
-          {/*</div>*/}
-          {/*<div styleName="state-select">*/}
+          {/*</div> */}
+          {/*<div styleName="state-select"> */}
             <label styleName="state-label" htmlFor="usState">State</label>
             <div styleName="select-box state">
               <select id="usState" value={selectedStateOption} onChange={this.handleStateOptionChange}>
@@ -128,7 +129,7 @@ const MapSelector = class MapSelector extends React.Component {
                 {usStates}
               </select>
             </div>
-          {/*</div>*/}
+          {/*</div> */}
           <button type="button" onClick={this.handleMapSelectorChange}>Go</button>
         </div>
         <div styleName="clear-search-container">

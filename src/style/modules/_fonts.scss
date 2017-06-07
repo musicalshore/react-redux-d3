@@ -1,12 +1,13 @@
-$font-size-base: 100%; // ~16px
-$font-size-small: 0.875em; // ~14px
-$font-size-smaller: 0.75em; // ~12px
-$font-size-smallest: 0.625em; // ~10px
-$font-size-normal: 0.938em; // ~15px
-$font-size-large: 1.125em; // ~18px
-$font-size-larger: 1.5em; // ~24px
-$font-size-largest: 1.625em; // ~26px
-$font-family-base: 'Arial', Helvetica, sans-serif;
+$font-size-base: 100%; // 16px
+$font-size-small: 0.875em; // 14px
+$font-size-smaller: 0.75em; // 12px
+$font-size-marker: 0.688em; // 11px
+$font-size-smallest: 0.625em; // 10px
+$font-size-normal: 0.938em; // 15px
+$font-size-large: 1.125em; // 18px
+$font-size-larger: 1.5em; // 24px
+$font-size-largest: 1.625em; // 26px
+$font-family-base: Arial, Helvetica, sans-serif;
 
 .font-family {
   font-family: $font-family-base;

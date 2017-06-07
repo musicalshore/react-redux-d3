@@ -1,327 +1,359 @@
-/* eslint-disable no-return-assign */
-import $ from 'jquery'
-import _ from 'lodash/fp'
-import React from 'react'
-import PropTypes from 'prop-types'
-import Slider from 'rc-slider'
-import * as d3 from 'd3'
-import * as topojson from 'topojson-client'
-import topodata from './us.json'
-import {TOP_CITY} from 'constants/maps'
 import './style.scss'
 import 'rc-slider/assets/index.css'
 
+import * as d3 from 'd3'
+import * as topojson from 'topojson-client'
+
+import {func, object, number} from 'prop-types'
+
+/* eslint-disable no-return-assign */
+import React from 'react'
+import Slider from 'rc-slider'
+import {TOP_CITY} from 'constants/maps'
+import _ from 'lodash/fp'
+import topodata from './us.json'
+
+class MapError extends Error {
+  constructor (message) {
+    super(message)
+    this.name = 'MapError'
+  }
+}
+
 const projection = d3.geoAlbersUsa()
 const path = d3.geoPath().projection(projection)
-const zoom = d3.zoom()
-      .scaleExtent([1, 7])
-      .on('zoom', zoomed)
 
-function zoomed () {
-  d3.select('svg > g').style('stroke-width', 1.5 / d3.event.scale + 'px')
-  // this.g.attr('transform', 'translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')')
-  d3.select('svg > g').attr('transform', d3.event.transform)
-}
-
-function zoomIn (props, state) {
-  let { width, height } = props
-}
-
-// function sizeChange() {
-// 	    d3.select('g').attr('transform', 'scale(' + $('#container').width()/900 + ")");
-// 	    $('svg').height($('#container').width()*0.618);
-// 	}
-function zoomToCity (props) {
-  let { width, height, selectedCity } = props
-  let lat = selectedCity.latLng[0]
-  let lon = selectedCity.latLng[1]
-  let point = { 'type': 'Point', 'coordinates': [lon, lat] }
-  const centroid = path.centroid(point)
-  const x = centroid[0]
-  const y = centroid[1]
-  const scale = 4
-  // const scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height)))
-  const translateX = width / 2 - scale * x
-  const translateY = height / 2 - scale * y
-
-
-  d3.select('svg').transition()
-    .duration(750)
-    .call(zoom.transform, d3.zoomIdentity.translate(translateX, translateY).scale(scale))
-}
-
-function zoomOut () {
-  d3.select('svg').transition()
-    .duration(750)
-    .call(zoom.transform, d3.zoomIdentity)
+const Marker = (location) => {
+  // point must be specified as a two-element array [longitude, latitude] in degrees
+  const lngLat = _.reverse(location.latLng)
+  const point = projection(lngLat)
+  let className = `marker ${_.kebabCase(location.id)}`
+  if (location.id === TOP_CITY) {
+    if (location.newLocation) {
+      className += ' new-location'
+    }
+    if (location.mostImproved) {
+      className += ' most-improved'
+    }
+  }
+  const marker = _.extend({
+    lngLat,
+    className,
+    cx: point[0],
+    cy: point[1],
+    point: point,
+    r: location.seriesValue === 'topTen' ? 16 : 5
+  }, location)
+  // console.log('marker', marker)
+  return marker
 }
 
 const Choropleth = class Choropleth extends React.Component {
-  constructor (props) {
-    super(props)
-
-    // this.onZoom = this.onZoom.bind(this)
-    this.onMarkerClick = this.onMarkerClick.bind(this)
-    // this.onStop = this.onStop.bind(this)
-    // this.onReset = this.onReset.bind(this)
-
-    this.addMap = this.addMap.bind(this)
-    this.addFeatures = this.addFeatures.bind(this)
-    this.addMesh = this.addMesh.bind(this)
-    this.updateMarkers = this.updateMarkers.bind(this)
-    this.updateNumbers = this.updateNumbers.bind(this)
-    this.handleRange = this.handleRange.bind(this)
-    this.resize = this.resize.bind(this)
-    this.containerRef = this.containerRef.bind(this)
-
-    this.state = {
-      scale: zoom.scaleExtent()[0]
-      // width: 715,
-      // height: 625
-    }
+  state = {scale: 1}
+  static propTypes = {
+    onCitySelect: func.isRequired,
+    selectedCity: object,
+    selectedMap: object.isRequired,
+    width: number,
+    height: number,
+    zoomToCityScale: number
   }
-  handleRange (scale) {
-    let {width, height} = this.props
-    // // this.setState({scale: event})
-    const translateX = (width * 1000) / 2
-    const translateY = (height * 1000) / 2
+  static defaultProps = {
+    width: 715,
+    // aspectRatio: 0.874,
+    height: 625,
+    zoomToCityScale: 4
+  }
+
+  containerRef = (el) => {
+    this.container = el
+  }
+  handleRange = (scale) => {
+    console.log('handleRange ', scale)
+    // let {width, height} = this.props
+    // this.setState({scale})
+    // const translateX = (width * 1000) / 2
+    // const translateY = (height * 1000) / 2
+    // d3.select('svg')
+    //   .transition()
+    //   .duration(750)
+    //   .call(zoom.scaleTo, scale)
+      // .duration(750)
+      // .call(zoom.transform, d3.zoomIdentity.translate(translateX, translateY).scale(scale))
     d3.select('svg')
       .transition()
       .duration(750)
-      .call(zoom.scaleTo, scale)
-      // .duration(750)
-      // .call(zoom.transform, d3.zoomIdentity.translate(translateX, translateY).scale(scale))
+      .call(this.zoom.scaleTo, scale)
+    this.setState({scale})
   }
-  addMap (selection) {
-    selection.selectAll('path')
-      .call(this.addFeatures)
-    selection.append('path')
-      .call(this.addMesh)
+  handleMarkerClick = (datum) => {
+    console.log('handleMarkerClick selectedCity', datum)
+    this.props.onCitySelect(_.omit(['cx', 'cy', 'r', 'class'], datum))
   }
-
-  updateMarkers (selection, props = this.props) {
-    const markers = _.get('selectedMap.mapData.markers', props)
-    // const markers = _.cloneDeep(props.selectedMap.mapData.markers)
-    selection.selectAll('g').remove()
-    if (_.isEmpty(markers)) {
-      return
-    }
-    const g = selection.selectAll('g')
-      .data(markers)
-    g.enter().append('g')
-      .on('click', this.onMarkerClick)
-      .append('circle')
-        .attr('cx', marker => {
-          let lat = marker.latLng[0]
-          let lon = marker.latLng[1]
-          let points = projection([lon, lat])
-          if (!points || !points[1]) {
-            throw new Error('Missing coordinates', marker)
-          }
-          return points[0]
-        })
-        .attr('cy', marker => {
-          let lat = marker.latLng[0]
-          let lon = marker.latLng[1]
-          let points = projection([lon, lat])
-          if (!points || !points[1]) {
-            throw new Error('Missing coordinates', marker)
-          }
-          return points[1]
-        })
-        .attr('r', d => d.seriesValue === 'topTen' ? '16px' : '5px')
-        .attr('class', (d) => {
-          let className
-          if (d.newLocation && props.selectedMap.id === TOP_CITY) {
-            className = 'new-location'
-          } else if (d.mostImproved && props.selectedMap.id === TOP_CITY) {
-            className = 'most-improved'
-          } else {
-            className = _.kebabCase(props.selectedMap.id)
-          }
-          return `marker ${className}`
-        })
-      .select(function () { return this.parentNode })
-        .append('text')
-        .text(d => d.rank <= 10 ? d.rank : '')
-        .attr('x', marker => {
-          let lat = marker.latLng[0]
-          let lon = marker.latLng[1]
-          let points = projection([lon, lat])
-          if (!points || !points[1]) {
-            throw new Error('Missing coordinates', marker)
-          }
-          return points[0]
-        })
-        .attr('y', marker => {
-          let lat = marker.latLng[0]
-          let lon = marker.latLng[1]
-          let points = projection([lon, lat])
-          if (!points || !points[1]) {
-            throw new Error('Missing coordinates', marker)
-          }
-          return points[1] + 3
-        })
-        .attr('text-anchor', 'middle')
-        .style('font-family', 'sans-serif')
-        .attr('font-size', '11px')
-        .attr('fill', '#ffffff')
-  }
-
-  updateNumbers (selection, props = this.props) {
-    const markers = _.filter(marker => marker.seriesValue === 'topTen', props.selectedMap.mapData.markers)
-    const text = selection.selectAll('text')
-      .data(markers)
-    text.exit().remove()
-    console.log('markers', markers)
-    text
-      .enter().append('text')
-      .merge(text)
-      .text(d => d.rank)
-      .attr('x', marker => {
-        let lat = marker.latLng[0]
-        let lon = marker.latLng[1]
-        let points = projection([lon, lat])
-        if (!points || !points[1]) {
-          throw new Error('Missing coordinates', marker)
-        }
-        return points[0]
-      })
-      .attr('y', marker => {
-        let lat = marker.latLng[0]
-        let lon = marker.latLng[1]
-        let points = projection([lon, lat])
-        if (!points || !points[1]) {
-          throw new Error('Missing coordinates', marker)
-        }
-        return points[1] + 3
-      })
-      .attr('text-anchor', 'middle')
-      .style('font-family', 'sans-serif')
-      .attr('font-size', '11px')
-      .attr('fill', '#ffffff')
-      .on('click', this.onMarkerClick)
-  }
-  addFeatures (selection) {
-    selection
-      .data(topojson.feature(topodata, topodata.objects.states).features)
-      .enter().append('path')
-      .attr('d', path)
-      .attr('class', 'feature')
-  }
-
-  addMesh (selection) {
-    selection
-      .datum(topojson.mesh(topodata, topodata.objects.states, (a, b) => a !== b))
-      .attr('class', 'mesh')
-      .attr('d', path)
-  }
-
-  onStop () {
-    console.log('onStop', arguments);
-
+  stopped = () => {
+    console.log('stopped', arguments)
     if (d3.event.defaultPrevented) d3.event.stopPropagation()
   }
+  updateMarkers = (locations) => {
+    console.log('updateMarkers')
 
-  onMarkerClick (d) {
-    this.props.onMarkerClick(d)
+    this.gMarkers.selectAll('g').remove()
+    const markers = _.map(Marker, locations)
+
+    const g = this.gMarkers
+      .selectAll('g')
+      .data(markers, (d) => _.join('_', d.lngLat))
+
+    g.enter()
+      .append('g')
+        .on('click', this.handleMarkerClick)
+        .attr('transform', (d) => {
+          let point = projection(d.lngLat)
+          return `translate(${point[0]}, ${point[1]})`
+        })
+        .on('mouseover', (d) => {
+          console.log('mouseover', d.cityState)
+          // this.tooltip.transition()
+          //   .duration(200)
+          //   .style('opacity', 0.9)
+          this.tooltip.html(d.cityState)
+            .style('left', `${d3.event.pageX}px`)
+            .style('top', `${d3.event.pageY - 28}px`)
+        })
+        .on('mouseout', (d) => {
+          this.tooltip.transition()
+            .duration(200)
+            .style('opacity', 0)
+        })
+        .attr('class', (d) => d.className)
+        .append('circle')
+          // .attr('cx', (d) => d.cx)
+          // .attr('cy', (d) => d.cy)
+          .attr('r', (d) => d.r)
+          .select(function (d) { return this.parentNode })
+        .filter((d) => d.seriesValue === 'topTen')
+          .append('text')
+            // .attr('x', d => d.cx)
+            // .attr('y', d => d.cy + 3)
+            .style('font-size', '0.688em')
+            .text(d => d.rank)
+            .classed('rank', true)
   }
 
-  containerRef (el) {
-    this.container = el
-  }
-  componentDidMount () {
-    console.log('this.container.clientWidth', this.container.clientWidth);
+  zoomed = () => {
+    let { width, height } = this.props
+    let {k, x, y} = d3.event.transform
+    // console.log('d3.event.transform', d3.event.transform)
 
-    // this.width = this.container.clientWidth
-    // this.height = this.container.clientHeight
-    // this.mapRatio = this.height / this.width
-    // this.setState({
-    //   width,
-    //   height
+    // const locations = _.get('selectedMap.mapData.locations', this.props)
+    // console.log('d3.event.transform', d3.event.transform, arguments)
+    // const g = d3.selectAll('svg > g')
+    this.gMain.attr('transform', `translate(${x}, ${y})scale(${k})`)
+    this.gFeatures.style('stroke-width', `${1 / k}px`)
+    // this.gMarkers.selectAll('g').attr('transform', `translate(0,0)scale(${1 / k})`)
+
+    this.gMarkers.selectAll('circle')
+      .attr('r', (d) => d.r / k)
+      .style('stroke-width', `${1 / k}px`)
+    this.gMarkers.selectAll('text').style('font-size', (d) => `${0.688 / k}em`)
+
+    // this.gFeatures.attr('transform', `translate(${x}, ${y})scale(${k})`)
+    // this.gMarkers.attr('transform', `translate(${x}, ${y})scale(${k})`)
+
+    // let markers = this.gMarkers.selectAll('.marker')
+/*
+    this.gMarkers
+      .attr('transform', function (d) {
+        // console.log('d.point', d.point)
+        let point = d3.event.transform.invert(d.point)
+        // console.log('invert', point)
+        // const translateX = width / 2 - (1 / k) * d.cx
+        // const translateY = height / 2 - (1 / k) * d.cy
+        // let tx = d.cx - x
+        // const t = d3.zoomTransform(this)
+        // console.log('transform ', t)
+        // const t = transform.translate
+        let fo = `translate(${point[0]}, ${point[1]})scale(${1 / k})`
+        console.log('fo', fo)
+        return fo
+      })
+*/
+    // this.gMarkers.selectAll('g').attr('transform', function (d) {
+    //   var t = d3.event.transform.translate
+    //   // var t = d3.transform(d3.select(this).attr("transform")).translate;//maintain aold marker translate
+    //   return 'translate(' + t[0] + ',' + t[1] + ')scale(' + 1 / k + ')'// inverse the scale of parent
+    //   // d3.event.transform
     // })
+    // this.gMarkers.selectAll('circle').attr('r', (d) => {
+    //   let r = d.r / k
+    //   console.log('circle data', d, r)
+    //   return r
+    //   // let r = `${d.r / k}px`
+    //   // `${d.r / k}px`
+    // })
+    // this.gMarkers.selectAll('.rank').attr('font-size', (d) => {
+    //   let fontSize = d['font-size'] / k
+    //   console.log('text data', d, fontSize)
+    //   return fontSize
+    //   // `${d['font-size'] / k}em`
+    // })
+    // this.gMarkers.selectAll('g').attr('transform', d3.event.transform)
+    // this.updateMarkers(locations)
+    // this.gMarkers.style('stroke-width', `${1 / d3.event.transform.k}px`)
+
+    // this.g.attr('transform', 'translate(' + d3.event.translate + ')scale(' + d3.event.scale + ')')
+    // this.gMarkers('attr')
+    // this.gFeatures.attr('transform', d3.event.transform)
+    // this.gMarkers.selectAll('g').attr('transform', (d) => {
+    //   console.log('D', d)
+    //   const translateX = x - k * d.cx
+    //   const translateY = y - k * d.cy
+    //   return `translate(${translateX}, ${translateY})`
+      // d3.zoomIdentity.translate(d3.event.transform.x, d3.event.transform.y))
+    // })
+  }
+
+  zoomToCity = (location) => {
+    // console.log('zoomToCity ', location)
+    let { width, height, zoomToCityScale } = this.props
+    // let height = width * aspectRatio
+    const marker = Marker(location)
+
+    const point = { 'type': 'Point', 'coordinates': marker.lngLat }
+    // console.log('point', point)
+
+    const centroid = path.centroid(point)
+    // console.log('centroid', centroid)
+    const translateX = width / 2 - zoomToCityScale * centroid[0]
+    const translateY = height / 2 - zoomToCityScale * centroid[1]
+    // console.log('translateX, translateY', translateX, translateY)
+    this.svg.transition()
+      .duration(300)
+      .call(this.zoom.transform, d3.zoomIdentity.translate(translateX, translateY).scale(zoomToCityScale))
+
+    // this.svg.transition()
+    //   .duration(750)
+    // this.zoom.scaleTo(this.svg.transition().duration(750), zoomToCityScale)
+      // .call(this.zoom.scaleTo(zoomToCityScale).translateBy(translateX, translateY))
+      // .call(this.zoom.transform, d3.zoomIdentity.translate(translateX, translateY).scale(zoomToCityScale))
+      // .call(this.zoom.transform, (d, i) => {
+      //   console.log('d, i', d, i)
+      //   return d3.zoomIdentity
+      // })
+  }
+
+  zoomOut () {
+    this.svg.transition()
+      .duration(750)
+      .call(this.zoom.transform, d3.zoomIdentity)
+  }
+
+  // lifecycle methods
+
+  // constructor (props) {
+  //   super(props)
+  //   this.state.aspectRatio = props.height / props.width
+  // }
+  componentDidMount () {
+    let { width, height } = this.props
+    console.log('componentDidMount ')
+    const locations = _.get('selectedMap.mapData.locations', this.props)
+    if (!locations) {
+      throw new MapError(`No locations to add after mount.`)
+    }
 
     projection
       .scale(1000)
-      .translate([715 / 2, 625 / 2])
-    // d3.select(this.svg).on('click', this.onStop, true)
-    d3.select('.svg-container')
-      .append('svg')
-        .attr('viewBox', '0 0 715 625')
-        .attr('preserveAspectRatio', 'xMinYMin meet')
-        // .attr('width', '100%')
-        // .attr('height', '100%')
-        .attr('class', 'svg-content')
-      .append('g')
+      .translate([width / 2, height / 2])
 
-    // d3.select(this.rect).on('click', zoomOut)
-    d3.select('.svg-container g').call(this.addMap)
-    d3.select('.svg-container g').call(this.updateMarkers)
-    // d3.select(this.g).call(this.updateNumbers)
-    // d3.select(window).on('resize', this.resize)
+    this.svg = d3.select(this.container)
+      .append('svg')
+        .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('preserveAspectRatio', 'xMinYMin meet')
+        .classed('svg-map-content', true)
+        .on('click', this.stopped, true)
+
+    this.rect = this.svg.append('rect')
+    this.rect
+      .attr('width', '100%')
+      .attr('height', '100%')
+      .classed('svg-map-background', true)
+      .on('click', () => {
+        console.log('rect clickt')
+        this.svg.transition()
+          .duration(750)
+          .call(this.zoom.transform, d3.zoomIdentity)
+      })
+    this.gMain = this.svg.append('g').classed('main-group', true)
+    this.gFeatures = this.gMain.append('g')
+    this.gFeatures
+      .selectAll('path')
+        .data(topojson.feature(topodata, topodata.objects.states).features)
+        .enter().append('path')
+        .attr('d', path)
+        .classed('svg-map-feature', true)
+
+    this.gFeatures
+      .append('path')
+        .datum(topojson.mesh(topodata, topodata.objects.states, (a, b) => a !== b))
+        .attr('d', path)
+        .classed('svg-map-mesh', true)
+
+    this.zoom = d3.zoom()
+      .scaleExtent([1, 7])
+      .on('zoom', this.zoomed)
+    // this.gFeatures.call(this.zoom)
+    this.svg.call(this.zoom)
+      .on('mousedown.zoom', null)
+      .on('wheel.zoom', null)
+
+    this.tooltip = d3.select('body')
+      .append('div')
+      .classed('marker-tooltip', true)
+      // .attr('class', 'marker-tooltip')
+      .style('display', 0)
+
+    this.gMarkers = this.gMain.append('g').classed('markers', true)
+    this.updateMarkers(locations)
   }
 
   shouldComponentUpdate (nextProps, nextState) {
-    let { selectedMap, selectedCity } = this.props
-    console.log('shouldComponentUpdate', selectedCity, nextProps)
+    console.log('shouldComponentUpdate', nextProps, nextState)
+    let { selectedMap } = this.props
     if ((selectedMap.id !== nextProps.selectedMap.id) ||
         (selectedMap.year !== nextProps.selectedMap.year) ||
         (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
       console.log('YES shouldComponentUpdate')
-
-      d3.select(this.g).call(this.updateMarkers, nextProps)
-      // d3.select(this.g).call(this.updateNumbers, nextProps)
+      const locations = _.get('selectedMap.mapData.locations', nextProps)
+      if (!locations) {
+        throw new MapError(`No locations to add after update.`)
+      }
+      this.updateMarkers(locations)
     }
-    // d3.select(this.svg).call(zoomIn, nextProps)
     if (nextProps.selectedCity) {
-      zoomToCity(nextProps)
-    } else if (nextProps.selectedMap.stateFilter && (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
-      let firstCity = _.head(nextProps.selectedMap.mapData.markers)
-      zoomToCity({width: nextProps.width, height: nextProps.height, selectedCity: firstCity})
-    }
-    // else if (nextProps.selectedCity && nextProps.selectedMap.stateFilter === '') {
-    //   zoomOut()
-    // }
+      console.log('nextProps.selectedCity', nextProps.selectedCity)
 
+      this.zoomToCity(nextProps.selectedCity)
+    } else if (nextProps.selectedMap.stateFilter && (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
+      let firstCity = _.head(nextProps.selectedMap.mapData.locations)
+      this.zoomToCity(firstCity)
+    } else if (this.state.scale !== nextState.scale) {
+      console.log('calling handleRange', this.state.scale)
+
+      this.handleRange(nextState.scale)
+    }
     return false
   }
 
-  resize () {
-    // let svg = d3.select(this.container)
-    this.svg.select('g').attr('transform', 'scale(' + $(this.container).width() / 900 + ')')
-	  $('.svg-container svg').height($(this.container).width() * 0.618)
-    // let {width, height} = this.state
-    // let width = parseInt(d3.select(this.svg).style('width'))
-    // let height = parseInt(d3.select(this.svg).style('height'))
-    // d3.select(this.g).attr('transform', 'scale(' + this.width / 900 + ')')
-    // d3.select(this.g)
-    // this.svg.style.height = this.width * this.mapRatio
-    // this.setState({
-    //   height: this.width * mapRatio
-    // })
-	    // $('svg').height(width * 0.618);
-    // adjust things when the window size changes
-    // let width = parseInt(d3.select(this.svg).style('width'))
-    // height = width * mapRatio;
-
-    // // update projection
-    // projection
-    //     .translate([width / 2, height / 2])
-    //     .scale(width);
-
-    // // resize the map container
-    // map
-    //     .style('width', width + 'px')
-    //     .style('height', height + 'px');
-
-    // // resize the map
-    // map.select('.land').attr('d', path);
-    // map.selectAll('.state').attr('d', path);
-  }
-
   render () {
-    // let {width, height} = this.state
-
+    let {width, height} = this.props
+    const svgMapContainerStyle = {
+      // position: 'relative',
+      // height: '0',
+      // width: '100%',
+      // padding: '0',
+      paddingBottom: `${100 * (height / width)}%`
+    }
     const handleStyle = {
       backgroundColor: '#0096d6',
       width: '15px',
@@ -376,29 +408,24 @@ const Choropleth = class Choropleth extends React.Component {
     // }
     return (
       <div styleName="container">
-        <div className="svg-container" width="715" height="625" ref={this.containerRef} />
-        <div styleName="zoom-bar-wrapper">
+        <div style={svgMapContainerStyle} className="svg-map-container" ref={this.containerRef} />
+        {/* <div styleName="zoom-bar-wrapper">
           <div styleName="zoom-in">+</div>
           <Slider className="zoom-bar"
             vertical={true}
-            min={zoom.scaleExtent()[0]}
-            max={zoom.scaleExtent()[1]}
-            defaultValue={zoom.scaleExtent()[0]}
+            min={this.zoom.scaleExtent()[0]}
+            max={this.zoom.scaleExtent()[1]}
+            defaultValue={this.state.scale}
             onChange={this.handleRange}
             handleStyle={handleStyle}
             marks={marks}
             step={null}
             />
           {<div styleName="zoom-out">-</div>}
-        </div>
+        </div> */}
       </div>
     )
   }
 }
 
-Choropleth.propTypes = {
-  selectedMap: PropTypes.object.isRequired,
-  selectedCity: PropTypes.object,
-  onMarkerClick: PropTypes.func.isRequired
-}
 export default Choropleth

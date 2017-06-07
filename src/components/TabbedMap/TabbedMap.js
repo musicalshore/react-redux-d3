@@ -8,7 +8,6 @@ import TopListings from 'components/TopListings'
 import TabNav from 'components/TabNav'
 import './style.scss'
 
-
 const Social = () => {
   return (
     <div styleName="social-container">
@@ -45,7 +44,6 @@ const TabbedMap = class TabbedMap extends React.Component {
     }
   }
 
-
   zoomBar (el) {
     this.el = el
   }
@@ -72,13 +70,13 @@ const TabbedMap = class TabbedMap extends React.Component {
         <div styleName="map-container">
           <div styleName="maps">
             <TabNav {...this.props} />
-            <Choropleth {...this.props} onMarkerClick={onCitySelect} width="715" height="625" />
-            {/*<div styleName="timeLine-SocialContainer">
+             <Choropleth {...this.props} onCitySelect={onCitySelect} width={715} height={625} />
+            {/* <div styleName="timeLine-SocialContainer">
 
               <div styleName="socialContainer">
                 <div id="pageShare"></div>
               </div>
-            </div>*/}
+            </div> */}
           </div>
           <div styleName="top-listings">
             <TopListings {...this.props} />

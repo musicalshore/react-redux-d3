@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-
+var StyleLintPlugin = require('stylelint-webpack-plugin')
 
 module.exports = {
   // devtool: 'source-map',
@@ -20,7 +20,7 @@ module.exports = {
   // ],
   entry: {
     main: [
-      'babel-polyfill',
+      // 'babel-polyfill',
       'react-hot-loader/patch',
       'webpack-hot-middleware/client?http://0.0.0.0:3333&path=/__what&timeout=6000&reload=true',
       'index.js'
@@ -36,6 +36,7 @@ module.exports = {
     rules: require('./webpack.loaders.js')
   },
   plugins: [
+    // new StyleLintPlugin({customSyntax: 'postcss-scss'}),
     new ExtractTextPlugin({filename: 'style.css', disable: true}),
     new webpack.DefinePlugin({
       'environment': '\'development\'',
