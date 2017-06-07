@@ -21,11 +21,12 @@ export const getMapData = ({id, year, rankingType, stateFilter = null}) => {
     const yearMetrics = _.pickBy.convert({cap: false})((val, key) => _.startsWith(year, key), location)
     const additionalData = _.pick(['cityState', 'mostImproved', 'newLocation', 'latLng', 'metropolitanArea', 'city', 'state'], location)
     if (!rank) {
-      if (location.newLocation) {
-        return result
-      } else {
-        throw new Error('No rank for locationData')
-      }
+      return result
+      // if (location.newLocation) {
+      //   return result
+      // } else {
+      //   throw new Error('No rank for locationData')
+      // }
     }
     return _.concat(result, _.extendAll([{
       id,
@@ -105,6 +106,9 @@ const selectedMap = (state = {}, action) => {
       let mapData
       let safeCityData = {}
       let selectedMap = _.isEmpty(action.selectedMap) ? defaultMap : action.selectedMap
+      if (selectedMap.id !== DEFAULT_MAP && parseInt(selectedMap.year) <= 2013) {
+        selectedMap = _.extend(defaultMap, { year: selectedMap.year })
+      }
       mapData = getMapData(selectedMap)
       selectedMap = _.extend(selectedMap, {mapData})
       if (selectedMap.stateFilter !== '' && !_.isNull(mapData)) {
@@ -130,6 +134,16 @@ const selectedCity = (state = null, action) => {
   }
 }
 
+// const activeElement = (state = null, action) => {
+//   switch (action.type) {
+//     case SELECT_CITY:
+//       const activeElement = action.selectedCity.source
+//       console.log('source', activeElement)
+//       return activeElement || null
+//     default:
+//       return state
+//   }
+// }
 const modalIsOpen = (state = false, action) => {
   switch (action.type) {
     case SELECT_CITY:
@@ -179,7 +193,6 @@ const errorMessage = (state = '', action) => {
       } else {
         error = ''
       }
-      // console.log('ERRORMESSAGE:', error);
       return error
     default:
       return state
@@ -228,6 +241,7 @@ const reducer = combineReducers({
   selectedYearOption,
   selectedStateOption,
   errorMessage
+  // activeElement
   // disableOtherMaps
   // mapSelector
 })
