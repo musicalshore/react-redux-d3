@@ -169,6 +169,11 @@
         text-align: center;
         // padding-top: 63px;
         border-bottom: 7px solid #bdbdbd;
+
+        &.selected {
+          border-bottom: 7px solid $dark-gray;
+          color: $dark-gray;
+        }
         cursor: not-allowed;
         span {
           display: block;
