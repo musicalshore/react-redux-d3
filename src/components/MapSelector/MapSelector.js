@@ -94,26 +94,9 @@ const MapSelector = class MapSelector extends React.Component {
               clearable={false}
             />
 
-{/*
-            <label styleName="year-label" htmlFor="year">Year</label>
-            <div styleName="select-box year">
-              <select id="year" value={selectedYearOption} onChange={this.handleYearOptionChange}>
-                {years}
-              </select>
-            </div> */}
-          {/* </div> */}
-          {/* <div styleName="state-select"> */}
-            {/* <label styleName="state-label" htmlFor="usState">State</label>
-            <div styleName="select-box state">
-              <select id="usState" value={selectedStateOption} onChange={this.handleStateOptionChange}>
-                <option key="ALL" value="">All</option>
-                {usStates}
-              </select>
-            </div> */}
-          {/* </div> */}
           <button type="button" onClick={this.handleMapSelectorChange}>Go</button>
         </div>
-        <div styleName="clear-search-container">
+        <div styleName={`clear-search-container ${errorMessage !== '' ? 'has-error' : ''}`}>
           {errorMessage === '' && safeCityData.safeCityCount > 0 && <div styleName="factoid"><span styleName="state-name">{safeCityData.name}</span> has <span styleName="safe-city-count">{safeCityData.safeCityCount}</span> of the top 200 safest driving cities.</div>}
           {errorMessage !== '' && <div styleName="error">{errorMessage}</div>}
           {(errorMessage || safeCityData.safeCityCount > 0 || selectedMap.year !== defaultYear) &&

@@ -132,6 +132,9 @@ const Choropleth = class Choropleth extends React.Component {
   updateMarkers = (locations) => {
     this.gMarkers.selectAll('g').remove()
     const markers = _.map(Marker, locations)
+    if (!markers) {
+      return
+    }
     const g = this.gMarkers
       .selectAll('g')
       .data(markers, (d) => _.join('_', d.lngLat))
@@ -251,9 +254,6 @@ const Choropleth = class Choropleth extends React.Component {
     if ((selectedMap.id !== nextProps.selectedMap.id) ||
         (selectedMap.year !== nextProps.selectedMap.year) ||
         (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
-      if (!locations) {
-        throw new MapError(`No locations to add after update.`)
-      }
       this.updateMarkers(locations)
     }
     // if marker clicked, zoom to city
@@ -289,7 +289,7 @@ const Choropleth = class Choropleth extends React.Component {
       borderRadius: '300px',
       overflow: 'visible',
       marginLeft: '-5px',
-      zIndex: '999',
+      zIndex: '30',
       border: 'none'
     }
 

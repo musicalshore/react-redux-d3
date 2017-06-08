@@ -106,8 +106,12 @@ const selectedMap = (state = {}, action) => {
       let mapData
       let safeCityData = {}
       let selectedMap = _.isEmpty(action.selectedMap) ? defaultMap : action.selectedMap
-      if (selectedMap.id !== DEFAULT_MAP && parseInt(selectedMap.year) <= 2013) {
-        selectedMap = _.extend(defaultMap, { year: selectedMap.year })
+      if (selectedMap.id !== DEFAULT_MAP && parseInt(selectedMap.year) < 2014) {
+        selectedMap = _.extend(selectedMap, {
+          year: selectedMap.year,
+          mapData: null
+        })
+        return selectedMap
       }
       mapData = getMapData(selectedMap)
       selectedMap = _.extend(selectedMap, {mapData})

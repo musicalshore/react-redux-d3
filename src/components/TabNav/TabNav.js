@@ -6,23 +6,22 @@ import {MAPS, TOP_CITY} from 'constants/maps'
 import './style.scss'
 
 const Tab = ({ id, title, selectedMap, onTabClick }) => {
-  let result
+  let additionalClasses = selectedMap.id === id ? 'selected' : ''
+  let isDisabled
 
-  if (id === TOP_CITY || (id !== TOP_CITY && parseInt(selectedMap.year) > 2013)) {
-    result = <li role="tab" styleName={`${_.kebabCase(id)} ${selectedMap.id === id ? 'selected' : ''}`}
-      onClickCapture={onTabClick}
-      >
-        <a href="#" onClick={onTabClick} styleName="title"><span>{title}</span></a>
-      </li>
-  } else {
-    result = <li styleName={`${_.kebabCase(id)} disabled`}>
-      <div>
-        <span>{title}</span>
-        <span>No data available</span>
-      </div>
-    </li>
+  if (id !== TOP_CITY && parseInt(selectedMap.year) < 2014) {
+    additionalClasses += ' disabled'
+    isDisabled = true
   }
-  return result
+
+  return (
+    <li role="tab" styleName={`${_.kebabCase(id)} ${additionalClasses}`} onClickCapture={onTabClick}>
+      <a href="#" onClick={onTabClick} styleName="title">
+        <div>{title}</div>
+        {isDisabled && <div>No data available</div>}
+      </a>
+    </li>
+  )
 }
 
 Tab.propTypes = {

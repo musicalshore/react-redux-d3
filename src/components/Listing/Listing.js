@@ -7,8 +7,8 @@ import './style.scss'
 const ListItem = ({rank, cityState, onClick, selectedMap}) => {
   const onClickListItem = (e) => {
     console.log('e', e)
-    onClick()
     e.preventDefault()
+    onClick()
   }
   return (
     <li onClick={onClickListItem} styleName={_.kebabCase(selectedMap.id)}>
@@ -76,7 +76,8 @@ const Listing = class Listing extends React.Component {
     let {selectedMap, onCitySelect} = this.props
     const locations = _.get('mapData.locations', selectedMap)
     if (!locations) {
-      throw new Error('No locations to render in Listing')
+      // throw new Error('No locations to render in Listing')
+      return null
     }
     const listItems = _.map(ranking => {
       return (

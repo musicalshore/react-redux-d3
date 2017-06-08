@@ -77,14 +77,16 @@
 
   :global {
     .select-box {
-      border: 1px solid #e6e6e6;
-      background: #fafafa url("./select-arrow.png") no-repeat 90% 50%;
-      border-radius: 4px;
+      .Select-control {
+        border: 1px solid $light-gray;
+        // background: #fafafa url("./select-arrow.png") no-repeat 90% 50%;
+        border-radius: 4px;
       // overflow: hidden;
-      height: 40px;
-      font-size: 14px;
-      color: #4d4d4d;
-      font-weight: bold;
+        height: 40px;
+        font-size: $font-size-small;
+        color: #4d4d4d;
+        font-weight: bold;
+      }
 
       &.year {
         width: 90px;
@@ -141,7 +143,12 @@
 .clear-search-container {
   height: 30px;
   display: flex;
+  // align-items: center;
   justify-content: flex-end;
+
+  &.has-error {
+    justify-content: center;
+  }
 
   .state-name,
   .safe-city-count {
