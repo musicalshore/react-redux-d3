@@ -65,9 +65,9 @@
     display: none;
   }
 
-  // @include mq($from: tablet) {
-  //   position: relative;
-  // }
+  @include mq($from: tablet) {
+    position: relative;
+  }
 }
 
 :global {
@@ -78,19 +78,21 @@
     padding: 0;
     padding-bottom: 100%; // should equal aspectRatio, will be overriden during render by 100% * (height/width)
 
-    .marker-tooltip {
-      position: absolute;
-      text-align: center;
-      width: 60px;
-      height: 28px;
-      padding: 2px;
-      font: 12px sans-serif;
-      background: lightsteelblue;
-      border: 0px;
-      border-radius: 8px;
-      pointer-events: none;
-      z-index: 9999;
-    }
+  }
+
+  .marker-tooltip {
+    position: absolute;
+    display: none;
+    height: 1em;
+    box-sizing: content-box;
+    border: solid 2px #0076a7;
+    background-color: #fff;
+    padding: 3px;
+    color: #000;
+    border-radius: 0;
+    font-weight: 500;
+    font-size: $font-size-smaller;
+    font-family: $font-family-base;
   }
 
   .svg-map-content {
@@ -153,7 +155,7 @@
 
     & .rank {
       text-anchor: middle;
-      dominant-baseline: central;
+      // dominant-baseline: central;
       font-family: $font-family-base;
       // font-size: $font-size-marker;
       fill: $white;
