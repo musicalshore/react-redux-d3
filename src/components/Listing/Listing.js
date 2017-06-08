@@ -5,18 +5,20 @@ import PropTypes from 'prop-types'
 import './style.scss'
 
 const ListItem = ({rank, cityState, onClick, selectedMap}) => {
+  const onClickListItem = (e) => {
+    console.log('e', e)
+    onClick()
+    e.preventDefault()
+  }
   return (
-    <li onClick={onClick} styleName={_.kebabCase(selectedMap.id)}>
+    <li onClick={onClickListItem} styleName={_.kebabCase(selectedMap.id)}>
       <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <g>
           <circle cx="15" cy="15" r="15" />
           <text x="50%" y="50%" alignmentBaseline="middle" textAnchor="middle">{rank}</text>
         </g>
       </svg>
-      <div styleName="cityState"><a href="#" onClick={e => {
-        e.preventDefault()
-        onClick()
-      }}>{cityState}</a></div>
+      <div styleName="cityState"><a href="#" onClick={onClickListItem}>{cityState}</a></div>
     </li>
   )
 }
@@ -79,7 +81,12 @@ const Listing = class Listing extends React.Component {
     const listItems = _.map(ranking => {
       return (
         <ListItem
-          key={ranking.rank} {...ranking} selectedMap={selectedMap} onClick={() => onCitySelect(ranking)}
+          key={ranking.rank} {...ranking}
+          selectedMap={selectedMap}
+          onClick={() => {
+            window.lastFocus = document.activeElement
+            onCitySelect(ranking)
+          }}
         />
       )
     }, _.sortBy('rank', locations))

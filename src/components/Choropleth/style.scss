@@ -93,6 +93,7 @@
     font-weight: 500;
     font-size: $font-size-smaller;
     font-family: $font-family-base;
+    z-index: 20;
   }
 
   .svg-map-content {
@@ -109,7 +110,7 @@
   }
 
   .svg-map-feature {
-    fill: #ccc;
+    fill: $light-gray;
   }
 
   .svg-map-mesh {

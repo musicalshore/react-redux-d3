@@ -13,7 +13,7 @@ export const getMapData = ({id, year, rankingType, stateFilter = null}) => {
   // we need to reverse the order by rank so the larger markers are drawn over the smaller markers
   const bestDriverData = stateFilter.length && stateFilter !== 'All' ? _.filter(['State', stateFilter], BEST_DRIVER_DATA) : BEST_DRIVER_DATA
   const locationData = _.reduce((result, location) => {
-    console.log('location', location)
+    // console.log('location', location)
 
     const yearRankingType = `${year} ${rankingType}`
     const key = _.snakeCase(`${yearRankingType} ${location.cityState}`)
@@ -128,7 +128,7 @@ const selectedMap = (state = {}, action) => {
 const selectedCity = (state = null, action) => {
   switch (action.type) {
     case SELECT_CITY:
-      return _.extend(state, action.selectedCity)
+      return action.selectedCity
     default:
       return state
   }
@@ -198,6 +198,7 @@ const errorMessage = (state = '', action) => {
       return state
   }
 }
+
 // const disableOtherMaps = (state = false, action) => {
 //   switch (action.type) {
 //     case SELECT_MAP:
@@ -241,9 +242,6 @@ const reducer = combineReducers({
   selectedYearOption,
   selectedStateOption,
   errorMessage
-  // activeElement
-  // disableOtherMaps
-  // mapSelector
 })
 
 export default reducer
