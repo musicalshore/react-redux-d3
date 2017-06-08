@@ -10,26 +10,13 @@ import Footnotes from './Footnotes'
 import './style.scss'
 
 const CityModal = class CityModal extends React.Component {
-  constructor () {
-    super()
-    this.onAfterOpen = this.onAfterOpen.bind(this)
-    this.onRequestClose = this.onRequestClose.bind(this)
-  }
-
-  onAfterOpen () {
-    // $(this.modal).parent().addClass('city-modal-full-width')
-    // this.modal.parentNode.style.width = '100%'
-    // $(this.modal).animate('city-modal-full-width')
-  }
-
-  onRequestClose () {
-    // $(this.modal).removeClass('city-modal-full-width')
-    // this.modal.parentNode.style.width = '0'
-    this.props.onCitySelect(null)
+  onRequestClose = (e) => {
+    e.preventDefault()
+    this.props.onCitySelect()
+    e.stopPropagation()
   }
 
   shouldComponentUpdate (nextProps, nextState) {
-    console.log('nextProps', nextProps, 'this.props', this.props)
     if (nextProps.modalIsOpen !== this.props.modalIsOpen) {
       return true
     } else {

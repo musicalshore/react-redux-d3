@@ -7,9 +7,13 @@ const CityModalHeading = (props) => {
   let message = ''
   let additionalClasses = ''
 
-  const onClickClose = e => {
-    e.stopPropagation()
+  const onClickClose = (e) => {
+    e.preventDefault()
+    if (window.lastFocus) {
+      window.lastFocus.focus()
+    }
     onCitySelect()
+    e.stopPropagation()
   }
   const verb = selectedMap.year === defaultYear ? 'is' : 'was'
   const rankingType = selectedMap.id !== defaultMap ? ` by ${selectedMap.rankingType}` : ''

@@ -32,10 +32,6 @@ const App = () => (
       <script src="https://use.fontawesome.com/934103e5b8.js" />
     </Helmet>
     <div styleName="content">
-        {/*<div styleName="flex-item">1</div>
-        <div styleName="flex-item">2</div>
-        <div styleName="flex-item">3</div>
-        <div styleName="flex-item">4</div>*/}
           <Breadcrumbs />
           <Banner />
           <div styleName="report-container">
