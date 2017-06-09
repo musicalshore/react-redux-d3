@@ -1,6 +1,6 @@
 import _ from 'lodash/fp'
 import {combineReducers} from 'redux'
-import {MAPS, DEFAULT_MAP, DEFAULT_YEAR, YEARS, US_STATES} from 'constants/maps'
+import {MAPS, DEFAULT_MAP, DEFAULT_YEAR, DENSITY, RAIN_SNOW, US_STATES} from 'constants/maps'
 import {SELECT_MAP, SELECT_CITY, FILTER_STATE, SELECT_YEAR_OPTION, SELECT_STATE_OPTION} from 'constants/actionTypes'
 import BEST_DRIVER_DATA from 'constants/bestDriver'
 
@@ -22,11 +22,6 @@ export const getMapData = ({id, year, rankingType, stateFilter = null}) => {
     const additionalData = _.pick(['cityState', 'mostImproved', 'newLocation', 'latLng', 'metropolitanArea', 'city', 'state'], location)
     if (!rank) {
       return result
-      // if (location.newLocation) {
-      //   return result
-      // } else {
-      //   throw new Error('No rank for locationData')
-      // }
     }
     return _.concat(result, _.extendAll([{
       id,
@@ -38,7 +33,8 @@ export const getMapData = ({id, year, rankingType, stateFilter = null}) => {
   }, [], bestDriverData)
   // const markers = _.map(marker(year, rankingType))
   if (!locationData.length) {
-    throw new Error('No locationData found.')
+    // throw new Error('No locationData found.')
+    return null
   }
 
   const rankingsByYearAndType = _.flow([
@@ -188,11 +184,15 @@ const selectedStateOption = (state = '', action) => {
 const errorMessage = (state = '', action) => {
   switch (action.type) {
     case SELECT_MAP:
-      const id = _.get('selectedMap.id', action)
-      const year = parseInt(_.getOr(0, 'selectedMap.year', action))
+      const {id, year, stateFilter} = _.pick(['id', 'year', 'stateFilter'], action.selectedMap)
+      let mapData
       let error
-      // console.log('ERRORMESSAGE', id, year, action);
-      if ((id === 'DENSITY' || id === 'RAIN_SNOW') && year < 2014) {
+      if (id && year) {
+        mapData = getMapData(action.selectedMap)
+      }
+      console.log('errorMessage:', id, year, mapData, action.selectedMap)
+
+      if (_.isNull(mapData) || ((id === DENSITY || id === RAIN_SNOW) && _.parseInt(year) < 2014)) {
         error = 'No data found. Please select a different year, state or filter.'
       } else {
         error = ''
@@ -202,37 +202,6 @@ const errorMessage = (state = '', action) => {
       return state
   }
 }
-
-// const disableOtherMaps = (state = false, action) => {
-//   switch (action.type) {
-//     case SELECT_MAP:
-//       let disableOtherMaps
-//       let mapData = getMapData(action.selectedMap)
-//       console.log('disableOtherMaps action map', action, mapData)
-//       if (_.isNull(mapData)) {
-//         disableOtherMaps = true
-//       } else {
-//         disableOtherMaps = false
-//       }
-//       console.log('disableOtherMaps true', disableOtherMaps)
-//       return disableOtherMaps
-//     default:
-//       return state
-//   }
-// }
-// const mapSelector = (state = {year: DEFAULT_YEAR, usState: ''}, action) => {
-//   let {year, usState} = action
-//   let safeCityData = {}
-//   switch (action.type) {
-//     case CHANGE_MAP_SELECTOR:
-//       if (usState !== '') {
-//         safeCityData = getSafeCityData({year, usState})
-//       }
-//       return _.extend({year, usState}, safeCityData)
-//     default:
-//       return state
-//   }
-// }
 
 const defaultYear = (state = DEFAULT_YEAR) => state
 const defaultMap = (state = DEFAULT_MAP) => state

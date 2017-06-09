@@ -1,6 +1,6 @@
 import './style.scss'
 import 'react-select/dist/react-select.css'
-import {US_STATES, YEARS} from 'constants/maps'
+import {US_STATES, YEARS, DEFAULT_MAP, DEFAULT_YEAR, MAPS} from 'constants/maps'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Select from 'react-select'
@@ -44,7 +44,12 @@ const MapSelector = class MapSelector extends React.Component {
 
   clearSearch (e) {
     e.preventDefault()
-    this.props.onMapSelect()
+    const defaultMap = _.extend(_.find(['id', DEFAULT_MAP], MAPS), {
+      year: DEFAULT_YEAR,
+      stateFilter: '',
+      safeCityData: {}
+    })
+    this.props.onMapSelect(defaultMap)
   }
   handleMapSelectorChange (e) {
     e.stopPropagation()

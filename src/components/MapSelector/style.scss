@@ -12,11 +12,10 @@
   // }
   @include mq($until: tablet) {
     margin-bottom: 21px;
-    width: 95%;
   }
 
   @include mq($from: tablet) {
-    width: 100%;
+    // width: 100%;
   }
   // display: table-cell;
   // vertical-align: middle;
@@ -143,8 +142,12 @@
 .clear-search-container {
   height: 30px;
   display: flex;
-  // align-items: center;
-  justify-content: flex-end;
+  align-self: center;
+  justify-content: center;
+
+  @include mq($until: tablet) {
+    flex-wrap: wrap;
+  }
 
   &.has-error {
     justify-content: center;
@@ -165,5 +168,12 @@
   .clear-search {
     margin-right: 30px;
     margin-left: 5px;
+    // @include mq($from: mobile) {
+    //   width: 95%;
+    //   div {
+    //     display: block;
+    //     width: 100%;
+    //   }
+    // }
   }
 }

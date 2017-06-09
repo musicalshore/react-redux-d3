@@ -9,7 +9,8 @@ const Tab = ({ id, title, selectedMap, onTabClick }) => {
   let additionalClasses = selectedMap.id === id ? 'selected' : ''
   let isDisabled
 
-  if (id !== TOP_CITY && parseInt(selectedMap.year) < 2014) {
+  if ((!selectedMap.mapData && selectedMap.id === id) ||
+    (id !== TOP_CITY && parseInt(selectedMap.year) < 2014)) {
     additionalClasses += ' disabled'
     isDisabled = true
   }

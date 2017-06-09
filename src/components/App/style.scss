@@ -7,6 +7,7 @@
   @include mq($until: tablet) {
     width: 100%;
     margin-top: 25px;
+    overflow-x: hidden;
   }
 
   @include mq($from: tablet, $until: desktop) {

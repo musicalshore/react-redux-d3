@@ -27,6 +27,13 @@
       flex: 1 1 100%;
       background-position: center 6px;
 
+      @include mq($until: mobileLandscape) {
+        font-size: $font-size-smallest;
+      }
+
+      @include mq($from: mobileLandscape, $until: tablet) {
+        font-size: $font-size-smaller;
+      }
       @include mq($until: tablet) {
         background-position: 0 -3px;
         background-size: 50px;
@@ -49,12 +56,13 @@
         &.selected,
         &.selected:hover {
           @include mq($from: tablet) {
-            background-color: #fff;
+            background-color: $white;
+
           }
 
           @include mq($until: tablet) {
             .title {
-              color: rgb(255, 255, 255);
+              color: $white;
             }
           }
         }
@@ -126,6 +134,10 @@
         }
       }
 
+      &.top-city.selected.disabled {
+        background-image: url('./topCities_Gray.png');
+      }
+
       &.rain-snow.selected.disabled {
         background-image: url('./rainSnow_Gray.png');
       }
@@ -137,21 +149,12 @@
       .title {
         color: $dark-gray;
         font-family: 'Arial', sans-serif;
-        font-size: $font-size-small;
         padding-top: 63px;
         display: block;
         height: 100%;
         width: 100%;
         text-align: center;
         text-decoration: none;
-
-        @include mq($from: mobile, $until: mobileLandscape) {
-          font-size: $font-size-smallest;
-        }
-
-        @include mq($from: mobileLandscape, $until: tablet) {
-          font-size: $font-size-smaller;
-        }
 
         @include mq($until: tablet) {
           padding: 8px 0 0 46px;
@@ -172,7 +175,10 @@
 
         &.selected {
           border-bottom: 7px solid $dark-gray;
-          color: $dark-gray;
+          background-color: $white;
+          .title {
+            color: $dark-gray;
+          }
         }
         cursor: not-allowed;
         span {
@@ -180,8 +186,6 @@
         }
 
         @include mq($until: tablet) {
-          font-size: 12px;
-          padding: 8px 0 0 46px;
           text-align: left;
 
           span {
@@ -189,10 +193,6 @@
           }
         }
 
-        @include mq($until: mobileLandscape) {
-          font-size: 10px;
-          // padding-right: 30%;
-        }
       }
     }
   }
