@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 // import Tab from 'components/Tab'
 import {MAPS, TOP_CITY} from 'constants/maps'
 import './style.scss'
+import {trackCustom_scLV} from 'utils/sitecatalyst'
 
 const Tab = ({ id, title, selectedMap, onTabClick }) => {
   let additionalClasses = selectedMap.id === id ? 'selected' : ''
@@ -42,6 +43,7 @@ const TabNav = class TabNav extends React.Component {
     e.preventDefault()
     let {selectedMap, onMapSelect} = this.props
     console.log('DATA', id, rankingType, selectedMap)
+    trackCustom_scLV(selectedMap.rankingType)
     onMapSelect({
       id,
       rankingType,

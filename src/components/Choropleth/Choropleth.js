@@ -9,6 +9,7 @@ import Slider from 'rc-slider'
 import {TOP_CITY} from 'constants/maps'
 import _ from 'lodash/fp'
 import topodata from './us.json'
+import {trackCustom_scLV} from 'utils/sitecatalyst'
 
 class MapError extends Error {
   constructor (message) {
@@ -87,11 +88,12 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   onSliderChange = (step) => {
-    console.log('onSliderChange ', step)
+    // console.log('onSliderChange ', step)
     this.setState({scale: this.scales[step]})
   }
 
   handleMarkerClick = (datum) => {
+    trackCustom_scLV(`${datum.state}:${datum.city}`)
     this.props.onCitySelect(_.omit(['cx', 'cy', 'r', 'class'], datum))
   }
 
@@ -101,7 +103,7 @@ const Choropleth = class Choropleth extends React.Component {
 
   nextStep = () => {
     const nextStep = _.indexOf(this.state.scale, this.scales) + 1
-    console.log('nextStep ', nextStep)
+    // console.log('nextStep ', nextStep)
 
     if (nextStep < this.scales.length) {
       this.setState({scale: this.scales[nextStep]})
@@ -116,10 +118,10 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   reset = () => {
-    console.log('reset')
+    // console.log('reset')
     this.svg
-      // .transition()
-      // .duration(750)
+      .transition()
+      .duration(750)
       .call(zoom.translateBy, d3.zoomIdentity)
   }
 
@@ -176,7 +178,7 @@ const Choropleth = class Choropleth extends React.Component {
     // const centroid = path.centroid(point)
     // console.log('0,0', centroid, point)
     let {k, x, y} = d3.event.transform
-    console.log('zoomed k x y', k, x, y, d3.zoomIdentity)
+    // console.log('zoomed k x y', k, x, y, d3.zoomIdentity)
     this.gMain.attr('transform', d3.event.transform)
     this.gFeatures.style('stroke-width', `${1 / k}px`)
     this.gMarkers
