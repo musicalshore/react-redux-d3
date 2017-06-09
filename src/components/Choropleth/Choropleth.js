@@ -19,12 +19,17 @@ class MapError extends Error {
 
 const projection = d3.geoAlbersUsa()
 const path = d3.geoPath().projection(projection)
+const feature = topojson.feature(topodata, topodata.objects.states)
+const mesh = topojson.mesh(topodata, topodata.objects.states, (a, b) => a !== b)
 const zoom = d3.zoom().scaleExtent([1, 8])
+// const bounds = path.bounds(feature)
+// const center = path.centroid(feature)
 
 const Marker = (location) => {
   // point must be specified as a two-element array [longitude, latitude] in degrees
   const lngLat = _.reverse(location.latLng)
   const point = projection(lngLat)
+  const centroid = path.centroid({ 'type': 'Point', 'coordinates': lngLat })
   let className = `marker ${_.kebabCase(location.id)}`
   if (location.id === TOP_CITY) {
     if (location.newLocation) {
@@ -39,7 +44,8 @@ const Marker = (location) => {
     className,
     cx: point[0],
     cy: point[1],
-    point: point,
+    point,
+    centroid,
     r: location.seriesValue === 'topTen' ? 16 : 5
   }, location)
   return marker
@@ -62,7 +68,7 @@ const Choropleth = class Choropleth extends React.Component {
   static defaultProps = {
     width: 715,
     height: 625,
-    zoomToCityScale: 4
+    zoomToCityScale: 3.2
   }
 
   constructor (props) {
@@ -70,8 +76,10 @@ const Choropleth = class Choropleth extends React.Component {
     projection
       .scale(1000)
       .translate([props.width / 2, props.height / 2])
+    zoom.extent([[0, 0], [props.width / 2, props.height / 2]])
     zoom.on('zoom', this.zoomed)
-    this.scales = [1, 2, 4, 8]
+    // this.scales = [1, 2, 4, 8]
+    this.scales = [0.8, 1.6, 3.2, 6.4]
   }
 
   containerRef = (el) => {
@@ -109,8 +117,9 @@ const Choropleth = class Choropleth extends React.Component {
 
   reset = () => {
     console.log('reset')
-    this.svg.transition()
-      .duration(750)
+    this.svg
+      // .transition()
+      // .duration(750)
       .call(zoom.translateBy, d3.zoomIdentity)
   }
 
@@ -156,14 +165,19 @@ const Choropleth = class Choropleth extends React.Component {
           .append('text')
             .attr('x', 0)
             .attr('y', 3)
-            .style('font-size', '0.688em')
+            // .style('font-size', '0.688em')
+            .style('font-size', '11px')
             .text(d => d.rank)
             .classed('rank', true)
   }
 
   zoomed = () => {
+    // const point = { 'type': 'Point', 'coordinates': [0, 0] }
+    // const centroid = path.centroid(point)
+    // console.log('0,0', centroid, point)
     let {k, x, y} = d3.event.transform
-    this.gMain.attr('transform', `translate(${x}, ${y})scale(${k})`)
+    console.log('zoomed k x y', k, x, y, d3.zoomIdentity)
+    this.gMain.attr('transform', d3.event.transform)
     this.gFeatures.style('stroke-width', `${1 / k}px`)
     this.gMarkers
       .selectAll('circle')
@@ -171,30 +185,35 @@ const Choropleth = class Choropleth extends React.Component {
       .style('stroke-width', `${1 / k}px`)
     this.gMarkers
       .selectAll('text')
-      .style('font-size', (d) => `${0.688 / k}em`)
+      // .style('font-size', (d) => `${0.688 / k}em`)
+      .style('font-size', (d) => `${11 / k}px`)
       .attr('y', 1)
   }
 
   zoomToCity = (location) => {
     let { width, height, zoomToCityScale } = this.props
     const marker = Marker(location)
-    const point = { 'type': 'Point', 'coordinates': marker.lngLat }
-    const centroid = path.centroid(point)
-    const translateX = width / 2 - zoomToCityScale * centroid[0]
-    const translateY = height / 2 - zoomToCityScale * centroid[1]
+    const translateX = width / 2 - zoomToCityScale * marker.centroid[0]
+    const translateY = height / 2 - zoomToCityScale * marker.centroid[1]
+
     this.svg
       .transition()
       .duration(750)
-      // .call(zoom.transform, d3.zoomIdentity.translate(translateX, translateY).scale(zoomToCityScale))
-      .call(zoom.translateBy, translateX, translateY)
-      .call(zoom.scaleTo, zoomToCityScale)
+      .call(zoom.transform, d3.zoomIdentity.translate(translateX, translateY).scale(zoomToCityScale))
   }
 
   zoomToScale = (scale) => {
-    d3.select('svg')
-      .transition()
-      .duration(750)
-      .call(zoom.scaleTo, scale)
+    if (scale === 0.8) {
+      this.svg
+        .transition()
+        .duration(750)
+        .call(zoom.transform, d3.zoomIdentity)
+    } else {
+      this.svg
+        .transition()
+        .duration(750)
+        .call(zoom.scaleTo, scale)
+    }
   }
 
   componentDidMount () {
@@ -203,38 +222,43 @@ const Choropleth = class Choropleth extends React.Component {
     if (!locations) {
       throw new MapError(`No locations to add after mount.`)
     }
+    // zoom = zoom.extent([[0, 0], [width, height]])
     this.tooltip = d3.select('body')
       .append('div')
       .classed('marker-tooltip', true)
     this.svg = d3.select(this.container)
       .append('svg')
         .attr('viewBox', `0 0 ${width} ${height}`)
+        .attr('width', width)
+        .attr('height', height)
         .attr('preserveAspectRatio', 'xMinYMin meet')
         .classed('svg-map-content', true)
-    this.rect = this.svg.append('rect')
-    this.rect
-      .attr('width', '100%')
-      .attr('height', '100%')
-      .classed('svg-map-background', true)
+    // this.rect = this.svg.append('rect')
+    // this.rect
+    //   .attr('width', '100%')
+    //   .attr('height', '100%')
+    //   .classed('svg-map-background', true)
       // .on('click', this.reset)
     this.gMain = this.svg.append('g').classed('main-group', true)
     this.gFeatures = this.gMain.append('g')
+
     this.gFeatures
       .selectAll('path')
-        .data(topojson.feature(topodata, topodata.objects.states).features)
+        .data(feature.features)
         .enter().append('path')
         .attr('d', path)
         .classed('svg-map-feature', true)
         // .on('click', this.reset)
     this.gFeatures
       .append('path')
-        .datum(topojson.mesh(topodata, topodata.objects.states, (a, b) => a !== b))
+        .datum(mesh)
         .attr('d', path)
         .classed('svg-map-mesh', true)
         // .on('click', this.reset)
     this.svg.call(zoom)
       .on('mousedown.zoom', null)
       .on('wheel.zoom', null)
+    // console.log('extant', zoom.extent())
     this.gMarkers = this.gMain.append('g').classed('markers', true)
     this.updateMarkers(locations)
   }
@@ -242,7 +266,13 @@ const Choropleth = class Choropleth extends React.Component {
   componentWillReceiveProps (nextProps) {
     let { selectedCity } = this.props
     if (nextProps.selectedCity && nextProps.selectedCity !== selectedCity) {
-      this.setState({scale: this.props.zoomToCityScale})
+      console.log('nextProps.selectedCity', nextProps.selectedCity)
+
+      this.setState({
+        scale: this.props.zoomToCityScale,
+        centroid: nextProps.selectedCity.centroid,
+        point: nextProps.selectedCity.point
+      })
     }
   }
 

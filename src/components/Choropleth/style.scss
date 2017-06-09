@@ -73,10 +73,10 @@
 :global {
   .svg-map-container {
     position: relative;
-    height: 0;
-    width: 100%;
-    padding: 0;
-    padding-bottom: 100%; // should equal aspectRatio, will be overriden during render by 100% * (height/width)
+    // height: 0;
+    // width: 100%;
+    // padding: 0;
+    // padding-bottom: 100%; // should equal aspectRatio, will be overriden during render by 100% * (height/width)
 
   }
 
