@@ -17,7 +17,6 @@
       display: none;
     }
 
-
     &.top-city {
       background-color: #0096d6;
       background-image: url('./topCities_Active_white.png');
@@ -36,8 +35,6 @@
       background-color: #ccc;
     }
 
-
-
     .year {
       font-size: 15px;
       font-weight: 400;
@@ -46,7 +43,7 @@
     .title {
       font-size: 24px;
       font-weight: 600;
-      @media(max-width: 980px) {
+      @include mq($until: desktop) {
         font-size: 18px;
       }
     }
@@ -54,8 +51,8 @@
     .year,
     .title {
       margin: 0 0 0 70px;
-      width: 150px;
-      @media(max-width: 980px) {
+      line-height: 22px;
+      @include mq($until: desktop) {
         margin-left: 52px;
       }
     }
@@ -67,8 +64,9 @@
       padding-left: 37px;
       padding-right: 22px;
       padding-top: 10px;
-      @media(max-width: 980px) {
+      @include mq($until: desktop) {
         padding-left: 22px;
+        padding-right: 5px;
       }
     }
   }
@@ -87,4 +85,3 @@
     }
   }
 }
-
