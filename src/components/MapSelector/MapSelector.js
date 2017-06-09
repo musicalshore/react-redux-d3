@@ -79,9 +79,9 @@ const MapSelector = class MapSelector extends React.Component {
       <div styleName="container">
         <div styleName="selector-container">
           {/* <div styleName="year-select"> */}
-            <label styleName="year-label" htmlFor="year">Year</label>
+            <label styleName="year-label" htmlFor="abdYear">Year</label>
             <Select
-              id="year"
+              name="abdYear"
               className="select-box year"
               value={selectedYearOption}
               options={years}
@@ -89,10 +89,10 @@ const MapSelector = class MapSelector extends React.Component {
               clearable={false}
             />
 
-            <label styleName="state-label" htmlFor="usState">State</label>
+            <label styleName="state-label" htmlFor="abdState">State</label>
             <Select
               className="select-box usState"
-              id="usState"
+              name="abdState"
               value={selectedStateOption}
               options={usStates}
               onChange={this.handleStateOptionChange}

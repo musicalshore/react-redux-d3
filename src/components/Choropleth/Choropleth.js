@@ -22,7 +22,7 @@ const projection = d3.geoAlbersUsa()
 const path = d3.geoPath().projection(projection)
 const feature = topojson.feature(topodata, topodata.objects.states)
 const mesh = topojson.mesh(topodata, topodata.objects.states, (a, b) => a !== b)
-const zoom = d3.zoom().scaleExtent([1, 8])
+const zoom = d3.zoom()
 // const bounds = path.bounds(feature)
 // const center = path.centroid(feature)
 
