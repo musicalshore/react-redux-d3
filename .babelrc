@@ -5,18 +5,27 @@
       "targets": {
         "browsers": ["last 2 versions", "last 2 ie versions", "last 3 safari versions"]
       },
-      "debug": true
+      "debug": false
     }],
     "react"
   ],
   "plugins": [
     "transform-class-properties",
-    "transform-object-rest-spread"
+    "transform-object-rest-spread",
+    "jsx-control-statements"
   ],
   "env": {
     "test": {
       "plugins": [
-        "transform-es2015-modules-commonjs"
+        "transform-es2015-modules-commonjs",
+        ["react-css-modules", {
+         "filetypes": {
+            ".scss": "postcss-scss"
+          },
+          "context": "./src",
+          "exclude": "node_modules",
+          "generateScopedName": "[local]"
+        }]
       ]
     },
     "development": {
