@@ -1,5 +1,6 @@
-import React from 'react'
 import './style.scss'
+
+import React from 'react'
 
 const Breadcrumbs = () => (
   <nav aria-label="Breadcrumb" styleName="container">
@@ -18,4 +19,3 @@ const Breadcrumbs = () => (
 )
 
 export default Breadcrumbs
-

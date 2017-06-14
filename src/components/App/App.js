@@ -1,14 +1,10 @@
-
-import React from 'react'
-import Helmet from 'react-helmet'
-import Breadcrumbs from 'components/Breadcrumbs'
-import Banner from 'components/Banner'
-// import $ from 'jquery'
-import Report from 'containers/Report'
-
-// import OpenGraph from './OpenGraph'
-// import './global.css'
 import './style.scss'
+
+import Banner from 'components/Banner'
+import Breadcrumbs from 'components/Breadcrumbs'
+import Helmet from 'react-helmet'
+import React from 'react'
+import Report from 'containers/Report'
 
 const App = () => (
   <div styleName="container">
