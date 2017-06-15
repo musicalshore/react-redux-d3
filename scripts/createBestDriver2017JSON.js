@@ -1,3 +1,7 @@
+/*
+  NOTE: This script is obsolete. It was written to format the original 2017BestDriversFullData.json. Requests for changes by the client were made to ../src/data/best-driver-2017.json. Future modifications should be made to that file.
+*/
+
 const _ = require('lodash/fp')
 const fs = require('fs')
 const bestDriversFullData2017 = require('../json/2017BestDriversFullData')
@@ -141,7 +145,7 @@ ${leastImproved.City}, ${leastImproved.State} had the biggest decrease, with a c
   }
 
   if (normalizedCities.length) {
-    console.log("\n" + 'The following locations were renamed:')
+    console.log('\n' + 'The following locations were renamed:')
     _.each(data => {
       console.log('old: ' + data.oldCity + ', ' + data.oldState + ' new: ' + data.newCity + ', ' + data.newState)
     }, normalizedCities)

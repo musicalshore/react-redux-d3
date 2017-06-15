@@ -5,3 +5,4 @@ install.sh
 *.bak
 npm-debug.log
 old_files
+*.old

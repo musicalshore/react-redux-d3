@@ -1,36 +1,45 @@
-import _ from 'lodash/fp'
-import { connect } from 'react-redux'
-import { selectMap, selectCity, filterState, selectYearOption, selectStateOption } from 'redux/actions'
+import { optionUSAState, optionYear, selectCity, selectMap, toggleModal } from 'redux/actions'
+
 import TabbedMap from 'components/TabbedMap'
 
+import { connect } from 'react-redux'
+
+const mapStateToProps = (state) => {
+  return {
+    error: state.error,
+    locations: state.locations,
+    modalIsOpen: state.modalIsOpen,
+    optionUSAState: state.optionUSAState,
+    optionYear: state.optionYear,
+    selectedCity: state.selectedCity,
+    selectedMap: state.selectedMap,
+    selectedUSAState: state.selectedUSAState,
+    selectedYear: state.selectedYear
+  }
+}
 const mapDispatchToProps = (dispatch) => {
   return {
-    onMapSelect: (selectedMap) => {
-      // console.log('onTabClick dispatch', selectedMap)
-      dispatch(selectMap(selectedMap))
+    onMapSelect: ({id, year, USAStateId = ''}) => {
+      dispatch(selectMap({id, year, USAStateId}))
     },
-    onCitySelect: (selectedCity = null) => {
-      dispatch(selectCity(selectedCity))
+    onCitySelect: (cityState) => {
+      dispatch(selectCity(cityState))
     },
-    onFilterState: (stateFilter) => {
-      dispatch(filterState(stateFilter))
+    onYearOption: (year) => {
+      dispatch(optionYear(year))
     },
-    onYearOptionSelect: (selectedYearOption) => {
-      dispatch(selectYearOption(selectedYearOption))
+    onUSAStateOption: (id) => {
+      dispatch(optionUSAState(id))
     },
-    onStateOptionSelect: (selectedStateOption) => {
-      dispatch(selectStateOption(selectedStateOption))
+    onToggleModal: () => {
+      dispatch(toggleModal())
     }
-    // onMapSelectorChange: (changedMapSelector) => {
-    //   dispatch(changeMapSelector(changedMapSelector))
-    // }
   }
 }
 
 const Report = connect(
-  _.extend({}), // auto-curried function, is passed complete state
+  mapStateToProps,
   mapDispatchToProps
 )(TabbedMap)
 
 export default Report
-

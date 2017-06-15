@@ -1,12 +1,14 @@
-import _ from 'lodash/fp'
-import React from 'react'
-import PropTypes from 'prop-types'
-import CityModal from 'components/CityModal'
-import Choropleth from 'components/Choropleth'
-import MapSelector from 'components/MapSelector'
-import TopListings from 'components/TopListings'
-import TabNav from 'components/TabNav'
 import './style.scss'
+
+import {array, bool, func, object, string} from 'prop-types'
+import {TOP_CITY} from 'constants/maps'
+import Choropleth from 'components/Choropleth'
+import CityModal from 'components/CityModal'
+import Legend from './Legend'
+import MapSelector from 'components/MapSelector'
+import React from 'react'
+import TabNav from 'components/TabNav'
+import TopListings from 'components/TopListings'
 
 const Social = () => {
   return (
@@ -15,62 +17,68 @@ const Social = () => {
     </div>
   )
 }
-const Legend = () => {
-  return (
-    <div styleName="legend-container">
-      <ul>
-        <li><span styleName="blue">&bull;</span> Top Cities</li>
-        <li><span styleName="yellow">&bull;</span> Most Improved</li>
-        <li><span styleName="green">&bull;</span> New Additions</li>
-      </ul>
-    </div>
-  )
-}
 
 const TabbedMap = class TabbedMap extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = { selectedMarker: null }
-    this.zoomBar = this.zoomBar.bind(this)
-    // this.openModal = this.openModal.bind(this)
-    this.afterOpenModal = this.afterOpenModal.bind(this)
-    this.getModalParent = this.getModalParent.bind(this)
+  static propTypes = {
+    error: object,
+    locations: array,
+    modalIsOpen: bool.isRequired,
+    onToggleModal: func.isRequired,
+    optionUSAState: string,
+    optionYear: string.isRequired,
+    selectedCity: string,
+    selectedMap: string.isRequired,
+    selectedUSAState: object,
+    selectedYear: string.isRequired,
+    onMapSelect: func.isRequired,
+    onCitySelect: func.isRequired,
+    onUSAStateOption: func.isRequired,
+    onYearOption: func.isRequired
   }
-
-  componentDidUpdate (prevProps, prevState) {
-    let {selectedCity, modalIsOpen} = this.props
-    if (!prevProps.selectedCity && selectedCity && !modalIsOpen) {
-      this.openModal()
-    }
-  }
-
-  zoomBar (el) {
-    this.el = el
-  }
-
-  // openModal () {
-  //   this.setState({modalIsOpen: true})
-  // }
-
-  afterOpenModal () {
-    // references are now sync'd and can be accessed.
-    // this.subtitle.style.color = '#f00'
-  }
-
-  getModalParent () {
+  getModalParent = () => {
     return document.querySelector('#app')
   }
 
+  componentDidUpdate (prevProps, prevState) {
+    const {selectedCity, modalIsOpen, onToggleModal} = this.props
+    if (!prevProps.selectedCity && !!selectedCity && !modalIsOpen) {
+      onToggleModal()
+    }
+  }
+
   render () {
-    let {onCitySelect} = this.props
+    const {error, locations, modalIsOpen, optionUSAState, optionYear, selectedCity, selectedMap, selectedUSAState, selectedYear} = this.props
+    const {onCitySelect, onMapSelect, onUSAStateOption, onYearOption, onToggleModal} = this.props
 
     return (
       <div styleName="container">
-        <MapSelector {...this.props}/>
+        <MapSelector error={error}
+          optionYear={optionYear}
+          optionUSAState={optionUSAState}
+          selectedMap={selectedMap}
+          selectedYear={selectedYear}
+          selectedUSAState={selectedUSAState}
+          onMapSelect={onMapSelect}
+          onYearOption={onYearOption}
+          onUSAStateOption={onUSAStateOption}
+        />
         <div styleName="map-container">
           <div styleName="maps">
-            <TabNav {...this.props} />
-             <Choropleth {...this.props} onCitySelect={onCitySelect} width={715} height={625} />
+            <TabNav selectedMap={selectedMap}
+              selectedYear={selectedYear}
+              selectedUSAState={selectedUSAState}
+              locations={locations}
+              onMapSelect={onMapSelect}
+            />
+            <Choropleth selectedMap={selectedMap}
+              selectedYear={selectedYear}
+              selectedCity={selectedCity}
+              selectedUSAState={selectedUSAState}
+              locations={locations}
+              onCitySelect={onCitySelect}
+              width={715}
+              height={625}
+            />
             {/* <div styleName="timeLine-SocialContainer">
 
               <div styleName="socialContainer">
@@ -79,25 +87,31 @@ const TabbedMap = class TabbedMap extends React.Component {
             </div> */}
           </div>
           <div styleName="top-listings">
-            <TopListings {...this.props} />
+            <TopListings selectedMap={selectedMap}
+              locations={locations}
+              selectedYear={selectedYear}
+              selectedCity={selectedCity}
+              onCitySelect={onCitySelect}
+            />
           </div>
         </div>
-        <Legend />
-        <CityModal {...this.props} />
+        <div>
+          <If condition={selectedMap === TOP_CITY}>
+            <Legend />
+          </If>
+          {/*<ShareButton /> */}
+        </div>
+        <CityModal selectedMap={selectedMap}
+          locations={locations}
+          selectedCity={selectedCity}
+          selectedYear={selectedYear}
+          onCitySelect={onCitySelect}
+          modalIsOpen={modalIsOpen}
+          onToggleModal={onToggleModal}
+        />
       </div>
     )
   }
-}
-
-TabbedMap.propTypes = {
-  onMapSelect: PropTypes.func.isRequired,
-  onCitySelect: PropTypes.func.isRequired,
-  onFilterState: PropTypes.func.isRequired,
-  selectedMap: PropTypes.object.isRequired,
-  modalIsOpen: PropTypes.bool.isRequired,
-  defaultYear: PropTypes.string.isRequired,
-  defaultMap: PropTypes.string.isRequired,
-  selectedCity: PropTypes.object
 }
 
 export default TabbedMap

@@ -1,0 +1,209 @@
+[
+  {
+    "2005": {
+      "Top Cities": 24
+    },
+    "2006": {
+      "Top Cities": 32
+    },
+    "2007": {
+      "Top Cities": 43
+    },
+    "2008": {
+      "Top Cities": 20
+    },
+    "2009": {
+      "Top Cities": 15
+    },
+    "2010": {
+      "Top Cities": 31
+    },
+    "2011": {
+      "Top Cities": 22
+    },
+    "2012": {
+      "Top Cities": 21
+    },
+    "2013": {
+      "Top Cities": 17
+    },
+    "2014": {
+      "Top Cities": 4,
+      "Rain & Snow": 3,
+      "Population Density": 29
+    },
+    "2015": {
+      "Top Cities": 1,
+      "Rain & Snow": 1,
+      "Population Density": 7,
+      "Change": 3,
+      "Average Years Between Accidents": 13.3
+    },
+    "2016": {
+      "Top Cities": 2,
+      "Rain & Snow": 2,
+      "Population Density": 13,
+      "Average Years Between Accidents": 13.6
+    },
+    "2017": {
+      "Years Between Accidents (Suburban Area only)": 12.2,
+      "Top Cities": 1,
+      "Suburban Braking Events per 1000 Miles": 11.7,
+      "Rain & Snow": 1,
+      "Population Density": 3,
+      "National Average Risk Relative to City Average": "-32.8%",
+      "Hard Braking Rank": 1,
+      "Change": 1,
+      "Braking Events per 1000 Miles (city)": 9.9,
+      "Average Years Between Accidents": 14.9
+    },
+    "state": "KS",
+    "newLocation": false,
+    "mostImproved": false,
+    "metropolitanArea": "Kansas City, MO-KS",
+    "lngLat": [
+      -94.627,
+      39.114
+    ],
+    "cityState": "Kansas City, KS",
+    "city": "Kansas City",
+    "biggestDecrease": false
+  },{
+    "2005": {
+      "Top Cities": 49
+    },
+    "2006": {
+      "Top Cities": 40
+    },
+    "2007": {
+      "Top Cities": 27
+    },
+    "2008": {
+      "Top Cities": 17
+    },
+    "2009": {
+      "Top Cities": 23
+    },
+    "2010": {
+      "Top Cities": 36
+    },
+    "2011": {
+      "Top Cities": 32
+    },
+    "2012": {
+      "Top Cities": 25
+    },
+    "2013": {
+      "Top Cities": 4
+    },
+    "2014": {
+      "Top Cities": 2,
+      "Rain & Snow": 1,
+      "Population Density": 8
+    },
+    "2015": {
+      "Top Cities": 2,
+      "Rain & Snow": 3,
+      "Population Density": 4,
+      "Average Years Between Accidents": 13.3
+    },
+    "2016": {
+      "Top Cities": 1,
+      "Rain & Snow": 1,
+      "Population Density": 2,
+      "Change": 1,
+      "Average Years Between Accidents": 14.6
+    },
+    "2017": {
+      "Years Between Accidents (Suburban Area only)": 14.5,
+      "Top Cities": 2,
+      "Suburban Braking Events per 1000 Miles": "N/A",
+      "Rain & Snow": 2,
+      "Population Density": 4,
+      "National Average Risk Relative to City Average": "-30.9%",
+      "Hard Braking Rank": "N/A",
+      "Change": -1,
+      "Braking Events per 1000 Miles (city)": "N/A",
+      "Average Years Between Accidents": 14.5
+    },
+    "state": "TX",
+    "newLocation": false,
+    "mostImproved": false,
+    "metropolitanArea": "Brownsville-Harlingen, TX",
+    "lngLat": [
+      -97.497,
+      25.901
+    ],
+    "cityState": "Brownsville, TX",
+    "city": "Brownsville",
+    "biggestDecrease": false
+  },{
+    "2005": {
+      "Top Cities": 46
+    },
+    "2006": {
+      "Top Cities": 34
+    },
+    "2007": {
+      "Top Cities": 35
+    },
+    "2008": {
+      "Top Cities": 37
+    },
+    "2009": {
+      "Top Cities": 59
+    },
+    "2010": {
+      "Top Cities": 57
+    },
+    "2011": {
+      "Top Cities": 28
+    },
+    "2012": {
+      "Top Cities": 28
+    },
+    "2013": {
+      "Top Cities": 30
+    },
+    "2014": {
+      "Top Cities": 8,
+      "Rain & Snow": 12,
+      "Population Density": 6
+    },
+    "2015": {
+      "Top Cities": 8,
+      "Rain & Snow": 17,
+      "Population Density": 5,
+      "Average Years Between Accidents": 11.7
+    },
+    "2016": {
+      "Top Cities": 12,
+      "Rain & Snow": 17,
+      "Population Density": 11,
+      "Change": -4,
+      "Average Years Between Accidents": 11.8
+    },
+    "2017": {
+      "Years Between Accidents (Suburban Area only)": 13.8,
+      "Top Cities": 7,
+      "Suburban Braking Events per 1000 Miles": "N/A",
+      "Rain & Snow": 8,
+      "Population Density": 5,
+      "National Average Risk Relative to City Average": "-16.8%",
+      "Hard Braking Rank": "N/A",
+      "Change": 5,
+      "Braking Events per 1000 Miles (city)": "N/A",
+      "Average Years Between Accidents": 12
+    },
+    "state": "TX",
+    "newLocation": false,
+    "mostImproved": false,
+    "metropolitanArea": "Laredo, TX",
+    "lngLat": [
+      -99.48,
+      27.53
+    ],
+    "cityState": "Laredo, TX",
+    "city": "Laredo",
+    "biggestDecrease": false
+  }]

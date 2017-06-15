@@ -146,12 +146,14 @@
       stroke: $rain-snow-stroke;
     }
 
-    &.new-location {
+    &.top-city.new-location {
       fill: $new-location-fill;
+      stroke: $new-location-fill;
     }
 
-    &.most-improved {
+    &.top-city.most-improved {
       fill: $most-improved-fill;
+      stroke: $most-improved-fill;
     }
 
     & .rank {

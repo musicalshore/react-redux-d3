@@ -1,37 +1,47 @@
 import _ from 'lodash/fp'
 import React from 'react'
-import PropTypes from 'prop-types'
+import {MAPS} from 'constants/maps'
+import {func, string, array} from 'prop-types'
 import Listing from 'components/Listing'
 import './style.scss'
 
-const TopListings = (props) => {
-  console.log('PROPS', props);
+const TopListings = class TopListings extends React.Component {
+  static propTypes = {
+    selectedMap: string.isRequired,
+    selectedYear: string.isRequired,
+    locations: array,
+    selectedCity: string,
+    onCitySelect: func.isRequired
+  }
 
-  let { onCitySelect, selectedMap, selectedCity } = props
-  let disabledMap = _.isNull(selectedMap.mapData) ? 'disabled-map' : ''
-  return (
-    <div styleName="container">
-      <div styleName={`heading ${_.kebabCase(selectedMap.id)} ${disabledMap}`}>
-        <h4 styleName="year">{ selectedMap.year }</h4>
-        <h3 styleName="title">
-          {selectedMap.id === 'TOP_CITY' && 'Top Cities'}
-          {selectedMap.id === 'DENSITY' && 'Population Density'}
-          {selectedMap.id === 'RAIN_SNOW' && 'Rain & Snow'}
-        </h3>
-        <p styleName="byline">
-          {(selectedMap.id === 'TOP_CITY') && 'Explore which cities are least likely to experience collisions.'}
-          {selectedMap.id === 'DENSITY' && 'See how population density impacts driving in your city.'}
-          {selectedMap.id === 'RAIN_SNOW' && 'See how precipitation (or lack thereof) impacts your city\'s ranking.'}
-        </p>
+  render () {
+    const {selectedMap, locations, selectedYear, selectedCity, onCitySelect} = this.props
+    const rankingType = _.get('rankingType', _.find(['id', selectedMap], MAPS))
+    const hasLocations = !!_.find(_.has(`rankings.${rankingType}`), locations)
+    let additionalClasses = _.kebabCase(selectedMap)
+    additionalClasses += !hasLocations ? ' disabled-map' : ''
+
+    return (
+      <div styleName="container">
+        <div styleName={`heading ${additionalClasses}`}>
+          <h4 styleName="year">{selectedYear}</h4>
+          <h3 styleName="title">
+            {_.get('title', _.find(['id', selectedMap], MAPS))}
+          </h3>
+          <p styleName="byline">
+            {_.get('byline', _.find(['id', selectedMap], MAPS))}
+          </p>
+        </div>
+        <If condition={hasLocations}>
+          <Listing selectedMap={selectedMap}
+            locations={locations}
+            selectedCity={selectedCity}
+            onCitySelect={onCitySelect}
+          />
+        </If>
       </div>
-      <Listing {...props} />
-    </div>
-  )
-}
-TopListings.propTypes = {
-  onCitySelect: PropTypes.func.isRequired,
-  selectedMap: PropTypes.object.isRequired,
-  selectedCity: PropTypes.object
+    )
+  }
 }
 
 export default TopListings

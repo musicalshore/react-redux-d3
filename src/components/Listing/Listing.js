@@ -1,7 +1,8 @@
 import $ from 'jquery'
 import _ from 'lodash/fp'
 import React from 'react'
-import PropTypes from 'prop-types'
+import {MAPS} from 'constants/maps'
+import {string, func, number, array, object} from 'prop-types'
 import './style.scss'
 import prevBlue from './prev_blue.svg'
 import nextBlue from './next_blue.svg'
@@ -15,26 +16,42 @@ const debounceEventHandler = (fn) => {
     return debounced(e)
   }
 }
-const ListItem = ({rank, cityState, onClick, selectedMap}) => {
-  const onClickListItem = (e) => {
-    console.log('e', e)
-    e.preventDefault()
-    onClick()
+const ListItem = class ListItem extends React.Component {
+  static propTypes = {
+    rank: number.isRequired,
+    location: object.isRequired,
+    onClick: func.isRequired,
+    selectedMap: string.isRequired
   }
-  return (
-    <li onClick={onClickListItem} styleName={_.kebabCase(selectedMap.id)}>
-      <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-        <g>
-          <circle cx="15" cy="15" r="15" />
-          <text x="50%" y="50%" alignmentBaseline="middle" textAnchor="middle">{rank}</text>
-        </g>
-      </svg>
-      <div styleName="cityState"><a href="#" onClick={onClickListItem}>{cityState}</a></div>
-    </li>
-  )
+
+  render () {
+    const {selectedMap, onClick, location, rank} = this.props
+    const onClickListItem = (e) => {
+      e.preventDefault()
+      onClick()
+    }
+    return (
+      <li onClick={onClickListItem} styleName={_.kebabCase(selectedMap)}>
+        <svg viewBox="0 0 30 30">
+          <g>
+            <circle cx="15" cy="15" r="15" />
+            <text x="50%" y="50%" alignmentBaseline="middle" textAnchor="middle">{rank}</text>
+          </g>
+        </svg>
+        <div styleName="cityState"><a href="#" onClick={onClickListItem}>{location.cityState}</a></div>
+      </li>
+    )
+  }
 }
 
 const Listing = class Listing extends React.Component {
+  static propTypes = {
+    selectedMap: string.isRequired,
+    onCitySelect: func.isRequired,
+    locations: array,
+    selectedCity: string
+  }
+
   state = {
     scrollTop: 0,
     currentPage: 1,
@@ -59,7 +76,7 @@ const Listing = class Listing extends React.Component {
   })
 
   componentDidMount () {
-    const count = this.props.selectedMap.mapData.locations.length
+    const count = this.props.locations.length
     const numberOfPages = Math.floor(count / 7) + 1
     if (numberOfPages > 1) {
       $(this.next).css({'color': '#666', 'font-weight': 600})
@@ -68,25 +85,28 @@ const Listing = class Listing extends React.Component {
   }
 
   render () {
-    let {selectedMap, onCitySelect} = this.props
+    const {selectedMap, locations, onCitySelect} = this.props
+    const rankingType = _.get('rankingType', _.find(['id', selectedMap], MAPS))
     let {currentPage, numberOfPages} = this.state
-    const locations = _.get('mapData.locations', selectedMap)
-    if (!locations) {
-      // throw new Error('No locations to render in Listing')
+
+    if (_.isEmpty(locations)) {
       return null
     }
-    const listItems = _.map(ranking => {
+
+    const listItems = _.map(location => {
+      const rank = _.get(`rankings.${rankingType}`, location)
       return (
-        <ListItem
-          key={ranking.rank} {...ranking}
+        <ListItem key={rank}
+          rank={rank}
           selectedMap={selectedMap}
+          location={location}
           onClick={() => {
             window.lastFocus = document.activeElement
-            onCitySelect(ranking)
+            onCitySelect(location.cityState)
           }}
         />
       )
-    }, _.sortBy('rank', locations))
+    }, _.sortBy(_.get(`rankings.${rankingType}`), locations))
 
     return (
       <div styleName="container" ref={el => { this.container = el } }>
@@ -123,19 +143,6 @@ const Listing = class Listing extends React.Component {
       </div>
     )
   }
-}
-
-ListItem.propTypes = {
-  rank: PropTypes.number.isRequired,
-  cityState: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  selectedMap: PropTypes.object.isRequired
-}
-
-Listing.propTypes = {
-  selectedMap: PropTypes.object.isRequired,
-  onCitySelect: PropTypes.func.isRequired,
-  selectedCity: PropTypes.object
 }
 
 export default Listing

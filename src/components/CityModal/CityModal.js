@@ -1,32 +1,39 @@
 import _ from 'lodash/fp'
 import React from 'react'
-import PropTypes from 'prop-types'
+import {array, func, bool, string} from 'prop-types'
 import Modal from 'react-modal'
 import CityModalHeading from './CityModalHeading'
 import Rankings from './Rankings'
-import CityData from './CityData'
-import SuburbanData from './SuburbanData'
+import ClaimsData from './ClaimsData'
 import Footnotes from './Footnotes'
 import './style.scss'
 
 const CityModal = class CityModal extends React.Component {
+  static propTypes = {
+    selectedMap: string.isRequired,
+    selectedCity: string,
+    selectedYear: string.isRequired,
+    onCitySelect: func.isRequired,
+    modalIsOpen: bool.isRequired,
+    locations: array,
+    onToggleModal: func.isRequired
+  }
+
   onRequestClose = (e) => {
+    console.log('onRequestClose: ', e)
     e.preventDefault()
-    this.props.onCitySelect()
+
+    this.props.onToggleModal()
     e.stopPropagation()
   }
 
   shouldComponentUpdate (nextProps, nextState) {
-    if (nextProps.modalIsOpen !== this.props.modalIsOpen) {
-      return true
-    } else {
-      return false
-    }
+    return (nextProps.modalIsOpen !== this.props.modalIsOpen)
   }
 
   render () {
-    const props = this.props
-    let {selectedMap, modalIsOpen} = props
+    const {selectedMap, modalIsOpen, selectedCity, selectedYear, locations, onToggleModal} = this.props
+    const location = _.find(['cityState', selectedCity], locations)
     if (!modalIsOpen) {
       return null
     } else {
@@ -39,12 +46,24 @@ const CityModal = class CityModal extends React.Component {
             overlayClassName="modal-overlay"
             shouldCloseOnOverlayClick={true}
           >
-            <div className={`city-modal-container ${_.kebabCase(selectedMap.id)}`}>
-              <CityModalHeading {...props} />
-              <Rankings {...props} />
+            <div className={`city-modal-container ${_.kebabCase(selectedMap)}`}>
+              <CityModalHeading selectedMap={selectedMap}
+                selectedCity={selectedCity}
+                selectedYear={selectedYear}
+                location={location}
+                onToggleModal={onToggleModal}
+              />
+              <Rankings selectedMap={selectedMap}
+                selectedYear={selectedYear}
+                location={location}
+              />
               <div className="additional-data">
-                <CityData {...props} />
-                <SuburbanData {...props} />
+                <ClaimsData type="city" selectedYear={selectedYear}
+                  location={location}
+                />
+                <ClaimsData type="suburban" selectedYear={selectedYear}
+                  location={location}
+                />
               </div>
               <Footnotes />
             </div>
@@ -53,15 +72,6 @@ const CityModal = class CityModal extends React.Component {
       )
     }
   }
-}
-
-CityModal.propTypes = {
-  selectedMap: PropTypes.object,
-  selectedCity: PropTypes.object,
-  onCitySelect: PropTypes.func,
-  modalIsOpen: PropTypes.bool,
-  defaultYear: PropTypes.string,
-  defaultMap: PropTypes.string
 }
 
 export default CityModal

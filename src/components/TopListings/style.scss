@@ -1,7 +1,9 @@
 @import "style/index.scss";
 
 .container {
-
+  @include mq($from: tablet) {
+    height: 740px;
+  }
   .heading {
     background-position: 15px 37px;
     color: #fff;

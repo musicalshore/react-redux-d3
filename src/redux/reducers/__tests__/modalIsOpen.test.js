@@ -1,4 +1,4 @@
-import {SELECT_CITY} from 'constants/actionTypes'
+import {TOGGLE_MODAL} from 'constants/actionTypes'
 import initialState from 'redux/initialState'
 import reducer from '../modalIsOpen'
 
@@ -8,19 +8,17 @@ describe('modalIsOpen reducer', () => {
       reducer(undefined, {})
     ).toEqual(initialState.modalIsOpen)
   })
-  it('should return true if a city is selected', () => {
+  it('should toggle from false to true', () => {
     expect(
-      reducer(undefined, {
-        type: SELECT_CITY,
-        id: 'Boise'
+      reducer(false, {
+        type: TOGGLE_MODAL
       })
     ).toEqual(true)
   })
-  it('should return false if a city is not selected', () => {
+  it('should toggle from true to false', () => {
     expect(
-      reducer(undefined, {
-        type: SELECT_CITY,
-        id: ''
+      reducer(true, {
+        type: TOGGLE_MODAL
       })
     ).toEqual(false)
   })

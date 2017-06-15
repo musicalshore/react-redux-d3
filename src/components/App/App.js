@@ -28,11 +28,11 @@ const App = () => (
       <script src="https://use.fontawesome.com/934103e5b8.js" />
     </Helmet>
     <div styleName="content">
-          <Breadcrumbs />
-          <Banner />
-          <div styleName="report-container">
-            <Report />
-          </div>
+      <Breadcrumbs />
+      <Banner />
+      <div styleName="report-container">
+        <Report />
+      </div>
     </div>
   </div>
 )
