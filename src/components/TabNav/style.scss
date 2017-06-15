@@ -23,9 +23,16 @@
 
     li {
       display: inline-block;
-      cursor: pointer;
       flex: 1 1 100%;
       background-position: center 6px;
+
+      & button {
+        border: 0;
+        cursor: pointer;
+        // &:focus {
+        //   outline: 0;
+        // }
+      }
 
       @include mq($until: mobileLandscape) {
         font-size: $font-size-smallest;
@@ -34,13 +41,15 @@
       @include mq($from: mobileLandscape, $until: tablet) {
         font-size: $font-size-smaller;
       }
+
       @include mq($until: tablet) {
         background-position: 0 -3px;
         background-size: 50px;
       }
+
       &.top-city,
       &.density {
-        border-right: $border;
+        border-right: 1px solid #e8e8e8;
       }
 
       &.top-city,
@@ -49,7 +58,7 @@
         background-color: #f4f4f4;
         transition: background-color 0.35s ease-out;
 
-        &:hover {
+        &:not(.disabled):hover {
           background-color: #e1e1e1;
         }
 
@@ -57,7 +66,6 @@
         &.selected:hover {
           @include mq($from: tablet) {
             background-color: $white;
-
           }
 
           @include mq($until: tablet) {
@@ -173,14 +181,19 @@
         // padding-top: 63px;
         border-bottom: 7px solid #bdbdbd;
 
+        & button {
+          cursor: not-allowed;
+        }
+
         &.selected {
           border-bottom: 7px solid $dark-gray;
           background-color: $white;
+
           .title {
             color: $dark-gray;
           }
         }
-        cursor: not-allowed;
+
         span {
           display: block;
         }
