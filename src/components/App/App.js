@@ -5,6 +5,7 @@ import Breadcrumbs from 'components/Breadcrumbs'
 import Helmet from 'react-helmet'
 import React from 'react'
 import Report from 'containers/Report'
+import Comments from 'components/Comments'
 
 const App = () => (
   <div styleName="container">
@@ -25,7 +26,6 @@ const App = () => (
       <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="600" />
       <meta property="og:image:height" content="315" />
-      <script src="https://use.fontawesome.com/934103e5b8.js" />
     </Helmet>
     <div styleName="content">
       <Breadcrumbs />
@@ -33,6 +33,7 @@ const App = () => (
       <div styleName="report-container">
         <Report />
       </div>
+      <Comments />
     </div>
   </div>
 )
