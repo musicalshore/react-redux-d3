@@ -16,14 +16,14 @@ const ClaimsData = class ClaimsData extends React.Component {
 
     switch (type) {
       case 'city':
-        yearsBetweenClaims = location.rankings[`${selectedYear} Average Years Between Accidents`]
-        brakingEvents = location.rankings[`${selectedYear} Braking Events per 1000 Miles (city)`]
+        yearsBetweenClaims = location.rankings[`Average Years Between Accidents`]
+        brakingEvents = location.rankings[`Braking Events per 1000 Miles (city)`]
         className = 'city-data-container'
         title = 'City data'
         break
       case 'suburban':
-        yearsBetweenClaims = location.rankings[`${selectedYear} Years Between Accidents (Suburban Area only)`]
-        brakingEvents = location.rankings[`${selectedYear} Suburban Braking Events per 1000 Miles`]
+        yearsBetweenClaims = location.rankings[`Years Between Accidents (Suburban Area only)`]
+        brakingEvents = location.rankings[`Suburban Braking Events per 1000 Miles`]
         className = 'suburban-data-container'
         title = 'Suburban Metro Area data'
         break

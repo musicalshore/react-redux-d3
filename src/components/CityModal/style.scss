@@ -199,18 +199,20 @@
       margin-top: 23px;
     }
 
-    .arrow {
+    .arrow-up,
+    .arrow-down,
+    .no-change {
       background-size: 16px 16px;
       width: 16px;
       height: 16px;
       display: inline-block;
     }
 
-    .up {
+    .arrow-up {
       background-image: url('./icon-up.png');
     }
 
-    .down {
+    .arrow-down {
       background-image: url('./icon-down.png');
     }
 

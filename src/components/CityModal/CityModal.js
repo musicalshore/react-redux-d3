@@ -53,8 +53,7 @@ const CityModal = class CityModal extends React.Component {
                 location={location}
                 onToggleModal={onToggleModal}
               />
-              <Rankings selectedMap={selectedMap}
-                selectedYear={selectedYear}
+              <Rankings selectedYear={selectedYear}
                 location={location}
               />
               <div className="additional-data">
