@@ -41,7 +41,7 @@ const TabbedMap = class TabbedMap extends React.Component {
 
   componentDidUpdate (prevProps, prevState) {
     const {selectedCity, modalIsOpen, onToggleModal} = this.props
-    if (!prevProps.selectedCity && !!selectedCity && !modalIsOpen) {
+    if ((prevProps.selectedCity !== selectedCity) && !modalIsOpen) {
       onToggleModal()
     }
   }
