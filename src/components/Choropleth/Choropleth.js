@@ -224,9 +224,7 @@ const Choropleth = class Choropleth extends React.Component {
 
   componentDidMount () {
     const { width, height, locations, selectedMap } = this.props
-    if (_.isEmpty(locations)) {
-      console.error(`No locations to add after mount.`)
-    }
+
     // zoom = zoom.extent([[0, 0], [width, height]])
     this.tooltip = d3.select('body')
       .append('div')
@@ -293,53 +291,8 @@ const Choropleth = class Choropleth extends React.Component {
       // if zoom step has changed, zoom to step
       this.zoomToStep(nextProps.zoomStep)
     }
-    // if (nextProps.selectedMap !== selectedMap || nextProps.selectedYear !== selectedYear) {
-    //   this.setState({
-    //     scale: 0
-    //   })
-    // } else if (nextProps.selectedCity && nextProps.selectedCity !== selectedCity) {
-    //   const marker = Marker(selectedMap, _.find(['cityState', nextProps.selectedCity], locations))
-    //   this.setState({
-    //     scale: this.props.zoomToCityScale,
-    //     centroid: marker.centroid,
-    //     point: marker.point
-    //   })
-    // }
+
   }
-
-  // shouldComponentUpdate (nextProps, nextState) {
-  // let { selectedMap, selectedYear, selectedUSAState, zoomStep, selectedCity } = this.props
-  /*
-    // if map changed or state filter applied, update markers
-    if ((selectedMap !== nextProps.selectedMap) ||
-        (selectedYear !== nextProps.selectedYear) ||
-        (_.get('id', selectedUSAState) !== _.get('selectedUSAState.id', nextProps))) {
-      this.reset()
-      this.updateMarkers(nextProps.selectedMap, nextProps.locations)
-      return true
-    }
-*/
-  // if (zoomStep !== nextProps.zoomStep) {
-  //   console.log('shouldComponentUpdate zoomToStep: ', nextProps.zoomStep)
-  //   this.zoomToStep(nextProps.zoomStep)
-  //   return true
-  // }
-
-  // if marker clicked, zoom to city
-  // if (nextProps.selectedCity && nextProps.selectedCity !== selectedCity) {
-  //   console.log('shouldComponentUpdate zoomToCity')
-  //   this.zoomToCity(nextProps.selectedCity)
-  //   return true
-  // }
-  // if (nextProps.selectedMap.stateFilter &&
-  //   (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
-  //   let firstCity = _.head(nextProps.selectedMap.mapData.locations)
-  //   this.zoomToCity(firstCity)
-  //   return true
-  // }
-
-  // return false
-  // }
 
   render () {
     let {width, height, zoomStep} = this.props

@@ -1,34 +1,10 @@
 @import "style/index.scss";
 
-.local-city-container {
-  @include mq($from: tablet) {
-    display: none;
-  }
-  @include mq($until: tablet) {
-    padding-left: 15px;
-    padding-top: 20px;
-  }
-
-  .local-city {
-    color: #e57d21;
-    font-weight: 600;
-    text-transform: uppercase;
-    span {
-      text-transform: lowercase;
-    }
-  }
-
-  .local-city-rank {
-    padding-top: 15px;
-    color: #000;
-    font-weight: 600;
-  }
-}
-
 .container {
   @include mq($from: tablet) {
     height: 740px;
   }
+
   .heading {
     background-position: 15px 37px;
     color: #fff;
@@ -58,6 +34,7 @@
       background-color: #6d5dc9;
       background-image: url('./rainSnow_Active_white.png');
     }
+
     &.disabled-map {
       background-color: #ccc;
     }
@@ -70,6 +47,7 @@
     .title {
       font-size: 24px;
       font-weight: 600;
+
       @include mq($until: desktop) {
         font-size: 18px;
       }
@@ -79,18 +57,21 @@
     .title {
       margin: 0 0 0 70px;
       line-height: 22px;
+
       @include mq($until: desktop) {
         margin-left: 52px;
       }
     }
+
     .byline {
-      color: #ffffff;
+      color: #fff;
       font-size: 12px;
       line-height: 18px;
       margin-top: 0;
       padding-left: 37px;
       padding-right: 22px;
       padding-top: 10px;
+
       @include mq($until: desktop) {
         padding-left: 22px;
         padding-right: 5px;

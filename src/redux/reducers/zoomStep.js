@@ -9,11 +9,7 @@ const zoomStep = (state = initialState.zoomStep, action) => {
     case SELECT_MAP:
       return initialState.zoomStep
     case SELECT_CITY:
-      if (action.cityState !== '') {
-        return CITY_ZOOM_STEP
-      } else {
-        return initialState.zoomStep
-      }
+      return CITY_ZOOM_STEP
     default:
       return state
   }

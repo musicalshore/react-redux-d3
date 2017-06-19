@@ -3,31 +3,9 @@ import React from 'react'
 import {MAPS} from 'constants/maps'
 import {func, string, array} from 'prop-types'
 import Listing from 'components/Listing'
+import LocalCity from 'components/LocalCity'
 import './style.scss'
-import {Ordinal, getLocationsByYear} from 'utils/utils'
 
-const LocalCity = class LocalCity extends React.Component {
-  static propTypes = {
-    cityState: string.isRequired,
-    selectedYear: string.isRequired
-  }
-
-  render () {
-    const locations = getLocationsByYear(this.props.selectedYear)
-    const location = _.find(['cityState', this.props.cityState], locations)
-    const rank = _.get('Top Cities', location.rankings)
-    return (
-      <div styleName="local-city-container">
-        <div styleName="local-city">
-          {location.cityState} <span>(edit)</span>
-        </div>
-        <div styleName="local-city-rank">
-          is the <Ordinal number={rank} sup={true} />safest driving city.
-        </div>
-      </div>
-    )
-  }
-}
 const TopListings = class TopListings extends React.Component {
   static propTypes = {
     selectedMap: string.isRequired,
