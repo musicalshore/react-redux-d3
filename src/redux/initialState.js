@@ -1,7 +1,8 @@
-import { DEFAULT_YEAR, DEFAULT_MAP } from 'constants/maps'
+import { DEFAULT_YEAR, DEFAULT_MAP, MIN_ZOOM_STEP } from 'constants/maps'
 import {getLocationsByYear} from 'utils/utils'
 
 export const ERROR = null
+export const ZOOM_STEP = MIN_ZOOM_STEP
 export const LOCATIONS = getLocationsByYear(DEFAULT_YEAR)
 export const MODAL_IS_OPEN = false
 export const OPTION_USA_STATE = ''
@@ -13,6 +14,7 @@ export const SELECTED_USA_STATE = null
 
 const initialState = {
   error: ERROR,
+  zoomStep: ZOOM_STEP,
   locations: LOCATIONS,
   modalIsOpen: MODAL_IS_OPEN,
   optionUSAState: OPTION_USA_STATE,

@@ -1,4 +1,3 @@
-import _ from 'lodash/fp'
 export const TOP_CITY = 'TOP_CITY'
 export const DENSITY = 'DENSITY'
 export const RAIN_SNOW = 'RAIN_SNOW'
@@ -30,6 +29,9 @@ export const DEFAULT_MAP = TOP_CITY
 
 export const DEFAULT_YEAR = '2017'
 
+export const MAX_ZOOM_STEP = 4
+export const MIN_ZOOM_STEP = 1
+export const CITY_ZOOM_STEP = 3
 export const YEARS = [
   '2005',
   '2006',

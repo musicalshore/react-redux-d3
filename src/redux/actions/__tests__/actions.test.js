@@ -1,7 +1,7 @@
-import {DEFAULT_MAP, DEFAULT_YEAR, DENSITY} from 'constants/maps'
+import {DEFAULT_MAP, DEFAULT_YEAR, DENSITY, MIN_ZOOM_STEP} from 'constants/maps'
 
-import {SELECT_MAP, SELECT_CITY, OPTION_YEAR, OPTION_USA_STATE} from 'constants/actionTypes'
-import {selectMap, selectCity, optionYear, optionUSAState} from '../actions'
+import {SELECT_MAP, SELECT_CITY, OPTION_YEAR, OPTION_USA_STATE, SET_ZOOM_STEP} from 'constants/actionTypes'
+import {selectMap, selectCity, optionYear, optionUSAState, setZoomStep} from '../actions'
 
 describe('actions', () => {
   describe('selectMap', () => {
@@ -67,6 +67,17 @@ describe('actions', () => {
       expect(
         optionUSAState()
       ).toEqual({type: OPTION_USA_STATE, id: ''})
+    })
+  })
+
+  describe('setZoomStep', () => {
+    it('should default to MIN_ZOOM_STEP', () => {
+      expect(
+        setZoomStep()
+      ).toEqual({
+        type: SET_ZOOM_STEP,
+        zoomStep: MIN_ZOOM_STEP
+      })
     })
   })
 })

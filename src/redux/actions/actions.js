@@ -1,5 +1,5 @@
-import {DEFAULT_MAP, DEFAULT_YEAR} from 'constants/maps'
-import {OPTION_USA_STATE, OPTION_YEAR, SELECT_CITY, SELECT_MAP, TOGGLE_MODAL} from 'constants/actionTypes'
+import {DEFAULT_MAP, DEFAULT_YEAR, MIN_ZOOM_STEP} from 'constants/maps'
+import {OPTION_USA_STATE, OPTION_YEAR, SELECT_CITY, SELECT_MAP, TOGGLE_MODAL, SET_ZOOM_STEP} from 'constants/actionTypes'
 
 export const selectMap = ({id = DEFAULT_MAP, year = DEFAULT_YEAR, USAStateId = ''}) => ({
   type: SELECT_MAP,
@@ -25,4 +25,9 @@ export const optionUSAState = (id = '') => ({
 
 export const toggleModal = () => ({
   type: TOGGLE_MODAL
+})
+
+export const setZoomStep = (zoomStep = MIN_ZOOM_STEP) => ({
+  type: SET_ZOOM_STEP,
+  zoomStep
 })
