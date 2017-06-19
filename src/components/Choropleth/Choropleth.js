@@ -194,7 +194,6 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   zoomToCity = (cityState) => {
-    console.log('zoomToCity: ', cityState)
     const { width, height, selectedMap, locations, onZoom } = this.props
     const scale = scales[CITY_ZOOM_STEP - 1]
     const marker = Marker(selectedMap, _.find(['cityState', cityState], locations))
