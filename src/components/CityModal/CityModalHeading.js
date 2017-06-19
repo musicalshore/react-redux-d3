@@ -1,4 +1,4 @@
-import {DEFAULT_MAP, DEFAULT_YEAR, MAPS, TOP_CITIES} from 'constants/maps'
+import {DEFAULT_MAP, DEFAULT_YEAR, MAPS, TOP_CITY} from 'constants/maps'
 import _ from 'lodash/fp'
 import {func, object, string} from 'prop-types'
 import React from 'react'
@@ -30,13 +30,13 @@ const CityModalHeading = class CityModalHeading extends React.Component {
     let message = ''
     let additionalClasses = ''
 
-    if (rank === 1 && selectedYear === DEFAULT_YEAR && selectedMap === TOP_CITIES) {
+    if (rank === 1 && selectedYear === DEFAULT_YEAR && selectedMap === TOP_CITY) {
       additionalClasses += 'badge this-years-best'
       message = <span>This year&apos;s best!</span>
-    } else if (location.mostImproved && selectedMap === TOP_CITIES) {
+    } else if (location.mostImproved && selectedMap === TOP_CITY) {
       additionalClasses += 'badge most-improved'
       message = <span>Most improved!</span>
-    } else if (location.newLocation && selectedMap === TOP_CITIES) {
+    } else if (location.newLocation && selectedMap === TOP_CITY) {
       additionalClasses += 'badge new-location'
       message = <span>New Addition!</span>
     } else {

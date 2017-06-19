@@ -176,6 +176,10 @@
 
   .factoid {
     line-height: 23px;
+
+    @include mq($until: tablet) {
+      padding-left: 15px;
+    }
   }
 
   .clear-search {
