@@ -1,4 +1,4 @@
-import { optionUSAState, optionYear, selectCity, selectMap, toggleModal } from 'redux/actions'
+import { optionUSAState, optionYear, selectCity, selectMap, toggleModal, setZoomStep } from 'redux/actions'
 
 import TabbedMap from 'components/TabbedMap'
 
@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 const mapStateToProps = (state) => {
   return {
     error: state.error,
+    zoomStep: state.zoomStep,
     locations: state.locations,
     modalIsOpen: state.modalIsOpen,
     optionUSAState: state.optionUSAState,
@@ -33,6 +34,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onToggleModal: () => {
       dispatch(toggleModal())
+    },
+    onZoom: (zoomStep) => {
+      dispatch(setZoomStep(zoomStep))
     }
   }
 }

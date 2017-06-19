@@ -1,6 +1,6 @@
 import './style.scss'
 
-import {array, bool, func, object, string} from 'prop-types'
+import {array, bool, func, object, string, number} from 'prop-types'
 import {TOP_CITY} from 'constants/maps'
 import Choropleth from 'components/Choropleth'
 import CityModal from 'components/CityModal'
@@ -30,10 +30,12 @@ const TabbedMap = class TabbedMap extends React.Component {
     selectedMap: string.isRequired,
     selectedUSAState: object,
     selectedYear: string.isRequired,
+    zoomStep: number.isRequired,
     onMapSelect: func.isRequired,
     onCitySelect: func.isRequired,
     onUSAStateOption: func.isRequired,
-    onYearOption: func.isRequired
+    onYearOption: func.isRequired,
+    onZoom: func.isRequired
   }
   getModalParent = () => {
     return document.querySelector('#app')
@@ -47,8 +49,8 @@ const TabbedMap = class TabbedMap extends React.Component {
   }
 
   render () {
-    const {error, locations, modalIsOpen, optionUSAState, optionYear, selectedCity, selectedMap, selectedUSAState, selectedYear} = this.props
-    const {onCitySelect, onMapSelect, onUSAStateOption, onYearOption, onToggleModal} = this.props
+    const {error, locations, modalIsOpen, optionUSAState, optionYear, selectedCity, selectedMap, selectedUSAState, selectedYear, zoomStep} = this.props
+    const {onCitySelect, onMapSelect, onUSAStateOption, onYearOption, onToggleModal, onZoom} = this.props
 
     return (
       <div styleName="container">
@@ -75,7 +77,9 @@ const TabbedMap = class TabbedMap extends React.Component {
               selectedCity={selectedCity}
               selectedUSAState={selectedUSAState}
               locations={locations}
+              zoomStep={zoomStep}
               onCitySelect={onCitySelect}
+              onZoom={onZoom}
               width={715}
               height={625}
             />
@@ -99,7 +103,7 @@ const TabbedMap = class TabbedMap extends React.Component {
           <If condition={selectedMap === TOP_CITY}>
             <Legend />
           </If>
-          {/*<ShareButton /> */}
+          {/* <ShareButton /> */}
         </div>
         <CityModal selectedMap={selectedMap}
           locations={locations}

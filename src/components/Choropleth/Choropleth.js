@@ -2,7 +2,7 @@ import 'rc-slider/assets/index.css'
 
 import './style.scss'
 
-import {MAPS, TOP_CITY} from 'constants/maps'
+import {MAPS, MAX_ZOOM_STEP, MIN_ZOOM_STEP, CITY_ZOOM_STEP} from 'constants/maps'
 import * as d3 from 'd3'
 import _ from 'lodash/fp'
 import {array, func, number, object, string} from 'prop-types'
@@ -18,6 +18,7 @@ const path = d3.geoPath().projection(projection)
 const feature = topojson.feature(topodata, topodata.objects.states)
 const mesh = topojson.mesh(topodata, topodata.objects.states, (a, b) => a !== b)
 const zoom = d3.zoom()
+const scales = [0.8, 1.6, 3.2, 6.4]
 // const bounds = path.bounds(feature)
 // const center = path.centroid(feature)
 
@@ -60,18 +61,14 @@ const Choropleth = class Choropleth extends React.Component {
     selectedMap: string.isRequired,
     width: number.isRequired,
     height: number.isRequired,
-    zoomToCityScale: number
-  }
-  state = {
-    scale: 0
+    onZoom: func.isRequired,
+    zoomStep: number.isRequired
   }
 
   static defaultProps = {
     width: 715,
-    height: 625,
-    zoomToCityScale: 3.2
+    height: 625
   }
-  scales = [0.8, 1.6, 3.2, 6.4]
   constructor (props) {
     super(props)
     projection
@@ -86,7 +83,7 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   onSliderChange = (step) => {
-    this.setState({scale: this.scales[step]})
+    this.onZoom(step)
   }
 
   handleMarkerClick = (d) => {
@@ -100,18 +97,16 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   nextStep = () => {
-    const nextStep = _.indexOf(this.state.scale, this.scales) + 1
-    console.log('nextStep ', this.state.scale, nextStep)
-
-    if (nextStep < this.scales.length) {
-      this.setState({scale: this.scales[nextStep]})
+    console.log('nextStep this.props.zoomStep ', this.props.zoomStep)
+    if (this.props.zoomStep < MAX_ZOOM_STEP) {
+      this.props.onZoom(this.props.zoomStep + 1)
     }
   }
 
   previousStep = () => {
-    const previousStep = _.indexOf(this.state.scale, this.scales) - 1
-    if (previousStep >= 0) {
-      this.setState({scale: this.scales[previousStep]})
+    if (this.props.zoomStep > MIN_ZOOM_STEP) {
+      console.log('previousStep zoomStep ', this.props.zoomStep - 1)
+      this.props.onZoom(this.props.zoomStep - 1)
     }
   }
 
@@ -199,19 +194,21 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   zoomToCity = (cityState) => {
-    const { width, height, selectedMap, zoomToCityScale, locations } = this.props
+    const { width, height, selectedMap, locations, onZoom } = this.props
+    const scale = scales[CITY_ZOOM_STEP - 1]
     const marker = Marker(selectedMap, _.find(['cityState', cityState], locations))
-    const translateX = width / 2 - zoomToCityScale * marker.centroid[0]
-    const translateY = height / 2 - zoomToCityScale * marker.centroid[1]
+    const translateX = width / 2 - scale * marker.centroid[0]
+    const translateY = height / 2 - scale * marker.centroid[1]
 
     this.svg
       .transition()
       .duration(750)
-      .call(zoom.transform, d3.zoomIdentity.translate(translateX, translateY).scale(zoomToCityScale))
+      .call(zoom.transform, d3.zoomIdentity.translate(translateX, translateY).scale(scale))
+    // onZoom(CITY_ZOOM_STEP)
   }
 
-  zoomToScale = (scale) => {
-    if (scale === 0.8) {
+  zoomToStep = (zoomStep) => {
+    if (zoomStep === MIN_ZOOM_STEP) {
       this.svg
         .transition()
         .duration(750)
@@ -220,7 +217,7 @@ const Choropleth = class Choropleth extends React.Component {
       this.svg
         .transition()
         .duration(750)
-        .call(zoom.scaleTo, scale)
+        .call(zoom.scaleTo, scales[zoomStep - 1])
     }
   }
 
@@ -270,29 +267,43 @@ const Choropleth = class Choropleth extends React.Component {
     this.updateMarkers(selectedMap, locations)
   }
 
-  componentWillReceiveProps (nextProps) {
-    let { selectedMap, selectedCity, locations } = this.props
-    if (nextProps.selectedCity && nextProps.selectedCity !== selectedCity) {
-      const marker = Marker(selectedMap, _.find(['cityState', nextProps.selectedCity], locations))
-      this.setState({
-        scale: this.props.zoomToCityScale,
-        centroid: marker.centroid,
-        point: marker.point
-      })
-    }
-  }
+  // componentWillReceiveProps (nextProps) {
+  //   console.log('componentWillReceiveProps', nextProps)
+  //   let { selectedMap, selectedCity, selectedYear, locations } = this.props
+  //   if (nextProps.selectedMap !== selectedMap || nextProps.selectedYear !== selectedYear) {
+  //     this.setState({
+  //       scale: 0
+  //     })
+  //   } else if (nextProps.selectedCity && nextProps.selectedCity !== selectedCity) {
+  //     const marker = Marker(selectedMap, _.find(['cityState', nextProps.selectedCity], locations))
+  //     this.setState({
+  //       scale: this.props.zoomToCityScale,
+  //       centroid: marker.centroid,
+  //       point: marker.point
+  //     })
+  //   }
+  // }
 
   shouldComponentUpdate (nextProps, nextState) {
-    let { selectedMap, selectedYear, selectedUSAState, locations } = this.props
+    let { selectedMap, selectedYear, selectedUSAState, zoomStep, selectedCity } = this.props
 
     // if map changed or state filter applied, update markers
     if ((selectedMap !== nextProps.selectedMap) ||
         (selectedYear !== nextProps.selectedYear) ||
         (_.get('id', selectedUSAState) !== _.get('selectedUSAState.id', nextProps))) {
       this.updateMarkers(nextProps.selectedMap, nextProps.locations)
+      return false
     }
+
+    if (zoomStep !== nextProps.zoomStep) {
+      console.log('shouldComponentUpdate zoomToStep: ', nextProps.zoomStep)
+      this.zoomToStep(nextProps.zoomStep)
+      return true
+    }
+
     // if marker clicked, zoom to city
-    if (nextProps.selectedCity) {
+    if (nextProps.selectedCity && nextProps.selectedCity !== selectedCity) {
+      console.log('shouldComponentUpdate zoomToCity')
       this.zoomToCity(nextProps.selectedCity)
       return true
     }
@@ -302,15 +313,12 @@ const Choropleth = class Choropleth extends React.Component {
     //   this.zoomToCity(firstCity)
     //   return true
     // }
-    if (this.state.scale !== nextState.scale) {
-      this.zoomToScale(nextState.scale)
-      return true
-    }
+
     return false
   }
 
   render () {
-    let {width, height} = this.props
+    let {width, height, zoomStep} = this.props
     const svgMapContainerStyle = {
       paddingBottom: `${100 * (height / width)}%`
     }
@@ -338,10 +346,10 @@ const Choropleth = class Choropleth extends React.Component {
       '3': { style: markStyle },
       '4': { style: markStyle }
     }
-    const currentIndex = _.indexOf(this.state.scale, this.scales)
-    const currentValue = currentIndex + 1
+    // const currentIndex = _.indexOf(this.state.scale, this.scales)
+    // const currentValue = currentIndex + 1
 
-    console.log('rerendering', this.state.scale, currentIndex, currentValue, this.scales, this.scales[currentIndex])
+    // console.log('rerendering', this.props.zoomStep, currentIndex, currentValue, scales, scales[currentIndex])
 
     return (
       <div styleName="container">
@@ -351,10 +359,10 @@ const Choropleth = class Choropleth extends React.Component {
           <div styleName="zoom-in" onClick={this.nextStep}>+</div>
           <Slider className="zoom-bar"
             vertical={true}
-            min={1}
-            max={4}
-            defaultValue={1}
-            value={currentValue}
+            min={MIN_ZOOM_STEP}
+            max={MAX_ZOOM_STEP}
+            defaultValue={MIN_ZOOM_STEP}
+            value={zoomStep}
             handleStyle={handleStyle}
             onChange={this.onSliderChange}
             marks={marks}
