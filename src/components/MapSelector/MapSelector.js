@@ -88,6 +88,7 @@ const MapSelector = class MapSelector extends React.Component {
             name="abdYear"
             className="select-box year"
             value={optionYear}
+            aria-label="year"
             options={years}
             onChange={this.handleYearOptionChange}
             clearable={false}
@@ -96,12 +97,13 @@ const MapSelector = class MapSelector extends React.Component {
           <Select
             className="select-box usState"
             name="abdState"
+            aria-label="state"
             value={optionUSAState}
             options={USAStates}
             onChange={this.handleStateOptionChange}
             clearable={false}
           />
-          <button type="button" onClick={this.handleMapSelectorChange}>Go</button>
+          <button aria-label="go" type="button" onClick={this.handleMapSelectorChange}>Go</button>
         </div>
         <div styleName={`clear-search-container ${errorMessage !== '' ? 'has-error' : ''}`}>
           <If condition={selectedMap === TOP_CITY && (!errorMessage && !!totalSafeCities && !!USAStateName)}>
