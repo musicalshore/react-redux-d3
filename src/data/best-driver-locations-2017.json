@@ -557,8 +557,8 @@
       "Suburban Braking Events per 1000 Miles": 12.2,
       "Change": -1
     },
-    "cityState": "Port St Lucie, FL",
-    "city": "Port St Lucie",
+    "cityState": "Port St. Lucie, FL",
+    "city": "Port St. Lucie",
     "state": "FL",
     "lngLat": [
       -80.358,
@@ -2602,8 +2602,8 @@
       "Suburban Braking Events per 1000 Miles": 17.3,
       "Change": 11
     },
-    "cityState": "St Petersburg, FL",
-    "city": "St Petersburg",
+    "cityState": "St. Petersburg, FL",
+    "city": "St. Petersburg",
     "state": "FL",
     "lngLat": [
       -82.64,
@@ -10130,8 +10130,8 @@
       "Suburban Braking Events per 1000 Miles": 12.6,
       "Change": -36
     },
-    "cityState": "St Louis, MO",
-    "city": "St Louis",
+    "cityState": "St. Louis, MO",
+    "city": "St. Louis",
     "state": "MO",
     "lngLat": [
       -90.199,
