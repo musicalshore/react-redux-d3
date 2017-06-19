@@ -1,5 +1,5 @@
 import {SELECT_MAP, SELECT_CITY, SET_ZOOM_STEP} from 'constants/actionTypes'
-import {MAX_ZOOM_STEP, MIN_ZOOM_STEP, CITY_ZOOM_STEP} from 'constants/maps'
+import {MAX_ZOOM_STEP, MIN_ZOOM_STEP, CITY_ZOOM_STEP, DEFAULT_MAP} from 'constants/maps'
 import initialState from 'redux/initialState'
 import reducer from '../zoomStep'
 
@@ -31,6 +31,14 @@ describe('zoomStep reducer', () => {
       reducer(undefined, {
         type: SELECT_CITY,
         cityState: ''
+      })
+    ).toEqual(initialState.zoomStep)
+  })
+  it('should set zoomStep to initial zoom when a a new map is selected', () => {
+    expect(
+      reducer(undefined, {
+        type: SELECT_MAP,
+        id: 'MAP'
       })
     ).toEqual(initialState.zoomStep)
   })

@@ -43,8 +43,7 @@
       "Top Cities": 2,
       "Average Years Between Accidents": 13.6,
       "Population Density": 13,
-      "Rain & Snow": 2,
-      "Braking Events per 1000 Miles (city)": 12
+      "Rain & Snow": 2
     },
     "2017": {
       "Top Cities": 1,
@@ -178,16 +177,14 @@
       "Change": 3,
       "Average Years Between Accidents": 12.2,
       "Population Density": 3,
-      "Rain & Snow": 5,
-      "Braking Events per 1000 Miles (city)": 9
+      "Rain & Snow": 5
     },
     "2016": {
       "Top Cities": 3,
       "Change": 3,
       "Average Years Between Accidents": 13.3,
       "Population Density": 1,
-      "Rain & Snow": 4,
-      "Braking Events per 1000 Miles (city)": 9
+      "Rain & Snow": 4
     },
     "2017": {
       "Top Cities": 3,
@@ -322,16 +319,14 @@
       "Change": 10,
       "Average Years Between Accidents": 12.7,
       "Population Density": 8,
-      "Rain & Snow": 2,
-      "Braking Events per 1000 Miles (city)": 15.9
+      "Rain & Snow": 2
     },
     "2016": {
       "Top Cities": 4,
       "Change": 1,
       "Average Years Between Accidents": 12.9,
       "Population Density": 14,
-      "Rain & Snow": 3,
-      "Braking Events per 1000 Miles (city)": 15.9
+      "Rain & Snow": 3
     },
     "2017": {
       "Top Cities": 5,
@@ -394,16 +389,14 @@
       "Top Cities": 3,
       "Average Years Between Accidents": 13.1,
       "Population Density": 1,
-      "Rain & Snow": 4,
-      "Braking Events per 1000 Miles (city)": 11.6
+      "Rain & Snow": 4
     },
     "2016": {
       "Top Cities": 5,
       "Change": -2,
       "Average Years Between Accidents": 12.8,
       "Population Density": 3,
-      "Rain & Snow": 9,
-      "Braking Events per 1000 Miles (city)": 11.6
+      "Rain & Snow": 9
     },
     "2017": {
       "Top Cities": 6,
@@ -534,16 +527,14 @@
       "Change": 8,
       "Average Years Between Accidents": 11.3,
       "Population Density": 34,
-      "Rain & Snow": 8,
-      "Braking Events per 1000 Miles (city)": 15.8
+      "Rain & Snow": 8
     },
     "2016": {
       "Top Cities": 7,
       "Change": 11,
       "Average Years Between Accidents": 12.5,
       "Population Density": 21,
-      "Rain & Snow": 5,
-      "Braking Events per 1000 Miles (city)": 15.8
+      "Rain & Snow": 5
     },
     "2017": {
       "Top Cities": 8,
@@ -654,16 +645,14 @@
       "Change": -4,
       "Average Years Between Accidents": 11.4,
       "Population Density": 20,
-      "Rain & Snow": 14,
-      "Braking Events per 1000 Miles (city)": 13.2
+      "Rain & Snow": 14
     },
     "2016": {
       "Top Cities": 9,
       "Change": 5,
       "Average Years Between Accidents": 12.4,
       "Population Density": 9,
-      "Rain & Snow": 7,
-      "Braking Events per 1000 Miles (city)": 13.2
+      "Rain & Snow": 7
     },
     "2017": {
       "Top Cities": 10,
@@ -727,16 +716,14 @@
       "Change": -3,
       "Average Years Between Accidents": 12.7,
       "Population Density": 2,
-      "Rain & Snow": 7,
-      "Braking Events per 1000 Miles (city)": 16
+      "Rain & Snow": 7
     },
     "2016": {
       "Top Cities": 17,
       "Change": -13,
       "Average Years Between Accidents": 11.5,
       "Population Density": 19,
-      "Rain & Snow": 23,
-      "Braking Events per 1000 Miles (city)": 16
+      "Rain & Snow": 23
     },
     "2017": {
       "Top Cities": 11,
@@ -800,16 +787,14 @@
       "Change": 5,
       "Average Years Between Accidents": 11.5,
       "Population Density": 12,
-      "Rain & Snow": 15,
-      "Braking Events per 1000 Miles (city)": 11.1
+      "Rain & Snow": 15
     },
     "2016": {
       "Top Cities": 8,
       "Change": 3,
       "Average Years Between Accidents": 12.5,
       "Population Density": 6,
-      "Rain & Snow": 8,
-      "Braking Events per 1000 Miles (city)": 11.1
+      "Rain & Snow": 8
     },
     "2017": {
       "Top Cities": 12,
@@ -873,16 +858,14 @@
       "Change": -3,
       "Average Years Between Accidents": 10.5,
       "Population Density": 36,
-      "Rain & Snow": 27,
-      "Braking Events per 1000 Miles (city)": 14
+      "Rain & Snow": 27
     },
     "2016": {
       "Top Cities": 18,
       "Change": 14,
       "Average Years Between Accidents": 11.4,
       "Population Density": 26,
-      "Rain & Snow": 18,
-      "Braking Events per 1000 Miles (city)": 14
+      "Rain & Snow": 18
     },
     "2017": {
       "Top Cities": 13,
@@ -1005,16 +988,14 @@
       "Change": -5,
       "Average Years Between Accidents": 10.6,
       "Population Density": 22,
-      "Rain & Snow": 35,
-      "Braking Events per 1000 Miles (city)": 18.8
+      "Rain & Snow": 35
     },
     "2016": {
       "Top Cities": 23,
       "Change": 4,
       "Average Years Between Accidents": 11.3,
       "Population Density": 15,
-      "Rain & Snow": 31,
-      "Braking Events per 1000 Miles (city)": 18.8
+      "Rain & Snow": 31
     },
     "2017": {
       "Top Cities": 15,
@@ -1078,16 +1059,14 @@
       "Change": 6,
       "Average Years Between Accidents": 10.1,
       "Population Density": 95,
-      "Rain & Snow": 50,
-      "Braking Events per 1000 Miles (city)": 21.6
+      "Rain & Snow": 50
     },
     "2016": {
       "Top Cities": 31,
       "Change": 8,
       "Average Years Between Accidents": 10.9,
       "Population Density": 90,
-      "Rain & Snow": 43,
-      "Braking Events per 1000 Miles (city)": 21.6
+      "Rain & Snow": 43
     },
     "2017": {
       "Top Cities": 16,
@@ -1151,16 +1130,14 @@
       "Change": 4,
       "Average Years Between Accidents": 10.1,
       "Population Density": 64,
-      "Rain & Snow": 30,
-      "Braking Events per 1000 Miles (city)": 15.1
+      "Rain & Snow": 30
     },
     "2016": {
       "Top Cities": 35,
       "Change": 5,
       "Average Years Between Accidents": 10.8,
       "Population Density": 55,
-      "Rain & Snow": 22,
-      "Braking Events per 1000 Miles (city)": 15.1
+      "Rain & Snow": 22
     },
     "2017": {
       "Top Cities": 17,
@@ -1224,15 +1201,13 @@
       "Change": -13,
       "Average Years Between Accidents": 10.5,
       "Population Density": 25,
-      "Rain & Snow": 41,
-      "Braking Events per 1000 Miles (city)": 18.4
+      "Rain & Snow": 41
     },
     "2016": {
       "Top Cities": 34,
       "Average Years Between Accidents": 10.8,
       "Population Density": 27,
-      "Rain & Snow": 47,
-      "Braking Events per 1000 Miles (city)": 18.4
+      "Rain & Snow": 47
     },
     "2017": {
       "Top Cities": 18,
@@ -1296,16 +1271,14 @@
       "Change": 5,
       "Average Years Between Accidents": 11.5,
       "Population Density": 17,
-      "Rain & Snow": 24,
-      "Braking Events per 1000 Miles (city)": 16.2
+      "Rain & Snow": 24
     },
     "2016": {
       "Top Cities": 10,
       "Change": 2,
       "Average Years Between Accidents": 12.2,
       "Population Density": 12,
-      "Rain & Snow": 13,
-      "Braking Events per 1000 Miles (city)": 16.2
+      "Rain & Snow": 13
     },
     "2017": {
       "Top Cities": 19,
@@ -1376,8 +1349,7 @@
       "Change": 7,
       "Average Years Between Accidents": 11.6,
       "Population Density": 10,
-      "Rain & Snow": 16,
-      "Braking Events per 1000 Miles (city)": 11.7
+      "Rain & Snow": 16
     },
     "2017": {
       "Top Cities": 20,
@@ -1423,16 +1395,14 @@
       "Change": -5,
       "Average Years Between Accidents": 10.9,
       "Population Density": 11,
-      "Rain & Snow": 28,
-      "Braking Events per 1000 Miles (city)": 18.2
+      "Rain & Snow": 28
     },
     "2016": {
       "Top Cities": 33,
       "Change": -9,
       "Average Years Between Accidents": 10.8,
       "Population Density": 24,
-      "Rain & Snow": 40,
-      "Braking Events per 1000 Miles (city)": 18.2
+      "Rain & Snow": 40
     },
     "2017": {
       "Top Cities": 21,
@@ -1567,16 +1537,14 @@
       "Change": 6,
       "Average Years Between Accidents": 10.2,
       "Population Density": 47,
-      "Rain & Snow": 48,
-      "Braking Events per 1000 Miles (city)": 18
+      "Rain & Snow": 48
     },
     "2016": {
       "Top Cities": 19,
       "Change": 18,
       "Average Years Between Accidents": 11.3,
       "Population Density": 30,
-      "Rain & Snow": 29,
-      "Braking Events per 1000 Miles (city)": 18
+      "Rain & Snow": 29
     },
     "2017": {
       "Top Cities": 23,
@@ -1640,16 +1608,14 @@
       "Change": 17,
       "Average Years Between Accidents": 10.6,
       "Population Density": 89,
-      "Rain & Snow": 38,
-      "Braking Events per 1000 Miles (city)": 17.1
+      "Rain & Snow": 38
     },
     "2016": {
       "Top Cities": 15,
       "Change": 15,
       "Average Years Between Accidents": 11.6,
       "Population Density": 69,
-      "Rain & Snow": 24,
-      "Braking Events per 1000 Miles (city)": 17.1
+      "Rain & Snow": 24
     },
     "2017": {
       "Top Cities": 24,
@@ -1713,15 +1679,13 @@
       "Change": 3,
       "Average Years Between Accidents": 10.6,
       "Population Density": 13,
-      "Rain & Snow": 37,
-      "Braking Events per 1000 Miles (city)": 21.1
+      "Rain & Snow": 37
     },
     "2016": {
       "Top Cities": 29,
       "Average Years Between Accidents": 11,
       "Population Density": 16,
-      "Rain & Snow": 41,
-      "Braking Events per 1000 Miles (city)": 21.1
+      "Rain & Snow": 41
     },
     "2017": {
       "Top Cities": 25,
@@ -1785,16 +1749,14 @@
       "Change": -2,
       "Average Years Between Accidents": 11.4,
       "Population Density": 19,
-      "Rain & Snow": 21,
-      "Braking Events per 1000 Miles (city)": 16.4
+      "Rain & Snow": 21
     },
     "2016": {
       "Top Cities": 21,
       "Change": -5,
       "Average Years Between Accidents": 11.3,
       "Population Density": 32,
-      "Rain & Snow": 27,
-      "Braking Events per 1000 Miles (city)": 16.4
+      "Rain & Snow": 27
     },
     "2017": {
       "Top Cities": 26,
@@ -1858,16 +1820,14 @@
       "Change": 13,
       "Average Years Between Accidents": 11,
       "Population Density": 27,
-      "Rain & Snow": 20,
-      "Braking Events per 1000 Miles (city)": 13.8
+      "Rain & Snow": 20
     },
     "2016": {
       "Top Cities": 27,
       "Change": -5,
       "Average Years Between Accidents": 11,
       "Population Density": 38,
-      "Rain & Snow": 26,
-      "Braking Events per 1000 Miles (city)": 13.8
+      "Rain & Snow": 26
     },
     "2017": {
       "Top Cities": 27,
@@ -2002,16 +1962,14 @@
       "Change": 1,
       "Average Years Between Accidents": 10.1,
       "Population Density": 44,
-      "Rain & Snow": 34,
-      "Braking Events per 1000 Miles (city)": 14.6
+      "Rain & Snow": 34
     },
     "2016": {
       "Top Cities": 43,
       "Change": -2,
       "Average Years Between Accidents": 10.5,
       "Population Density": 47,
-      "Rain & Snow": 33,
-      "Braking Events per 1000 Miles (city)": 14.6
+      "Rain & Snow": 33
     },
     "2017": {
       "Top Cities": 29,
@@ -2075,16 +2033,14 @@
       "Change": -5,
       "Average Years Between Accidents": 11.3,
       "Population Density": 35,
-      "Rain & Snow": 16,
-      "Braking Events per 1000 Miles (city)": 14.6
+      "Rain & Snow": 16
     },
     "2016": {
       "Top Cities": 26,
       "Change": -9,
       "Average Years Between Accidents": 11,
       "Population Density": 60,
-      "Rain & Snow": 25,
-      "Braking Events per 1000 Miles (city)": 14.6
+      "Rain & Snow": 25
     },
     "2017": {
       "Top Cities": 30,
@@ -2148,16 +2104,14 @@
       "Change": 23,
       "Average Years Between Accidents": 11.4,
       "Population Density": 24,
-      "Rain & Snow": 12,
-      "Braking Events per 1000 Miles (city)": 15.8
+      "Rain & Snow": 12
     },
     "2016": {
       "Top Cities": 13,
       "Change": 2,
       "Average Years Between Accidents": 11.8,
       "Population Density": 25,
-      "Rain & Snow": 10,
-      "Braking Events per 1000 Miles (city)": 15.8
+      "Rain & Snow": 10
     },
     "2017": {
       "Top Cities": 31,
@@ -2370,8 +2324,7 @@
       "Change": 58,
       "Average Years Between Accidents": 9.7,
       "Population Density": 155,
-      "Rain & Snow": 80,
-      "Braking Events per 1000 Miles (city)": 9.3
+      "Rain & Snow": 80
     },
     "2017": {
       "Top Cities": 34,
@@ -2435,16 +2388,14 @@
       "Change": -2,
       "Average Years Between Accidents": 10.6,
       "Population Density": 45,
-      "Rain & Snow": 23,
-      "Braking Events per 1000 Miles (city)": 17.2
+      "Rain & Snow": 23
     },
     "2016": {
       "Top Cities": 24,
       "Change": 5,
       "Average Years Between Accidents": 11.2,
       "Population Density": 45,
-      "Rain & Snow": 19,
-      "Braking Events per 1000 Miles (city)": 17.2
+      "Rain & Snow": 19
     },
     "2017": {
       "Top Cities": 35,
@@ -2579,16 +2530,14 @@
       "Change": 6,
       "Average Years Between Accidents": 9.8,
       "Population Density": 33,
-      "Rain & Snow": 40,
-      "Braking Events per 1000 Miles (city)": 15.9
+      "Rain & Snow": 40
     },
     "2016": {
       "Top Cities": 48,
       "Change": 4,
       "Average Years Between Accidents": 10.3,
       "Population Density": 33,
-      "Rain & Snow": 38,
-      "Braking Events per 1000 Miles (city)": 15.9
+      "Rain & Snow": 38
     },
     "2017": {
       "Top Cities": 37,
@@ -2652,16 +2601,14 @@
       "Change": 15,
       "Average Years Between Accidents": 10.6,
       "Population Density": 76,
-      "Rain & Snow": 25,
-      "Braking Events per 1000 Miles (city)": 15.9
+      "Rain & Snow": 25
     },
     "2016": {
       "Top Cities": 25,
       "Change": 6,
       "Average Years Between Accidents": 11.1,
       "Population Density": 87,
-      "Rain & Snow": 21,
-      "Braking Events per 1000 Miles (city)": 15.9
+      "Rain & Snow": 21
     },
     "2017": {
       "Top Cities": 38,
@@ -2725,16 +2672,14 @@
       "Change": 15,
       "Average Years Between Accidents": 10.3,
       "Population Density": 42,
-      "Rain & Snow": 33,
-      "Braking Events per 1000 Miles (city)": 13.6
+      "Rain & Snow": 33
     },
     "2016": {
       "Top Cities": 38,
       "Change": -4,
       "Average Years Between Accidents": 10.6,
       "Population Density": 48,
-      "Rain & Snow": 36,
-      "Braking Events per 1000 Miles (city)": 13.6
+      "Rain & Snow": 36
     },
     "2017": {
       "Top Cities": 39,
@@ -2798,16 +2743,14 @@
       "Change": 20,
       "Average Years Between Accidents": 9.6,
       "Population Density": 54,
-      "Rain & Snow": 51,
-      "Braking Events per 1000 Miles (city)": 13.4
+      "Rain & Snow": 51
     },
     "2016": {
       "Top Cities": 32,
       "Change": 22,
       "Average Years Between Accidents": 10.8,
       "Population Density": 28,
-      "Rain & Snow": 30,
-      "Braking Events per 1000 Miles (city)": 13.4
+      "Rain & Snow": 30
     },
     "2017": {
       "Top Cities": 40,
@@ -2871,16 +2814,14 @@
       "Change": 8,
       "Average Years Between Accidents": 9.6,
       "Population Density": 140,
-      "Rain & Snow": 46,
-      "Braking Events per 1000 Miles (city)": 12.2
+      "Rain & Snow": 46
     },
     "2016": {
       "Top Cities": 39,
       "Change": 17,
       "Average Years Between Accidents": 10.6,
       "Population Density": 132,
-      "Rain & Snow": 32,
-      "Braking Events per 1000 Miles (city)": 12.2
+      "Rain & Snow": 32
     },
     "2017": {
       "Top Cities": 41,
@@ -2944,16 +2885,14 @@
       "Change": -8,
       "Average Years Between Accidents": 9.9,
       "Population Density": 9,
-      "Rain & Snow": 45,
-      "Braking Events per 1000 Miles (city)": 13
+      "Rain & Snow": 45
     },
     "2016": {
       "Top Cities": 37,
       "Change": 8,
       "Average Years Between Accidents": 10.6,
       "Population Density": 5,
-      "Rain & Snow": 39,
-      "Braking Events per 1000 Miles (city)": 13
+      "Rain & Snow": 39
     },
     "2017": {
       "Top Cities": 42,
@@ -3088,16 +3027,14 @@
       "Change": -3,
       "Average Years Between Accidents": 9.6,
       "Population Density": 71,
-      "Rain & Snow": 52,
-      "Braking Events per 1000 Miles (city)": 17.4
+      "Rain & Snow": 52
     },
     "2016": {
       "Top Cities": 55,
       "Change": 0,
       "Average Years Between Accidents": 10.1,
       "Population Density": 71,
-      "Rain & Snow": 51,
-      "Braking Events per 1000 Miles (city)": 17.4
+      "Rain & Snow": 51
     },
     "2017": {
       "Top Cities": 44,
@@ -3226,8 +3163,7 @@
       "Top Cities": 41,
       "Average Years Between Accidents": 10.5,
       "Population Density": 29,
-      "Rain & Snow": 49,
-      "Braking Events per 1000 Miles (city)": 17.9
+      "Rain & Snow": 49
     },
     "2017": {
       "Top Cities": 47,
@@ -3291,16 +3227,14 @@
       "Change": -6,
       "Average Years Between Accidents": 11.3,
       "Population Density": 16,
-      "Rain & Snow": 18,
-      "Braking Events per 1000 Miles (city)": 10.5
+      "Rain & Snow": 18
     },
     "2016": {
       "Top Cities": 44,
       "Change": -25,
       "Average Years Between Accidents": 10.4,
       "Population Density": 53,
-      "Rain & Snow": 45,
-      "Braking Events per 1000 Miles (city)": 10.5
+      "Rain & Snow": 45
     },
     "2017": {
       "Top Cities": 48,
@@ -3364,16 +3298,14 @@
       "Change": -21,
       "Average Years Between Accidents": 9.9,
       "Population Density": 60,
-      "Rain & Snow": 44,
-      "Braking Events per 1000 Miles (city)": 15.3
+      "Rain & Snow": 44
     },
     "2016": {
       "Top Cities": 57,
       "Change": -11,
       "Average Years Between Accidents": 10.1,
       "Population Density": 74,
-      "Rain & Snow": 52,
-      "Braking Events per 1000 Miles (city)": 15.3
+      "Rain & Snow": 52
     },
     "2017": {
       "Top Cities": 49,
@@ -3437,16 +3369,14 @@
       "Change": 11,
       "Average Years Between Accidents": 10,
       "Population Density": 107,
-      "Rain & Snow": 36,
-      "Braking Events per 1000 Miles (city)": 14.7
+      "Rain & Snow": 36
     },
     "2016": {
       "Top Cities": 45,
       "Change": -2,
       "Average Years Between Accidents": 10.4,
       "Population Density": 113,
-      "Rain & Snow": 37,
-      "Braking Events per 1000 Miles (city)": 14.7
+      "Rain & Snow": 37
     },
     "2017": {
       "Top Cities": 50,
@@ -3509,16 +3439,14 @@
       "Top Cities": 57,
       "Average Years Between Accidents": 9.6,
       "Population Density": 67,
-      "Rain & Snow": 73,
-      "Braking Events per 1000 Miles (city)": 16.1
+      "Rain & Snow": 73
     },
     "2016": {
       "Top Cities": 53,
       "Change": 4,
       "Average Years Between Accidents": 10.2,
       "Population Density": 56,
-      "Rain & Snow": 67,
-      "Braking Events per 1000 Miles (city)": 16.1
+      "Rain & Snow": 67
     },
     "2017": {
       "Top Cities": 51,
@@ -3582,16 +3510,14 @@
       "Change": -5,
       "Average Years Between Accidents": 10.6,
       "Population Density": 21,
-      "Rain & Snow": 29,
-      "Braking Events per 1000 Miles (city)": 12.7
+      "Rain & Snow": 29
     },
     "2016": {
       "Top Cities": 40,
       "Change": -14,
       "Average Years Between Accidents": 10.5,
       "Population Density": 35,
-      "Rain & Snow": 44,
-      "Braking Events per 1000 Miles (city)": 12.7
+      "Rain & Snow": 44
     },
     "2017": {
       "Top Cities": 52,
@@ -3797,16 +3723,14 @@
       "Change": -12,
       "Average Years Between Accidents": 10.3,
       "Population Density": 26,
-      "Rain & Snow": 31,
-      "Braking Events per 1000 Miles (city)": 14.3
+      "Rain & Snow": 31
     },
     "2016": {
       "Top Cities": 42,
       "Change": -7,
       "Average Years Between Accidents": 10.5,
       "Population Density": 31,
-      "Rain & Snow": 34,
-      "Braking Events per 1000 Miles (city)": 14.3
+      "Rain & Snow": 34
     },
     "2017": {
       "Top Cities": 55,
@@ -3870,16 +3794,14 @@
       "Change": -21,
       "Average Years Between Accidents": 9.8,
       "Population Density": 112,
-      "Rain & Snow": 39,
-      "Braking Events per 1000 Miles (city)": 13.8
+      "Rain & Snow": 39
     },
     "2016": {
       "Top Cities": 64,
       "Change": -13,
       "Average Years Between Accidents": 9.8,
       "Population Density": 133,
-      "Rain & Snow": 55,
-      "Braking Events per 1000 Miles (city)": 13.8
+      "Rain & Snow": 55
     },
     "2017": {
       "Top Cities": 56,
@@ -3943,16 +3865,14 @@
       "Change": 52,
       "Average Years Between Accidents": 9.1,
       "Population Density": 49,
-      "Rain & Snow": 55,
-      "Braking Events per 1000 Miles (city)": 18.3
+      "Rain & Snow": 55
     },
     "2016": {
       "Top Cities": 61,
       "Change": 12,
       "Average Years Between Accidents": 9.9,
       "Population Density": 34,
-      "Rain & Snow": 46,
-      "Braking Events per 1000 Miles (city)": 18.3
+      "Rain & Snow": 46
     },
     "2017": {
       "Top Cities": 57,
@@ -4016,16 +3936,14 @@
       "Change": -7,
       "Average Years Between Accidents": 9.1,
       "Population Density": 122,
-      "Rain & Snow": 89,
-      "Braking Events per 1000 Miles (city)": 17.8
+      "Rain & Snow": 89
     },
     "2016": {
       "Top Cities": 78,
       "Change": -4,
       "Average Years Between Accidents": 9.5,
       "Population Density": 127,
-      "Rain & Snow": 88,
-      "Braking Events per 1000 Miles (city)": 17.8
+      "Rain & Snow": 88
     },
     "2017": {
       "Top Cities": 58,
@@ -4071,16 +3989,14 @@
       "Change": 43,
       "Average Years Between Accidents": 9.2,
       "Population Density": 128,
-      "Rain & Snow": 59,
-      "Braking Events per 1000 Miles (city)": 13.9
+      "Rain & Snow": 59
     },
     "2016": {
       "Top Cities": 49,
       "Change": 18,
       "Average Years Between Accidents": 10.3,
       "Population Density": 98,
-      "Rain & Snow": 42,
-      "Braking Events per 1000 Miles (city)": 13.9
+      "Rain & Snow": 42
     },
     "2017": {
       "Top Cities": 59,
@@ -4151,8 +4067,7 @@
       "Change": 22,
       "Average Years Between Accidents": 9.9,
       "Population Density": 149,
-      "Rain & Snow": 54,
-      "Braking Events per 1000 Miles (city)": 15.2
+      "Rain & Snow": 54
     },
     "2017": {
       "Top Cities": 60,
@@ -4216,16 +4131,14 @@
       "Change": 18,
       "Average Years Between Accidents": 8.8,
       "Population Density": 132,
-      "Rain & Snow": 85,
-      "Braking Events per 1000 Miles (city)": 14.2
+      "Rain & Snow": 85
     },
     "2016": {
       "Top Cities": 74,
       "Change": 19,
       "Average Years Between Accidents": 9.6,
       "Population Density": 124,
-      "Rain & Snow": 71,
-      "Braking Events per 1000 Miles (city)": 14.2
+      "Rain & Snow": 71
     },
     "2017": {
       "Top Cities": 61,
@@ -4360,16 +4273,14 @@
       "Change": -2,
       "Average Years Between Accidents": 8.9,
       "Population Density": 150,
-      "Rain & Snow": 86,
-      "Braking Events per 1000 Miles (city)": 13.5
+      "Rain & Snow": 86
     },
     "2016": {
       "Top Cities": 72,
       "Change": 17,
       "Average Years Between Accidents": 9.6,
       "Population Density": 141,
-      "Rain & Snow": 73,
-      "Braking Events per 1000 Miles (city)": 13.5
+      "Rain & Snow": 73
     },
     "2017": {
       "Top Cities": 63,
@@ -4504,16 +4415,14 @@
       "Change": 7,
       "Average Years Between Accidents": 8.7,
       "Population Density": 99,
-      "Rain & Snow": 96,
-      "Braking Events per 1000 Miles (city)": 18.6
+      "Rain & Snow": 96
     },
     "2016": {
       "Top Cities": 89,
       "Change": 11,
       "Average Years Between Accidents": 9.3,
       "Population Density": 88,
-      "Rain & Snow": 86,
-      "Braking Events per 1000 Miles (city)": 18.6
+      "Rain & Snow": 86
     },
     "2017": {
       "Top Cities": 65,
@@ -4577,16 +4486,14 @@
       "Change": 7,
       "Average Years Between Accidents": 9.3,
       "Population Density": 69,
-      "Rain & Snow": 76,
-      "Braking Events per 1000 Miles (city)": 14.1
+      "Rain & Snow": 76
     },
     "2016": {
       "Top Cities": 54,
       "Change": 10,
       "Average Years Between Accidents": 10.2,
       "Population Density": 50,
-      "Rain & Snow": 59,
-      "Braking Events per 1000 Miles (city)": 14.1
+      "Rain & Snow": 59
     },
     "2017": {
       "Top Cities": 66,
@@ -4650,16 +4557,14 @@
       "Change": -14,
       "Average Years Between Accidents": 9.9,
       "Population Density": 28,
-      "Rain & Snow": 57,
-      "Braking Events per 1000 Miles (city)": 20.1
+      "Rain & Snow": 57
     },
     "2016": {
       "Top Cities": 56,
       "Change": -9,
       "Average Years Between Accidents": 10.1,
       "Population Density": 36,
-      "Rain & Snow": 68,
-      "Braking Events per 1000 Miles (city)": 20.1
+      "Rain & Snow": 68
     },
     "2017": {
       "Top Cities": 67,
@@ -4723,15 +4628,13 @@
       "Change": 34,
       "Average Years Between Accidents": 9.3,
       "Population Density": 103,
-      "Rain & Snow": 61,
-      "Braking Events per 1000 Miles (city)": 13.9
+      "Rain & Snow": 61
     },
     "2016": {
       "Top Cities": 63,
       "Average Years Between Accidents": 9.8,
       "Population Density": 101,
-      "Rain & Snow": 61,
-      "Braking Events per 1000 Miles (city)": 13.9
+      "Rain & Snow": 61
     },
     "2017": {
       "Top Cities": 68,
@@ -4795,16 +4698,14 @@
       "Change": 18,
       "Average Years Between Accidents": 9.9,
       "Population Density": 37,
-      "Rain & Snow": 47,
-      "Braking Events per 1000 Miles (city)": 17.5
+      "Rain & Snow": 47
     },
     "2016": {
       "Top Cities": 51,
       "Change": -3,
       "Average Years Between Accidents": 10.2,
       "Population Density": 42,
-      "Rain & Snow": 50,
-      "Braking Events per 1000 Miles (city)": 17.5
+      "Rain & Snow": 50
     },
     "2017": {
       "Top Cities": 69,
@@ -5125,16 +5026,14 @@
       "Change": -15,
       "Average Years Between Accidents": 8.7,
       "Population Density": 94,
-      "Rain & Snow": 105,
-      "Braking Events per 1000 Miles (city)": 18.4
+      "Rain & Snow": 105
     },
     "2016": {
       "Top Cities": 87,
       "Change": 8,
       "Average Years Between Accidents": 9.3,
       "Population Density": 85,
-      "Rain & Snow": 96,
-      "Braking Events per 1000 Miles (city)": 18.4
+      "Rain & Snow": 96
     },
     "2017": {
       "Top Cities": 74,
@@ -5269,16 +5168,14 @@
       "Change": 53,
       "Average Years Between Accidents": 9.1,
       "Population Density": 102,
-      "Rain & Snow": 63,
-      "Braking Events per 1000 Miles (city)": 17.1
+      "Rain & Snow": 63
     },
     "2016": {
       "Top Cities": 81,
       "Change": -6,
       "Average Years Between Accidents": 9.4,
       "Population Density": 107,
-      "Rain & Snow": 76,
-      "Braking Events per 1000 Miles (city)": 17.1
+      "Rain & Snow": 76
     },
     "2017": {
       "Top Cities": 76,
@@ -5342,16 +5239,14 @@
       "Change": 16,
       "Average Years Between Accidents": 9.3,
       "Population Density": 72,
-      "Rain & Snow": 82,
-      "Braking Events per 1000 Miles (city)": 21
+      "Rain & Snow": 82
     },
     "2016": {
       "Top Cities": 70,
       "Change": -7,
       "Average Years Between Accidents": 9.7,
       "Population Density": 84,
-      "Rain & Snow": 85,
-      "Braking Events per 1000 Miles (city)": 21
+      "Rain & Snow": 85
     },
     "2017": {
       "Top Cities": 77,
@@ -5415,16 +5310,14 @@
       "Change": 16,
       "Average Years Between Accidents": 9.4,
       "Population Density": 85,
-      "Rain & Snow": 58,
-      "Braking Events per 1000 Miles (city)": 15.3
+      "Rain & Snow": 58
     },
     "2016": {
       "Top Cities": 62,
       "Change": -2,
       "Average Years Between Accidents": 9.9,
       "Population Density": 93,
-      "Rain & Snow": 57,
-      "Braking Events per 1000 Miles (city)": 15.3
+      "Rain & Snow": 57
     },
     "2017": {
       "Top Cities": 78,
@@ -5559,16 +5452,14 @@
       "Change": 9,
       "Average Years Between Accidents": 8.9,
       "Population Density": 83,
-      "Rain & Snow": 78,
-      "Braking Events per 1000 Miles (city)": 17.1
+      "Rain & Snow": 78
     },
     "2016": {
       "Top Cities": 77,
       "Change": 11,
       "Average Years Between Accidents": 9.6,
       "Population Density": 68,
-      "Rain & Snow": 75,
-      "Braking Events per 1000 Miles (city)": 17.1
+      "Rain & Snow": 75
     },
     "2017": {
       "Top Cities": 80,
@@ -5631,16 +5522,14 @@
       "Top Cities": 49,
       "Average Years Between Accidents": 9.8,
       "Population Density": 57,
-      "Rain & Snow": 42,
-      "Braking Events per 1000 Miles (city)": 14.6
+      "Rain & Snow": 42
     },
     "2016": {
       "Top Cities": 65,
       "Change": -16,
       "Average Years Between Accidents": 9.8,
       "Population Density": 86,
-      "Rain & Snow": 58,
-      "Braking Events per 1000 Miles (city)": 14.6
+      "Rain & Snow": 58
     },
     "2017": {
       "Top Cities": 81,
@@ -5846,16 +5735,14 @@
       "Change": 3,
       "Average Years Between Accidents": 9.2,
       "Population Density": 52,
-      "Rain & Snow": 65,
-      "Braking Events per 1000 Miles (city)": 19.3
+      "Rain & Snow": 65
     },
     "2016": {
       "Top Cities": 83,
       "Change": -18,
       "Average Years Between Accidents": 9.4,
       "Population Density": 59,
-      "Rain & Snow": 82,
-      "Braking Events per 1000 Miles (city)": 19.3
+      "Rain & Snow": 82
     },
     "2017": {
       "Top Cities": 84,
@@ -6052,16 +5939,14 @@
       "Change": 28,
       "Average Years Between Accidents": 9.2,
       "Population Density": 43,
-      "Rain & Snow": 69,
-      "Braking Events per 1000 Miles (city)": 13.6
+      "Rain & Snow": 69
     },
     "2016": {
       "Top Cities": 68,
       "Change": 2,
       "Average Years Between Accidents": 9.7,
       "Population Density": 39,
-      "Rain & Snow": 70,
-      "Braking Events per 1000 Miles (city)": 13.6
+      "Rain & Snow": 70
     },
     "2017": {
       "Top Cities": 87,
@@ -6317,16 +6202,14 @@
       "Change": 21,
       "Average Years Between Accidents": 8.6,
       "Population Density": 84,
-      "Rain & Snow": 84,
-      "Braking Events per 1000 Miles (city)": 22.2
+      "Rain & Snow": 84
     },
     "2016": {
       "Top Cities": 88,
       "Change": 23,
       "Average Years Between Accidents": 9.3,
       "Population Density": 54,
-      "Rain & Snow": 69,
-      "Braking Events per 1000 Miles (city)": 22.2
+      "Rain & Snow": 69
     },
     "2017": {
       "Top Cities": 91,
@@ -6390,16 +6273,14 @@
       "Change": 4,
       "Average Years Between Accidents": 9.4,
       "Population Density": 51,
-      "Rain & Snow": 79,
-      "Braking Events per 1000 Miles (city)": 20.2
+      "Rain & Snow": 79
     },
     "2016": {
       "Top Cities": 76,
       "Change": -15,
       "Average Years Between Accidents": 9.6,
       "Population Density": 57,
-      "Rain & Snow": 90,
-      "Braking Events per 1000 Miles (city)": 20.2
+      "Rain & Snow": 90
     },
     "2017": {
       "Top Cities": 92,
@@ -6463,16 +6344,14 @@
       "Change": -3,
       "Average Years Between Accidents": 8.9,
       "Population Density": 125,
-      "Rain & Snow": 68,
-      "Braking Events per 1000 Miles (city)": 16.1
+      "Rain & Snow": 68
     },
     "2016": {
       "Top Cities": 80,
       "Change": 7,
       "Average Years Between Accidents": 9.5,
       "Population Density": 125,
-      "Rain & Snow": 72,
-      "Braking Events per 1000 Miles (city)": 16.1
+      "Rain & Snow": 72
     },
     "2017": {
       "Top Cities": 93,
@@ -6749,16 +6628,14 @@
       "Change": -8,
       "Average Years Between Accidents": 8.5,
       "Population Density": 147,
-      "Rain & Snow": 92,
-      "Braking Events per 1000 Miles (city)": 12.2
+      "Rain & Snow": 92
     },
     "2016": {
       "Top Cities": 107,
       "Change": 7,
       "Average Years Between Accidents": 9,
       "Population Density": 146,
-      "Rain & Snow": 89,
-      "Braking Events per 1000 Miles (city)": 12.2
+      "Rain & Snow": 89
     },
     "2017": {
       "Top Cities": 97,
@@ -7021,8 +6898,7 @@
       "Change": -28,
       "Average Years Between Accidents": 9,
       "Population Density": 166,
-      "Rain & Snow": 93,
-      "Braking Events per 1000 Miles (city)": 15.1
+      "Rain & Snow": 93
     },
     "2017": {
       "Top Cities": 101,
@@ -7059,16 +6935,14 @@
       "Change": 13,
       "Average Years Between Accidents": 7.9,
       "Population Density": 135,
-      "Rain & Snow": 124,
-      "Braking Events per 1000 Miles (city)": 22.1
+      "Rain & Snow": 124
     },
     "2016": {
       "Top Cities": 127,
       "Change": 17,
       "Average Years Between Accidents": 8.6,
       "Population Density": 115,
-      "Rain & Snow": 101,
-      "Braking Events per 1000 Miles (city)": 22.1
+      "Rain & Snow": 101
     },
     "2017": {
       "Top Cities": 102,
@@ -7132,16 +7006,14 @@
       "Change": 64,
       "Average Years Between Accidents": 8.3,
       "Population Density": 39,
-      "Rain & Snow": 98,
-      "Braking Events per 1000 Miles (city)": 24.4
+      "Rain & Snow": 98
     },
     "2016": {
       "Top Cities": 79,
       "Change": 46,
       "Average Years Between Accidents": 9.5,
       "Population Density": 7,
-      "Rain & Snow": 63,
-      "Braking Events per 1000 Miles (city)": 24.4
+      "Rain & Snow": 63
     },
     "2017": {
       "Top Cities": 103,
@@ -7205,16 +7077,14 @@
       "Change": -9,
       "Average Years Between Accidents": 9.2,
       "Population Density": 10,
-      "Rain & Snow": 62,
-      "Braking Events per 1000 Miles (city)": 15.2
+      "Rain & Snow": 62
     },
     "2016": {
       "Top Cities": 85,
       "Change": -16,
       "Average Years Between Accidents": 9.4,
       "Population Density": 17,
-      "Rain & Snow": 77,
-      "Braking Events per 1000 Miles (city)": 15.2
+      "Rain & Snow": 77
     },
     "2017": {
       "Top Cities": 104,
@@ -7278,16 +7148,14 @@
       "Change": 29,
       "Average Years Between Accidents": 8.1,
       "Population Density": 136,
-      "Rain & Snow": 123,
-      "Braking Events per 1000 Miles (city)": 16.3
+      "Rain & Snow": 123
     },
     "2016": {
       "Top Cities": 108,
       "Change": 23,
       "Average Years Between Accidents": 9,
       "Population Density": 121,
-      "Rain & Snow": 94,
-      "Braking Events per 1000 Miles (city)": 16.3
+      "Rain & Snow": 94
     },
     "2017": {
       "Top Cities": 105,
@@ -7422,16 +7290,14 @@
       "Change": -20,
       "Average Years Between Accidents": 9,
       "Population Density": 138,
-      "Rain & Snow": 71,
-      "Braking Events per 1000 Miles (city)": 15.1
+      "Rain & Snow": 71
     },
     "2016": {
       "Top Cities": 95,
       "Change": -12,
       "Average Years Between Accidents": 9.2,
       "Population Density": 144,
-      "Rain & Snow": 84,
-      "Braking Events per 1000 Miles (city)": 15.1
+      "Rain & Snow": 84
     },
     "2017": {
       "Top Cities": 107,
@@ -7715,8 +7581,7 @@
       "Change": 13,
       "Average Years Between Accidents": 8.4,
       "Population Density": 106,
-      "Rain & Snow": 139,
-      "Braking Events per 1000 Miles (city)": 10.1
+      "Rain & Snow": 139
     },
     "2017": {
       "Top Cities": 111,
@@ -7780,16 +7645,14 @@
       "Change": 10,
       "Average Years Between Accidents": 8.5,
       "Population Density": 92,
-      "Rain & Snow": 127,
-      "Braking Events per 1000 Miles (city)": 17.6
+      "Rain & Snow": 127
     },
     "2016": {
       "Top Cities": 99,
       "Change": 14,
       "Average Years Between Accidents": 9.1,
       "Population Density": 83,
-      "Rain & Snow": 114,
-      "Braking Events per 1000 Miles (city)": 17.6
+      "Rain & Snow": 114
     },
     "2017": {
       "Top Cities": 112,
@@ -7853,16 +7716,14 @@
       "Change": 7,
       "Average Years Between Accidents": 7.9,
       "Population Density": 123,
-      "Rain & Snow": 126,
-      "Braking Events per 1000 Miles (city)": 23.2
+      "Rain & Snow": 126
     },
     "2016": {
       "Top Cities": 132,
       "Change": 9,
       "Average Years Between Accidents": 8.6,
       "Population Density": 103,
-      "Rain & Snow": 107,
-      "Braking Events per 1000 Miles (city)": 23.2
+      "Rain & Snow": 107
     },
     "2017": {
       "Top Cities": 113,
@@ -7926,16 +7787,14 @@
       "Change": 16,
       "Average Years Between Accidents": 8,
       "Population Density": 29,
-      "Rain & Snow": 132,
-      "Braking Events per 1000 Miles (city)": 21.2
+      "Rain & Snow": 132
     },
     "2016": {
       "Top Cities": 141,
       "Change": -5,
       "Average Years Between Accidents": 8.4,
       "Population Density": 23,
-      "Rain & Snow": 134,
-      "Braking Events per 1000 Miles (city)": 21.2
+      "Rain & Snow": 134
     },
     "2017": {
       "Top Cities": 114,
@@ -8070,16 +7929,14 @@
       "Change": 4,
       "Average Years Between Accidents": 7.7,
       "Population Density": 15,
-      "Rain & Snow": 148,
-      "Braking Events per 1000 Miles (city)": 25.6
+      "Rain & Snow": 148
     },
     "2016": {
       "Top Cities": 143,
       "Change": 8,
       "Average Years Between Accidents": 8.3,
       "Population Density": 4,
-      "Rain & Snow": 137,
-      "Braking Events per 1000 Miles (city)": 25.6
+      "Rain & Snow": 137
     },
     "2017": {
       "Top Cities": 116,
@@ -8143,16 +8000,14 @@
       "Change": 17,
       "Average Years Between Accidents": 8.6,
       "Population Density": 119,
-      "Rain & Snow": 119,
-      "Braking Events per 1000 Miles (city)": 15.2
+      "Rain & Snow": 119
     },
     "2016": {
       "Top Cities": 103,
       "Change": 6,
       "Average Years Between Accidents": 91,
       "Population Density": 122,
-      "Rain & Snow": 113,
-      "Braking Events per 1000 Miles (city)": 15.2
+      "Rain & Snow": 113
     },
     "2017": {
       "Top Cities": 117,
@@ -8358,16 +8213,14 @@
       "Change": 2,
       "Average Years Between Accidents": 8.3,
       "Population Density": 141,
-      "Rain & Snow": 142,
-      "Braking Events per 1000 Miles (city)": 20.8
+      "Rain & Snow": 142
     },
     "2016": {
       "Top Cities": 114,
       "Change": 14,
       "Average Years Between Accidents": 8.9,
       "Population Density": 136,
-      "Rain & Snow": 129,
-      "Braking Events per 1000 Miles (city)": 20.8
+      "Rain & Snow": 129
     },
     "2017": {
       "Top Cities": 120,
@@ -8502,16 +8355,14 @@
       "Change": 5,
       "Average Years Between Accidents": 7.9,
       "Population Density": 131,
-      "Rain & Snow": 136,
-      "Braking Events per 1000 Miles (city)": 13.5
+      "Rain & Snow": 136
     },
     "2016": {
       "Top Cities": 128,
       "Change": 10,
       "Average Years Between Accidents": 8.6,
       "Population Density": 116,
-      "Rain & Snow": 119,
-      "Braking Events per 1000 Miles (city)": 13.5
+      "Rain & Snow": 119
     },
     "2017": {
       "Top Cities": 122,
@@ -8575,16 +8426,14 @@
       "Change": 39,
       "Average Years Between Accidents": 7.8,
       "Population Density": 66,
-      "Rain & Snow": 140,
-      "Braking Events per 1000 Miles (city)": 25.8
+      "Rain & Snow": 140
     },
     "2016": {
       "Top Cities": 131,
       "Change": 16,
       "Average Years Between Accidents": 8.6,
       "Population Density": 37,
-      "Rain & Snow": 116,
-      "Braking Events per 1000 Miles (city)": 25.8
+      "Rain & Snow": 116
     },
     "2017": {
       "Top Cities": 123,
@@ -8788,16 +8637,14 @@
       "Change": -8,
       "Average Years Between Accidents": 7.7,
       "Population Density": 127,
-      "Rain & Snow": 149,
-      "Braking Events per 1000 Miles (city)": 17.1
+      "Rain & Snow": 149
     },
     "2016": {
       "Top Cities": 146,
       "Change": 6,
       "Average Years Between Accidents": 8.1,
       "Population Density": 126,
-      "Rain & Snow": 149,
-      "Braking Events per 1000 Miles (city)": 17.1
+      "Rain & Snow": 149
     },
     "2017": {
       "Top Cities": 126,
@@ -8861,16 +8708,14 @@
       "Change": 9,
       "Average Years Between Accidents": 9,
       "Population Density": 31,
-      "Rain & Snow": 81,
-      "Braking Events per 1000 Miles (city)": 13.1
+      "Rain & Snow": 81
     },
     "2016": {
       "Top Cities": 125,
       "Change": -44,
       "Average Years Between Accidents": 8.7,
       "Population Density": 58,
-      "Rain & Snow": 120,
-      "Braking Events per 1000 Miles (city)": 13.1
+      "Rain & Snow": 120
     },
     "2017": {
       "Top Cities": 127,
@@ -8934,16 +8779,14 @@
       "Change": 16,
       "Average Years Between Accidents": 8.4,
       "Population Density": 114,
-      "Rain & Snow": 107,
-      "Braking Events per 1000 Miles (city)": 15.8
+      "Rain & Snow": 107
     },
     "2016": {
       "Top Cities": 121,
       "Change": -2,
       "Average Years Between Accidents": 8.8,
       "Population Density": 120,
-      "Rain & Snow": 108,
-      "Braking Events per 1000 Miles (city)": 15.8
+      "Rain & Snow": 108
     },
     "2017": {
       "Top Cities": 128,
@@ -9007,16 +8850,14 @@
       "Change": 5,
       "Average Years Between Accidents": 8,
       "Population Density": 50,
-      "Rain & Snow": 134,
-      "Braking Events per 1000 Miles (city)": 22.6
+      "Rain & Snow": 134
     },
     "2016": {
       "Top Cities": 133,
       "Change": 1,
       "Average Years Between Accidents": 8.5,
       "Population Density": 43,
-      "Rain & Snow": 131,
-      "Braking Events per 1000 Miles (city)": 22.6
+      "Rain & Snow": 131
     },
     "2017": {
       "Top Cities": 129,
@@ -9118,16 +8959,14 @@
       "Change": -4,
       "Average Years Between Accidents": 9,
       "Population Density": 65,
-      "Rain & Snow": 97,
-      "Braking Events per 1000 Miles (city)": 17.5
+      "Rain & Snow": 97
     },
     "2016": {
       "Top Cities": 117,
       "Change": -33,
       "Average Years Between Accidents": 8.9,
       "Population Density": 100,
-      "Rain & Snow": 125,
-      "Braking Events per 1000 Miles (city)": 17.5
+      "Rain & Snow": 125
     },
     "2017": {
       "Top Cities": 131,
@@ -9191,16 +9030,14 @@
       "Change": -6,
       "Average Years Between Accidents": 8.6,
       "Population Density": 77,
-      "Rain & Snow": 103,
-      "Braking Events per 1000 Miles (city)": 21.1
+      "Rain & Snow": 103
     },
     "2016": {
       "Top Cities": 101,
       "Change": 9,
       "Average Years Between Accidents": 9.1,
       "Population Density": 76,
-      "Rain & Snow": 97,
-      "Braking Events per 1000 Miles (city)": 21.1
+      "Rain & Snow": 97
     },
     "2017": {
       "Top Cities": 132,
@@ -9335,16 +9172,14 @@
       "Change": -3,
       "Average Years Between Accidents": 8.5,
       "Population Density": 137,
-      "Rain & Snow": 125,
-      "Braking Events per 1000 Miles (city)": 19.6
+      "Rain & Snow": 125
     },
     "2016": {
       "Top Cities": 129,
       "Change": -11,
       "Average Years Between Accidents": 8.6,
       "Population Density": 147,
-      "Rain & Snow": 141,
-      "Braking Events per 1000 Miles (city)": 19.6
+      "Rain & Snow": 141
     },
     "2017": {
       "Top Cities": 134,
@@ -9479,16 +9314,14 @@
       "Change": -3,
       "Average Years Between Accidents": 8.7,
       "Population Density": 130,
-      "Rain & Snow": 80,
-      "Braking Events per 1000 Miles (city)": 19.9
+      "Rain & Snow": 80
     },
     "2016": {
       "Top Cities": 124,
       "Change": -28,
       "Average Years Between Accidents": 8.7,
       "Population Density": 142,
-      "Rain & Snow": 102,
-      "Braking Events per 1000 Miles (city)": 19.9
+      "Rain & Snow": 102
     },
     "2017": {
       "Top Cities": 136,
@@ -9552,16 +9385,14 @@
       "Change": 8,
       "Average Years Between Accidents": 8.5,
       "Population Density": 109,
-      "Rain & Snow": 110,
-      "Braking Events per 1000 Miles (city)": 21.4
+      "Rain & Snow": 110
     },
     "2016": {
       "Top Cities": 120,
       "Change": -4,
       "Average Years Between Accidents": 8.8,
       "Population Density": 114,
-      "Rain & Snow": 112,
-      "Braking Events per 1000 Miles (city)": 21.4
+      "Rain & Snow": 112
     },
     "2017": {
       "Top Cities": 137,
@@ -9836,16 +9667,14 @@
       "Change": -18,
       "Average Years Between Accidents": 8.4,
       "Population Density": 121,
-      "Rain & Snow": 108,
-      "Braking Events per 1000 Miles (city)": 12.9
+      "Rain & Snow": 108
     },
     "2016": {
       "Top Cities": 139,
       "Change": -19,
       "Average Years Between Accidents": 8.4,
       "Population Density": 138,
-      "Rain & Snow": 135,
-      "Braking Events per 1000 Miles (city)": 12.9
+      "Rain & Snow": 135
     },
     "2017": {
       "Top Cities": 141,
@@ -9909,16 +9738,14 @@
       "Change": 12,
       "Average Years Between Accidents": 7.6,
       "Population Density": 97,
-      "Rain & Snow": 151,
-      "Braking Events per 1000 Miles (city)": 23.2
+      "Rain & Snow": 151
     },
     "2016": {
       "Top Cities": 148,
       "Change": 7,
       "Average Years Between Accidents": 8.1,
       "Population Density": 72,
-      "Rain & Snow": 143,
-      "Braking Events per 1000 Miles (city)": 23.2
+      "Rain & Snow": 143
     },
     "2017": {
       "Top Cities": 142,
@@ -10034,16 +9861,14 @@
       "Top Cities": 94,
       "Average Years Between Accidents": 8.8,
       "Population Density": 98,
-      "Rain & Snow": 94,
-      "Braking Events per 1000 Miles (city)": 14.1
+      "Rain & Snow": 94
     },
     "2016": {
       "Top Cities": 113,
       "Change": -19,
       "Average Years Between Accidents": 8.9,
       "Population Density": 112,
-      "Rain & Snow": 105,
-      "Braking Events per 1000 Miles (city)": 14.1
+      "Rain & Snow": 105
     },
     "2017": {
       "Top Cities": 144,
@@ -10107,16 +9932,14 @@
       "Change": 20,
       "Average Years Between Accidents": 9,
       "Population Density": 56,
-      "Rain & Snow": 75,
-      "Braking Events per 1000 Miles (city)": 14
+      "Rain & Snow": 75
     },
     "2016": {
       "Top Cities": 109,
       "Change": -24,
       "Average Years Between Accidents": 9,
       "Population Density": 79,
-      "Rain & Snow": 95,
-      "Braking Events per 1000 Miles (city)": 14
+      "Rain & Snow": 95
     },
     "2017": {
       "Top Cities": 145,
@@ -10510,16 +10333,14 @@
       "Change": 3,
       "Average Years Between Accidents": 8.1,
       "Population Density": 106,
-      "Rain & Snow": 129,
-      "Braking Events per 1000 Miles (city)": 15.9
+      "Rain & Snow": 129
     },
     "2016": {
       "Top Cities": 140,
       "Change": -7,
       "Average Years Between Accidents": 8.4,
       "Population Density": 109,
-      "Rain & Snow": 133,
-      "Braking Events per 1000 Miles (city)": 15.9
+      "Rain & Snow": 133
     },
     "2017": {
       "Top Cities": 151,
@@ -10583,16 +10404,14 @@
       "Change": 21,
       "Average Years Between Accidents": 7.5,
       "Population Density": 133,
-      "Rain & Snow": 156,
-      "Braking Events per 1000 Miles (city)": 18.3
+      "Rain & Snow": 156
     },
     "2016": {
       "Top Cities": 157,
       "Change": 0,
       "Average Years Between Accidents": 7.9,
       "Population Density": 134,
-      "Rain & Snow": 155,
-      "Braking Events per 1000 Miles (city)": 18.3
+      "Rain & Snow": 155
     },
     "2017": {
       "Top Cities": 152,
@@ -10727,16 +10546,14 @@
       "Change": 3,
       "Average Years Between Accidents": 7.3,
       "Population Density": 168,
-      "Rain & Snow": 165,
-      "Braking Events per 1000 Miles (city)": 23.2
+      "Rain & Snow": 165
     },
     "2016": {
       "Top Cities": 156,
       "Change": 5,
       "Average Years Between Accidents": 7.9,
       "Population Density": 156,
-      "Rain & Snow": 156,
-      "Braking Events per 1000 Miles (city)": 23.2
+      "Rain & Snow": 156
     },
     "2017": {
       "Top Cities": 154,
@@ -10871,16 +10688,14 @@
       "Change": -24,
       "Average Years Between Accidents": 7.9,
       "Population Density": 134,
-      "Rain & Snow": 143,
-      "Braking Events per 1000 Miles (city)": 13.8
+      "Rain & Snow": 143
     },
     "2016": {
       "Top Cities": 155,
       "Change": -15,
       "Average Years Between Accidents": 7.9,
       "Population Density": 148,
-      "Rain & Snow": 154,
-      "Braking Events per 1000 Miles (city)": 13.8
+      "Rain & Snow": 154
     },
     "2017": {
       "Top Cities": 156,
@@ -11157,16 +10972,14 @@
       "Change": 4,
       "Average Years Between Accidents": 6.9,
       "Population Density": 115,
-      "Rain & Snow": 175,
-      "Braking Events per 1000 Miles (city)": 24.4
+      "Rain & Snow": 175
     },
     "2016": {
       "Top Cities": 170,
       "Change": 10,
       "Average Years Between Accidents": 7.6,
       "Population Density": 75,
-      "Rain & Snow": 166,
-      "Braking Events per 1000 Miles (city)": 24.4
+      "Rain & Snow": 166
     },
     "2017": {
       "Top Cities": 160,
@@ -11443,16 +11256,14 @@
       "Change": 10,
       "Average Years Between Accidents": 7.4,
       "Population Density": 164,
-      "Rain & Snow": 159,
-      "Braking Events per 1000 Miles (city)": 16.3
+      "Rain & Snow": 159
     },
     "2016": {
       "Top Cities": 160,
       "Change": 0,
       "Average Years Between Accidents": 7.7,
       "Population Density": 162,
-      "Rain & Snow": 158,
-      "Braking Events per 1000 Miles (city)": 16.3
+      "Rain & Snow": 158
     },
     "2017": {
       "Top Cities": 164,
@@ -11516,16 +11327,14 @@
       "Change": 12,
       "Average Years Between Accidents": 7.3,
       "Population Density": 118,
-      "Rain & Snow": 162,
-      "Braking Events per 1000 Miles (city)": 25.3
+      "Rain & Snow": 162
     },
     "2016": {
       "Top Cities": 147,
       "Change": 21,
       "Average Years Between Accidents": 8.1,
       "Population Density": 64,
-      "Rain & Snow": 144,
-      "Braking Events per 1000 Miles (city)": 25.3
+      "Rain & Snow": 144
     },
     "2017": {
       "Top Cities": 165,
@@ -11802,16 +11611,14 @@
       "Change": -8,
       "Average Years Between Accidents": 8.2,
       "Population Density": 156,
-      "Rain & Snow": 113,
-      "Braking Events per 1000 Miles (city)": 15.4
+      "Rain & Snow": 113
     },
     "2016": {
       "Top Cities": 154,
       "Change": -24,
       "Average Years Between Accidents": 8,
       "Population Density": 183,
-      "Rain & Snow": 147,
-      "Braking Events per 1000 Miles (city)": 15.4
+      "Rain & Snow": 147
     },
     "2017": {
       "Top Cities": 169,
@@ -11875,16 +11682,14 @@
       "Change": -18,
       "Average Years Between Accidents": 8.4,
       "Population Density": 82,
-      "Rain & Snow": 118,
-      "Braking Events per 1000 Miles (city)": 16.3
+      "Rain & Snow": 118
     },
     "2016": {
       "Top Cities": 171,
       "Change": -50,
       "Average Years Between Accidents": 7.6,
       "Population Density": 152,
-      "Rain & Snow": 172,
-      "Braking Events per 1000 Miles (city)": 16.3
+      "Rain & Snow": 172
     },
     "2017": {
       "Top Cities": 170,
@@ -12019,16 +11824,14 @@
       "Change": -11,
       "Average Years Between Accidents": 7.3,
       "Population Density": 162,
-      "Rain & Snow": 164,
-      "Braking Events per 1000 Miles (city)": 16.2
+      "Rain & Snow": 164
     },
     "2016": {
       "Top Cities": 159,
       "Change": 5,
       "Average Years Between Accidents": 7.8,
       "Population Density": 157,
-      "Rain & Snow": 159,
-      "Braking Events per 1000 Miles (city)": 16.2
+      "Rain & Snow": 159
     },
     "2017": {
       "Top Cities": 172,
@@ -12068,15 +11871,13 @@
       "Top Cities": 174,
       "Average Years Between Accidents": 7.1,
       "Population Density": 174,
-      "Rain & Snow": 171,
-      "Braking Events per 1000 Miles (city)": 19.1
+      "Rain & Snow": 171
     },
     "2016": {
       "Top Cities": 175,
       "Average Years Between Accidents": 7.4,
       "Population Density": 174,
-      "Rain & Snow": 175,
-      "Braking Events per 1000 Miles (city)": 19.1
+      "Rain & Snow": 175
     },
     "2017": {
       "Top Cities": 173,
@@ -12211,16 +12012,14 @@
       "Change": 2,
       "Average Years Between Accidents": 6.8,
       "Population Density": 176,
-      "Rain & Snow": 182,
-      "Braking Events per 1000 Miles (city)": 18.3
+      "Rain & Snow": 182
     },
     "2016": {
       "Top Cities": 178,
       "Change": 7,
       "Average Years Between Accidents": 7.4,
       "Population Density": 167,
-      "Rain & Snow": 177,
-      "Braking Events per 1000 Miles (city)": 18.3
+      "Rain & Snow": 177
     },
     "2017": {
       "Top Cities": 175,
@@ -12561,16 +12360,14 @@
       "Change": 23,
       "Average Years Between Accidents": 7.4,
       "Population Density": 181,
-      "Rain & Snow": 153,
-      "Braking Events per 1000 Miles (city)": 15.7
+      "Rain & Snow": 153
     },
     "2016": {
       "Top Cities": 172,
       "Change": -14,
       "Average Years Between Accidents": 7.6,
       "Population Density": 189,
-      "Rain & Snow": 161,
-      "Braking Events per 1000 Miles (city)": 15.7
+      "Rain & Snow": 161
     },
     "2017": {
       "Top Cities": 180,
@@ -12634,16 +12431,14 @@
       "Change": -11,
       "Average Years Between Accidents": 6.9,
       "Population Density": 159,
-      "Rain & Snow": 183,
-      "Braking Events per 1000 Miles (city)": 15.5
+      "Rain & Snow": 183
     },
     "2016": {
       "Top Cities": 183,
       "Change": 1,
       "Average Years Between Accidents": 7.1,
       "Population Density": 160,
-      "Rain & Snow": 184,
-      "Braking Events per 1000 Miles (city)": 15.5
+      "Rain & Snow": 184
     },
     "2017": {
       "Top Cities": 181,
@@ -12713,8 +12508,7 @@
       "Change": -5,
       "Average Years Between Accidents": 7.1,
       "Population Density": 191,
-      "Rain & Snow": 182,
-      "Braking Events per 1000 Miles (city)": 19.6
+      "Rain & Snow": 182
     },
     "2017": {
       "Top Cities": 182,
@@ -12990,16 +12784,14 @@
       "Change": -11,
       "Average Years Between Accidents": 7.9,
       "Population Density": 151,
-      "Rain & Snow": 128,
-      "Braking Events per 1000 Miles (city)": 18
+      "Rain & Snow": 128
     },
     "2016": {
       "Top Cities": 176,
       "Change": -31,
       "Average Years Between Accidents": 7.4,
       "Population Density": 186,
-      "Rain & Snow": 168,
-      "Braking Events per 1000 Miles (city)": 18
+      "Rain & Snow": 168
     },
     "2017": {
       "Top Cities": 186,
@@ -13063,16 +12855,14 @@
       "Change": -6,
       "Average Years Between Accidents": 6.9,
       "Population Density": 180,
-      "Rain & Snow": 180,
-      "Braking Events per 1000 Miles (city)": 18.3
+      "Rain & Snow": 180
     },
     "2016": {
       "Top Cities": 181,
       "Change": 2,
       "Average Years Between Accidents": 7.2,
       "Population Density": 182,
-      "Rain & Snow": 180,
-      "Braking Events per 1000 Miles (city)": 18.3
+      "Rain & Snow": 180
     },
     "2017": {
       "Top Cities": 187,
@@ -13207,16 +12997,14 @@
       "Change": -2,
       "Average Years Between Accidents": 6.7,
       "Population Density": 161,
-      "Rain & Snow": 185,
-      "Braking Events per 1000 Miles (city)": 22.8
+      "Rain & Snow": 185
     },
     "2016": {
       "Top Cities": 185,
       "Change": 2,
       "Average Years Between Accidents": 7,
       "Population Density": 159,
-      "Rain & Snow": 185,
-      "Braking Events per 1000 Miles (city)": 22.8
+      "Rain & Snow": 185
     },
     "2017": {
       "Top Cities": 189,
@@ -13287,8 +13075,7 @@
       "Change": 1,
       "Average Years Between Accidents": 6.7,
       "Population Density": 178,
-      "Rain & Snow": 188,
-      "Braking Events per 1000 Miles (city)": 17.9
+      "Rain & Snow": 188
     },
     "2017": {
       "Top Cities": 190,
@@ -13351,16 +13138,14 @@
       "Top Cities": 192,
       "Average Years Between Accidents": 6.1,
       "Population Density": 189,
-      "Rain & Snow": 191,
-      "Braking Events per 1000 Miles (city)": 33
+      "Rain & Snow": 191
     },
     "2016": {
       "Top Cities": 192,
       "Change": 0,
       "Average Years Between Accidents": 6.3,
       "Population Density": 188,
-      "Rain & Snow": 192,
-      "Braking Events per 1000 Miles (city)": 33
+      "Rain & Snow": 192
     },
     "2017": {
       "Top Cities": 191,
@@ -13421,15 +13206,13 @@
       "Change": 2,
       "Average Years Between Accidents": 6.3,
       "Population Density": 191,
-      "Rain & Snow": 189,
-      "Braking Events per 1000 Miles (city)": 20.8
+      "Rain & Snow": 189
     },
     "2016": {
       "Top Cities": 190,
       "Average Years Between Accidents": 6.6,
       "Population Density": 190,
-      "Rain & Snow": 187,
-      "Braking Events per 1000 Miles (city)": 20.8
+      "Rain & Snow": 187
     },
     "2017": {
       "Top Cities": 192,
@@ -13571,8 +13354,7 @@
       "Change": 1,
       "Average Years Between Accidents": 5.9,
       "Population Density": 194,
-      "Rain & Snow": 194,
-      "Braking Events per 1000 Miles (city)": 15.3
+      "Rain & Snow": 194
     },
     "2017": {
       "Top Cities": 194,
@@ -13685,8 +13467,7 @@
       "Change": 0,
       "Average Years Between Accidents": 5.7,
       "Population Density": 196,
-      "Rain & Snow": 196,
-      "Braking Events per 1000 Miles (city)": 16.2
+      "Rain & Snow": 196
     },
     "2017": {
       "Top Cities": 196,
@@ -13757,8 +13538,7 @@
       "Change": 0,
       "Average Years Between Accidents": 4.9,
       "Population Density": 197,
-      "Rain & Snow": 197,
-      "Braking Events per 1000 Miles (city)": 17
+      "Rain & Snow": 197
     },
     "2017": {
       "Top Cities": 197,
@@ -13802,8 +13582,7 @@
       "Change": 0,
       "Average Years Between Accidents": 4.5,
       "Population Density": 199,
-      "Rain & Snow": 199,
-      "Braking Events per 1000 Miles (city)": 18.9
+      "Rain & Snow": 199
     },
     "2017": {
       "Top Cities": 198,
@@ -13867,16 +13646,14 @@
       "Change": -3,
       "Average Years Between Accidents": 4.7,
       "Population Density": 198,
-      "Rain & Snow": 198,
-      "Braking Events per 1000 Miles (city)": 21.6
+      "Rain & Snow": 198
     },
     "2016": {
       "Top Cities": 198,
       "Change": 0,
       "Average Years Between Accidents": 4.7,
       "Population Density": 198,
-      "Rain & Snow": 198,
-      "Braking Events per 1000 Miles (city)": 21.6
+      "Rain & Snow": 198
     },
     "2017": {
       "Top Cities": 199,
@@ -13912,16 +13689,14 @@
       "Top Cities": 200,
       "Average Years Between Accidents": 3.9,
       "Population Density": 200,
-      "Rain & Snow": 200,
-      "Braking Events per 1000 Miles (city)": 17.8
+      "Rain & Snow": 200
     },
     "2016": {
       "Top Cities": 200,
       "Change": 0,
       "Average Years Between Accidents": 3.7,
       "Population Density": 200,
-      "Rain & Snow": 200,
-      "Braking Events per 1000 Miles (city)": 17.8
+      "Rain & Snow": 200
     },
     "2017": {
       "Top Cities": 200,
@@ -13946,524 +13721,5 @@
     "mostImproved": false,
     "biggestDecrease": false,
     "metropolitanArea": "Boston-Cambridge-Newton, MA-NH"
-  },
-  {
-    "2005": {
-      "Top Cities": 165
-    },
-    "2006": {
-      "Top Cities": 169
-    },
-    "2007": {
-      "Top Cities": 166
-    },
-    "2008": {
-      "Top Cities": 162
-    },
-    "2009": {
-      "Top Cities": 172
-    },
-    "2010": {
-      "Top Cities": 174
-    },
-    "2011": {
-      "Top Cities": 180
-    },
-    "2012": {
-      "Top Cities": 184
-    },
-    "2013": {
-      "Top Cities": 185
-    },
-    "cityState": "Arlington, VA",
-    "city": "Arlington",
-    "state": "VA",
-    "lngLat": [
-      -77.106,
-      38.879
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2006": {
-      "Top Cities": 179
-    },
-    "2007": {
-      "Top Cities": 176
-    },
-    "2008": {
-      "Top Cities": 156
-    },
-    "2009": {
-      "Top Cities": 166
-    },
-    "2010": {
-      "Top Cities": 168
-    },
-    "2011": {
-      "Top Cities": 174
-    },
-    "cityState": "Carrollton, TX",
-    "city": "Carrollton",
-    "state": "TX",
-    "lngLat": [
-      -96.889,
-      32.975
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 1
-    },
-    "2006": {
-      "Top Cities": 3
-    },
-    "2007": {
-      "Top Cities": 11
-    },
-    "2008": {
-      "Top Cities": 5
-    },
-    "2009": {
-      "Top Cities": 4
-    },
-    "2010": {
-      "Top Cities": 10
-    },
-    "2011": {
-      "Top Cities": 19
-    },
-    "2012": {
-      "Top Cities": 19
-    },
-    "2013": {
-      "Top Cities": 16
-    },
-    "2014": {
-      "Top Cities": 11,
-      "Population": 16,
-      "Population Density": 25,
-      "Rain & Snow": 10,
-      "All Conditions": 23
-    },
-    "2015": {
-      "Top Cities": 7,
-      "Change": 4,
-      "Average Years Between Accidents": 11.8,
-      "Accident Likelihood": -15.1,
-      "Population Density": 18,
-      "Rain & Snow": 11
-    },
-    "cityState": "Cedar Rapids, IA",
-    "city": "Cedar Rapids",
-    "state": "IA",
-    "lngLat": [
-      -91.665,
-      41.977
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 124
-    },
-    "2006": {
-      "Top Cities": 106
-    },
-    "2007": {
-      "Top Cities": 92
-    },
-    "2008": {
-      "Top Cities": 100
-    },
-    "cityState": "Concord, OH",
-    "city": "Concord",
-    "state": "OH",
-    "lngLat": [
-      -81.224,
-      41.674
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 113
-    },
-    "2006": {
-      "Top Cities": 153
-    },
-    "2007": {
-      "Top Cities": 170
-    },
-    "2008": {
-      "Top Cities": 166
-    },
-    "2009": {
-      "Top Cities": 171
-    },
-    "2010": {
-      "Top Cities": 169
-    },
-    "cityState": "El Monte, CA",
-    "city": "El Monte",
-    "state": "CA",
-    "lngLat": [
-      -118.027,
-      34.068
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 192
-    },
-    "2006": {
-      "Top Cities": 195
-    },
-    "2007": {
-      "Top Cities": 195
-    },
-    "2008": {
-      "Top Cities": 189
-    },
-    "2009": {
-      "Top Cities": 187
-    },
-    "2010": {
-      "Top Cities": 184
-    },
-    "2011": {
-      "Top Cities": 181
-    },
-    "2012": {
-      "Top Cities": 178
-    },
-    "cityState": "Elizabeth, NJ",
-    "city": "Elizabeth",
-    "state": "NJ",
-    "lngLat": [
-      -74.21,
-      40.663
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 142
-    },
-    "2006": {
-      "Top Cities": 142
-    },
-    "2007": {
-      "Top Cities": 145
-    },
-    "2008": {
-      "Top Cities": 188
-    },
-    "2009": {
-      "Top Cities": 190
-    },
-    "2010": {
-      "Top Cities": 189
-    },
-    "2011": {
-      "Top Cities": 187
-    },
-    "cityState": "Hartford, CT",
-    "city": "Hartford",
-    "state": "CT",
-    "lngLat": [
-      -72.685,
-      41.763
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 77
-    },
-    "2006": {
-      "Top Cities": 100
-    },
-    "2007": {
-      "Top Cities": 86
-    },
-    "2008": {
-      "Top Cities": 99
-    },
-    "2009": {
-      "Top Cities": 120
-    },
-    "2010": {
-      "Top Cities": 109
-    },
-    "2011": {
-      "Top Cities": 99
-    },
-    "2012": {
-      "Top Cities": 88
-    },
-    "2013": {
-      "Top Cities": 72
-    },
-    "2014": {
-      "Top Cities": 82,
-      "Population": 95,
-      "Population Density": 112,
-      "Rain & Snow": 85,
-      "All Conditions": 120
-    },
-    "2015": {
-      "Top Cities": 71,
-      "Change": 11,
-      "Average Years Between Accidents": 9.1,
-      "Accident Likelihood": 9.3,
-      "Population Density": 105,
-      "Rain & Snow": 88
-    },
-    "2016": {
-      "Top Cities": 58,
-      "Change": 13,
-      "Average Years Between Accidents": 10.1,
-      "Population Density": 78,
-      "Rain & Snow": 62
-    },
-    "cityState": "Thousand Oaks, CA",
-    "city": "Thousand Oaks",
-    "state": "CA",
-    "lngLat": [
-      -118.838,
-      34.171
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 7
-    },
-    "2006": {
-      "Top Cities": 13
-    },
-    "2007": {
-      "Top Cities": 23
-    },
-    "2008": {
-      "Top Cities": 12
-    },
-    "2009": {
-      "Top Cities": 17
-    },
-    "2010": {
-      "Top Cities": 41
-    },
-    "2011": {
-      "Top Cities": 47
-    },
-    "2012": {
-      "Top Cities": 37
-    },
-    "2013": {
-      "Top Cities": 33
-    },
-    "2014": {
-      "Top Cities": 39,
-      "Population": 51,
-      "Population Density": 55,
-      "Rain & Snow": 38,
-      "All Conditions": 52
-    },
-    "cityState": "Topeka, KS",
-    "city": "Topeka",
-    "state": "KS",
-    "lngLat": [
-      -95.689,
-      39.056
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2012": {
-      "Top Cities": 24
-    },
-    "2013": {
-      "Top Cities": 8
-    },
-    "2014": {
-      "Top Cities": 7,
-      "Population": 11,
-      "Population Density": 3,
-      "Rain & Snow": 14,
-      "All Conditions": 5
-    },
-    "cityState": "Visalia, CA",
-    "city": "Visalia",
-    "state": "CA",
-    "lngLat": [
-      -119.292,
-      36.33
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 34
-    },
-    "cityState": "Evansville, IN",
-    "city": "Evansville",
-    "state": "IN",
-    "lngLat": [
-      -87.57109,
-      37.971559
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 73
-    },
-    "2006": {
-      "Top Cities": 30
-    },
-    "2007": {
-      "Top Cities": 3
-    },
-    "cityState": "Flint, MI",
-    "city": "Flint",
-    "state": "MI",
-    "lngLat": [
-      -83.687456,
-      43.012527
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 93
-    },
-    "2006": {
-      "Top Cities": 116
-    },
-    "2007": {
-      "Top Cities": 109
-    },
-    "2008": {
-      "Top Cities": 96
-    },
-    "2012": {
-      "Top Cities": 111
-    },
-    "cityState": "Simi Valley, CA",
-    "city": "Simi Valley",
-    "state": "CA",
-    "lngLat": [
-      -118.781482,
-      34.269447
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 161
-    },
-    "2006": {
-      "Top Cities": 122
-    },
-    "2007": {
-      "Top Cities": 111
-    },
-    "cityState": "Stamford, CT",
-    "city": "Stamford",
-    "state": "CT",
-    "lngLat": [
-      -73.538734,
-      41.05343
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 140
-    },
-    "2006": {
-      "Top Cities": 134
-    },
-    "2007": {
-      "Top Cities": 108
-    },
-    "cityState": "Coral Springs, FL",
-    "city": "Coral Springs",
-    "state": "FL",
-    "lngLat": [
-      -80.270604,
-      26.271192
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 129
-    },
-    "2006": {
-      "Top Cities": 148
-    },
-    "2007": {
-      "Top Cities": 122
-    },
-    "cityState": "Vallejo, CA",
-    "city": "Vallejo",
-    "state": "CA",
-    "lngLat": [
-      -122.256637,
-      38.104086
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
-  },
-  {
-    "2005": {
-      "Top Cities": 21
-    },
-    "cityState": "Lansing, MI",
-    "city": "Lansing",
-    "state": "MI",
-    "lngLat": [
-      -84.555535,
-      42.732535
-    ],
-    "newLocation": false,
-    "mostImproved": false,
-    "biggestDecrease": false
   }
 ]

@@ -10,24 +10,4 @@
     max-width: 100%;
     height: auto;
   }
-
-  @include mq($until: tablet) {
-    .mobile-logo {
-      display: block;
-    }
-
-    .desktop-and-tablet-header {
-      display: none;
-    }
-  }
-
-  @include mq($from: tablet) {
-    .mobile-logo {
-      display: none;
-    }
-
-    .desktop-and-tablet-header {
-      display: block;
-    }
-  }
 }

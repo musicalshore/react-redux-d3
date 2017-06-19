@@ -8,7 +8,7 @@ import initialState from 'redux/initialState'
 const locations = (state = initialState.locations, action) => {
   switch (action.type) {
     case SELECT_MAP:
-      console.log('action: ', action)
+      // console.log('action: ', action)
       const selectedMap = _.find(['id', action.id], MAPS)
       let locations = []
       if (_.isEmpty(selectedMap)) {

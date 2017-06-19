@@ -6,7 +6,7 @@
   width: 100%;
 
   @include mq($until: tablet) {
-    height: 48px;
+    height: 68px;
   }
 
   ol {
@@ -181,16 +181,12 @@
         // padding-top: 63px;
         border-bottom: 7px solid #bdbdbd;
 
-        & button {
-          cursor: not-allowed;
-        }
-
         &.selected {
           border-bottom: 7px solid $dark-gray;
           background-color: $white;
 
           .title {
-            color: $dark-gray;
+            color: $darker-gray;
           }
         }
 
@@ -200,7 +196,6 @@
 
         @include mq($until: tablet) {
           text-align: left;
-
           span {
             margin-right: 0;
           }

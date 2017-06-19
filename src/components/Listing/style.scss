@@ -3,7 +3,6 @@
 .container {
   border-left: 1px solid #f0f0f0;
   height: 533px;
-  // margin-left: 20px;
   overflow-y: scroll;
   padding-left: 20px;
 
@@ -20,9 +19,11 @@
 
   .ranking {
     fill: #fff;
+
     @include mq($until: desktop) {
       font-size: 12px;
     }
+
     @include mq($from: desktop) {
       font-size: 15px;
     }
@@ -34,13 +35,13 @@
     margin-bottom: 20px;
     margin-top: 32px;
 
-    @media (max-width: 767px) {
+    @include mq($until: tablet) {
       display: none;
     }
   }
 
-  ol.scroller-container {
-    @media (min-width: 768px) {
+  .scroller-container {
+    @include mq($from: tablet) {
       display: none;
     }
   }
@@ -81,6 +82,7 @@
         height: 46px;
         margin-bottom: 0;
       }
+
       &:hover {
         background: $white-smoke;
         cursor: pointer;
@@ -110,13 +112,15 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
-        white-space: nowrap;
+
         @include mq($from: mobileLandscape, $until: desktop) {
           width: 130px;
         }
+
         @include mq($from: desktop) {
           width: 155px;
         }
+
         a {
           text-decoration: none;
           color: $darker-gray;
@@ -156,35 +160,40 @@
   }
 
   @include mq($until: tablet) {
+    .scroller-nav {
+      width: 100%;
+    }
+
     ol.scroller-container {
       margin: 0;
       padding-left: 0;
       list-style: none;
       list-style-type: none;
-      width: 100%;
+
       li {
         display: inline-block;
         cursor: pointer;
         width: 50%;
         border-top: 1px solid #fff;
-        height: 50px;
+        height: 63px;
         padding: 15px 0;
-        align: center;
+
+        & button {
+          border: 0;
+          cursor: pointer;
+          display: inline-block;
+          width: 100%;
+        }
+
         img {
           margin: 0 auto;
         }
 
-        .fa-angle-right,
-        .fa-angle-left {
-          vertical-align: center;
-        }
         &.previous {
-          // padding-right: 10px;
           border-right: 1px solid #fff;
         }
 
         &.next {
-          // padding-left: 10px;
           border-left: 1px solid #fff;
         }
       }

@@ -83,7 +83,7 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   onSliderChange = (step) => {
-    this.onZoom(step)
+    this.props.onZoom(step)
   }
 
   handleMarkerClick = (d) => {
@@ -115,7 +115,7 @@ const Choropleth = class Choropleth extends React.Component {
     this.svg
       .transition()
       .duration(750)
-      .call(zoom.translateBy, d3.zoomIdentity)
+      .call(zoom.transform, d3.zoomIdentity)
   }
 
   showTooltip = (d) => {
@@ -194,6 +194,7 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   zoomToCity = (cityState) => {
+    console.log('zoomToCity: ', cityState)
     const { width, height, selectedMap, locations, onZoom } = this.props
     const scale = scales[CITY_ZOOM_STEP - 1]
     const marker = Marker(selectedMap, _.find(['cityState', cityState], locations))
@@ -260,62 +261,85 @@ const Choropleth = class Choropleth extends React.Component {
       .classed('svg-map-mesh', true)
     // .on('click', this.reset)
     this.svg.call(zoom)
-      .on('mousedown.zoom', null)
       .on('wheel.zoom', null)
 
     this.gMarkers = this.gMain.append('g').classed('markers', true)
     this.updateMarkers(selectedMap, locations)
   }
 
-  // componentWillReceiveProps (nextProps) {
-  //   console.log('componentWillReceiveProps', nextProps)
-  //   let { selectedMap, selectedCity, selectedYear, locations } = this.props
-  //   if (nextProps.selectedMap !== selectedMap || nextProps.selectedYear !== selectedYear) {
-  //     this.setState({
-  //       scale: 0
-  //     })
-  //   } else if (nextProps.selectedCity && nextProps.selectedCity !== selectedCity) {
-  //     const marker = Marker(selectedMap, _.find(['cityState', nextProps.selectedCity], locations))
-  //     this.setState({
-  //       scale: this.props.zoomToCityScale,
-  //       centroid: marker.centroid,
-  //       point: marker.point
-  //     })
-  //   }
-  // }
-
-  shouldComponentUpdate (nextProps, nextState) {
+  componentWillReceiveProps (nextProps) {
     let { selectedMap, selectedYear, selectedUSAState, zoomStep, selectedCity } = this.props
+    console.log('componentWillReceiveProps', nextProps)
 
+    if ((selectedMap !== nextProps.selectedMap) ||
+        (selectedYear !== nextProps.selectedYear) ||
+        (_.get('id', selectedUSAState) !== _.get('selectedUSAState.id', nextProps))) {
+      // if map changed or state filter applied, update markers
+      if (!_.get('selectedUSAState.id', nextProps)) {
+        // if no state filter, zoom out
+        this.reset()
+      } else {
+        // zoom in to the state
+        const cityState = _.get('cityState', _.head(nextProps.locations))
+        this.zoomToCity(cityState)
+        // this.props.onZoom(CITY_ZOOM_STEP)
+      }
+      this.updateMarkers(nextProps.selectedMap, nextProps.locations)
+    } else if (nextProps.selectedCity && nextProps.selectedCity !== selectedCity) {
+      // if selected city has changed, zoom to it
+      this.zoomToCity(nextProps.selectedCity)
+    } else if (zoomStep !== nextProps.zoomStep) {
+      // if zoom step has changed, zoom to step
+      console.log('componentWillReceiveProps zoomToStep: ', nextProps.zoomStep)
+      this.zoomToStep(nextProps.zoomStep)
+    }
+    // if (nextProps.selectedMap !== selectedMap || nextProps.selectedYear !== selectedYear) {
+    //   this.setState({
+    //     scale: 0
+    //   })
+    // } else if (nextProps.selectedCity && nextProps.selectedCity !== selectedCity) {
+    //   const marker = Marker(selectedMap, _.find(['cityState', nextProps.selectedCity], locations))
+    //   this.setState({
+    //     scale: this.props.zoomToCityScale,
+    //     centroid: marker.centroid,
+    //     point: marker.point
+    //   })
+    // }
+  }
+
+  // shouldComponentUpdate (nextProps, nextState) {
+  // let { selectedMap, selectedYear, selectedUSAState, zoomStep, selectedCity } = this.props
+  /*
     // if map changed or state filter applied, update markers
     if ((selectedMap !== nextProps.selectedMap) ||
         (selectedYear !== nextProps.selectedYear) ||
         (_.get('id', selectedUSAState) !== _.get('selectedUSAState.id', nextProps))) {
+      this.reset()
       this.updateMarkers(nextProps.selectedMap, nextProps.locations)
-      return false
-    }
-
-    if (zoomStep !== nextProps.zoomStep) {
-      console.log('shouldComponentUpdate zoomToStep: ', nextProps.zoomStep)
-      this.zoomToStep(nextProps.zoomStep)
       return true
     }
+*/
+  // if (zoomStep !== nextProps.zoomStep) {
+  //   console.log('shouldComponentUpdate zoomToStep: ', nextProps.zoomStep)
+  //   this.zoomToStep(nextProps.zoomStep)
+  //   return true
+  // }
 
-    // if marker clicked, zoom to city
-    if (nextProps.selectedCity && nextProps.selectedCity !== selectedCity) {
-      console.log('shouldComponentUpdate zoomToCity')
-      this.zoomToCity(nextProps.selectedCity)
-      return true
-    }
-    // if (nextProps.selectedMap.stateFilter &&
-    //   (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
-    //   let firstCity = _.head(nextProps.selectedMap.mapData.locations)
-    //   this.zoomToCity(firstCity)
-    //   return true
-    // }
+  // if marker clicked, zoom to city
+  // if (nextProps.selectedCity && nextProps.selectedCity !== selectedCity) {
+  //   console.log('shouldComponentUpdate zoomToCity')
+  //   this.zoomToCity(nextProps.selectedCity)
+  //   return true
+  // }
+  // if (nextProps.selectedMap.stateFilter &&
+  //   (selectedMap.stateFilter !== nextProps.selectedMap.stateFilter)) {
+  //   let firstCity = _.head(nextProps.selectedMap.mapData.locations)
+  //   this.zoomToCity(firstCity)
+  //   return true
+  // }
 
-    return false
-  }
+  // return false
+  // }
 
   render () {
     let {width, height, zoomStep} = this.props

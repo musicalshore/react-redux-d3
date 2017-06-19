@@ -10,14 +10,6 @@ import React from 'react'
 import TabNav from 'components/TabNav'
 import TopListings from 'components/TopListings'
 
-const Social = () => {
-  return (
-    <div styleName="social-container">
-
-    </div>
-  )
-}
-
 const TabbedMap = class TabbedMap extends React.Component {
   static propTypes = {
     error: object,

@@ -116,27 +116,17 @@ const Listing = class Listing extends React.Component {
         <ol styleName="list-container" ref={el => { this.listing = el } }>
           {listItems}
         </ol>
-        <nav role="navigation" aria-label="Pagination Navigation">
-          <ol styleName="scroller-container">
+        <nav styleName="scroller-nav" role="navigation" aria-label="Pagination Navigation">
+          <ol styleName="scroller-container" >
             <li styleName="previous">
-              {currentPage > 1 &&
-                <a href="#" onClick={this.scrollBack}>
-                  <img src={prevBlue} alt="previous" />
-                </a>
-              }
-              {currentPage === 1 &&
-                  <img src={prevGray} />
-              }
+              <button type="button" onClick={this.scrollBack} disabled={currentPage === 1}>
+                <img src={currentPage === 1 ? prevGray : prevBlue} alt="previous" />
+              </button>
             </li>
             <li styleName="next">
-              {currentPage < numberOfPages &&
-                <a href="#" onClick={this.scrollAhead}>
-                  <img src={nextBlue} alt="next" />
-                </a>
-              }
-              {currentPage >= numberOfPages &&
-                  <img src={nextGray} />
-              }
+              <button type="button" onClick={this.scrollAhead} disabled={currentPage >= numberOfPages}>
+                <img src={currentPage >= numberOfPages ? nextGray : nextBlue} alt="next" />
+              </button>
             </li>
           </ol>
         </nav>

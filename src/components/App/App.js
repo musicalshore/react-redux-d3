@@ -33,7 +33,6 @@ const App = () => (
       <div styleName="report-container">
         <Report />
       </div>
-      <Comments />
     </div>
   </div>
 )

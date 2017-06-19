@@ -63,11 +63,11 @@ const MapSelector = class MapSelector extends React.Component {
 
   render () {
     const {selectedMap, selectedYear, optionYear, optionUSAState, error, selectedUSAState} = this.props
-    console.log('this.props: ', this.props)
+    // console.log('this.props: ', this.props)
     const USAStateName = _.getOr('', 'name', selectedUSAState)
     const totalSafeCities = _.getOr(0, 'totalSafeCities', selectedUSAState)
     const errorMessage = _.getOr('', 'message', error)
-    console.log('errorMessage: ', errorMessage)
+    // console.log('errorMessage: ', errorMessage)
     const years = _.map(year => ({
       label: year,
       value: year
