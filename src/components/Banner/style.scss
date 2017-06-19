@@ -7,7 +7,14 @@
   img {
     display: block;
     margin: 0 auto;
-    max-width: 100%;
     height: auto;
+
+    @include mq($until: tablet) {
+      max-width: 100%;
+    }
+
+    @include mq($from: tablet) {
+      max-width: 550px;
+    }
   }
 }

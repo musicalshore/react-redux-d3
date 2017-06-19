@@ -5,7 +5,6 @@ import Breadcrumbs from 'components/Breadcrumbs'
 import Helmet from 'react-helmet'
 import React from 'react'
 import Report from 'containers/Report'
-import Comments from 'components/Comments'
 
 const App = () => (
   <div styleName="container">
