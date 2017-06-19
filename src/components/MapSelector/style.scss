@@ -29,9 +29,14 @@
     width: 100%;
   }
 
-  .year-select {}
-  .state-select {}
-  .year-label {}
+  .year-select {
+  }
+
+  .state-select {
+  }
+
+  .year-label {
+  }
 
   button,
   label,
@@ -80,7 +85,7 @@
         border: 1px solid $light-gray;
         // background: #fafafa url("./select-arrow.png") no-repeat 90% 50%;
         border-radius: 4px;
-      // overflow: hidden;
+        // overflow: hidden;
         height: 40px;
         font-size: $font-size-small;
         color: #4d4d4d;
@@ -160,6 +165,12 @@
 
   .error {
     color: #f00;
+    line-height: 24px;
+    @include mq($until: mobileLandscape) {
+      line-height: 15px;
+      padding-left: 15px;
+      padding-right: 5px;
+    }
   }
 
   .factoid {
@@ -168,6 +179,10 @@
   .clear-search {
     margin-right: 30px;
     margin-left: 5px;
+    line-height: 24px;
+    @include mq($until: mobileLandscape) {
+      line-height: 0;
+    }
     // @include mq($from: mobile) {
     //   width: 95%;
     //   div {

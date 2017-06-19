@@ -67,6 +67,8 @@
 
   @include mq($from: tablet) {
     position: relative;
+    // display: flex;
+    // align-items: center;
   }
 }
 

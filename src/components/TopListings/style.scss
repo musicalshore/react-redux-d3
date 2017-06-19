@@ -1,5 +1,30 @@
 @import "style/index.scss";
 
+.local-city-container {
+  @include mq($from: tablet) {
+    display: none;
+  }
+  @include mq($until: tablet) {
+    padding-left: 15px;
+    padding-top: 20px;
+  }
+
+  .local-city {
+    color: #e57d21;
+    font-weight: 600;
+    text-transform: uppercase;
+    span {
+      text-transform: lowercase;
+    }
+  }
+
+  .local-city-rank {
+    padding-top: 15px;
+    color: #000;
+    font-weight: 600;
+  }
+}
+
 .container {
   @include mq($from: tablet) {
     height: 740px;

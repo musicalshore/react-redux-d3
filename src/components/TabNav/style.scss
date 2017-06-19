@@ -69,8 +69,10 @@
           }
 
           @include mq($until: tablet) {
-            .title {
-              color: $white;
+            &:not(.disabled) {
+              .title {
+                color: $white;
+              }
             }
           }
         }
