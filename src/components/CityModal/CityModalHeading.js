@@ -1,4 +1,4 @@
-import {DEFAULT_MAP, DEFAULT_YEAR, MAPS, TOP_CITY} from 'constants/maps'
+import {DEFAULT_MAP, DEFAULT_YEAR, MAPS, TOP_CITIES} from 'constants/maps'
 import _ from 'lodash/fp'
 import {func, object, string} from 'prop-types'
 import React from 'react'
@@ -30,17 +30,15 @@ const CityModalHeading = class CityModalHeading extends React.Component {
     let message = ''
     let additionalClasses = ''
 
-    if (selectedMap === TOP_CITY) {
-      if (rank === 1 && selectedYear === DEFAULT_YEAR) {
-        additionalClasses += 'badge this-years-best'
-        message = <span>This year&apos;s best!</span>
-      } else if (location.mostImproved) {
-        additionalClasses += 'badge most-improved'
-        message = <span>Most improved!</span>
-      } else if (location.newLocation) {
-        additionalClasses += 'badge new-location'
-        message = <span>New Addition!</span>
-      }
+    if (rank === 1 && selectedYear === DEFAULT_YEAR && selectedMap === TOP_CITIES) {
+      additionalClasses += 'badge this-years-best'
+      message = <span>This year&apos;s best!</span>
+    } else if (location.mostImproved && selectedMap === TOP_CITIES) {
+      additionalClasses += 'badge most-improved'
+      message = <span>Most improved!</span>
+    } else if (location.newLocation && selectedMap === TOP_CITIES) {
+      additionalClasses += 'badge new-location'
+      message = <span>New Addition!</span>
     } else {
       additionalClasses += 'no-badge'
       message = <span>{verb} the <b><Ordinal number={rank} sup={true} /></b> safest driving city in <b>{selectedYear}</b>{clause}.</span>
