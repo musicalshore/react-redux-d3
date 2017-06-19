@@ -29,17 +29,21 @@ const CityModalHeading = class CityModalHeading extends React.Component {
     const clause = selectedMap !== DEFAULT_MAP ? ` by ${rankingType}` : ''
     let message = ''
     let additionalClasses = ''
+    let {mostImproved, newLocation} = location
+    if (selectedYear === DEFAULT_YEAR && selectedMap === TOP_CITY) {
+      if (rank === 1) {
+        additionalClasses += 'badge this-years-best'
+        message = <span>This year&apos;s best!</span>
+      } else if (mostImproved) {
+        additionalClasses += 'badge most-improved'
+        message = <span>Most improved!</span>
+      } else if (newLocation) {
+        additionalClasses += 'badge new-location'
+        message = <span>New Addition!</span>
+      }
+    }
 
-    if (rank === 1 && selectedYear === DEFAULT_YEAR && selectedMap === TOP_CITY) {
-      additionalClasses += 'badge this-years-best'
-      message = <span>This year&apos;s best!</span>
-    } else if (location.mostImproved && selectedMap === TOP_CITY) {
-      additionalClasses += 'badge most-improved'
-      message = <span>Most improved!</span>
-    } else if (location.newLocation && selectedMap === TOP_CITY) {
-      additionalClasses += 'badge new-location'
-      message = <span>New Addition!</span>
-    } else {
+    if (!((selectedYear === DEFAULT_YEAR && selectedMap === TOP_CITY) && (mostImproved || newLocation || rank === 1))) {
       additionalClasses += 'no-badge'
       message = <span>{verb} the <b><Ordinal number={rank} sup={true} /></b> safest driving city in <b>{selectedYear}</b>{clause}.</span>
     }

@@ -20,7 +20,7 @@ const LocalCity = class LocalCity extends React.Component {
           {location.cityState} <span>(edit)</span>
         </div>
         <div styleName="local-city-rank">
-          is the <Ordinal number={rank} sup={true} />safest driving city.
+          is the <Ordinal number={rank} sup={true} /> safest driving city.
         </div>
       </div>
     )
