@@ -144,18 +144,19 @@
   }
 }
 
-.clear-search-container {
-  height: 30px;
-  display: flex;
-  align-self: center;
-  justify-content: center;
+.action-container {
 
   @include mq($until: tablet) {
-    flex-wrap: wrap;
+
+    max-width: 100%;
   }
 
-  &.has-error {
-    justify-content: center;
+  @include mq($from: tablet) {
+    max-width: 550px;
+  }
+
+  & .action-content {
+    padding: 5px 10px;
   }
 
   .state-name,
@@ -165,26 +166,14 @@
 
   .error {
     color: #f00;
-    line-height: 24px;
-
-    @include mq($until: mobileLandscape) {
-      line-height: 15px;
-      padding-left: 15px;
-      padding-right: 5px;
-    }
+    padding-right: 5px;
   }
 
   .factoid {
-    line-height: 23px;
-
-    @include mq($until: tablet) {
-      padding-left: 15px;
-    }
+    padding-right: 5px;
   }
 
   .clear-search {
-    margin-right: 30px;
-    margin-left: 5px;
 
     & .clear-search-button {
       color: #5e8b2d;
@@ -192,11 +181,10 @@
       display: inline-block;
       border: 0;
       text-decoration: none;
-
-      @include mq($until: tablet) {
-        // height: 40px;
-        display: block;
-      }
+      padding: 0;
+      // @include mq($until: tablet) {
+      //   display: inline-block;
+      // }
     }
     // @include mq($from: mobile) {
     //   width: 95%;

@@ -26,8 +26,11 @@
       flex: 1 1 100%;
       background-position: center 6px;
 
-      & button {
+      & button.title {
         border: 0;
+        display: inline-block;
+        height: 100%;
+
         cursor: pointer;
         // &:focus {
         //   outline: 0;

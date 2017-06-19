@@ -105,20 +105,21 @@ const MapSelector = class MapSelector extends React.Component {
           />
           <button styleName="go-button" aria-label="go" type="button" onClick={this.handleMapSelectorChange}>Go</button>
         </div>
-        <div styleName={`clear-search-container ${errorMessage !== '' ? 'has-error' : ''}`}>
-          <If condition={selectedMap === TOP_CITY && (!errorMessage && !!totalSafeCities && !!USAStateName)}>
-            <div styleName="factoid">
-              <span styleName="state-name">{USAStateName}</span> has <span styleName="safe-city-count">{totalSafeCities}</span> of the top 200 safest driving cities.</div>
-          </If>
-          <If condition={!!errorMessage || !!USAStateName || selectedYear !== DEFAULT_YEAR }>
-            <If condition={!!errorMessage}>
-              <div styleName="error">{errorMessage}</div>
+        <div styleName={`action-container ${errorMessage !== '' ? 'has-error' : ''}`}>
+          <div styleName="action-content">
+            <If condition={selectedMap === TOP_CITY && (!errorMessage && !!totalSafeCities && !!USAStateName)}>
+              <span styleName="factoid">
+                <span styleName="state-name">{USAStateName}</span> has <span styleName="safe-city-count">{totalSafeCities}</span> of the top 200 safest driving cities.</span>
             </If>
-            <div styleName="clear-search">
-              <button styleName="clear-search-button" type="button" aria-label="clear search" onClick={this.clearSearch}>Clear search</button>
-            </div>
-          </If>
-
+            <If condition={!!errorMessage || !!USAStateName || selectedYear !== DEFAULT_YEAR }>
+              <If condition={!!errorMessage}>
+                <span styleName="error">{errorMessage}</span>
+              </If>
+              <span styleName="clear-search">
+                <button styleName="clear-search-button" type="button" aria-label="clear search" onClick={this.clearSearch}>Clear search</button>
+              </span>
+            </If>
+          </div>
         </div>
       </div>
     )
