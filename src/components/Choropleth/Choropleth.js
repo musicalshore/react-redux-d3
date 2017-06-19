@@ -269,7 +269,6 @@ const Choropleth = class Choropleth extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     let { selectedMap, selectedYear, selectedUSAState, zoomStep, selectedCity } = this.props
-    console.log('componentWillReceiveProps', nextProps)
 
     if ((selectedMap !== nextProps.selectedMap) ||
         (selectedYear !== nextProps.selectedYear) ||
@@ -280,8 +279,10 @@ const Choropleth = class Choropleth extends React.Component {
         this.reset()
       } else {
         // zoom in to the state
-        const cityState = _.get('cityState', _.head(nextProps.locations))
-        this.zoomToCity(cityState)
+        if (nextProps.locations.length) {
+          const cityState = _.get('cityState', _.head(nextProps.locations))
+          this.zoomToCity(cityState)
+        }
         // this.props.onZoom(CITY_ZOOM_STEP)
       }
       this.updateMarkers(nextProps.selectedMap, nextProps.locations)
@@ -290,7 +291,6 @@ const Choropleth = class Choropleth extends React.Component {
       this.zoomToCity(nextProps.selectedCity)
     } else if (zoomStep !== nextProps.zoomStep) {
       // if zoom step has changed, zoom to step
-      console.log('componentWillReceiveProps zoomToStep: ', nextProps.zoomStep)
       this.zoomToStep(nextProps.zoomStep)
     }
     // if (nextProps.selectedMap !== selectedMap || nextProps.selectedYear !== selectedYear) {

@@ -47,17 +47,17 @@ const CityModalHeading = class CityModalHeading extends React.Component {
     return (
       <div className={`city-modal-heading-container ${additionalClasses}`}>
         <div className="city-modal-city-container">
-          <h2 className="city-name">{location.cityState}</h2>
-          <div className="city-rank">
+          <h2 tabIndex="0" className="city-name">{location.cityState}</h2>
+          <div tabIndex="0" className="city-rank">
             {message}
           </div>
         </div>
-        <div className="close" onClickCapture={this.onClickClose}>
+        <button type="button" aria-label="close modal" className="close" onClick={this.onClickClose}>
           <div>Close</div>
           <div className="times">
-            <a href="#" onClick={this.onClickClose}>&times;</a>
+            &times;
           </div>
-        </div>
+        </button>
       </div>
     )
   }

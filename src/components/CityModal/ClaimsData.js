@@ -33,13 +33,13 @@ const ClaimsData = class ClaimsData extends React.Component {
     }
     return (
       <div className={className}>
-        <h5>{title}</h5>
-        <div>{location.cityState}</div>
+        <h5 tabIndex="0">{title}</h5>
+        <div tabIndex="0">{location.cityState}</div>
         {yearsBetweenClaims &&
-          <div>Years between claims<sup>1</sup>: <span>{yearsBetweenClaims}</span></div>
+          <div tabIndex="0">Years between claims<sup>1</sup>: <span tabIndex="0">{yearsBetweenClaims}</span></div>
         }
         {brakingEvents &&
-          <div>Drivewise<sup>®</sup> hard-braking events per 1,000 miles<sup>2</sup>: <span>{brakingEvents}</span></div>
+          <div tabIndex="0">Drivewise<sup>®</sup> hard-braking events per 1,000 miles<sup>2</sup>: <span tabIndex="0">{brakingEvents}</span></div>
         }
       </div>
     )

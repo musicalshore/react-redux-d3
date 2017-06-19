@@ -17,9 +17,9 @@ const Rankings = class Rankings extends React.Component {
 
     return (
       <div className="rankings-container">
-        <h5>{selectedYear} data</h5>
+        <h5 tabIndex="0">{selectedYear} data</h5>
         <div className="overall-ranking">
-          <span>Overall Ranking</span>
+          <span tabIndex="0">Overall Ranking</span>
           <Choose>
             <When condition={previousTopCities && (topCities < previousTopCities)}>
               <span className="arrow-up" />
@@ -31,7 +31,7 @@ const Rankings = class Rankings extends React.Component {
               <span className="no-change" />
             </Otherwise>
           </Choose>
-          <span className="rank">
+          <span tabIndex="0" className="rank">
             <Ordinal number={topCities} sup={true} />
           </span>
         </div>

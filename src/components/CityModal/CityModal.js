@@ -7,7 +7,7 @@ import Rankings from './Rankings'
 import ClaimsData from './ClaimsData'
 import Footnotes from './Footnotes'
 import './style.scss'
-
+Modal.setAppElement('#app')
 const CityModal = class CityModal extends React.Component {
   static propTypes = {
     selectedMap: string.isRequired,

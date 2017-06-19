@@ -83,7 +83,9 @@
     display: flex;
     // flex-direction: column;
     padding-bottom: 19px;
-
+    & button {
+      border: 0;
+    }
     .city-modal-city-container {
       width: 85%;
     }
@@ -180,9 +182,10 @@
 
       .times {
         display: inline-block;
-        margin-left: 6px;
-        margin-top: 1px;
+        margin-left: 4px;
+        margin-top: 0;
         font-size: 24px;
+        line-height: 16px;
 
         @include mq($until: tablet) {
           margin-left: 24px;
