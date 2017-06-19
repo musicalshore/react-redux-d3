@@ -121,7 +121,8 @@
           width: 155px;
         }
 
-        a {
+        button {
+          border: 0;
           text-decoration: none;
           color: $darker-gray;
         }
@@ -133,7 +134,7 @@
           background-position: right center;
           font-size: 14px;
 
-          a {
+          button {
             margin-right: 15px;
           }
         }

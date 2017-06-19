@@ -38,7 +38,7 @@ const ListItem = class ListItem extends React.Component {
             <text x="50%" y="50%" alignmentBaseline="middle" textAnchor="middle">{rank}</text>
           </g>
         </svg>
-        <div styleName="cityState"><a href="#" onClick={onClickListItem}>{location.cityState}</a></div>
+        <div styleName="cityState"><button aria-label={`${location.city} ${location.state}`} onClick={onClickListItem}>{location.cityState}</button></div>
       </li>
     )
   }
@@ -119,12 +119,12 @@ const Listing = class Listing extends React.Component {
         <nav styleName="scroller-nav" role="navigation" aria-label="Pagination Navigation">
           <ol styleName="scroller-container" >
             <li styleName="previous">
-              <button type="button" onClick={this.scrollBack} disabled={currentPage === 1}>
+              <button aria-label="previous" type="button" onClick={this.scrollBack} disabled={currentPage === 1}>
                 <img src={currentPage === 1 ? prevGray : prevBlue} alt="previous" />
               </button>
             </li>
             <li styleName="next">
-              <button type="button" onClick={this.scrollAhead} disabled={currentPage >= numberOfPages}>
+              <button aria-label="next" type="button" onClick={this.scrollAhead} disabled={currentPage >= numberOfPages}>
                 <img src={currentPage >= numberOfPages ? nextGray : nextBlue} alt="next" />
               </button>
             </li>
