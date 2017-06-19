@@ -12,19 +12,13 @@ const locations = (state = initialState.locations, action) => {
       const selectedMap = _.find(['id', action.id], MAPS)
       let locations = []
       if (_.isEmpty(selectedMap)) {
-        throw new Error(`"${action.id}" is not a recognized map.`)
+        console.warn(`"${action.id}" is not a recognized map.`)
       }
 
       if (action.USAStateId) {
         locations = getLocationsByYearAndState(action.year, action.USAStateId)
-        if (_.isEmpty(locations)) {
-          console.error(`"${action.year} ${action.id}" returned no location data for USA state "${action.USAStateId}".`)
-        }
       } else {
         locations = getLocationsByYear(action.year)
-        if (_.isEmpty(locations)) {
-          console.error(`"${action.year} ${action.id}" returned no location data.`)
-        }
       }
       return locations
 

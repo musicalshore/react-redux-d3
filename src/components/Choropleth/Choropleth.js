@@ -97,7 +97,6 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   nextStep = () => {
-    console.log('nextStep this.props.zoomStep ', this.props.zoomStep)
     if (this.props.zoomStep < MAX_ZOOM_STEP) {
       this.props.onZoom(this.props.zoomStep + 1)
     }
@@ -105,13 +104,11 @@ const Choropleth = class Choropleth extends React.Component {
 
   previousStep = () => {
     if (this.props.zoomStep > MIN_ZOOM_STEP) {
-      console.log('previousStep zoomStep ', this.props.zoomStep - 1)
       this.props.onZoom(this.props.zoomStep - 1)
     }
   }
 
   reset = () => {
-    // console.log('reset')
     this.svg
       .transition()
       .duration(750)
@@ -129,7 +126,6 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   stopped = () => {
-    console.log('stopped', arguments)
     if (d3.event.defaultPrevented) d3.event.stopPropagation()
   }
 
@@ -193,9 +189,10 @@ const Choropleth = class Choropleth extends React.Component {
       .attr('y', 1)
   }
 
-  zoomToCity = (cityState) => {
-    const { width, height, selectedMap, locations, onZoom } = this.props
+  zoomToCity = (cityState, locations = this.props.locations) => {
+    const { width, height, selectedMap } = this.props
     const scale = scales[CITY_ZOOM_STEP - 1]
+
     const marker = Marker(selectedMap, _.find(['cityState', cityState], locations))
     const translateX = width / 2 - scale * marker.centroid[0]
     const translateY = height / 2 - scale * marker.centroid[1]
@@ -278,7 +275,7 @@ const Choropleth = class Choropleth extends React.Component {
         // zoom in to the state
         if (nextProps.locations.length) {
           const cityState = _.get('cityState', _.head(nextProps.locations))
-          this.zoomToCity(cityState)
+          this.zoomToCity(cityState, nextProps.locations)
         }
         // this.props.onZoom(CITY_ZOOM_STEP)
       }
@@ -290,7 +287,6 @@ const Choropleth = class Choropleth extends React.Component {
       // if zoom step has changed, zoom to step
       this.zoomToStep(nextProps.zoomStep)
     }
-
   }
 
   render () {
