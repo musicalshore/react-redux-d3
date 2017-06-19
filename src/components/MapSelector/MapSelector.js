@@ -103,7 +103,7 @@ const MapSelector = class MapSelector extends React.Component {
             onChange={this.handleStateOptionChange}
             clearable={false}
           />
-          <button aria-label="go" type="button" onClick={this.handleMapSelectorChange}>Go</button>
+          <button styleName="go-button" aria-label="go" type="button" onClick={this.handleMapSelectorChange}>Go</button>
         </div>
         <div styleName={`clear-search-container ${errorMessage !== '' ? 'has-error' : ''}`}>
           <If condition={selectedMap === TOP_CITY && (!errorMessage && !!totalSafeCities && !!USAStateName)}>
@@ -115,7 +115,7 @@ const MapSelector = class MapSelector extends React.Component {
               <div styleName="error">{errorMessage}</div>
             </If>
             <div styleName="clear-search">
-              <a href="#" onClick={this.clearSearch}>Clear search</a>
+              <button styleName="clear-search-button" type="button" aria-label="clear search" onClick={this.clearSearch}>Clear search</button>
             </div>
           </If>
 

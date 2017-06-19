@@ -38,14 +38,14 @@
   .year-label {
   }
 
-  button,
+  .go-button,
   label,
   .select-box {
     height: 40px;
     line-height: 1;
   }
 
-  button {
+  .go-button {
     @include button(16px);
 
     width: 48px;
@@ -166,6 +166,7 @@
   .error {
     color: #f00;
     line-height: 24px;
+
     @include mq($until: mobileLandscape) {
       line-height: 15px;
       padding-left: 15px;
@@ -179,9 +180,18 @@
   .clear-search {
     margin-right: 30px;
     margin-left: 5px;
-    line-height: 24px;
-    @include mq($until: mobileLandscape) {
-      line-height: 0;
+
+    & .clear-search-button {
+      color: #5e8b2d;
+      cursor: pointer;
+      display: inline-block;
+      border: 0;
+      text-decoration: none;
+
+      @include mq($until: tablet) {
+        // height: 40px;
+        display: block;
+      }
     }
     // @include mq($from: mobile) {
     //   width: 95%;
