@@ -95,10 +95,11 @@ const LocalCity = class LocalCity extends React.Component {
   async componentDidMount () {
     const {selectedYear} = this.props
     let cityState
-    if (localStorage && localStorage.getItem('LocalAgentsZip')) {
-      cityState = await fetchCityStateByZipcode(this.state.zipcode)
+    let zipcode = localStorage.getItem('LocalAgentsZip')
+    if (localStorage && zipcode) {
+      cityState = await fetchCityStateByZipcode(zipcode)
       this.setState({
-        zipcode: localStorage.getItem('LocalAgentsZip'),
+        zipcode,
         cityState,
         rank: this.getRankByCityStateAndYear(cityState, selectedYear)
       })
@@ -170,7 +171,7 @@ const LocalCity = class LocalCity extends React.Component {
   render () {
     return (
       <div styleName="local-city-container">
-        {this.state.cityState && this.state.rank && this.state.rank > 0 &&
+        {((this.state.cityState && this.state.rank) || this.state.rank === -1) &&
           <div>
             <div styleName="local-city">
               <If condition={this.state.editing}>
@@ -182,9 +183,14 @@ const LocalCity = class LocalCity extends React.Component {
               <If condition={!this.state.editing}>
                 <div>
                   <If condition={this.state.cityState && this.state.cityState !== ''}>
-                    <span styleName="city-state">{this.state.cityState}</span>
+                    <If condition={this.state.rank === -1}>
+                      <div styleName="no-location-data">Your city is not ranked.</div>
+                    </If>
+                    <If condition={this.state.rank > 0}>
+                      <span styleName="city-state">{this.state.cityState}</span>
+                    </If>
                   </If>
-                  <If condition={!this.state.cityState}>
+                  <If condition={!this.state.cityState || this.state.rank === -1 }>
                     <label htmlFor="editZipcodeButton" styleName="enter-zip-code">ZIP code</label>
                   </If>
                   <button id="editZipcodeButton" onClick={this.edit} styleName="edit-zipcode-button" type="button" aria-label="edit zipcode">(edit)</button>
@@ -196,11 +202,6 @@ const LocalCity = class LocalCity extends React.Component {
                   is the <Ordinal number={this.state.rank} sup={true} /> safest driving city.
               </If>
             </div>
-          </div>
-        }
-        {this.state.rank && this.state.rank === -1 &&
-          <div styleName="no-location-data">
-            Your city was not ranked.
           </div>
         }
       </div>
