@@ -104,7 +104,7 @@ const MapSelector = class MapSelector extends React.Component {
           />
           <button styleName="go-button" aria-label="go" type="button" onClick={this.handleMapSelectorChange}>Go</button>
         </div>
-        <div styleName={`action-container ${errorMessage !== '' ? 'has-error' : ''}`}>
+        <div styleName={`action-container`}>
           <div styleName="action-content">
             <If condition={selectedMap === TOP_CITY && (!errorMessage && !!totalSafeCities && !!USAStateName)}>
               <span styleName="factoid">

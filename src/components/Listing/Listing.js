@@ -113,7 +113,7 @@ const Listing = class Listing extends React.Component {
         <div styleName="instructions">
           Select city for more data.
         </div>
-        <ol styleName="list-container" ref={el => { this.listing = el } }>
+        <ol role="tabpanel" aria-labelledby={_.kebabCase(selectedMap)} id={`${_.kebabCase(selectedMap)}-tabpanel`} styleName="list-container" ref={el => { this.listing = el } }>
           {listItems}
         </ol>
         <nav styleName="scroller-nav" role="navigation" aria-label="Pagination Navigation">
