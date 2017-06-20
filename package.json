@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@gitlab.t-3.com:allstate/americas-best-drivers.git",
-  "author": "Michael Russo <michaelrusso11@gmail.com>",
+  "author": "Michael Russo <michael.russo@t-3.com>",
   "scripts": {
     "dev": "cross-env NODE_ENV=development node server.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack/webpack.config.production.js --progress --hide-modules -p",
@@ -56,6 +56,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "browserslist": "^2.1.5",
+    "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "directory-named-webpack-plugin": "^2.1.0",
