@@ -40,7 +40,7 @@ const TopListings = class TopListings extends React.Component {
             onCitySelect={onCitySelect}
           />
         </If>
-        <LocalCity cityState="Austin, TX" selectedYear={selectedYear} />
+        <LocalCity selectedYear={selectedYear} />
       </div>
     )
   }

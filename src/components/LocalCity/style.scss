@@ -10,13 +10,31 @@
     padding-top: 20px;
   }
 
+  .city-state {
+    display: inline-block;
+    margin-right: 3px;
+    text-transform: uppercase;
+  }
+  .no-location-data {
+    color: black;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  .enter-zip-code,
   .local-city {
     color: #e57d21;
     font-weight: 600;
-    text-transform: uppercase;
 
-    span {
-      text-transform: lowercase;
+    .zipcode-field {
+      width: 150px;
+      color: black;
+    }
+
+    .edit-zipcode-button,
+    .save-zipcode-button {
+      padding: 0;
+      border: 0;
+      text-decoration: none;
     }
   }
 

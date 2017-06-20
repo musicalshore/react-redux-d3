@@ -48,6 +48,7 @@ export const YEARS = [
   '2017'
 ]
 
+export const GOOGLE_API_KEY = 'AIzaSyBQSstEK0Z-pv267gc7EAY7OKrslDDAwcs'
 export const USA_STATES = [
   {
     name: 'Alabama',

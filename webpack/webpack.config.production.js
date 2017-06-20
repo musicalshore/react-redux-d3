@@ -9,7 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   context: path.join(__dirname, '..', 'src'),
-  entry: ['index.js'],
+  entry: ['babel-polyfill', 'index.js'],
   output: {
     path: path.join(__dirname, '..', 'dist'),
     filename: '[name].[hash].js',
@@ -46,6 +46,7 @@ module.exports = {
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: ['manifest']
     // }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new (webpack.optimize.UglifyJsPlugin)(),
     new HtmlWebpackPlugin({template: path.join(__dirname, '..', 'src', 'templates', 'full-page-index.ejs')}),
     new webpack.ProvidePlugin({
