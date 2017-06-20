@@ -1,6 +1,7 @@
 import BEST_DRIVER_LOCATIONS_JSON from 'data/best-driver-locations-2017.json'
 import PropTypes from 'prop-types'
 import React from 'react'
+import Promise from 'bluebird'
 import {YEARS} from 'constants/maps'
 import _ from 'lodash/fp'
 
@@ -92,4 +93,12 @@ export const getLocationsByYearAndState = (year, stateFilter = '', locationData 
   const locationsByYear = getLocationsByYear(year, locationData)
   const locationsByYearAndState = _.filter(['state', stateFilter], locationsByYear)
   return locationsByYearAndState
+}
+export const getPosition = (options) => {
+  return new Promise(function (resolve, reject) {
+    if (!navigator.geolocation) {
+      reject(new Error('Geolocation is not supported by this browser.'))
+    }
+    navigator.geolocation.getCurrentPosition(resolve, reject, options)
+  })
 }

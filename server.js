@@ -24,7 +24,6 @@ if (isDevelopment) {
     heartbeat: 3 * 1000
   }))
 
-
   app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'src', 'templates', 'index.ejs'))
   })

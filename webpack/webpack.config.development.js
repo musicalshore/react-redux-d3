@@ -20,7 +20,7 @@ module.exports = {
   // ],
   entry: {
     main: [
-      // 'babel-polyfill',
+      'babel-polyfill',
       'react-hot-loader/patch',
       'webpack-hot-middleware/client?http://0.0.0.0:3333&path=/__what&timeout=6000&reload=true',
       'index.js'
@@ -42,15 +42,15 @@ module.exports = {
       'environment': '\'development\'',
       NODE_ENV: JSON.stringify('development')
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor'],
-      minChunks: function (module) {
-        return module.context && module.context.indexOf('node_modules') !== -1
-      }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: ['manifest']
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: ['vendor'],
+    //   minChunks: function (module) {
+    //     return module.context && module.context.indexOf('node_modules') !== -1
+    //   }
+    // }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: ['manifest']
+    // }),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({template: path.join(__dirname, '..', 'src', 'templates', 'index.ejs')}),
