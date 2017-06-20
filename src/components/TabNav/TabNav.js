@@ -18,6 +18,8 @@ const Tab = class Tab extends React.Component {
   render () {
     const {id, title, hasLocations, selectedMap, onTabClick} = this.props
     let additionalClasses = selectedMap === id ? 'selected' : ''
+    let ariaSelected = selectedMap === id
+    let ariaControls = _.kebabCase(id) + '-tabpanel'
     let isDisabled = false
     if (!hasLocations) {
       additionalClasses += ' disabled'
@@ -25,8 +27,8 @@ const Tab = class Tab extends React.Component {
     }
 
     return (
-      <li role="tab" styleName={`${_.kebabCase(id)} ${additionalClasses}`}>
-        <button type="button" aria-label={title} onClick={onTabClick} styleName="title">
+      <li role="presentation" styleName={`${_.kebabCase(id)} ${additionalClasses}`}>
+        <button role="tab" id={_.kebabCase(id)} aria-controls={ariaControls} aria-selected={ariaSelected} type="button" aria-label={title} onClick={onTabClick} styleName="title">
           <div>{title}</div>
           <If condition={isDisabled}>
             <div>No data available</div>

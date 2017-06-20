@@ -22,7 +22,7 @@
     @include mq($until: desktop) {
       width: 0;
       background-color: #fff;
-      overflow-x: hidden;
+      overflow: hidden;
       // height: 100%;
       transition: 0.5s;
     }

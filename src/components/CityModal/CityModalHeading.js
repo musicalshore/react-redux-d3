@@ -51,8 +51,8 @@ const CityModalHeading = class CityModalHeading extends React.Component {
     return (
       <div className={`city-modal-heading-container ${additionalClasses}`}>
         <div className="city-modal-city-container">
-          <h2 tabIndex="0" className="city-name">{location.cityState}</h2>
-          <div tabIndex="0" className="city-rank">
+          <h2 tabIndex="0" className="city-name" aria-label={`${location.cityState} ${message}`}>{location.cityState}</h2>
+          <div className="city-rank">
             {message}
           </div>
         </div>

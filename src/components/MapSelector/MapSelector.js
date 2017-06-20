@@ -21,7 +21,6 @@ const MapSelector = class MapSelector extends React.Component {
     onUSAStateOption: func.isRequired
   }
   handleYearOptionChange = (option) => {
-    console.log('handleYearOptionChange: ', option)
     this.props.onYearOption(option.value)
   }
 
@@ -63,11 +62,9 @@ const MapSelector = class MapSelector extends React.Component {
 
   render () {
     const {selectedMap, selectedYear, optionYear, optionUSAState, error, selectedUSAState} = this.props
-    // console.log('this.props: ', this.props)
     const USAStateName = _.getOr('', 'name', selectedUSAState)
     const totalSafeCities = _.getOr(0, 'totalSafeCities', selectedUSAState)
     const errorMessage = _.getOr('', 'message', error)
-    // console.log('errorMessage: ', errorMessage)
     const years = _.map(year => ({
       label: year,
       value: year
@@ -91,6 +88,7 @@ const MapSelector = class MapSelector extends React.Component {
             aria-label="year"
             options={years}
             onChange={this.handleYearOptionChange}
+            searchable={false}
             clearable={false}
           />
           <label styleName="state-label" htmlFor="abdState">State</label>
@@ -100,12 +98,13 @@ const MapSelector = class MapSelector extends React.Component {
             aria-label="state"
             value={optionUSAState}
             options={USAStates}
+            searchable={false}
             onChange={this.handleStateOptionChange}
             clearable={false}
           />
           <button styleName="go-button" aria-label="go" type="button" onClick={this.handleMapSelectorChange}>Go</button>
         </div>
-        <div styleName={`action-container ${errorMessage !== '' ? 'has-error' : ''}`}>
+        <div styleName={`action-container`}>
           <div styleName="action-content">
             <If condition={selectedMap === TOP_CITY && (!errorMessage && !!totalSafeCities && !!USAStateName)}>
               <span styleName="factoid">
