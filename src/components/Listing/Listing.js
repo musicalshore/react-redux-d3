@@ -8,6 +8,7 @@ import prevBlue from './prev_blue.svg'
 import nextBlue from './next_blue.svg'
 import prevGray from './prev_gray.svg'
 import nextGray from './next_gray.svg'
+import listArrow from './list-arrow.png'
 
 const debounceEventHandler = (fn) => {
   const debounced = _.debounce(300, fn)
@@ -38,7 +39,9 @@ const ListItem = class ListItem extends React.Component {
             <text x="50%" y="50%" alignmentBaseline="middle" textAnchor="middle">{rank}</text>
           </g>
         </svg>
-        <button styleName="cityState" title={`${location.city}, ${location.state}`} aria-label={`${location.city} ${_.getOr(location.state, 'name', _.find(['id', location.state], USA_STATES))}`} onClick={onClickListItem}>{location.cityState}</button>
+        <button styleName="cityState" title={`${location.city}, ${location.state}`} aria-label={`${location.city} ${_.getOr(location.state, 'name', _.find(['id', location.state], USA_STATES))}`} onClick={onClickListItem}>{location.cityState}
+          <img src={listArrow} styleName="left-arrow"/>
+        </button>
       </li>
     )
   }

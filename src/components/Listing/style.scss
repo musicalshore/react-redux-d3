@@ -120,12 +120,14 @@
         }
 
         @include mq($until: tablet) {
-          background-image: url(./list-arrow.png);
-          background-position: right center;
-          background-repeat: no-repeat;
           font-size: 14px;
           line-height: 23px;
           margin-right: 5px;
+
+          .left-arrow {
+            vertical-align: baseline;
+            margin-left: 10px;
+          }
         }
       }
 
