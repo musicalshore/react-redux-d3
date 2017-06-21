@@ -46,7 +46,7 @@ module.exports = {
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: ['manifest']
     // }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
+    // new webpack.optimize.ModuleConcatenationPlugin(),
     new (webpack.optimize.UglifyJsPlugin)(),
     new HtmlWebpackPlugin({template: path.join(__dirname, '..', 'src', 'templates', 'full-page-index.ejs')}),
     new webpack.ProvidePlugin({
