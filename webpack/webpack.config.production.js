@@ -30,7 +30,7 @@ module.exports = {
       })
     },
     // new StyleLintPlugin({customSyntax: 'postcss-scss'}),
-    new ExtractTextPlugin('assets/styles/[name].[hash].css'),
+    new ExtractTextPlugin('[name].[hash].css'),
     new webpack.DefinePlugin({
       'environment': '"production"',
       NODE_ENV: JSON.stringify('production')
