@@ -34,7 +34,7 @@ module.exports = {
       'environment': '"production"',
       NODE_ENV: JSON.stringify('production')
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
+    // new webpack.optimize.ModuleConcatenationPlugin(),
     new (webpack.optimize.UglifyJsPlugin)(),
     new HtmlWebpackPlugin({template: path.join(__dirname, '..', 'src', 'templates', 'index.ejs')}),
     new webpack.ProvidePlugin({
