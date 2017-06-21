@@ -1,5 +1,4 @@
 @import "style/index.scss";
-
 :global .ReactModal__Body--open {
   overflow: hidden;
 }
@@ -88,6 +87,10 @@
     }
     .city-modal-city-container {
       width: 85%;
+
+      h2 {
+        padding: 0;
+      }
     }
 
     .city-name,
