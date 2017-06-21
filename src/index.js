@@ -13,13 +13,14 @@ let store = createStore(
 )
 
 const render = Component => {
+  const root = document.getElementById('app')
   ReactDOM.render(
     <Provider store={store}>
       <AppContainer>
-        <Component />
+        <Component {...root.dataset}/>
       </AppContainer>
     </Provider>,
-    document.getElementById('app')
+    root
   )
 }
 
