@@ -113,6 +113,9 @@
         .left-arrow {
           vertical-align: baseline;
           margin-left: 10px;
+          @include mq($from: tablet) {
+            display: none;
+          }
         }
 
         @include mq($from: mobileLandscape, $until: desktop) {
