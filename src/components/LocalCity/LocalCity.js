@@ -20,7 +20,7 @@ async function fetchGeocode (service) {
     console.warn('Geocode service returned bad data. ', json)
     return
   }
-  // console.log('results: ', json.results)
+  console.log('results: ', json.results)
   return json.results[0]
 }
 
@@ -123,9 +123,7 @@ const LocalCity = class LocalCity extends React.Component {
     })
   }
   handleChange = (e) => {
-    if (e.target.value) {
-      this.setState({zipcode: e.target.value})
-    }
+    this.setState({zipcode: e.target.value})
   }
   handleSubmit = (e) => {
     e.preventDefault()

@@ -28,7 +28,7 @@ const Tab = class Tab extends React.Component {
 
     return (
       <li role="presentation" styleName={`${_.kebabCase(id)} ${additionalClasses}`}>
-        <button role="tab" id={_.kebabCase(id)} aria-controls={ariaControls} aria-selected={ariaSelected} type="button" aria-label={title} onClick={onTabClick} styleName="title">
+        <button role="tab" id={`${_.kebabCase(id)}-tab`} aria-controls={ariaControls} aria-selected={ariaSelected} type="button" aria-label={title} onClick={onTabClick} styleName="title">
           <div>{title}</div>
           <If condition={isDisabled}>
             <div>No data available</div>
