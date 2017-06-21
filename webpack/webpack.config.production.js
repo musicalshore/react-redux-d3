@@ -5,6 +5,7 @@ const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 const rimraf = require('rimraf')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   context: path.join(__dirname, '..', 'src'),
@@ -12,7 +13,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '..', 'dist'),
     filename: '[name].[hash].js',
-    publicPath: '/'
+    publicPath: ''
   },
   node: {
     fs: 'empty',
@@ -29,14 +30,25 @@ module.exports = {
       })
     },
     // new StyleLintPlugin({customSyntax: 'postcss-scss'}),
-    new ExtractTextPlugin('assets/styles/[name].[hash].css'),
+    new ExtractTextPlugin('[name].[hash].css'),
     new webpack.DefinePlugin({
       'environment': '"production"',
       NODE_ENV: JSON.stringify('production')
     }),
+    new CopyWebpackPlugin([
+        { from: '../legacy-dev-wrapper' }
+      ],
+      { ignore: [ "index-orig.html" ]}),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: ['vendor'],
+    //   minChunks: 2
+    // }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: ['manifest']
+    // }),
     // new webpack.optimize.ModuleConcatenationPlugin(),
     new (webpack.optimize.UglifyJsPlugin)(),
-    new HtmlWebpackPlugin({template: path.join(__dirname, '..', 'src', 'templates', 'index.ejs')}),
+    new HtmlWebpackPlugin({template: path.join(__dirname, '..', 'src', 'templates', 'full-page-index.ejs')}),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
