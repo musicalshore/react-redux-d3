@@ -7,7 +7,6 @@ import React from 'react'
 import Report from 'containers/Report'
 
 const App = (props) => {
-  console.log('props', props)
   return (
     <div styleName="container">
       <Helmet title="America's Best Drivers Report" titleTemplate="Allstate %s">

@@ -12,7 +12,8 @@ const TopListings = class TopListings extends React.Component {
     selectedYear: string.isRequired,
     locations: array,
     selectedCity: string,
-    onCitySelect: func.isRequired
+    onCitySelect: func.isRequired,
+    cityState: string
   }
 
   render () {
@@ -40,7 +41,7 @@ const TopListings = class TopListings extends React.Component {
             onCitySelect={onCitySelect}
           />
         </If>
-        <LocalCity selectedYear={selectedYear} />
+        <LocalCity selectedYear={selectedYear} cityState={this.props.cityState || ''} />
       </div>
     )
   }

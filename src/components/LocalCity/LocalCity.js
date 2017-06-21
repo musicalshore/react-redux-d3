@@ -90,29 +90,34 @@ const LocalCity = class LocalCity extends React.Component {
       console.warn(`Unable to find "${year} Top Cities" rank for ${cityState}" in location data.`)
       return -1
     }
+
     return rank
   }
   async componentDidMount () {
     const {selectedYear} = this.props
     let cityState
     let zipcode = localStorage.getItem('LocalAgentsZip')
-    if (localStorage && zipcode) {
+    let rank
+    if (this.props.cityState) {
+      rank = this.getRankByCityStateAndYear(this.props.cityState, selectedYear)
+      this.setState({
+        cityState: this.props.cityState,
+        rank
+      })
+    } else if (localStorage && zipcode) {
       cityState = await fetchCityStateByZipcode(zipcode)
+      rank = this.getRankByCityStateAndYear(cityState, selectedYear)
       this.setState({
         zipcode,
         cityState,
-        rank: this.getRankByCityStateAndYear(cityState, selectedYear)
-      })
-    } else if (this.props.cityState) {
-      this.setState({
-        cityState: this.props.cityState,
-        rank: this.getRankByCityStateAndYear(this.props.cityState, selectedYear)
+        rank
       })
     } else {
+      rank = this.getRankByCityStateAndYear(cityState, selectedYear)
       cityState = await fetchCityStateFromGeolocation()
       this.setState({
         cityState: cityState,
-        rank: this.getRankByCityStateAndYear(cityState, selectedYear)
+        rank
 
       })
     }

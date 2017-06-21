@@ -27,7 +27,8 @@ const TabbedMap = class TabbedMap extends React.Component {
     onCitySelect: func.isRequired,
     onUSAStateOption: func.isRequired,
     onYearOption: func.isRequired,
-    onZoom: func.isRequired
+    onZoom: func.isRequired,
+    cityState: string
   }
   getModalParent = () => {
     return document.querySelector('#app')
@@ -44,7 +45,7 @@ const TabbedMap = class TabbedMap extends React.Component {
   }
 
   render () {
-    const {error, locations, modalIsOpen, optionUSAState, optionYear, selectedCity, selectedMap, selectedUSAState, selectedYear, zoomStep} = this.props
+    const {error, locations, modalIsOpen, optionUSAState, optionYear, selectedCity, selectedMap, selectedUSAState, selectedYear, zoomStep, cityState} = this.props
     const {onCitySelect, onMapSelect, onUSAStateOption, onYearOption, onToggleModal, onZoom} = this.props
 
     return (
@@ -91,6 +92,7 @@ const TabbedMap = class TabbedMap extends React.Component {
               selectedYear={selectedYear}
               selectedCity={selectedCity}
               onCitySelect={onCitySelect}
+              cityState={cityState}
             />
           </div>
         </div>
