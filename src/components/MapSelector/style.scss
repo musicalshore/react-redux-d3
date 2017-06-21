@@ -1,10 +1,10 @@
 @import "style/index.scss";
 
 .container {
+  margin: 0 auto;
   // align-self: center;
   // align-items: center;
   margin-bottom: 9px;
-  margin: 0 auto;
   // display: flex;
   // justify-content: center;
   // @include mq($until: mobile) {
@@ -20,11 +20,11 @@
   // display: table-cell;
   // vertical-align: middle;
   .selector-container {
+    align-items: center;
+    align-self: center;
     display: flex;
     height: 40px;
-    align-self: center;
     justify-content: center;
-    align-items: center;
     margin-bottom: 15px;
     width: 100%;
   }
@@ -33,9 +33,6 @@
   }
 
   .state-select {
-  }
-
-  .year-label {
   }
 
   .go-button,
@@ -48,34 +45,38 @@
   .go-button {
     @include button(16px);
 
-    width: 48px;
-    padding: 14px;
     background-color: $top-city-fill;
+    border: none;
+    border-radius: 4px;
     display: inline-block;
+    line-height: 14px;
     // vertical-align: middle;
     margin-left: 22px;
+    padding: 14px;
+    width: 48px;
 
     @include mq($until: mobileMapSelector) {
       margin-left: 10px;
-    }
+      margin-right: 5px;
 
-    border: none;
-    border-radius: 4px;
-    line-height: 14px;
+      .year-label {
+        margin-left: 5px;
+      }
+    }
   }
 
   label {
     @extend .font-normal;
 
     display: inline-block;
-    vertical-align: middle;
     margin-right: 10px;
+    vertical-align: middle;
 
     &::before {
       content: '';
       display: inline-block;
-      vertical-align: middle;
       height: 100%;
+      vertical-align: middle;
     }
   }
 
@@ -83,13 +84,11 @@
     .select-box {
       .Select-control {
         border: 1px solid $light-gray;
-        // background: #fafafa url("./select-arrow.png") no-repeat 90% 50%;
         border-radius: 4px;
-        // overflow: hidden;
-        height: 40px;
-        font-size: $font-size-small;
         color: #4d4d4d;
+        font-size: $font-size-small;
         font-weight: bold;
+        height: 40px;
       }
 
       &.year {
@@ -102,37 +101,12 @@
 
       &.usState {
         width: 165px;
-        // flex-basis: 25%;
 
         @include mq($until: mobileMapSelector) {
           flex-basis: 32%;
         }
-        // @include mq($from: mobileLandscape, $until: tablet) {
-        //   width: 130px;
-        // }
-
-        // @include mq($from: mobile, $until: mobileLandscape) {
-        //   width: 90px;
-        // }
       }
     }
-
-    // select {
-    //   font-size: 14px;
-    //   color: #4d4d4d;
-    //   font-weight: bold;
-    //   line-height: 1;
-    //   padding-top: 9px;
-    //   padding-left: 10px;
-    //   padding-bottom: 13px;
-    //   width: 130%;
-    //   height: 110%;
-    //   border: none;
-    //   box-shadow: none;
-    //   background: transparent;
-    //   background-image: none;
-    //   -webkit-appearance: none;
-    // }
   }
 
   label.state-label {
@@ -145,9 +119,7 @@
 }
 
 .action-container {
-
   @include mq($until: tablet) {
-
     max-width: 100%;
   }
 
@@ -163,6 +135,7 @@
   .safe-city-count {
     font-weight: bold;
   }
+
   .error {
     color: #f00;
     padding-right: 5px;
@@ -173,24 +146,13 @@
   }
 
   .clear-search {
-
     & .clear-search-button {
+      border: 0;
       color: #5e8b2d;
       cursor: pointer;
       display: inline-block;
-      border: 0;
-      text-decoration: none;
       padding: 0;
-      // @include mq($until: tablet) {
-      //   display: inline-block;
-      // }
+      text-decoration: none;
     }
-    // @include mq($from: mobile) {
-    //   width: 95%;
-    //   div {
-    //     display: block;
-    //     width: 100%;
-    //   }
-    // }
   }
 }

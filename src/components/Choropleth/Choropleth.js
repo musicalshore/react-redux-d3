@@ -2,7 +2,7 @@ import 'rc-slider/assets/index.css'
 
 import './style.scss'
 
-import {MAPS, MAX_ZOOM_STEP, MIN_ZOOM_STEP, CITY_ZOOM_STEP} from 'constants/maps'
+import {MAPS, MAX_ZOOM_STEP, MIN_ZOOM_STEP, CITY_ZOOM_STEP, DEFAULT_YEAR} from 'constants/maps'
 import * as d3 from 'd3'
 import _ from 'lodash/fp'
 import {array, func, number, object, string} from 'prop-types'
@@ -22,7 +22,7 @@ const scales = [0.8, 1.6, 3.2, 6.4]
 // const bounds = path.bounds(feature)
 // const center = path.centroid(feature)
 
-const Marker = (selectedMap, location) => {
+const Marker = (selectedMap, selectedYear, location) => {
   // point must be specified as a two-element array [longitude, latitude] in degrees
   const point = projection(location.lngLat)
   const centroid = path.centroid({ 'type': 'Point', 'coordinates': location.lngLat })
@@ -31,10 +31,10 @@ const Marker = (selectedMap, location) => {
   const rank = _.get(`rankings.${rankingType}`, location)
 
   let additionalClasses = ''
-  if (location.newLocation) {
+  if (location.newLocation && selectedYear === DEFAULT_YEAR) {
     additionalClasses = 'new-location'
   }
-  if (location.mostImproved) {
+  if (location.mostImproved && selectedYear === DEFAULT_YEAR) {
     additionalClasses = 'most-improved'
   }
 
@@ -129,7 +129,7 @@ const Choropleth = class Choropleth extends React.Component {
     if (d3.event.defaultPrevented) d3.event.stopPropagation()
   }
 
-  updateMarkers = (selectedMap, locations) => {
+  updateMarkers = (selectedMap, selectedYear, locations) => {
     this.gMarkers.selectAll('g').remove()
     if (_.isEmpty(locations)) {
       return
@@ -141,7 +141,7 @@ const Choropleth = class Choropleth extends React.Component {
       _.reverse
     ])(locations)
 
-    const markers = _.map(_.partial(Marker, [selectedMap]), sortedLocations)
+    const markers = _.map(_.partial(Marker, [selectedMap, selectedYear]), sortedLocations)
 
     const g = this.gMarkers
       .selectAll('g')
@@ -163,8 +163,9 @@ const Choropleth = class Choropleth extends React.Component {
       .filter((d) => d.r === 16)
       .append('text')
       .attr('x', 0)
-      .attr('y', 3)
-    // .style('font-size', '0.688em')
+      .attr('y', 0)
+      .attr('alignment-baseline', 'middle')
+      .attr('text-anchor', 'middle')
       .style('font-size', '11px')
       .text(d => d.rank)
       .classed('rank', true)
@@ -186,14 +187,15 @@ const Choropleth = class Choropleth extends React.Component {
       .selectAll('text')
       // .style('font-size', (d) => `${0.688 / k}em`)
       .style('font-size', (d) => `${11 / k}px`)
-      .attr('y', 1)
+      .attr('x', 0)
+      .attr('y', 0)
   }
 
   zoomToCity = (cityState, locations = this.props.locations) => {
-    const { width, height, selectedMap } = this.props
+    const { width, height, selectedMap, selectedYear } = this.props
     const scale = scales[CITY_ZOOM_STEP - 1]
 
-    const marker = Marker(selectedMap, _.find(['cityState', cityState], locations))
+    const marker = Marker(selectedMap, selectedYear, _.find(['cityState', cityState], locations))
     const translateX = width / 2 - scale * marker.centroid[0]
     const translateY = height / 2 - scale * marker.centroid[1]
 
@@ -219,7 +221,7 @@ const Choropleth = class Choropleth extends React.Component {
   }
 
   componentDidMount () {
-    const { width, height, locations, selectedMap } = this.props
+    const { width, height, locations, selectedMap, selectedYear } = this.props
 
     // zoom = zoom.extent([[0, 0], [width, height]])
     this.tooltip = d3.select('body')
@@ -258,7 +260,7 @@ const Choropleth = class Choropleth extends React.Component {
       .on('wheel.zoom', null)
 
     this.gMarkers = this.gMain.append('g').classed('markers', true)
-    this.updateMarkers(selectedMap, locations)
+    this.updateMarkers(selectedMap, selectedYear, locations)
   }
 
   componentWillReceiveProps (nextProps) {
@@ -279,7 +281,7 @@ const Choropleth = class Choropleth extends React.Component {
         }
         // this.props.onZoom(CITY_ZOOM_STEP)
       }
-      this.updateMarkers(nextProps.selectedMap, nextProps.locations)
+      this.updateMarkers(nextProps.selectedMap, nextProps.selectedYear, nextProps.locations)
     } else if (nextProps.selectedCity && nextProps.selectedCity !== selectedCity) {
       // if selected city has changed, zoom to it
       this.zoomToCity(nextProps.selectedCity)

@@ -1,7 +1,7 @@
 import $ from 'jquery'
 import _ from 'lodash/fp'
 import React from 'react'
-import {MAPS} from 'constants/maps'
+import {MAPS, USA_STATES} from 'constants/maps'
 import {string, func, number, array, object} from 'prop-types'
 import './style.scss'
 import prevBlue from './prev_blue.svg'
@@ -32,13 +32,13 @@ const ListItem = class ListItem extends React.Component {
     }
     return (
       <li onClick={onClickListItem} styleName={_.kebabCase(selectedMap)}>
-        <svg viewBox="0 0 30 30">
+        <svg viewBox="0 0 32 32">
           <g>
-            <circle cx="15" cy="15" r="15" />
+            <circle cx="16" cy="16" r="16" />
             <text x="50%" y="50%" alignmentBaseline="middle" textAnchor="middle">{rank}</text>
           </g>
         </svg>
-        <div styleName="cityState"><button aria-label={`${location.city} ${location.state}`} onClick={onClickListItem}>{location.cityState}</button></div>
+        <button styleName="cityState" title={`${location.city}, ${location.state}`} aria-label={`${location.city} ${_.getOr(location.state, 'name', _.find(['id', location.state], USA_STATES))}`} onClick={onClickListItem}>{location.cityState}</button>
       </li>
     )
   }
@@ -113,7 +113,7 @@ const Listing = class Listing extends React.Component {
         <div styleName="instructions">
           Select city for more data.
         </div>
-        <ol role="tabpanel" aria-labelledby={_.kebabCase(selectedMap)} id={`${_.kebabCase(selectedMap)}-tabpanel`} styleName="list-container" ref={el => { this.listing = el } }>
+        <ol role="tabpanel" aria-labelledby={`${_.kebabCase(selectedMap)}-tab`} id={`${_.kebabCase(selectedMap)}-tabpanel`} styleName="list-container" ref={el => { this.listing = el } }>
           {listItems}
         </ol>
         <nav styleName="scroller-nav" role="navigation" aria-label="Pagination Navigation">
