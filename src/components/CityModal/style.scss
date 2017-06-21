@@ -6,12 +6,12 @@
 
 :global .ReactModalPortal {
   .modal-overlay {
-    position: fixed;
-    left: 0;
-    top: 0;
     bottom: 0;
-    right: 0;
+    left: 0;
     outline: none;
+    position: fixed;
+    right: 0;
+    top: 0;
     z-index: 99;
 
     @include mq($from: desktop) {
@@ -19,10 +19,10 @@
     }
 
     @include mq($until: desktop) {
-      width: 0;
       background-color: #fff;
       overflow-x: hidden;
       transition: 0.5s;
+      width: 0;
     }
 
     &.ReactModal__Overlay--after-open {
@@ -49,19 +49,21 @@
     }
 
     @include mq($until: desktop) {
+      bottom: 0;
       left: 0;
+      right: 0;
       top: 0;
       width: 100%;
     }
 
     @include mq($from: desktop) {
-      height: 467px;
-      width: 452px;
       border: 1px #e8e8e8;
       border-radius: 15px;
-      top: 50%;
+      height: 467px;
       left: 50%;
+      top: 50%;
       transform: translate(-50%, -50%);
+      width: 452px;
     }
 
     &.ReactModal__Content--after-open {
@@ -73,8 +75,8 @@
 
   .city-modal-container {
     background-color: #fff;
-    position: relative;
     border-radius: 5px;
+    position: relative;
   }
 
   .city-modal-heading-container {
@@ -168,14 +170,14 @@
     }
 
     .close {
-      cursor: pointer;
       // border: 1px solid black;
       align-self: center;
-      font-size: $font-size-base;
       color: rgb(0, 117, 201);
-      line-height: 18px;
+      cursor: pointer;
       display: flex;
+      font-size: $font-size-base;
       justify-content: flex-end;
+      line-height: 18px;
       text-align: right;
 
       @include mq($until: tablet) {
@@ -186,18 +188,18 @@
 
       .times {
         display: inline-block;
-        margin-left: 4px;
-        margin-top: 0;
         font-size: 24px;
         line-height: 16px;
+        margin-left: 4px;
+        margin-top: 0;
 
         @include mq($until: tablet) {
           margin-left: 24px;
         }
 
         a {
-          text-decoration: none;
           color: rgb(0, 117, 201);
+          text-decoration: none;
         }
       }
     }
@@ -217,9 +219,9 @@
     .arrow-down,
     .no-change {
       background-size: 16px 16px;
-      width: 16px;
-      height: 16px;
       display: inline-block;
+      height: 16px;
+      width: 16px;
     }
 
     .arrow-up {
@@ -298,10 +300,10 @@
       padding-top: 19px;
 
       @include mq($until: desktop) {
-        padding-left: 15px;
-        padding-bottom: 16px;
-        width: 100%;
         border-right: 0;
+        padding-bottom: 16px;
+        padding-left: 15px;
+        width: 100%;
       }
 
       @include mq($from: desktop) {
@@ -325,8 +327,8 @@
       border-right: 1px solid #e8e8e8;
 
       @include mq($from: desktop) {
-        padding-right: 34px;
         padding-left: 26px;
+        padding-right: 34px;
       }
 
       & > h5,
@@ -349,8 +351,8 @@
       }
 
       @include mq($from: desktop) {
-        padding-right: 29px;
         padding-left: 23px;
+        padding-right: 29px;
       }
 
       & > h5,
@@ -364,10 +366,10 @@
       }
 
       @media (max-width: 767px) {
-        // margin-left: 15px;
-        width: 100%;
         border-top: 1px solid #e8e8e8;
         padding-top: 17px;
+        // margin-left: 15px;
+        width: 100%;
       }
     }
 
@@ -379,9 +381,9 @@
   .footnotes-container {
     align-items: flex-start;
     background-color: #f8f8f8;
+    border-radius: 5px;
     color: #4d4d4d;
     display: flex;
-    border-radius: 5px;
     flex-direction: column;
     font-size: 14px;
     height: 54px;
