@@ -110,6 +110,11 @@
         text-overflow: ellipsis;
         white-space: nowrap;
 
+        .left-arrow {
+          vertical-align: baseline;
+          margin-left: 10px;
+        }
+
         @include mq($from: mobileLandscape, $until: desktop) {
           width: 130px;
         }
@@ -123,11 +128,6 @@
           font-size: 14px;
           line-height: 23px;
           margin-right: 5px;
-
-          .left-arrow {
-            vertical-align: baseline;
-            margin-left: 10px;
-          }
         }
       }
 

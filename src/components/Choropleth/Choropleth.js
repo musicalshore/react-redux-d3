@@ -76,6 +76,12 @@ const Choropleth = class Choropleth extends React.Component {
       .translate([props.width / 2, props.height / 2])
     zoom.extent([[0, 0], [props.width / 2, props.height / 2]])
     zoom.on('zoom', this.zoomed)
+      .filter(() => {
+        if (d3.event.type === 'mousedown') {
+          return this.props.zoomStep !== MIN_ZOOM_STEP
+        }
+        return !d3.event.button
+      })
   }
 
   containerRef = (el) => {
@@ -249,13 +255,11 @@ const Choropleth = class Choropleth extends React.Component {
       .enter().append('path')
       .attr('d', path)
       .classed('svg-map-feature', true)
-    // .on('click', this.reset)
     this.gFeatures
       .append('path')
       .datum(mesh)
       .attr('d', path)
       .classed('svg-map-mesh', true)
-    // .on('click', this.reset)
     this.svg.call(zoom)
       .on('wheel.zoom', null)
 
