@@ -109,7 +109,7 @@
   "browserslist": [
     "last 2 versions",
     "last 2 ie Versions",
-    "last 3 safari versions",
+    "last 5 safari versions",
     "not OperaMini all"
   ],
   "jest": {
