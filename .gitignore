@@ -6,3 +6,6 @@ install.sh
 npm-debug.log
 old_files
 *.old
+Dockerfile
+.dockerignore
+./coverage
