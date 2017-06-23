@@ -8,4 +8,10 @@ old_files
 *.old
 Dockerfile
 .dockerignore
-./coverage
+coverage
+src/components/SocialShare
+src/components/Choropleth/__tests__
+src/components/LocalCity/__tests__
+src/components/MapSelector/__tests__
+src/components/TabbedMap/__tests__
+scripts/brakingEvents.js
