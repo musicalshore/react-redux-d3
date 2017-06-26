@@ -1,12 +1,15 @@
+import './style.scss'
+
 import _ from 'lodash/fp'
+import {array, bool, func, string} from 'prop-types'
 import React from 'react'
-import {array, func, bool, string} from 'prop-types'
 import Modal from 'react-modal'
+
 import CityModalHeading from './CityModalHeading'
-import Rankings from './Rankings'
 import ClaimsData from './ClaimsData'
 import Footnotes from './Footnotes'
-import './style.scss'
+import Rankings from './Rankings'
+
 Modal.setAppElement('#app')
 const CityModal = class CityModal extends React.Component {
   static propTypes = {
@@ -20,9 +23,7 @@ const CityModal = class CityModal extends React.Component {
   }
 
   onRequestClose = (e) => {
-    console.log('onRequestClose: ', e)
     e.preventDefault()
-
     this.props.onToggleModal()
     e.stopPropagation()
   }
@@ -41,7 +42,7 @@ const CityModal = class CityModal extends React.Component {
         <div>
           <Modal isOpen={modalIsOpen}
             onRequestClose={this.onRequestClose}
-            contentLabel="City Modal"
+            contentLabel="Modal"
             className="modal-content"
             overlayClassName="modal-overlay"
             shouldCloseOnOverlayClick={true}
