@@ -77,7 +77,7 @@ const Choropleth = class Choropleth extends React.Component {
     zoom.extent([[0, 0], [props.width / 2, props.height / 2]])
     zoom.on('zoom', this.zoomed)
       .filter(() => {
-        if (d3.event.type === 'mousedown') {
+        if (d3.event.type === 'mousedown' || d3.event.type === 'touchstart') {
           return this.props.zoomStep !== MIN_ZOOM_STEP
         }
         return !d3.event.button
