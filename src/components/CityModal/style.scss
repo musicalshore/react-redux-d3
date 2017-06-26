@@ -2,6 +2,7 @@
 
 :global .ReactModal__Body--open {
   overflow: hidden;
+  position: fixed;
 }
 
 :global .ReactModalPortal {
@@ -14,12 +15,15 @@
     top: 0;
     z-index: 99;
 
+    @include mq($until: desktop) {
+      background-color: rgba(255, 0, 0, 0.4);
+    }
+
     @include mq($from: desktop) {
       background-color: rgba(128, 128, 128, 0.5);
     }
 
     @include mq($until: desktop) {
-      background-color: #fff;
       overflow-x: hidden;
       transition: 0.5s;
       width: 0;
@@ -27,7 +31,6 @@
 
     &.ReactModal__Overlay--after-open {
       @include mq($until: desktop) {
-        // transition: 0.9s;
         width: 100%;
       }
     }
@@ -42,7 +45,6 @@
   .modal-content {
     background-color: #fff;
     position: absolute;
-    // height: 100%;
 
     &:focus {
       outline: 0;

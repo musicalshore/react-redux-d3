@@ -67,19 +67,14 @@
 
   @include mq($from: tablet) {
     position: relative;
-    // display: flex;
-    // align-items: center;
+    height: 625px;
   }
 }
 
 :global {
   .svg-map-container {
     position: relative;
-    // height: 0;
-    // width: 100%;
-    // padding: 0;
     // padding-bottom: 100%; // should equal aspectRatio, will be overriden during render by 100% * (height/width)
-
   }
 
   .marker-tooltip {
