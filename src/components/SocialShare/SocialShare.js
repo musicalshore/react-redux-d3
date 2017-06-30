@@ -67,10 +67,10 @@ const SocialShare = class SocialShare extends React.Component {
 
     twitterUrl = `https://twitter.com/share?text=${encodeURIComponent(pageShareCopy)}&amp;url=${SHARE_URL}`
     linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&amp;url=${SHARE_URL}&amp;title=${encodeURIComponent(title)}&amp;summary=${encodeURIComponent(pageShareCopy)}&amp;source=${SHARE_URL}`
-    pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${SHARE_URL}&amp;description=${encodeURIComponent(pageShareCopy)}`
+    pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${SHARE_URL}&media=${PINTEREST_SHARE_IMAGE_URL}&description=${encodeURIComponent(pageShareCopy)}`
 
     return (
-      <div styleName={`container ${typeStyle}`}>
+      <div styleName={`container ${typeStyle}`} aria-hidden="true">
         <Helmet>
           <meta property="og:description" content={pageShareCopy} />
         </Helmet>
@@ -101,9 +101,8 @@ const SocialShare = class SocialShare extends React.Component {
 
             <a href={linkedInUrl} styleName="share-circle share-linkedin" rel="noopener noreferrer" target="_blank"><i className="fa fa-linkedin" aria-hidden="true"></i></a>
 
-            <a href={pinterestUrl} styleName="share-circle share-pinterest" rel="noopener noreferrer" target="_blank" data-pin-do="buttonPin" data-pin-url={SHARE_URL} data-pin-custom="true" data-pin-media={PINTEREST_SHARE_IMAGE_URL}>
-              <i className="fa fa-pinterest" aria-hidden="true"></i>
-            </a>
+            <a data-pin-do="buttonPin" data-pin-custom="true" rel="noopener noreferrer" target="_blank" styleName="share-circle share-pinterest" href={pinterestUrl}><i className="fa fa-pinterest" aria-hidden="true"></i></a>
+
             {/*
             <a href={`mailto:your@email.com?subject=${title}&amp;body=${encodeURIComponent(pageShareCopy)}%0A${SHARE_URL}`} styleName="share-circle share-email"><i className="fa fa-envelope" aria-hidden="true"></i></a> */}
           </div>
