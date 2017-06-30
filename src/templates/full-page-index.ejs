@@ -42,6 +42,26 @@
        /* control elements based upon if JavaScript is enabled by adding a class high up in the page as close to the body tag as possible */
        document.body.className+=' js';
     </script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          // appId            : '51244333578',
+          appId            : '1702229579859396',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
     <!--[if IE 9]>
     <div class="ie9">
     <![endif]-->
@@ -66,13 +86,13 @@
       </div> -->
       <!-- map ends up in the app-container -->
       <div id="app" class="app-container"  data-city-state="Austin, TX"></div>
-   
+
       <div class="container_12_5">
         <div class="commentContainer">
           <p><span class="hide">Allstate is committed to helping people across the nation protect what matters most. </span>The Allstate America's Best Drivers Report<sup class="superscriptx">&reg;</sup> is an annual ranking that identifies which of the 200 largest U.S. cities and their surrounding suburban metropolitan areas have the safest drivers.<span class="hide"> Sharing this data every year highlights the importance of educating people about safe driving to reduce car collisions and potentially save lives.</span></p>
           <div>
             <div class="commentButton iconDocument">
-              <a target="_blank" href="assets/26024_2017_ABD_Report.pdf" title="Download a PDF of the 2017 Allstate America's Best Drivers Report. Opens in new window. 
+              <a target="_blank" href="assets/26024_2017_ABD_Report.pdf" title="Download a PDF of the 2017 Allstate America's Best Drivers Report. Opens in new window.
 ">Download the full report</a>
               <span>&rsaquo;</span>
             </div>
