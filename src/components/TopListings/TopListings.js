@@ -1,9 +1,10 @@
 import _ from 'lodash/fp'
 import React from 'react'
-import {MAPS} from 'constants/maps'
-import {func, string, array} from 'prop-types'
+import {MAPS, DEFAULT_YEAR} from 'constants/maps'
+import {func, string, array, bool} from 'prop-types'
 import Listing from 'components/Listing'
 import LocalCity from 'components/LocalCity'
+import SocialShare from 'components/SocialShare'
 import './style.scss'
 
 const TopListings = class TopListings extends React.Component {
@@ -13,11 +14,12 @@ const TopListings = class TopListings extends React.Component {
     locations: array,
     selectedCity: string,
     onCitySelect: func.isRequired,
-    cityState: string
+    cityState: string,
+    modalIsOpen: bool.isRequired
   }
 
   render () {
-    const {selectedMap, locations, selectedYear, selectedCity, onCitySelect} = this.props
+    const {selectedMap, locations, selectedYear, selectedCity, onCitySelect, modalIsOpen} = this.props
     const rankingType = _.get('rankingType', _.find(['id', selectedMap], MAPS))
     const hasLocations = !!_.find(_.has(`rankings.${rankingType}`), locations)
     let additionalClasses = _.kebabCase(selectedMap)
@@ -41,7 +43,14 @@ const TopListings = class TopListings extends React.Component {
             onCitySelect={onCitySelect}
           />
         </If>
-        <LocalCity selectedYear={selectedYear} cityState={this.props.cityState || ''} />
+        <div styleName="social-city-container">
+          <LocalCity selectedYear={selectedYear} cityState={this.props.cityState || ''} />
+          <If condition={selectedYear === DEFAULT_YEAR}>
+            <div styleName="social-share">
+              <SocialShare modalIsOpen={modalIsOpen} />
+            </div>
+          </If>
+        </div>
       </div>
     )
   }

@@ -92,4 +92,17 @@
       width: 100px;
     }
   }
+
+  .social-share {
+    margin: auto 0 auto auto;
+
+    @include mq($from: tablet) {
+      display: none;
+    }
+  }
+
+  .social-city-container {
+    display: flex;
+    // height: 34px;
+  }
 }

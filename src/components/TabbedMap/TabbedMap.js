@@ -88,6 +88,7 @@ const TabbedMap = class TabbedMap extends React.Component {
               selectedCity={selectedCity}
               onCitySelect={onCitySelect}
               cityState={cityState}
+              modalIsOpen={modalIsOpen}
             />
           </div>
         </div>

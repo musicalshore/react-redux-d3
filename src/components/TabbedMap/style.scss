@@ -90,10 +90,15 @@
   }
 
   .social-share {
-    margin-left: auto;
+    margin: auto 0 auto auto;
   }
+
   .social-legend-container {
     display: flex;
     height: 34px;
+
+    @include mq($until: tablet) {
+      display: none;
+    }
   }
 }
