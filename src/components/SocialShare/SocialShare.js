@@ -91,12 +91,12 @@ const SocialShare = class SocialShare extends React.Component {
           <div styleName={`popover-container`}>
             <span>Share </span>
 
-            <button onClick={() => {
+            <a href="javascript:void(0)" onClick={() => {
               FB.ui({
                 method: 'share',
                 href: SHARE_URL
               }, function (response) { })
-            }} styleName="share-circle share-fb" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i></button>
+            }} styleName="share-circle share-fb" rel="noopener noreferrer" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i></a>
 
             <a href={twitterUrl} styleName="share-circle share-twitter" rel="noopener noreferrer" target="_blank"><i className="fa fa-twitter" aria-hidden="true"></i></a>
 
