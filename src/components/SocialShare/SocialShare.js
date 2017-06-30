@@ -91,7 +91,7 @@ const SocialShare = class SocialShare extends React.Component {
             <span>Share </span>
 
             <button onClick={() => {
-              window.FB.ui({
+              FB.ui({
                 method: 'share',
                 href: SHARE_URL
               }, function (response) { })

@@ -81,7 +81,7 @@ const LocalCity = class LocalCity extends React.Component {
       return -1
     }
     const location = _.find(['cityState', cityState], locations)
-    if (!location) {
+    if (!location && cityState) {
       console.warn(`Unable to find "${cityState}" in location data for ${year}.`)
       return -1
     }

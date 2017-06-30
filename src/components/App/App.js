@@ -5,13 +5,12 @@ import Breadcrumbs from 'components/Breadcrumbs'
 import Helmet from 'react-helmet'
 import React from 'react'
 import Report from 'containers/Report'
-import {DEFAULT_SHARE_IMAGE_URL, SHARE_URL, FACEBOOK_APP_ID} from 'constants/socialMedia'
+import {DEFAULT_SHARE_IMAGE_URL, SHARE_URL} from 'constants/socialMedia'
 
 const App = (props) => {
   return (
     <div styleName="container">
       <Helmet>
-        <meta property="fb:app_id" content={FACEBOOK_APP_ID} />
         <meta property="og:title" content="America's Best Driver Report" />
         <meta property="og:type" content="article" />
         <meta property="og:image" content={DEFAULT_SHARE_IMAGE_URL} />
