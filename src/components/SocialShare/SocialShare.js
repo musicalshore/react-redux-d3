@@ -73,7 +73,6 @@ const SocialShare = class SocialShare extends React.Component {
       <div styleName={`container ${typeStyle}`} aria-hidden="true">
         <Helmet>
           <meta property="og:description" content={pageShareCopy} />
-          <meta property="twitter:description" content={pageShareCopy} />
         </Helmet>
         <div id="fb-root"></div>
 
@@ -94,7 +93,8 @@ const SocialShare = class SocialShare extends React.Component {
             <a href="javascript:void(0)" onClick={() => {
               FB.ui({
                 method: 'share',
-                href: SHARE_URL
+                href: SHARE_URL,
+                quote: pageShareCopy
               }, function (response) { })
             }} styleName="share-circle share-fb" rel="noopener noreferrer" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i></a>
 
