@@ -97,7 +97,7 @@ const TabbedMap = class TabbedMap extends React.Component {
           </If>
           <If condition={selectedYear === DEFAULT_YEAR}>
             <div styleName="social-share">
-              <SocialShare />
+              <SocialShare modalIsOpen={modalIsOpen} />
             </div>
           </If>
         </div>

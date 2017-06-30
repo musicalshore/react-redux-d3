@@ -2,14 +2,12 @@
 
 import './style.scss'
 
-import {object, string} from 'prop-types'
+import {object, string, bool} from 'prop-types'
 import React from 'react'
 import _ from 'lodash/fp'
 import Helmet from 'react-helmet'
-import {DEFAULT_SHARE_IMAGE_URL, PINTEREST_SHARE_IMAGE_URL, SHARE_URL, DEFAULT_PAGE_SHARE_COPY} from 'constants/socialMedia'
+import {PINTEREST_SHARE_IMAGE_URL, SHARE_URL, DEFAULT_PAGE_SHARE_COPY} from 'constants/socialMedia'
 import {TOP_CITY, RAIN_SNOW, DENSITY} from 'constants/maps'
-import facebookTwitterLinkedInImage from './ABD_FB_TW_LI.png'
-import pinterestImage from './ABD_Pin.png'
 
 function ordinal (n) {
   const s = ['th', 'st', 'nd', 'rd']
@@ -20,7 +18,8 @@ function ordinal (n) {
 const SocialShare = class SocialShare extends React.Component {
   static propTypes = {
     location: object,
-    selectedMap: string
+    selectedMap: string,
+    modalIsOpen: bool
   }
   constructor () {
     super()
@@ -32,7 +31,15 @@ const SocialShare = class SocialShare extends React.Component {
     let showPopover = !this.state.showPopover
     this.setState({ showPopover })
   }
+  componentWillReceiveProps (nextProps) {
+    console.log('nextProps', nextProps);
+    console.log('this.props', this.props);
+    console.log('this.state: ', this.state);
+    if (nextProps.modalIsOpen && this.state.showPopover) {
 
+      this.setState({ showPopover: false })
+    }
+  }
   render () {
     let typeStyle
     let pageShareCopy
