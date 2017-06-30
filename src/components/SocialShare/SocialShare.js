@@ -73,6 +73,7 @@ const SocialShare = class SocialShare extends React.Component {
       <div styleName={`container ${typeStyle}`} aria-hidden="true">
         <Helmet>
           <meta property="og:description" content={pageShareCopy} />
+          <meta property="twitter:description" content={pageShareCopy} />
         </Helmet>
         <div id="fb-root"></div>
 
