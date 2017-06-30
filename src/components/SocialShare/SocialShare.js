@@ -32,11 +32,7 @@ const SocialShare = class SocialShare extends React.Component {
     this.setState({ showPopover })
   }
   componentWillReceiveProps (nextProps) {
-    console.log('nextProps', nextProps);
-    console.log('this.props', this.props);
-    console.log('this.state: ', this.state);
     if (nextProps.modalIsOpen && this.state.showPopover) {
-
       this.setState({ showPopover: false })
     }
   }
@@ -77,13 +73,13 @@ const SocialShare = class SocialShare extends React.Component {
     pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${SHARE_URL}&media=${PINTEREST_SHARE_IMAGE_URL}&description=${encodeURIComponent(pageShareCopy)}`
 
     return (
-      <div styleName={`container ${typeStyle}`} aria-hidden="true">
+      <div styleName={`container ${typeStyle}`}>
         <Helmet>
           <meta property="og:description" content={pageShareCopy} />
         </Helmet>
         <div id="fb-root"></div>
 
-        <button type="button" aria-hidden="true" styleName={`social-share-button ${showPopover ? 'close' : 'share'}`} onClick={this.togglePopover}>
+        <button type="button" aria-label={`${showPopover ? 'Close' : 'Share'}`} styleName={`social-share-button ${showPopover ? 'close' : 'share'}`} onClick={this.togglePopover}>
           <div>
             <If condition={ showPopover }>
               Close <span styleName="icon">X</span>
@@ -97,18 +93,18 @@ const SocialShare = class SocialShare extends React.Component {
           <div styleName={`popover-container`}>
             <span>Share </span>
 
-            <a href="javascript:void(0)" onClick={() => {
+            <a href="javascript:void(0)" aria-label="Facebook" onClick={() => {
               FB.ui({
                 method: 'share',
                 href: SHARE_URL
               }, function (response) { })
-            }} styleName="share-circle share-fb" rel="noopener noreferrer" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i></a>
+            }} styleName="share-circle share-fb" rel="noopener noreferrer" target="_blank"><i className="fa fa-facebook"></i></a>
 
-            <a href={twitterUrl} styleName="share-circle share-twitter" rel="noopener noreferrer" target="_blank"><i className="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href={twitterUrl} aria-label="Twitter" styleName="share-circle share-twitter" rel="noopener noreferrer" target="_blank"><i className="fa fa-twitter"></i></a>
 
-            <a href={linkedInUrl} styleName="share-circle share-linkedin" rel="noopener noreferrer" target="_blank"><i className="fa fa-linkedin" aria-hidden="true"></i></a>
+            <a href={linkedInUrl} aria-label="Linked In" styleName="share-circle share-linkedin" rel="noopener noreferrer" target="_blank"><i className="fa fa-linkedin"></i></a>
 
-            <a data-pin-do="buttonPin" data-pin-custom="true" rel="noopener noreferrer" target="_blank" styleName="share-circle share-pinterest" href={pinterestUrl}><i className="fa fa-pinterest" aria-hidden="true"></i></a>
+            <a data-pin-do="buttonPin" aria-label="Pinterest" data-pin-custom="true" rel="noopener noreferrer" target="_blank" styleName="share-circle share-pinterest" href={pinterestUrl}><i className="fa fa-pinterest"></i></a>
 
             {/*
             <a href={`mailto:your@email.com?subject=${title}&amp;body=${encodeURIComponent(pageShareCopy)}%0A${SHARE_URL}`} styleName="share-circle share-email"><i className="fa fa-envelope" aria-hidden="true"></i></a> */}
