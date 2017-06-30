@@ -2,7 +2,10 @@
 
 :global .ReactModal__Body--open {
   overflow: hidden;
-  position: fixed;
+
+  @include mq($until: desktop) {
+    position: fixed;
+  }
 }
 
 :global .ReactModalPortal {
@@ -381,15 +384,14 @@
   }
 
   .footnotes-container {
-    align-items: flex-start;
     background-color: #f8f8f8;
     border-radius: 5px;
     color: #4d4d4d;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     font-size: 14px;
     height: 54px;
-    justify-content: center;
+    align-items: center;
     line-height: 14px;
 
     @include mq($until: desktop) {

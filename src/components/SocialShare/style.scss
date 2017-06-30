@@ -1,0 +1,105 @@
+@import "style/index.scss";
+
+.container {
+  position: relative;
+  display: inline-block;
+  width: 84.36px;
+  margin: 0;
+  padding: 0;
+
+  .social-share-button {
+    font-size: 12px;
+    color: #2f86cb;
+    font-weight: bold;
+    text-decoration: none;
+    background: #f6f6f6;
+    display: inline-block;
+    padding: 5px 35px 5px 10px;
+    border-radius: 12px;
+    line-height: 14px;
+    height: 24px;
+    width: 100%;
+    background-image: url('./icon-share.png');
+    background-repeat: no-repeat;
+    background-position: 56px;
+    border-width: 0;
+    text-align: left;
+
+    &:hover {
+      background-color: #efefef;
+    }
+
+    &.share {
+    }
+
+    &.close {
+      background-image: none;
+      padding-right: 3px;
+      .icon {
+        display: inline-block;
+      }
+    }
+  }
+
+  .popover-container {
+    display: inline-block;
+    position: absolute;
+    border-radius: 20px;
+    background: #fff;
+    border: 3px solid #e6e6e6;
+    font-size: 18px;
+    z-index: 100000;
+    padding: 0 12px;
+    line-height: 60px;
+    color: #4d4d4d;
+    top: -75px;
+    left: -175px;
+    width: 250px;
+
+    .share-circle {
+      cursor: pointer;
+      border-width: 0;
+      border-radius: 50%;
+      display: inline-block;
+      height: 30px;
+      width: 30px;
+      margin-left: 5px;
+      padding: 0;
+      line-height: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #fff;
+
+      &.share-fb {
+        background: #3c6791;
+      }
+
+      &.share-twitter {
+        background: #34a9de;
+      }
+
+      &.share-linkedin {
+        background: #1979b3;
+      }
+
+      &.share-pinterest {
+        background: #bd081c;
+      }
+
+      &.share-email {
+        background: #224668;
+      }
+    }
+  }
+
+  @include mq($from: desktop) {
+    &.city-share .popover-container {
+      left: -75px;
+    }
+  }
+  @include mq($until: desktop) {
+    &.city-share .popover-container {
+      left: -185px;
+    }
+  }
+}

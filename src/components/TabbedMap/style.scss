@@ -10,6 +10,7 @@
     @include mq($from: tablet) {
       border: 1px solid #f0f0f0;
       height: 740px;
+      margin-bottom: 10px;
     }
 
     @include mq($until: tablet) {
@@ -33,29 +34,11 @@
       width: 75%;
       height: 100%;
     }
-
-    // @media (max-width: 767px) {
-    //   width: 100%;
-    //   min-width: 100%;
-    // }
-
-    .timeLine-SocialContainer {
-      display: flex;
-      margin: 0 auto;
-      padding-top: 10px;
-      width: 100%;
-
-      .socialContainer {
-        float: right;
-        padding-top: 14px;
-      }
-    }
   }
 
   .legend-container {
+    align-self: flex-start;
     border: 1px solid #ebebeb;
-    display: inline-block;
-    margin-top: 10px;
     width: 440px;
     height: 34px;
     padding: 0 20px;
@@ -106,6 +89,11 @@
     }
   }
 
-  .social-container {
+  .social-share {
+    margin-left: auto;
+  }
+  .social-legend-container {
+    display: flex;
+    height: 34px;
   }
 }

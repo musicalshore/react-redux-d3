@@ -2,7 +2,7 @@ import BEST_DRIVER_LOCATIONS_JSON from 'data/best-driver-locations-2017.json'
 import PropTypes from 'prop-types'
 import React from 'react'
 import Promise from 'bluebird'
-import {YEARS} from 'constants/maps'
+import {YEARS, DEFAULT_YEAR} from 'constants/maps'
 import _ from 'lodash/fp'
 
 export const Ordinal = ({number, sup = false}) => {
@@ -73,6 +73,7 @@ export const mapLocationData = (years, locations) => _.map((location) => {
 export const getLocationsByYear = (year, locationData = BEST_DRIVER_LOCATIONS_JSON) => {
   return _.reduce((result, location) => {
     let rankings = _.get(`${year}`, location)
+    let currentYearRankings = _.get(`${DEFAULT_YEAR}`, location)
     let previousTopCities
     if (!rankings) {
       return result
@@ -80,6 +81,9 @@ export const getLocationsByYear = (year, locationData = BEST_DRIVER_LOCATIONS_JS
       previousTopCities = _.get('Top Cities', _.get(`${parseInt(year) - 1}`, location))
       if (previousTopCities) {
         rankings = _.extend(rankings, {'Previous Top Cities': previousTopCities})
+      }
+      if (currentYearRankings) {
+        rankings = _.extend(rankings, {currentYearRankings})
       }
       return result.concat(_.extend(_.omit(YEARS, location), {rankings}))
     }
