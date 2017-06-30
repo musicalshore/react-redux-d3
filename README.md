@@ -1,14 +1,20 @@
 ![T-3 icon](http://t3-assets.uat-l.thethinktank.com/images/T3logo.png)
 - - -
 # Technical Documentation
-**Prepared by:** 	Joshua Brewer<br />
-**Updated by:** Hamilton Pytluk<br />
+**Prepared by:**  Joshua Brewer<br />
+**Updated by:** Michael Russo<br />
 **Last Updated:**  04/17/2017<br />
-**Version**: v3.0.0
+**Version**: v4.0.0
+
 
 | Client    | Project                                    |
 |-----------|--------------------------------------------|
-| Allstate  | America's Best Driver      |
+| Allstate  | America's Best Driver                      |
+
+See Allstate-dev-readme.txt for information on new map and content. 
+
+Note: Below here is legacy page (and now removed old map) info:
+
 
 - - -
 ## Table of Contents
@@ -39,7 +45,7 @@ A landing page that will live on the client's CMS (LiveSite `LS`). Included is a
 
 		<div id="custom-tweet-button">
 		  <a href="https://twitter.com/share?url=https%3A%2F%2Ftwitter.com%2Fpages%2Ftweet-button" target="\_blank">Tweet</a>
-		</div>
+		</div>  
 
 * Downloadable PDFs
   * `<a>` for Full Report is on `Line 296`
