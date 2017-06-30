@@ -1,7 +1,7 @@
 import './style.scss'
 
 import {array, bool, func, object, string, number} from 'prop-types'
-import {TOP_CITY} from 'constants/maps'
+import {TOP_CITY, DEFAULT_YEAR} from 'constants/maps'
 import Choropleth from 'components/Choropleth'
 import CityModal from 'components/CityModal'
 import Legend from './Legend'
@@ -95,9 +95,11 @@ const TabbedMap = class TabbedMap extends React.Component {
           <If condition={selectedMap === TOP_CITY}>
             <Legend />
           </If>
-          <div styleName="social-share">
-            <SocialShare />
-          </div>
+          <If condition={selectedYear === DEFAULT_YEAR}>
+            <div styleName="social-share">
+              <SocialShare />
+            </div>
+          </If>
         </div>
         <CityModal selectedMap={selectedMap}
           locations={locations}
