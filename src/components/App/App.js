@@ -18,6 +18,10 @@ const App = (props) => {
         <meta property="og:image:width" content="600" />
         <meta property="og:image:height" content="315" />
         <meta property="og:url" content={SHARE_URL} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="America's Best Driver Report" />
+        <meta name="twitter:image" content="http://allstate-abd.uat.thethinktank.com/2017-delivery-test/img/ABD_FB_TW_LI.png" />
+        <meta name="twitter:description" content="Is your city home to the best drivers in the U.S.? Allstate's annual America's #BestDriversReport has the answer." />
         <link rel="canonical" href={SHARE_URL} />
       </Helmet>
       <div styleName="content">
