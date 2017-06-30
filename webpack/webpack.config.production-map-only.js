@@ -5,7 +5,7 @@ const DirectoryNamedWebpackPlugin = require('directory-named-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 const rimraf = require('rimraf')
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   context: path.join(__dirname, '..', 'src'),
