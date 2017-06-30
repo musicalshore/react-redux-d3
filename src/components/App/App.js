@@ -5,7 +5,7 @@ import Breadcrumbs from 'components/Breadcrumbs'
 import Helmet from 'react-helmet'
 import React from 'react'
 import Report from 'containers/Report'
-import {DEFAULT_SHARE_IMAGE_URL, PINTEREST_SHARE_IMAGE_URL, SHARE_URL, FACEBOOK_APP_ID} from 'constants/socialMedia'
+import {DEFAULT_SHARE_IMAGE_URL, SHARE_URL, FACEBOOK_APP_ID} from 'constants/socialMedia'
 
 const App = (props) => {
   return (
