@@ -5,6 +5,7 @@ import {TOP_CITY} from 'constants/maps'
 import Choropleth from 'components/Choropleth'
 import CityModal from 'components/CityModal'
 import Legend from './Legend'
+import SocialShare from 'components/SocialShare'
 import MapSelector from 'components/MapSelector'
 import React from 'react'
 import TabNav from 'components/TabNav'
@@ -79,12 +80,6 @@ const TabbedMap = class TabbedMap extends React.Component {
               width={715}
               height={625}
             />
-            {/* <div styleName="timeLine-SocialContainer">
-
-              <div styleName="socialContainer">
-                <div id="pageShare"></div>
-              </div>
-            </div> */}
           </div>
           <div styleName="top-listings">
             <TopListings selectedMap={selectedMap}
@@ -96,11 +91,13 @@ const TabbedMap = class TabbedMap extends React.Component {
             />
           </div>
         </div>
-        <div>
+        <div styleName="social-legend-container">
           <If condition={selectedMap === TOP_CITY}>
             <Legend />
           </If>
-          {/* <ShareButton /> */}
+          <div styleName="social-share">
+            <SocialShare />
+          </div>
         </div>
         <CityModal selectedMap={selectedMap}
           locations={locations}

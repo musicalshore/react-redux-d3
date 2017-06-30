@@ -65,7 +65,7 @@ const CityModal = class CityModal extends React.Component {
                   location={location}
                 />
               </div>
-              <Footnotes />
+              <Footnotes location={location} selectedMap={selectedMap} />
             </div>
           </Modal>
         </div>

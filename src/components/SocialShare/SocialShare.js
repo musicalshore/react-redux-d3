@@ -2,15 +2,25 @@
 
 import './style.scss'
 
-import {object} from 'prop-types'
+import {object, string} from 'prop-types'
 import React from 'react'
 import _ from 'lodash/fp'
+import Helmet from 'react-helmet'
+import {DEFAULT_SHARE_IMAGE_URL, PINTEREST_SHARE_IMAGE_URL, SHARE_URL, DEFAULT_PAGE_SHARE_COPY} from 'constants/socialMedia'
+import {TOP_CITY, RAIN_SNOW, DENSITY} from 'constants/maps'
 import facebookTwitterLinkedInImage from './ABD_FB_TW_LI.png'
 import pinterestImage from './ABD_Pin.png'
 
+function ordinal (n) {
+  const s = ['th', 'st', 'nd', 'rd']
+  const v = n % 100
+  const suffix = (s[(v - 20) % 10] || s[v] || s[0])
+  return n + suffix
+}
 const SocialShare = class SocialShare extends React.Component {
   static propTypes = {
-    location: object
+    location: object,
+    selectedMap: string
   }
   constructor () {
     super()
@@ -25,125 +35,82 @@ const SocialShare = class SocialShare extends React.Component {
 
   render () {
     let typeStyle
-    if (this.props.location && !_.isEmpty(this.props.location)) {
-      console.log('loc', this.props.location)
+    let pageShareCopy
+    const {location, selectedMap} = this.props
+    const {showPopover} = this.state
+    const title = `Allstate America's Best Driver Report`
+    let twitterUrl
+    let linkedInUrl
+    let pinterestUrl
+
+    if (location && !_.isEmpty(location)) {
       typeStyle = 'city-share'
+      let rankings = _.getOr({}, 'rankings.currentYearRankings', location)
+
+      if (selectedMap && selectedMap === TOP_CITY && rankings['Top Cities'] === 1) {
+        pageShareCopy = `${location.cityState} is the safest driving city in 2017 on Allstate America's Best Drivers Report®.`
+      } else if (selectedMap && selectedMap === RAIN_SNOW) {
+        pageShareCopy = `${location.cityState} is the ${ordinal(rankings['Rain & Snow'])} safest driving city in rain and snow on Allstate America's Best Drivers Report®.`
+      } else if (selectedMap && selectedMap === DENSITY) {
+        pageShareCopy = `${location.cityState} is the ${ordinal(rankings['Population Density'])} safest driving city by population density on Allstate America's Best Drivers Report®.`
+      } else if (location.mostImproved) {
+        pageShareCopy = `${location.cityState} is the most improved city on Allstate America's Best Drivers Report®.`
+      } else if (location.newLocation) {
+        pageShareCopy = `Well done! It's ${location.cityState}'s first time on Allstate America's Best Drivers Report®.`
+      } else {
+        pageShareCopy = `${location.cityState} drivers rank ${ordinal(rankings['Top Cities'])} on the Allstate America's Best Drivers Report®.`
+      }
     } else {
       typeStyle = 'page-share'
+      pageShareCopy = DEFAULT_PAGE_SHARE_COPY
     }
 
-    const shareUrl = 'https://www.allstate.com/tools-and-resources/americas-best-drivers.aspx'
-    const title = `Allstate America's Best Driver Report`
-    const pageShareCopy = encodeURIComponent(`Is your city home to the best drivers in the US? The 2017 Allstate America's Best Drivers Report® has the answer.`)
+    twitterUrl = `https://twitter.com/share?text=${encodeURIComponent(pageShareCopy)}&amp;url=${SHARE_URL}`
+    linkedInUrl = `https://www.linkedin.com/shareArticle?mini=true&amp;url=${SHARE_URL}&amp;title=${encodeURIComponent(title)}&amp;summary=${encodeURIComponent(pageShareCopy)}&amp;source=${SHARE_URL}`
+    pinterestUrl = `https://www.pinterest.com/pin/create/button/?url=${SHARE_URL}&amp;description=${encodeURIComponent(pageShareCopy)}&amp;image_url=${pinterestImage}`
 
     return (
       <div styleName={`container ${typeStyle}`}>
-        <button type="button" aria-label="Social Share" styleName={`social-share-button ${this.state.showPopover ? 'close' : 'share'}`} onClick={this.togglePopover}>
-          {this.state.showPopover &&
-            <div>
+        <Helmet>
+          <meta property="og:description" content={pageShareCopy} />
+        </Helmet>
+        <div id="fb-root"></div>
+
+        <button type="button" aria-hidden="true" styleName={`social-share-button ${showPopover ? 'close' : 'share'}`} onClick={this.togglePopover}>
+          <div>
+            <If condition={ showPopover }>
               Close <span styleName="icon">X</span>
-            </div>
-          }
-          {!this.state.showPopover &&
-            <div>Share</div>
-          }
+            </If>
+            <If condition={ !showPopover }>
+              Share
+            </If>
+          </div>
         </button>
-        {this.state.showPopover &&
+        <If condition={ showPopover }>
           <div styleName={`popover-container`}>
             <span>Share </span>
 
-            <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} styleName="share-circle share-fb" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i></a>
+            <button onClick={() => {
+              window.FB.ui({
+                method: 'share',
+                href: SHARE_URL
+              }, function (response) { })
+            }} styleName="share-circle share-fb" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i></button>
 
-            <a href={`https://twitter.com/share?text=${pageShareCopy}&amp;url=${shareUrl}`} styleName="share-circle share-twitter" rel="noopener noreferrer" target="_blank"><i className="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href={twitterUrl} styleName="share-circle share-twitter" rel="noopener noreferrer" target="_blank"><i className="fa fa-twitter" aria-hidden="true"></i></a>
 
-            <a href={`https://www.linkedin.com/shareArticle?mini=true&amp;url=${shareUrl}&amp;title=${title}&amp;summary=${pageShareCopy}`} styleName="share-circle share-linkedin" rel="noopener noreferrer" target="_blank"><i className="fa fa-linkedin" aria-hidden="true"></i></a>
+            <a href={linkedInUrl} styleName="share-circle share-linkedin" rel="noopener noreferrer" target="_blank"><i className="fa fa-linkedin" aria-hidden="true"></i></a>
 
-            <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.allstate.com/tools-and-resources/americas-best-drivers.aspx&amp;title=${title}&amp;summary=Is%20your%20city%20home%20to%20the%20best%20drivers%20in%20the%20U.S.%3F%20Allstate%E2%80%99s%20annual%20America%E2%80%99s%20%23BestDriversReport%20has%20the%20answer." styleName="share-circle share-pinterest" rel="noopener noreferrer" target="_blank"><i className="fa fa-pinterest" aria-hidden="true"></i></a>
-
-            <a href="mailto:your@email.com?subject=Allstate America's Best Drivers Report&amp;body=Is%20your%20city%20home%20to%20the%20best%20drivers%20in%20the%20U.S.%3F%20Allstate%E2%80%99s%20annual%20America%E2%80%99s%20%23BestDriversReport%20has%20the%20answer. https://www.allstate.com/tools-and-resources/americas-best-drivers.aspx" styleName="share-circle share-email" rel="noopener noreferrer" target="_blank"><i className="fa fa-envelope" aria-hidden="true"></i></a>
+            <a href={pinterestUrl} styleName="share-circle share-pinterest" rel="noopener noreferrer" target="_blank" data-pin-do="buttonPin" data-pin-url={`${SHARE_URL}`} data-pin-custom="true">
+              <i className="fa fa-pinterest" aria-hidden="true"></i>
+            </a>
+            {/*
+            <a href={`mailto:your@email.com?subject=${title}&amp;body=${encodeURIComponent(pageShareCopy)}%0A${SHARE_URL}`} styleName="share-circle share-email"><i className="fa fa-envelope" aria-hidden="true"></i></a> */}
           </div>
-        }
+        </If>
       </div>
     )
   }
 }
 
 export default SocialShare
-// Constants
-// var pageUrl = 'http://www.allstate.com/';
-// var shareImage = '../img/home/share-thumbnail.jpg';
-// var cityShareCopy = '{city} is the {rank} safest driving city in 2016. See where your city ranks on America’s #BestDriversReport.';
-// var mapShareCopy = 'Is your city home to the best drivers in the U.S.? Allstate’s annual America’s #BestDriversReport has the answer.';
-
-// function setCityShare(city, state, rank) {
-//     var cityState = city+', '+state;
-//     if(rank == '1<sup>st</sup>') {
-//       cityShareCopy = '{city} is THE safest driving city in 2016! See where your city ranks on America’s #BestDriversReport.';
-//     } else if(cityState == 'Thornton, CO'){
-//       cityShareCopy = 'Well done! It’s {city}’s first time on America’s #BestDriversReport. See where your city ranks:';
-//     } else if(cityState == 'Anchorage, AK'){
-//       cityShareCopy = '{city} is the most improved city on America’s #BestDriversReport. See where your city ranks:';
-//     } else {
-//       cityShareCopy = '{city} is the {rank} safest driving city in 2016. See where your city ranks on America’s #BestDriversReport.';
-//     }
-//     var copy = cityShareCopy.replace('{city}', cityState);
-//     copy = copy.replace("{rank}", rank);
-//     copy = copy.replace(/<(?:.|\n)*?>/gm, '');
-//     return copy;
-// }
-
-// function setTwitterShare(city, state, rank) {
-//     var cityState = city+', '+state;
-//     if(rank == '1<sup>st</sup>') {
-//       cityShareCopy = '{city} is THE safest driving city in 2016! See where your city ranks on America’s #BestDriversReport.';
-//     } else if(cityState == 'Thornton, CO'){
-//       cityShareCopy = 'Well done! It’s {city}’s first time on America’s #BestDriversReport. See where your city ranks:';
-//     } else if(cityState == 'Anchorage, AK'){
-//       cityShareCopy = '{city} is the most improved city on America’s #BestDriversReport. See where your city ranks:';
-//     } else {
-//       cityShareCopy = '{city} is the {rank} safest driving city. See where your city ranks on America\'s #BestDriversReport.';
-//     }
-//     var copy = cityShareCopy.replace('{city}', cityState);
-//     copy = copy.replace("{rank}", rank);
-//     copy = copy.replace(/<(?:.|\n)*?>/gm, '');
-//     return copy;
-// }
-
-// function setRSPShare(city, state, rank, type, twitter) {
-//     var cityState = city+', '+state;
-//     if(type == 'rs' && twitter) {
-//       cityShareCopy = '{city} is the {rank} safest driving city in rain and snow. See the 2016 America\'s #BestDriversReport.';
-//     } else if(type == 'pop' && twitter) {
-//       cityShareCopy = '{city} is the {rank} safest driving city by population density. See the America\'s #BestDriversReport.';
-//     } else if(type == 'rs') {
-//       cityShareCopy = '{city} is the {rank} safest driving city in rain and snow. See this year\'s America\'s #BestDriversReport.';
-//     } else if(type == 'pop') {
-//       cityShareCopy = '{city} is the {rank} safest driving city by population density. See where your city ranks on America\'s #BestDriversReport.';
-//     }
-//     var copy = cityShareCopy.replace('{city}', cityState);
-//     copy = copy.replace("{rank}", rank);
-//     copy = copy.replace(/<(?:.|\n)*?>/gm, '');
-//     return copy;
-// }
-
-// // Overall share
-// var shareCopy = encodeURIComponent('Is your city home to the best drivers in the U.S.? Allstate’s annual America’s #BestDriversReport has the answer.');
-// var baseURL = 'https://www.allstate.com/tools-and-resources/americas-best-drivers.aspx';
-// var fbShare = 'https://www.facebook.com/sharer/sharer.php?u=https://www.allstate.com/tools-and-resources/americas-best-drivers.aspx';
-// var twShare = 'https://twitter.com/share?text='+shareCopy;
-// var inShare = 'https://www.linkedin.com/shareArticle?mini=true&url='+baseURL+'&title=Allstate America\'s Best Drivers Report&summary='+shareCopy;
-// var mailShare = 'mailto:your@email.com?subject=Allstate America\'s Best Drivers Report&body='+shareCopy+' '+baseURL;
-// var baseShare = '<span class="share-text">Share</span><img src="img/icons/icon-share.png" alt="Share this website" /></a>';
-// var shareCircles = '<a href="'+fbShare+'" class="share-circle share-fb"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="'+twShare+'" class="share-circle share-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="'+inShare+'" class="share-circle share-linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a><a href="'+mailShare+'" class="share-circle share-email"><i class="fa fa-envelope" aria-hidden="true"></i></a>';
-// $('#pageShare').html('<a href="#" data-share="'+shareCopy+'">'+baseShare);
-// $('#pageShare a').on('click', function(e){
-//   e.preventDefault();
-//   if($('.popover').length){
-//     $('.popover').remove();
-//     $(this).html(baseShare);
-//   } else {
-//     $('<div class="popover" />').html('Share '+shareCircles).appendTo('#pageShare');
-//     $(this).html('Close &nbsp; X');
-//   }
-//   $('a.share-circle').attr('target','_blank');
-// });
