@@ -38,7 +38,7 @@ const SocialShare = class SocialShare extends React.Component {
     let pageShareCopy
     const {location, selectedMap} = this.props
     const {showPopover} = this.state
-    const title = `Allstate America's Best Driver Report`
+    const title = `Allstate America's Best Driver Report®`
     let twitterUrl
     let linkedInUrl
     let pinterestUrl
