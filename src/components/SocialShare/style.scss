@@ -53,7 +53,6 @@
     line-height: 60px;
     color: #4d4d4d;
     top: -75px;
-    left: -175px;
     width: 250px;
 
     .share-circle {
@@ -90,6 +89,10 @@
         background: #224668;
       }
     }
+  }
+
+  &.page-share .popover-container {
+    left: -175px;
   }
 
   @include mq($from: desktop) {
