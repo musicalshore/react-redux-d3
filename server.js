@@ -32,10 +32,11 @@ if (isDevelopment) {
 
   app.get('*', (req, res) => res.sendFile(HTML_FILE))
 }
-const server = app.listen(process.env.PORT || 3333, 'localhost', (err) => {
+const server = app.listen(process.env.PORT || 3333, '0.0.0.0', (err) => {
   if (err) {
     console.log(err)
     return
   }
-  console.log('Listening at http://localhost:%d', server.address().port)
+  const {address, port} = server.address()
+  console.log(`Listening at ${address}:${port}`)
 })
