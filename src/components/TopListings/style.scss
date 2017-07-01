@@ -94,15 +94,10 @@
   }
 
   .social-share {
-    margin: auto 0 auto auto;
+    text-align: right;
 
     @include mq($from: tablet) {
       display: none;
     }
-  }
-
-  .social-city-container {
-    display: flex;
-    // height: 34px;
   }
 }

@@ -43,14 +43,12 @@ const TopListings = class TopListings extends React.Component {
             onCitySelect={onCitySelect}
           />
         </If>
-        <div styleName="social-city-container">
-          <LocalCity selectedYear={selectedYear} cityState={this.props.cityState || ''} />
-          <If condition={selectedYear === DEFAULT_YEAR}>
-            <div styleName="social-share">
-              <SocialShare modalIsOpen={modalIsOpen} />
-            </div>
-          </If>
-        </div>
+        <If condition={selectedYear === DEFAULT_YEAR}>
+          <div styleName="social-share">
+            <SocialShare modalIsOpen={modalIsOpen} />
+          </div>
+        </If>
+        <LocalCity selectedYear={selectedYear} cityState={this.props.cityState || ''} />
       </div>
     )
   }
