@@ -18,7 +18,7 @@
     "babel-polyfill": "^6.23.0",
     "bluebird": "^3.5.0",
     "d3": "^4.9.1",
-    "debug": "^2.6.8",
+    "debug": "^2.6.9",
     "eslint-loader": "^1.8.0",
     "eslint-plugin-babel": "^4.1.1",
     "express": "^4.15.3",
